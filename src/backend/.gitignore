@@ -1,0 +1,13 @@
+# Archivos de caché de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Entorno virtual (NO debe subirse a Git)
+venv/
+
+# Archivos de configuración local
+instance/
+
+# Archivos de base de datos temporales (si aplicara)
+*.sqlite3
