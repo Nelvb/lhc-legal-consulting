@@ -1,6 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
-from models import db, User
+from app.extensions import db
+from app.models.models import User
+
 
 # Crear el blueprint para las rutas de autenticación
 routes = Blueprint("routes", __name__)

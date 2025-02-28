@@ -1,11 +1,12 @@
+import os
+from dotenv import load_dotenv
 from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
-from config import config
-import os
-from dotenv import load_dotenv
+from app.config import config
+from app.extensions import db
+from app.api.routes import routes
 
 # Cargar variables de entorno desde .env
 load_dotenv()
@@ -13,25 +14,17 @@ load_dotenv()
 # Inicializar la aplicación Flask
 app = Flask(__name__)
 
-# Configuración de la base de datos
-DB_USER = os.getenv("DB_USER", "postgres")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "Nelson1978")
-DB_HOST = os.getenv("DB_HOST", "localhost")
-DB_NAME = os.getenv("DB_NAME", "starter_template")
-
 # Definir entorno (development o production)
-env = os.getenv("FLASK_ENV", "development")  # Por defecto 'development'
+env = os.getenv("FLASK_ENV", "development")  # 'development' por defecto
 app.config.from_object(config[env])  # Cargar configuración según el entorno
 
 # Inicializar extensiones
-from models import db
 db.init_app(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
 CORS(app)
 
 # Importar y registrar las rutas
-from routes import routes
 app.register_blueprint(routes)
 
 # Ruta de prueba
