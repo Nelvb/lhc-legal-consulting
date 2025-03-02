@@ -1,7 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
+from app.extensions import db
 from werkzeug.security import generate_password_hash, check_password_hash
-
-db = SQLAlchemy()
+from sqlalchemy.sql import func
 
 class User(db.Model):
     __tablename__ = "users"  # Nombre explícito de la tabla
@@ -10,6 +9,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now(), nullable=True)
 
     def __repr__(self):
         return f"<User {self.username}>"

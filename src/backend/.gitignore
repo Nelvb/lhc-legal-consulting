@@ -2,12 +2,16 @@
 __pycache__/
 *.pyc
 *.pyo
+.pytest_cache/
 
-# Entorno virtual (NO debe subirse a Git)
+# Dependencias de Node
+node_modules/
+
+# Entorno virtual
 venv/
 
 # Archivos de configuración local
 instance/
 
-# Archivos de base de datos temporales (si aplicara)
+# Archivos de base de datos temporales
 *.sqlite3

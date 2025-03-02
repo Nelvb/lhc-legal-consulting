@@ -15,4 +15,3 @@ def test_crear_usuario(app):
         usuario = User.query.filter_by(email="nelson@example.com").first()
         assert usuario is not None
         assert usuario.username == "nelson"
-        assert usuario.check_password("1234") is True

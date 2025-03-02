@@ -6,7 +6,8 @@ from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from app.config import config
 from app.extensions import db
-from app.api.routes import routes
+from app.api.auth import auth_bp  # Importa el blueprint de autenticación
+from app.api.users import users_bp  # Importa el blueprint de usuarios
 
 # Cargar variables de entorno desde .env
 load_dotenv()
@@ -24,8 +25,9 @@ migrate = Migrate(app, db)
 jwt = JWTManager(app)
 CORS(app)
 
-# Importar y registrar las rutas
-app.register_blueprint(routes)
+# Registrar blueprints
+app.register_blueprint(auth_bp, url_prefix='/api/auth')
+app.register_blueprint(users_bp, url_prefix='/api/users')
 
 # Ruta de prueba
 @app.route("/")
