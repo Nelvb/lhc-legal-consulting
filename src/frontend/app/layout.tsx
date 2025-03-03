@@ -1,4 +1,4 @@
-import { Metadata } from 'next/types';
+import { Metadata } from 'next';
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
 
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-blue-500 text-white`} // Aplicando estilos Tailwind
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-blue-500 text-white`}
       >
         {children}
       </body>

@@ -1,0 +1,21 @@
+[tool.black]
+line-length = 79
+target-version = ['py38']
+exclude = '''
+/(
+ # directorios a ignorar
+ \.eggs
+ | \.git
+ | \.hg
+ | \.mypy_cache
+ | \.tox
+ | \.venv
+ | build
+ | dist
+ | __pycache__
+)/
+'''
+
+[tool.isort]
+profile = "black"
+known_third_party = ["flask", "sqlalchemy"]
