@@ -22,7 +22,11 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": "./",  // Apunta a la raíz del proyecto
+    "paths": {
+      "@/*": ["src/frontend/*"] // Apunta a la carpeta src/frontend
+    }
   },
   "include": [
     "src/**/*",
