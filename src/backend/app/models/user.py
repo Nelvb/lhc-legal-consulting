@@ -1,6 +1,7 @@
 from app.extensions import db
-from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.sql import func
+from werkzeug.security import check_password_hash, generate_password_hash
+
 
 class User(db.Model):
     __tablename__ = "users"  # Nombre explícito de la tabla
@@ -9,7 +10,9 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now(), nullable=True)
+    created_at = db.Column(
+        db.DateTime(timezone=True), server_default=func.now(), nullable=True
+    )
 
     def __repr__(self):
         return f"<User {self.username}>"
@@ -27,8 +30,4 @@ class User(db.Model):
     # Método para serializar los datos del usuario (sin incluir la contraseña)
     def serialize(self) -> dict:
         """Convierte el objeto User en un diccionario sin exponer la contraseña."""
-        return {
-            "id": self.id,
-            "username": self.username,
-            "email": self.email
-        }
+        return {"id": self.id, "username": self.username, "email": self.email}

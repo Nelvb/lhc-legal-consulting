@@ -1,10 +1,15 @@
-from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from app.extensions import db
 from app.models.user import User
+from flask import Blueprint, jsonify, request
+from flask_jwt_extended import (
+    create_access_token,
+    get_jwt_identity,
+    jwt_required,
+)
 
 # Crear el blueprint para las rutas de autenticación
 routes = Blueprint("routes", __name__)
+
 
 # REGISTRO DE USUARIO
 @routes.route("/signup", methods=["POST"])
@@ -50,10 +55,10 @@ def login():
 
     access_token = create_access_token(identity=user.id)
 
-    return jsonify({
-        "access_token": access_token,
-        "user": user.serialize()
-    }), 200
+    return (
+        jsonify({"access_token": access_token, "user": user.serialize()}),
+        200,
+    )
 
 
 # ENDPOINT PROTEGIDO (SOLO PARA USUARIOS AUTENTICADOS)
