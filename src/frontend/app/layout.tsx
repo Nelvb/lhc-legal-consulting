@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
 import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
+
 
 // Configuración de fuentes de Google usando Next.js Font Optimization
 // Geist Sans: Fuente principal para texto general
@@ -50,6 +52,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

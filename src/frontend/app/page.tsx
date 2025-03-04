@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen text-center px-8 pt-40">
+    <main className="flex flex-col items-center justify-center min-h-screen text-center px-8 pt-32 pb-20">
       {/* Título principal */}
       <h1 className="text-4xl font-bold mt-6">
         Starter Template para Proyectos Full Stack

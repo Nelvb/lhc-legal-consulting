@@ -1,36 +1,257 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Full-Stack Starter Template
 
-## Getting Started
+Un template completo para iniciar proyectos full-stack con Next.js en el frontend y Flask en el backend. Incluye autenticación JWT, PostgreSQL, y Tailwind CSS.
 
-First, run the development server:
+## Tecnologías
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Frontend
+- Next.js (v15.2.0)
+- TypeScript
+- Tailwind CSS
+- clsx para manejo de clases condicionales
+
+### Backend
+- Flask
+- SQLAlchemy
+- PostgreSQL
+- JWT para autenticación
+- Black & isort para formateo de código
+
+## Estructura del Proyecto
+
+```
+starter_template/
+├── backend/                 # Aplicación Flask
+│   ├── app/
+│   │   ├── __init__.py      # Inicialización de la aplicación Flask
+│   │   ├── models.py        # Modelos de SQLAlchemy
+│   │   ├── routes.py        # Rutas y endpoints de la API
+│   │   └── auth.py          # Lógica de autenticación con JWT
+│   ├── config.py            # Configuración de la aplicación
+│   ├── migrations/          # Migraciones de la base de datos
+│   └── requirements.txt     # Dependencias de Python
+│
+├── app/                     # Frontend Next.js (App Router)
+│   ├── components/          # Componentes reutilizables
+│   │   ├── auth/            # Componentes relacionados con autenticación
+│   │   └── ui/              # Componentes de interfaz de usuario
+│   ├── hooks/               # Custom hooks (useAuth, etc.)
+│   ├── lib/                 # Utilidades y configuraciones
+│   └── page.tsx             # Página principal
+│
+├── public/                  # Archivos estáticos
+├── package.json             # Dependencias de Node.js
+└── tsconfig.json            # Configuración de TypeScript
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Requisitos Previos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Node.js (v18 o superior)
+- Python (v3.8 o superior)
+- PostgreSQL
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Configuración Inicial
 
-## Learn More
+### Frontend
 
-To learn more about Next.js, take a look at the following resources:
+1. Instalar dependencias:
+   ```bash
+   npm install
+   # o
+   yarn install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Crear archivo `.env.local` en la raíz del proyecto:
+   ```
+   NEXT_PUBLIC_API_URL=http://localhost:5000/api
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Iniciar servidor de desarrollo:
+   ```bash
+   npm run dev
+   # o
+   yarn dev
+   ```
 
-## Deploy on Vercel
+   El frontend estará disponible en [http://localhost:3000](http://localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Backend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Navegar al directorio del backend:
+   ```bash
+   cd backend
+   ```
+
+2. Crear un entorno virtual:
+   ```bash
+   python -m venv venv
+   ```
+
+3. Activar el entorno virtual:
+   - En Windows:
+     ```bash
+     venv\Scripts\activate
+     ```
+   - En macOS/Linux:
+     ```bash
+     source venv/bin/activate
+     ```
+
+4. Instalar dependencias:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. Crear archivo `.env` en el directorio `backend`:
+   ```
+   FLASK_APP=run.py
+   FLASK_ENV=development
+   DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/nombre_db
+   JWT_SECRET_KEY=tu_clave_secreta_para_jwt
+   ```
+
+6. Configurar la base de datos:
+   ```bash
+   flask db init
+   flask db migrate -m "Initial migration"
+   flask db upgrade
+   ```
+
+7. Iniciar el servidor Flask:
+   ```bash
+   flask run
+   ```
+
+   El backend API estará disponible en [http://localhost:5000](http://localhost:5000)
+
+## Funcionalidades
+
+### Autenticación
+
+- Registro de usuarios
+- Inicio de sesión con JWT
+- Middleware de autenticación para rutas protegidas
+
+### Temas y UI
+
+- Sistema de temas claro/oscuro
+- Componentes UI personalizados
+  - Botones con diferentes variantes: default, outline, ghost
+  - Formularios estilizados
+  - Layouts responsivos
+
+## Desarrollo
+
+### Comandos Frontend
+
+```bash
+# Desarrollo
+npm run dev
+
+# Construcción para producción
+npm run build
+
+# Iniciar versión de producción
+npm start
+```
+
+### Comandos Backend
+
+```bash
+# Activar entorno virtual
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
+
+# Iniciar servidor de desarrollo
+flask run
+
+# Migraciones de base de datos
+flask db migrate -m "Descripción del cambio"
+flask db upgrade
+
+# Formatear código
+black .
+isort .
+```
+
+## Base de Datos
+
+### Migraciones
+
+Cuando realices cambios en los modelos de datos, deberás actualizar la base de datos:
+
+```bash
+# Generar migración
+flask db migrate -m "Descripción del cambio"
+
+# Aplicar migración
+flask db upgrade
+```
+
+### Restaurar a una migración anterior
+
+```bash
+flask db downgrade
+```
+
+## Despliegue
+
+### Frontend (Vercel recomendado)
+
+```bash
+# Instalar Vercel CLI
+npm install -g vercel
+
+# Despliegue
+vercel
+```
+
+### Backend
+
+Para el backend, puedes utilizar servicios como:
+- Heroku
+- DigitalOcean
+- Railway
+- Render
+
+Asegúrate de configurar las variables de entorno correspondientes en el entorno de producción.
+
+## Personalización
+
+### Tema UI
+
+El tema de la interfaz de usuario se puede personalizar en:
+- `tailwind.config.js` para configuración de colores
+- `app/styles/globals.css` para estilos globales
+
+### Configuración del Backend
+
+La configuración del backend se puede ajustar en el archivo `backend/config.py`.
+
+## Solución de Problemas Comunes
+
+### Error de conexión a la base de datos
+
+Verifica que PostgreSQL esté en ejecución y que las credenciales en el archivo `.env` sean correctas.
+
+### Errores de CORS
+
+Si experimentas problemas de CORS, verifica la configuración en `backend/app/__init__.py`.
+
+### Errores de JWT
+
+Asegúrate de que `JWT_SECRET_KEY` esté correctamente configurado y que los tokens no hayan expirado.
+
+## Contribución
+
+Las contribuciones son bienvenidas. Por favor:
+
+1. Haz fork del repositorio
+2. Crea una rama para tu feature (`git checkout -b feature/amazing-feature`)
+3. Realiza tus cambios y haz commit (`git commit -m 'Add some amazing feature'`)
+4. Push a la rama (`git push origin feature/amazing-feature`)
+5. Abre un Pull Request
+
+## Licencia
+
+[MIT](https://choosealicense.com/licenses/mit/)
