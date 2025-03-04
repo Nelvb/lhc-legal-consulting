@@ -26,8 +26,7 @@ export default function LoginPage() {
 
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            ¿No tienes cuenta? import Link from "next/link"; // 👈 Importamos
-            Link de Next.js
+            ¿No tienes cuenta?{" "}
             <Link
               href="/signup"
               className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400"

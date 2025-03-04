@@ -51,4 +51,5 @@ venv/
 instance/
 
 # Temporary database files
-*.sqlite3
+*.sqlite3.next/
+node_modules/
