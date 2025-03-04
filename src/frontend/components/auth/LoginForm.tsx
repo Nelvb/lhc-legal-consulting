@@ -1,28 +1,28 @@
 // components/auth/LoginForm.tsx
-'use client';
+"use client";
 
-import React, { useState, FormEvent } from 'react';
-import Button from '../ui/Button';
+import React, { useState, FormEvent } from "react";
+import Button from "../ui/Button";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
       // Aquí irá la lógica de autenticación cuando se implemente el backend
-      console.log('Intento de login con:', { email, password });
-      
+      console.log("Intento de login con:", { email, password });
+
       // Simular una respuesta del servidor
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Redirigir o mostrar éxito
     } catch (error) {
-      console.error('Error durante el login:', error);
+      console.error("Error durante el login:", error);
     } finally {
       setIsLoading(false);
     }
@@ -30,11 +30,19 @@ const LoginForm = () => {
 
   return (
     <div className="w-full max-w-md">
-      <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">Iniciar Sesión</h2>
-        
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
+      >
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">
+          Iniciar Sesión
+        </h2>
+
         <div className="mb-4">
-          <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="email">
+          <label
+            className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+            htmlFor="email"
+          >
             Email
           </label>
           <input
@@ -48,9 +56,12 @@ const LoginForm = () => {
             required
           />
         </div>
-        
+
         <div className="mb-6">
-          <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="password">
+          <label
+            className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+            htmlFor="password"
+          >
             Contraseña
           </label>
           <input
@@ -64,15 +75,15 @@ const LoginForm = () => {
             required
           />
         </div>
-        
+
         <div>
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             variant="primary"
             className="w-full"
             disabled={isLoading}
           >
-            {isLoading ? 'Procesando...' : 'Iniciar Sesión'}
+            {isLoading ? "Procesando..." : "Iniciar Sesión"}
           </Button>
         </div>
       </form>

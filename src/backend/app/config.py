@@ -1,10 +1,8 @@
 import os
-
 from dotenv import load_dotenv
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
-
 
 class Config:
     """Configuración base de la aplicación."""
@@ -18,7 +16,9 @@ class DevelopmentConfig(Config):
     """Configuración específica para desarrollo."""
 
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}"
+    # Detectar si está en Docker o en local
+    DB_HOST = os.getenv("DB_HOST", "localhost")  # Usa "localhost" si no está definido
+    SQLALCHEMY_DATABASE_URI = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{DB_HOST}/{os.getenv('DB_NAME')}"
 
 
 class TestingConfig(Config):
