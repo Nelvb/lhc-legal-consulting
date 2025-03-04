@@ -1,6 +1,6 @@
 # Full-Stack Starter Template
 
-Un template completo para iniciar proyectos full-stack con Next.js en el frontend y Flask en el backend. Incluye autenticación JWT, PostgreSQL, y Tailwind CSS.
+Un template completo para iniciar proyectos full-stack con Next.js en el frontend y Flask en el backend. Incluye autenticación JWT, PostgreSQL, y Tailwind CSS, con soporte completo para Docker.
 
 ## Tecnologías
 
@@ -41,24 +41,82 @@ starter_template/
 │
 ├── public/                  # Archivos estáticos
 ├── package.json             # Dependencias de Node.js
-└── tsconfig.json            # Configuración de TypeScript
+├── docker-compose.yml       # Configuración de Docker Compose
+└── Dockerfile               # Configuración de Docker para el proyecto
 ```
 
 ## Requisitos Previos
 
+- Docker
+- Docker Compose
+
+## Instalación y Configuración
+
+### Configuración con Docker (Recomendado)
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/starter-template.git
+   cd starter-template
+   ```
+
+2. Crear archivo `.env` en la raíz del proyecto:
+   ```
+   NEXT_PUBLIC_API_URL=http://localhost:5000/api
+   DATABASE_URL=postgresql://postgres:postgres@db:5432/starter_db
+   JWT_SECRET_KEY=tu_clave_secreta_para_jwt
+   ```
+
+3. Iniciar todos los servicios:
+   ```bash
+   docker-compose up --build
+   ```
+
+### Servicios Disponibles
+
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:5000
+- **Base de datos PostgreSQL**:
+  - Host: localhost
+  - Puerto: 5432
+  - Usuario: postgres
+  - Contraseña: postgres
+  - Base de datos: starter_db
+
+### Comandos de Docker Compose
+
+```bash
+# Iniciar todos los servicios
+docker-compose up
+
+# Iniciar servicios específicos
+docker-compose up backend
+docker-compose up frontend
+docker-compose up db
+
+# Detener servicios
+docker-compose down
+
+# Detener servicios y eliminar volúmenes
+docker-compose down -v
+
+# Ejecutar migraciones de base de datos
+docker-compose exec backend flask db upgrade
+```
+
+## Configuración sin Docker (Alternativa)
+
+### Requisitos Previos
+
 - Node.js (v18 o superior)
 - Python (v3.8 o superior)
 - PostgreSQL
-
-## Configuración Inicial
 
 ### Frontend
 
 1. Instalar dependencias:
    ```bash
    npm install
-   # o
-   yarn install
    ```
 
 2. Crear archivo `.env.local` en la raíz del proyecto:
@@ -69,8 +127,6 @@ starter_template/
 3. Iniciar servidor de desarrollo:
    ```bash
    npm run dev
-   # o
-   yarn dev
    ```
 
    El frontend estará disponible en [http://localhost:3000](http://localhost:3000)
@@ -119,7 +175,7 @@ starter_template/
 
 7. Iniciar el servidor Flask:
    ```bash
-   flask run
+   python run.py
    ```
 
    El backend API estará disponible en [http://localhost:5000](http://localhost:5000)
@@ -163,7 +219,7 @@ source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate     # Windows
 
 # Iniciar servidor de desarrollo
-flask run
+python run.py
 
 # Migraciones de base de datos
 flask db migrate -m "Descripción del cambio"
