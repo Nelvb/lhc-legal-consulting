@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { authService } from '../lib/api';
 
 // Definimos el tipo de usuario
 interface User {
@@ -33,17 +34,7 @@ export function useAuth() {
     setError(null);
     
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials)
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.msg || 'Error en el inicio de sesión');
-      }
+      const data = await authService.login(credentials);
 
       // Guardar usuario en localStorage
       localStorage.setItem("user", JSON.stringify(data.user));
@@ -68,17 +59,7 @@ export function useAuth() {
     setError(null);
 
     try {
-      const response = await fetch('/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(userData)
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.msg || 'Error en el registro');
-      }
+      const data = await authService.signup(userData);
 
       // Éxito - redirigir a login
       router.push('/login');
