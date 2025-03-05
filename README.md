@@ -20,29 +20,103 @@ Un template completo para iniciar proyectos full-stack con Next.js en el fronten
 ## Estructura del Proyecto
 
 ```
-starter_template/
-├── backend/                 # Aplicación Flask
-│   ├── app/
-│   │   ├── __init__.py      # Inicialización de la aplicación Flask
-│   │   ├── models.py        # Modelos de SQLAlchemy
-│   │   ├── routes.py        # Rutas y endpoints de la API
-│   │   └── auth.py          # Lógica de autenticación con JWT
-│   ├── config.py            # Configuración de la aplicación
-│   ├── migrations/          # Migraciones de la base de datos
-│   └── requirements.txt     # Dependencias de Python
-│
-├── app/                     # Frontend Next.js (App Router)
-│   ├── components/          # Componentes reutilizables
-│   │   ├── auth/            # Componentes relacionados con autenticación
-│   │   └── ui/              # Componentes de interfaz de usuario
-│   ├── hooks/               # Custom hooks (useAuth, etc.)
-│   ├── lib/                 # Utilidades y configuraciones
-│   └── page.tsx             # Página principal
-│
-├── public/                  # Archivos estáticos
-├── package.json             # Dependencias de Node.js
-├── docker-compose.yml       # Configuración de Docker Compose
-└── Dockerfile               # Configuración de Docker para el proyecto
+starter-template/
+├── .gitattributes
+├── .gitignore
+├── Dockerfile.backend
+├── Dockerfile.frontend
+├── LICENSE
+├── README.md
+├── docker-compose.yml
+├── package-lock.json
+├── project_structure.txt
+├── pyproject.toml
+├── src/
+│   ├── backend/
+│   │   ├── app/
+│   │   │   ├── api/
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── auth.py
+│   │   │   │   ├── routes.py
+│   │   │   │   └── users.py
+│   │   │   ├── models/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── user.py
+│   │   │   ├── schemas/
+│   │   │   │   └── __init__.py
+│   │   │   ├── services/
+│   │   │   │   └── __init__.py
+│   │   │   ├── utils/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── utils.py
+│   │   │   ├── __init__.py
+│   │   │   ├── config.py
+│   │   │   └── extensions.py
+│   │   ├── instance/
+│   │   │   └── database.db
+│   │   ├── migrations/
+│   │   │   ├── versions/
+│   │   │   │   ├── 2404c81b8c0d_migración_inicial_con_postgresql.py
+│   │   │   │   ├── 72c144c63040_corrección_de_nombre_de_tabla_users.py
+│   │   │   │   └── b15e74568949_add_created_at_field.py
+│   │   │   ├── alembic.ini
+│   │   │   ├── env.py
+│   │   │   ├── README
+│   │   │   └── script.py.mako
+│   │   ├── tests/
+│   │   │   ├── __init__.py
+│   │   │   ├── conftest.py
+│   │   │   ├── test_auth.py
+│   │   │   ├── test_db.py
+│   │   │   └── test_users.py
+│   │   ├── .env.example
+│   │   ├── .env.docker.example
+│   │   ├── requirements.txt
+│   │   └── run.py
+│   └── frontend/
+│       ├── .next/
+│       ├── app/
+│       │   ├── (auth)/
+│       │   │   ├── login/
+│       │   │   │   └── page.tsx
+│       │   │   └── signup/
+│       │   │       └── page.tsx
+│       │   ├── dashboard/
+│       │   │   └── page.tsx
+│       │   ├── layout.tsx
+│       │   └── page.tsx
+│       ├── components/
+│       │   ├── auth/
+│       │   │   ├── LoginForm.tsx
+│       │   │   └── SignupForm.tsx
+│       │   ├── dashboard/
+│       │   ├── layout/
+│       │   ├── ui/
+│       │   │   ├── Button.tsx
+│       │   │   ├── Card.tsx
+│       │   │   ├── Input.tsx
+│       │   │   └── MobileMenu.tsx
+│       │   └── dashboard/
+│       ├── hooks/
+│       │   └── useAuth.ts
+│       ├── lib/
+│       │   ├── api.ts
+│       │   └── auth.ts
+│       ├── next-env.d.ts
+│       ├── next.config.js
+│       ├── node_modules/
+│       ├── package-lock.json
+│       ├── package.json
+│       ├── postcss.config.js
+│       ├── public/
+│       ├── styles/
+│       │   ├── globals.css
+│       │   └── output.css
+│       ├── tailwind.config.js
+│       ├── tsconfig.json
+│       └── types/
+│           └── index.ts
+└── venv/
 ```
 
 ## Requisitos Previos
@@ -60,12 +134,19 @@ starter_template/
    cd starter-template
    ```
 
-2. Crear archivo `.env` en la raíz del proyecto:
-   ```
-   NEXT_PUBLIC_API_URL=http://localhost:5000/api
-   DATABASE_URL=postgresql://postgres:postgres@db:5432/starter_db
-   JWT_SECRET_KEY=tu_clave_secreta_para_jwt
-   ```
+2. Configuración de variables de entorno:
+   - Copia `.env.example` a `.env` para desarrollo local:
+     ```bash
+     cp src/backend/.env.example src/backend/.env
+     ```
+   - Copia `.env.docker.example` a `.env.docker` para Docker:
+     ```bash
+     cp src/backend/.env.docker.example src/backend/.env.docker
+     ```
+   - Actualiza los valores en los archivos con tus propias credenciales, especialmente:
+     - SECRET_KEY
+     - JWT_SECRET_KEY
+     - DB_PASSWORD
 
 3. Iniciar todos los servicios:
    ```bash
@@ -116,15 +197,11 @@ docker-compose exec backend flask db upgrade
 
 1. Instalar dependencias:
    ```bash
+   cd src/frontend
    npm install
    ```
 
-2. Crear archivo `.env.local` en la raíz del proyecto:
-   ```
-   NEXT_PUBLIC_API_URL=http://localhost:5000/api
-   ```
-
-3. Iniciar servidor de desarrollo:
+2. Iniciar servidor de desarrollo:
    ```bash
    npm run dev
    ```
@@ -135,7 +212,7 @@ docker-compose exec backend flask db upgrade
 
 1. Navegar al directorio del backend:
    ```bash
-   cd backend
+   cd src/backend
    ```
 
 2. Crear un entorno virtual:
@@ -158,13 +235,11 @@ docker-compose exec backend flask db upgrade
    pip install -r requirements.txt
    ```
 
-5. Crear archivo `.env` en el directorio `backend`:
+5. Configurar archivo `.env`:
+   ```bash
+   cp .env.example .env
    ```
-   FLASK_APP=run.py
-   FLASK_ENV=development
-   DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/nombre_db
-   JWT_SECRET_KEY=tu_clave_secreta_para_jwt
-   ```
+   Luego edita el archivo `.env` con tus configuraciones
 
 6. Configurar la base de datos:
    ```bash
