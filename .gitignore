@@ -55,3 +55,4 @@ instance/
 # Temporary database files
 *.sqlite3.next/
 node_modules/
+src/frontend/.next/trace
