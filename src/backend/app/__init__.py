@@ -2,7 +2,7 @@ from app.api.auth import auth_bp  # Importamos el blueprint de autenticación
 from app.api.users import users_bp  # Importamos el blueprint de usuarios
 from app.api.routes import routes  # Importamos el blueprint de rutas generales
 from app.config import DevelopmentConfig  # Configuración de la aplicación
-from app.extensions import
+from app.extensions import (
     cors,
     db,
     init_app,
