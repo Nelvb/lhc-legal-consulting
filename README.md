@@ -206,7 +206,7 @@ docker-compose exec backend flask db upgrade
    npm run dev
    ```
 
-   El frontend estará disponible en [http://localhost:3000](http://localhost:3000)
+   El frontend estará disponible en http://localhost:3000
 
 ### Backend
 
@@ -239,7 +239,7 @@ docker-compose exec backend flask db upgrade
    ```bash
    cp .env.example .env
    ```
-   Luego edita el archivo `.env` con tus configuraciones
+   Luego edita el archivo `.env` con tus configuraciones.
 
 6. Configurar la base de datos:
    ```bash
@@ -253,7 +253,7 @@ docker-compose exec backend flask db upgrade
    python run.py
    ```
 
-   El backend API estará disponible en [http://localhost:5000](http://localhost:5000)
+   El backend API estará disponible en http://localhost:5000
 
 ## Funcionalidades
 
@@ -385,4 +385,4 @@ Las contribuciones son bienvenidas. Por favor:
 
 ## Licencia
 
-[MIT](https://choosealicense.com/licenses/mit/)
+MIT
