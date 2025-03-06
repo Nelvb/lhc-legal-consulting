@@ -38,6 +38,7 @@ export function useAuth() {
 
       // Guardar usuario en localStorage
       localStorage.setItem("user", JSON.stringify(data.user));
+      console.log('User after login:', data.user);
       setUser(data.user);
       router.push('/dashboard');
       return data;
@@ -49,7 +50,7 @@ export function useAuth() {
     }
   };
 
-  // Función para registrarse
+  // Función para registrarse con login automático
   const signup = async (userData: {
     username: string;
     email: string;
@@ -59,10 +60,15 @@ export function useAuth() {
     setError(null);
 
     try {
+      // Registrar al usuario
       const data = await authService.signup(userData);
-
-      // Éxito - redirigir a login
-      router.push('/login');
+      
+      // Iniciar sesión automáticamente después del registro
+      await login({ 
+        email: userData.email, 
+        password: userData.password 
+      });
+      
       return data;
     } catch (error) {
       setError(error instanceof Error ? error.message : 'Error desconocido');

@@ -2,29 +2,25 @@
 "use client";
 
 import React, { useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../../hooks/useAuth";
 import Button from "../ui/Button";
 
 const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { login, loading, error } = useAuth();
+  const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    console.log("handleSubmit ejecutado");
     e.preventDefault();
-    setIsLoading(true);
-
+    
     try {
-      // Aquí irá la lógica de autenticación cuando se implemente el backend
-      console.log("Intento de login con:", { email, password });
-
-      // Simular una respuesta del servidor
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Redirigir o mostrar éxito
-    } catch (error) {
-      console.error("Error durante el login:", error);
-    } finally {
-      setIsLoading(false);
+      await login({ email, password });
+      // No necesitamos redirección aquí, useAuth ya maneja la redirección al dashboard
+    } catch (err) {
+      // Error ya gestionado en el hook useAuth
     }
   };
 
@@ -37,6 +33,12 @@ const LoginForm = () => {
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">
           Iniciar Sesión
         </h2>
+
+        {error && (
+          <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+            {error}
+          </div>
+        )}
 
         <div className="mb-4">
           <label
@@ -81,9 +83,9 @@ const LoginForm = () => {
             type="submit"
             variant="primary"
             className="w-full"
-            disabled={isLoading}
+            disabled={loading}
           >
-            {isLoading ? "Procesando..." : "Iniciar Sesión"}
+            {loading ? "Procesando..." : "Iniciar Sesión"}
           </Button>
         </div>
       </form>
