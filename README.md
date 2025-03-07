@@ -5,12 +5,14 @@ Un template completo para iniciar proyectos full-stack con Next.js en el fronten
 ## Tecnologías
 
 ### Frontend
+
 - Next.js (v15.2.0)
 - TypeScript
 - Tailwind CSS
 - clsx para manejo de clases condicionales
 
 ### Backend
+
 - Flask
 - SQLAlchemy
 - PostgreSQL
@@ -19,6 +21,7 @@ Un template completo para iniciar proyectos full-stack con Next.js en el fronten
 - Pytest para testing automatizado
 
 ### DevOps
+
 - Docker y Docker Compose
 - GitHub Actions para CI/CD
 
@@ -37,31 +40,38 @@ starter-template/
 ├── README.md
 ├── docker-compose.yml
 ├── package-lock.json
-├── project_structure.txt
 ├── pyproject.toml
 └── src/
     ├── backend/
     │   ├── app/
-    │   │   ├── __init__.py
-    │   │   ├── auth/
-    │   │   │   ├── __init__.py
+    │   │   ├── api/
+    │   │   │   ├── auth.py
     │   │   │   ├── routes.py
-    │   │   │   └── utils.py
-    │   │   ├── config.py
+    │   │   │   ├── users.py
+    │   │   │   └── __init__.py
     │   │   ├── models/
-    │   │   │   ├── __init__.py
-    │   │   │   └── user.py
-    │   │   └── users/
-    │   │       ├── __init__.py
-    │   │       └── routes.py
+    │   │   │   ├── user.py
+    │   │   │   └── __init__.py
+    │   │   ├── schemas/
+    │   │   │   ├── user.py
+    │   │   │   └── __init__.py
+    │   │   ├── services/
+    │   │   │   └── __init__.py
+    │   │   ├── utils/
+    │   │   │   ├── utils.py
+    │   │   │   └── __init__.py
+    │   │   ├── config.py
+    │   │   ├── extensions.py
+    │   │   └── __init__.py
+    │   ├── instance/
     │   ├── migrations/
     │   ├── tests/
-    │   │   ├── __init__.py
     │   │   ├── conftest.py
     │   │   ├── test_auth.py
     │   │   ├── test_db.py
     │   │   ├── test_users.py
-    │   │   └── test_users_api.py
+    │   │   ├── test_users_api.py
+    │   │   └── __init__.py
     │   ├── .env.example
     │   ├── .env.docker.example
     │   ├── requirements.txt
@@ -124,12 +134,14 @@ starter-template/
 ### Configuración con Docker (Recomendado)
 
 1. Clonar el repositorio:
+
    ```bash
    git clone https://github.com/tu-usuario/starter-template.git
    cd starter-template
    ```
 
 2. Configuración de variables de entorno:
+
    - Copia `.env.example` a `.env` para desarrollo local:
      ```bash
      cp src/backend/.env.example src/backend/.env
@@ -191,12 +203,14 @@ docker-compose exec backend flask db upgrade
 ### Frontend
 
 1. Instalar dependencias:
+
    ```bash
    cd src/frontend
    npm install
    ```
 
 2. Iniciar servidor de desarrollo:
+
    ```bash
    npm run dev
    ```
@@ -206,16 +220,19 @@ docker-compose exec backend flask db upgrade
 ### Backend
 
 1. Navegar al directorio del backend:
+
    ```bash
    cd src/backend
    ```
 
 2. Crear un entorno virtual:
+
    ```bash
    python -m venv venv
    ```
 
 3. Activar el entorno virtual:
+
    - En Windows:
      ```bash
      venv\Scripts\activate
@@ -226,17 +243,21 @@ docker-compose exec backend flask db upgrade
      ```
 
 4. Instalar dependencias:
+
    ```bash
    pip install -r requirements.txt
    ```
 
 5. Configurar archivo `.env`:
+
    ```bash
    cp .env.example .env
    ```
+
    Luego edita el archivo `.env` con tus configuraciones.
 
 6. Configurar la base de datos:
+
    ```bash
    flask db init
    flask db migrate -m "Initial migration"
@@ -244,6 +265,7 @@ docker-compose exec backend flask db upgrade
    ```
 
 7. Iniciar el servidor Flask:
+
    ```bash
    python run.py
    ```
@@ -257,15 +279,17 @@ docker-compose exec backend flask db upgrade
 El proyecto incluye pruebas automatizadas para el backend utilizando pytest:
 
 1. Asegúrate de tener el entorno virtual activado:
+
    ```bash
    # En Windows
    venv\Scripts\activate
-   
+
    # En macOS/Linux
    source venv/bin/activate
    ```
 
 2. Ejecutar las pruebas:
+
    ```bash
    cd src/backend
    python -m pytest
@@ -369,6 +393,7 @@ vercel
 ### Backend
 
 Para el backend, puedes utilizar servicios como:
+
 - Heroku
 - DigitalOcean
 - Railway
@@ -393,6 +418,7 @@ Para ver el estado de las ejecuciones de CI, visita la pestaña "Actions" en tu 
 ### Tema UI
 
 El tema de la interfaz de usuario se puede personalizar en:
+
 - `tailwind.config.js` para configuración de colores
 - `app/styles/globals.css` para estilos globales
 
@@ -417,6 +443,7 @@ Asegúrate de que `JWT_SECRET_KEY` esté correctamente configurado y que los tok
 ### Fallos en los tests
 
 Si los tests fallan en GitHub Actions pero pasan localmente, verifica:
+
 - Diferencias en versiones de dependencias
 - Configuración de variables de entorno en el workflow
 - Posibles problemas de compatibilidad entre sistemas operativos
