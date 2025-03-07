@@ -3,8 +3,9 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Button from './Button';
+import Button from '../ui/Button';
 import { useAuth } from '../../hooks/useAuth';
+import { usePathname } from 'next/navigation';
 
 // Definimos una interfaz más precisa para las props
 interface MobileMenuProps {
@@ -14,8 +15,15 @@ interface MobileMenuProps {
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
   const { isAuthenticated, user, logout } = useAuth();
+  const pathname = usePathname();
+  
+  // Determinar en qué página estamos
+  const isHomePage = pathname === "/" || pathname === "";
+  const isDashboardPage = pathname === "/dashboard";
+  const isLoginPage = pathname === "/login";
+  const isSignupPage = pathname === "/signup";
 
-  // Usamos un overlay semi-transparente para el fondo
+  // Si no está abierto, no renderizamos nada
   if (!isOpen) return null;
 
   return (
@@ -31,7 +39,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
           {/* Header with Close Button */}
           <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
             <span className="text-xl font-bold text-gray-900 dark:text-white">
-              {isAuthenticated ? `Hola, ${user?.name}` : 'Menú'}
+              {isAuthenticated ? `Hola ${user?.username}` : 'Menú'}
             </span>
             <button
               onClick={onClose}
@@ -58,32 +66,31 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
           {/* Navigation Links */}
           <nav className="py-4">
             <ul className="space-y-1">
-              {/* Always visible links */}
-              <li>
-                <Link
-                  href="/"
-                  onClick={onClose}
-                  className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
-                >
-                  Inicio
-                </Link>
-              </li>
+              {/* Inicio - solo mostrar si NO estamos en la página principal */}
+              {!isHomePage && (
+                <li>
+                  <Link
+                    href="/"
+                    onClick={onClose}
+                    className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+                  >
+                    Inicio
+                  </Link>
+                </li>
+              )}
 
-              {/* Authenticated-only links */}
-              {isAuthenticated && (
+              {/* Área Privada - solo para usuarios autenticados y si no estamos en dashboard */}
+              {isAuthenticated && !isDashboardPage && (
                 <li>
                   <Link
                     href="/dashboard"
                     onClick={onClose}
                     className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
                   >
-                    Dashboard
+                    Área Privada
                   </Link>
                 </li>
               )}
-
-              {/* Potential space for more links in the future */}
-              {/* Add more links here as needed */}
             </ul>
           </nav>
 
@@ -91,28 +98,36 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
           <div className="p-4 border-t border-gray-200 dark:border-gray-700">
             {!isAuthenticated ? (
               <div className="space-y-2">
-                <Link href="/login" onClick={onClose} className="block w-full">
-                <Button 
-                  variant="outline" 
-                  size="md" 
-                  className="w-full"
-                >
-                  Iniciar Sesión
-                </Button>
-              </Link>
-              <Link href="/signup" onClick={onClose} className="block w-full">
-                <Button 
-                  variant="primary" 
-                  size="md" 
-                  className="w-full"
-                >
-                  Registrarse
-                </Button>
-              </Link>
+                {/* Iniciar Sesión - no mostrar si estamos en login */}
+                {!isLoginPage && (
+                  <Link href="/login" onClick={onClose} className="block w-full">
+                    <Button 
+                      variant="outline" 
+                      size="md" 
+                      className="w-full"
+                    >
+                      Iniciar Sesión
+                    </Button>
+                  </Link>
+                )}
+                
+                {/* Registrarse - no mostrar si estamos en signup */}
+                {!isSignupPage && (
+                  <Link href="/signup" onClick={onClose} className="block w-full">
+                    <Button 
+                      variant="primary" 
+                      size="md" 
+                      className="w-full"
+                    >
+                      Registrarse
+                    </Button>
+                  </Link>
+                )}
               </div>
             ) : (
               <button
                 onClick={() => {
+                  console.log("Click en Cerrar Sesión (móvil)");
                   logout();
                   onClose();
                 }}

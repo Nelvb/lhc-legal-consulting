@@ -1,38 +1,25 @@
-from marshmallow import Schema, fields, validate, ValidationError
+from marshmallow import Schema, fields, validate
 
 class UserSchema(Schema):
-    id = fields.Int(dump_only=True)  # Solo se muestra, no se puede establecer
+    id = fields.Int(dump_only=True)
     username = fields.Str(
-        required=True, 
+        required=True,
         validate=[
-            validate.Length(min=3, max=50, error='Username must be between 3 and 50 characters'),
-            validate.Regexp('^[a-zA-Z0-9_]+$', error='Username can only contain letters, numbers, and underscores')
+            validate.Length(min=3, max=50, error="El nombre de usuario debe tener entre 3 y 50 caracteres."),
+            validate.Regexp(r"^[a-zA-Z0-9_]+$", error="El nombre de usuario solo puede contener letras, números y guiones bajos.")
         ]
     )
     email = fields.Email(
-        required=True, 
+        required=True,
         validate=[
-            validate.Length(max=120, error='Email is too long'),
-            validate.Email(error='Invalid email format')
+            validate.Length(max=120, error="El email no puede superar los 120 caracteres.")
         ]
     )
     password = fields.Str(
         required=True,
         validate=[
-            validate.Length(min=8, error='Password must be at least 8 characters long')
+            validate.Length(min=8, error="La contraseña debe tener al menos 8 caracteres.")
         ],
-        load_only=True  # No se devuelve en las respuestas
+        load_only=True
     )
     created_at = fields.DateTime(dump_only=True)
-
-    def validate_unique_username(self, data):
-        # Aquí podrías añadir lógica para verificar si el username ya existe
-        from app.models.user import User
-        if User.query.filter_by(username=data['username']).first():
-            raise ValidationError('Username already exists')
-
-    def validate_unique_email(self, data):
-        # Verificar si el email ya existe
-        from app.models.user import User
-        if User.query.filter_by(email=data['email']).first():
-            raise ValidationError('Email already registered')

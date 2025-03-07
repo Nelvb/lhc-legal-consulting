@@ -1,4 +1,4 @@
-// File: /app/app/(auth)/login/page.tsx
+// File: C:\Users\Nelson\Desktop\PROYECTOS\starter-template\src\frontend\app\(auth)\login\page.tsx
 import * as entry from '../../../../../app/(auth)/login/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

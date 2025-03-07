@@ -11,7 +11,6 @@ export default function Dashboard() {
 
   const handleLogout = async () => {
     await logout();
-    router.push("/");
   };
 
   return (
@@ -21,8 +20,9 @@ export default function Dashboard() {
         ¡Bienvenido a tu área personal{user?.name ? `, ${user.name}` : ""}!
       </h1>
       <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
-        Has accedido correctamente al área protegida del Starter Template. 
-        Desde aquí puedes comenzar a construir las funcionalidades específicas para tu proyecto.
+        Has accedido correctamente al área protegida del Starter Template. Desde
+        aquí puedes comenzar a construir las funcionalidades específicas para tu
+        proyecto.
       </p>
 
       {/* Información adicional */}
@@ -31,14 +31,11 @@ export default function Dashboard() {
           Personaliza este espacio
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Este dashboard es solo un punto de partida. Puedes modificarlo según las necesidades 
-          específicas de tu proyecto añadiendo componentes, gráficas o integraciones con el backend.
+          Este dashboard es solo un punto de partida. Puedes modificarlo según
+          las necesidades específicas de tu proyecto añadiendo componentes,
+          gráficas o integraciones con el backend.
         </p>
-        <Button 
-          variant="outline" 
-          onClick={handleLogout} 
-          className="mt-2"
-        >
+        <Button variant="outline" onClick={handleLogout} className="mt-2">
           Cerrar Sesión
         </Button>
       </div>

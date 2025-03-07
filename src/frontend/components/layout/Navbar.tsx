@@ -1,15 +1,20 @@
 // components/layout/Navbar.tsx
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "../../hooks/useAuth";
+import NavbarLinks from "./NavbarLinks";
 import MobileMenu from "../ui/MobileMenu";
-import Button from "../ui/Button";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isAuthenticated } = useAuth();
+  
+  // Este useEffect es para debug y verificar que el estado de autenticación cambia correctamente
+  useEffect(() => {
+    console.log("Navbar - Estado de autenticación:", isAuthenticated);
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -20,55 +25,16 @@ const Navbar: React.FC = () => {
             <div className="flex items-center">
               <Link
                 href="/"
-                className="text-2xl font-bold transition-all ease-smooth hover:scale-hover"
+                className="text-2xl font-bold transition-all ease-smooth hover:scale-hover text-gray-800 dark:text-white"
               >
                 Starter Template
               </Link>
             </div>
 
-            {/* Navigation Links */}
-            <div className="hidden md:flex space-x-6">
-              {isAuthenticated && (
-                <Link href="/dashboard" className="nav-link">
-                  Dashboard
-                </Link>
-              )}
-            </div>
+            {/* Enlaces de navegación (separados en otro componente) */}
+            <NavbarLinks key={`nav-links-${isAuthenticated}`} />
 
-            {/* Auth Buttons */}
-            <div className="hidden md:flex items-center space-x-6">
-              {!isAuthenticated ? (
-                <>
-                  <Link
-                    href="/"
-                    className="transition-all ease-smooth hover:scale-hover"
-                  >
-                    Inicio
-                  </Link>
-                  <Link href="/login" className="transition-all ease-smooth hover:scale-hover">
-                    <Button variant="outline" size="sm">
-                      Iniciar Sesión
-                    </Button>
-                  </Link>
-                  <Link href="/signup" className="transition-all ease-smooth hover:scale-hover">
-                    <Button variant="primary" size="sm">
-                      Registrarse
-                    </Button>
-                  </Link>
-                </>
-              ) : (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => console.log("Cerrar Sesión")}
-                  className=":transition-all ease-smooth hover:scale-hover"
-                >
-                  Cerrar Sesión
-                </Button>
-              )}
-            </div>
-
-            {/* Mobile Menu Button */}
+            {/* Botón de menú para móviles */}
             <div className="-mr-2 flex md:hidden">
               <button
                 type="button"
@@ -114,7 +80,7 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Menú para móviles */}
       <MobileMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
