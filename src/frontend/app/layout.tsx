@@ -1,4 +1,5 @@
 // src/frontend/app/layout.tsx
+import React from 'react';
 import { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";

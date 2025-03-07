@@ -1,7 +1,7 @@
 // src/frontend/contexts/AuthContext.tsx
 "use client";
 
-import {
+import React, {
   createContext,
   useContext,
   useState,

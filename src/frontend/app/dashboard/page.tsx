@@ -17,7 +17,8 @@ export default function Dashboard() {
     <main className="flex flex-col items-center justify-center min-h-screen text-center px-8 pt-32 pb-20">
       {/* Contenido principal */}
       <h1 className="text-4xl font-bold mt-6">
-        ¡Bienvenido a tu área personal{user?.name ? `, ${user.name}` : ""}!
+        ¡Bienvenido a tu área personal
+        {user?.username ? ` ${user.username}` : ""}!
       </h1>
       <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
         Has accedido correctamente al área protegida del Starter Template. Desde
@@ -35,10 +36,10 @@ export default function Dashboard() {
           las necesidades específicas de tu proyecto añadiendo componentes,
           gráficas o integraciones con el backend.
         </p>
-        <Button variant="outline" onClick={handleLogout} className="mt-2">
-          Cerrar Sesión
-        </Button>
       </div>
+      <Button variant="outline" onClick={handleLogout} className="mt-8">
+        Cerrar Sesión
+      </Button>
     </main>
   );
 }
