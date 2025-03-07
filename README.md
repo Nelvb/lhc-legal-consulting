@@ -31,92 +31,54 @@ starter-template/
 ├── package-lock.json
 ├── project_structure.txt
 ├── pyproject.toml
-├── src/
-│   ├── backend/
-│   │   ├── app/
-│   │   │   ├── api/
-│   │   │   │   ├── __init__.py
-│   │   │   │   ├── auth.py
-│   │   │   │   ├── routes.py
-│   │   │   │   └── users.py
-│   │   │   ├── models/
-│   │   │   │   ├── __init__.py
-│   │   │   │   └── user.py
-│   │   │   ├── schemas/
-│   │   │   │   └── __init__.py
-│   │   │   ├── services/
-│   │   │   │   └── __init__.py
-│   │   │   ├── utils/
-│   │   │   │   ├── __init__.py
-│   │   │   │   └── utils.py
-│   │   │   ├── __init__.py
-│   │   │   ├── config.py
-│   │   │   └── extensions.py
-│   │   ├── instance/
-│   │   │   └── database.db
-│   │   ├── migrations/
-│   │   │   ├── versions/
-│   │   │   │   ├── 2404c81b8c0d_migración_inicial_con_postgresql.py
-│   │   │   │   ├── 72c144c63040_corrección_de_nombre_de_tabla_users.py
-│   │   │   │   └── b15e74568949_add_created_at_field.py
-│   │   │   ├── alembic.ini
-│   │   │   ├── env.py
-│   │   │   ├── README
-│   │   │   └── script.py.mako
-│   │   ├── tests/
-│   │   │   ├── __init__.py
-│   │   │   ├── conftest.py
-│   │   │   ├── test_auth.py
-│   │   │   ├── test_db.py
-│   │   │   └── test_users.py
-│   │   ├── .env.example
-│   │   ├── .env.docker.example
-│   │   ├── requirements.txt
-│   │   └── run.py
-│   └── frontend/
-│       ├── .next/
-│       ├── app/
-│       │   ├── (auth)/
-│       │   │   ├── login/
-│       │   │   │   └── page.tsx
-│       │   │   └── signup/
-│       │   │       └── page.tsx
-│       │   ├── dashboard/
-│       │   │   └── page.tsx
-│       │   ├── layout.tsx
-│       │   └── page.tsx
-│       ├── components/
-│       │   ├── auth/
-│       │   │   ├── LoginForm.tsx
-│       │   │   └── SignupForm.tsx
-│       │   ├── dashboard/
-│       │   ├── layout/
-│       │   ├── ui/
-│       │   │   ├── Button.tsx
-│       │   │   ├── Card.tsx
-│       │   │   ├── Input.tsx
-│       │   │   └── MobileMenu.tsx
-│       │   └── dashboard/
-│       ├── hooks/
-│       │   └── useAuth.ts
-│       ├── lib/
-│       │   ├── api.ts
-│       │   └── auth.ts
-│       ├── next-env.d.ts
-│       ├── next.config.js
-│       ├── node_modules/
-│       ├── package-lock.json
-│       ├── package.json
-│       ├── postcss.config.js
-│       ├── public/
-│       ├── styles/
-│       │   ├── globals.css
-│       │   └── output.css
-│       ├── tailwind.config.js
-│       ├── tsconfig.json
-│       └── types/
-│           └── index.ts
-└── venv/
+└── src/
+    ├── backend/
+    │   └── ... (resto del backend sin cambios)
+    └── frontend/
+        ├── .next/
+        ├── app/
+        │   ├── (auth)/
+        │   │   ├── login/
+        │   │   │   └── page.tsx
+        │   │   └── signup/
+        │   │       └── page.tsx
+        │   ├── dashboard/
+        │   │   └── page.tsx
+        │   ├── layout.tsx
+        │   └── page.tsx
+        ├── components/
+        │   ├── auth/
+        │   │   ├── LoginForm.tsx
+        │   │   └── SignupForm.tsx
+        │   ├── layout/
+        │   │   ├── Footer.tsx
+        │   │   ├── Navbar.tsx
+        │   │   └── NavbarLinks.tsx
+        │   ├── ui/
+        │   │   ├── Button.tsx
+        │   │   ├── Card.tsx
+        │   │   └── Input.tsx
+        ├── contexts/
+        │   └── AuthContext.tsx
+        ├── hooks/
+        │   └── useAuth.ts
+        ├── lib/
+        │   ├── api.ts
+        │   └── auth.ts
+        ├── next-env.d.ts
+        ├── next.config.js
+        ├── node_modules/
+        ├── package-lock.json
+        ├── package.json
+        ├── postcss.config.js
+        ├── public/
+        ├── styles/
+        │   ├── globals.css
+        │   └── output.css
+        ├── tailwind.config.js
+        ├── tsconfig.json
+        └── types/
+            └── index.ts
 ```
 
 ## Requisitos Previos
