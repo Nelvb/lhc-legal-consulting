@@ -1,6 +1,6 @@
 # Full-Stack Starter Template
 
-Un template completo para iniciar proyectos full-stack con Next.js en el frontend y Flask en el backend. Incluye autenticación JWT, PostgreSQL, y Tailwind CSS, con soporte completo para Docker.
+Un template completo para iniciar proyectos full-stack con Next.js en el frontend y Flask en el backend. Incluye autenticación JWT, PostgreSQL, y Tailwind CSS, con soporte completo para Docker y integración continua mediante GitHub Actions.
 
 ## Tecnologías
 
@@ -16,11 +16,19 @@ Un template completo para iniciar proyectos full-stack con Next.js en el fronten
 - PostgreSQL
 - JWT para autenticación
 - Black & isort para formateo de código
+- Pytest para testing automatizado
+
+### DevOps
+- Docker y Docker Compose
+- GitHub Actions para CI/CD
 
 ## Estructura del Proyecto
 
 ```
 starter-template/
+├── .github/
+│   └── workflows/
+│       └── backend-tests.yml
 ├── .gitattributes
 ├── .gitignore
 ├── Dockerfile.backend
@@ -33,7 +41,31 @@ starter-template/
 ├── pyproject.toml
 └── src/
     ├── backend/
-    │   └── ... (resto del backend sin cambios)
+    │   ├── app/
+    │   │   ├── __init__.py
+    │   │   ├── auth/
+    │   │   │   ├── __init__.py
+    │   │   │   ├── routes.py
+    │   │   │   └── utils.py
+    │   │   ├── config.py
+    │   │   ├── models/
+    │   │   │   ├── __init__.py
+    │   │   │   └── user.py
+    │   │   └── users/
+    │   │       ├── __init__.py
+    │   │       └── routes.py
+    │   ├── migrations/
+    │   ├── tests/
+    │   │   ├── __init__.py
+    │   │   ├── conftest.py
+    │   │   ├── test_auth.py
+    │   │   ├── test_db.py
+    │   │   ├── test_users.py
+    │   │   └── test_users_api.py
+    │   ├── .env.example
+    │   ├── .env.docker.example
+    │   ├── requirements.txt
+    │   └── run.py
     └── frontend/
         ├── .next/
         ├── app/
@@ -85,6 +117,7 @@ starter-template/
 
 - Docker
 - Docker Compose
+- Git
 
 ## Instalación y Configuración
 
@@ -217,6 +250,37 @@ docker-compose exec backend flask db upgrade
 
    El backend API estará disponible en http://localhost:5000
 
+## Testing
+
+### Backend Tests
+
+El proyecto incluye pruebas automatizadas para el backend utilizando pytest:
+
+1. Asegúrate de tener el entorno virtual activado:
+   ```bash
+   # En Windows
+   venv\Scripts\activate
+   
+   # En macOS/Linux
+   source venv/bin/activate
+   ```
+
+2. Ejecutar las pruebas:
+   ```bash
+   cd src/backend
+   python -m pytest
+   ```
+
+3. Las pruebas están organizadas en los siguientes archivos:
+   - `tests/test_auth.py`: Pruebas de autenticación y JWT
+   - `tests/test_db.py`: Pruebas de conexión y operaciones de base de datos
+   - `tests/test_users.py`: Pruebas de modelo de usuario
+   - `tests/test_users_api.py`: Pruebas de API de usuarios
+
+### Integración Continua
+
+El proyecto incluye una configuración de GitHub Actions para ejecutar automáticamente las pruebas del backend cada vez que se hace push al repositorio. La configuración se encuentra en `.github/workflows/backend-tests.yml`.
+
 ## Funcionalidades
 
 ### Autenticación
@@ -257,6 +321,9 @@ venv\Scripts\activate     # Windows
 
 # Iniciar servidor de desarrollo
 python run.py
+
+# Ejecutar pruebas
+python -m pytest
 
 # Migraciones de base de datos
 flask db migrate -m "Descripción del cambio"
@@ -309,6 +376,18 @@ Para el backend, puedes utilizar servicios como:
 
 Asegúrate de configurar las variables de entorno correspondientes en el entorno de producción.
 
+## CI/CD con GitHub Actions
+
+### Backend Tests
+
+El proyecto incluye un workflow de GitHub Actions para ejecutar pruebas automatizadas en el backend:
+
+- El workflow se activa en cada push y pull request a la rama principal
+- Configura un entorno Python y ejecuta todas las pruebas del backend
+- Verifica que todos los tests pasen antes de permitir la integración de cambios
+
+Para ver el estado de las ejecuciones de CI, visita la pestaña "Actions" en tu repositorio de GitHub.
+
 ## Personalización
 
 ### Tema UI
@@ -334,6 +413,13 @@ Si experimentas problemas de CORS, verifica la configuración en `backend/app/__
 ### Errores de JWT
 
 Asegúrate de que `JWT_SECRET_KEY` esté correctamente configurado y que los tokens no hayan expirado.
+
+### Fallos en los tests
+
+Si los tests fallan en GitHub Actions pero pasan localmente, verifica:
+- Diferencias en versiones de dependencias
+- Configuración de variables de entorno en el workflow
+- Posibles problemas de compatibilidad entre sistemas operativos
 
 ## Contribución
 
