@@ -6,5 +6,5 @@ flask-marshmallow
 marshmallow-sqlalchemy
 flask-cors
 python-dotenv
-psycopg2-binarypytest
+psycopg2-binary
 pytest
