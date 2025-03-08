@@ -1,3 +1,7 @@
+# Tests de conexión a base de datos y operaciones con modelos
+# Verifica la correcta interacción entre los modelos y PostgreSQL
+# Comprueba la creación y recuperación de usuarios con persistencia de datos
+
 import pytest
 from app.extensions import db
 from app.models.user import User

@@ -1,3 +1,7 @@
+# Esquema de validación y serialización para usuarios
+# Define reglas de validación para campos como username, email y password
+# Controla qué campos son visibles en respuestas API vs. aceptados en peticiones
+
 from marshmallow import Schema, fields, validate
 
 class UserSchema(Schema):

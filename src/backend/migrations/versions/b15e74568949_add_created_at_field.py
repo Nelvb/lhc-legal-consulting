@@ -1,3 +1,7 @@
+# Migración para añadir campo de fecha de creación a usuarios
+# Agrega campo created_at con timestamp automático a la tabla users
+# Implementa actualización segura mediante batch_alter_table
+
 """Add created_at field
 
 Revision ID: b15e74568949

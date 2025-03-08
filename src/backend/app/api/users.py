@@ -1,3 +1,7 @@
+# API de gestión de usuarios: endpoints para listar, consultar y actualizar usuarios
+# Proporciona operaciones CRUD protegidas con autenticación JWT
+# Incluye validación de datos y manejo de casos de error para cada operación
+
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.extensions import db

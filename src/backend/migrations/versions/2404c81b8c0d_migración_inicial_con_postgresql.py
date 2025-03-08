@@ -1,3 +1,7 @@
+# Migración inicial de base de datos: configuración PostgreSQL
+# Establece la primera versión del esquema con la tabla 'user'
+# Define la estructura base para autenticación de usuarios
+
 """Migración inicial con PostgreSQL
 
 Revision ID: 2404c81b8c0d

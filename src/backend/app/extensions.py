@@ -1,3 +1,7 @@
+# Inicialización centralizada de extensiones Flask para la aplicación
+# Configura componentes como ORM, migraciones, JWT, serialización y CORS
+# Implementa patrón de inicialización tardía para flexibilidad en tests y configuración
+
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_marshmallow import Marshmallow

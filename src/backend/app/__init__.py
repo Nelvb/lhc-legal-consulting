@@ -1,3 +1,7 @@
+# Punto de entrada de la aplicación Flask: configuración y registro de componentes
+# Implementa patrón Factory para inicializar la app con dependencias y rutas
+# Centraliza la configuración de extensiones, blueprints y middlewares
+
 from app.api.auth import auth_bp  # Importamos el blueprint de autenticación
 from app.api.users import users_bp  # Importamos el blueprint de usuarios
 from app.api.routes import routes  # Importamos el blueprint de rutas generales

@@ -1,3 +1,7 @@
+# Tests de API de usuarios: listar, consultar y actualizar información
+# Verifica endpoints protegidos para gestión de usuarios con autenticación JWT
+# Incluye pruebas de actualización de datos y persistencia en base de datos
+
 import pytest
 from app.extensions import db
 from app.models.user import User

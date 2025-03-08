@@ -1,3 +1,7 @@
+# Punto de entrada principal para la aplicación Flask
+# Configura el entorno, extensiones y rutas para ejecutar el servidor
+# Define manejadores de errores globales y configura CORS para peticiones entre dominios
+
 import os
 
 from app.api.auth import auth_bp  # Importa el blueprint de autenticación

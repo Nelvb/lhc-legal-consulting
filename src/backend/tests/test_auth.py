@@ -1,3 +1,7 @@
+# Tests de autenticación: registro, login y acceso a perfil
+# Verifica funcionalidad completa de los endpoints de autenticación
+# Incluye casos de éxito y validación de errores para cada operación
+
 import pytest
 from app.extensions import db
 from app.models.user import User

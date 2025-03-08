@@ -1,1 +1,5 @@
+# Archivo generado automáticamente por Flask-Migrate/Alembic
+# Este archivo es parte de la estructura estándar de migraciones
+# La documentación completa del sistema se encuentra en el README principal
+
 Single-database configuration for Flask.

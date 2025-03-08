@@ -1,9 +1,6 @@
-"""
-routes.py - Rutas generales de la aplicación
-Este módulo contiene endpoints generales del sistema que no están relacionados
-con autenticación o gestión específica de usuarios. Sirve como punto central 
-para funcionalidades comunes de la aplicación.
-"""
+# Rutas generales de la API para monitoreo y diagnóstico del sistema
+# Define endpoints para verificación de salud y metadatos de la aplicación
+# Sirve como punto de entrada para información general sobre la API
 
 from flask import Blueprint, jsonify
 

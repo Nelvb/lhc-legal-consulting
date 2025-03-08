@@ -1,3 +1,7 @@
+# Configuración de fixtures para tests de la aplicación
+# Define recursos compartidos como instancia de app, cliente HTTP, usuario de prueba y BD
+# Gestiona ciclos de vida de los recursos con setup y teardown automáticos
+
 import pytest
 from app import create_app
 from app.extensions import db

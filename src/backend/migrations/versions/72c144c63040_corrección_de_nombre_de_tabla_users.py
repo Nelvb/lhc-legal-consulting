@@ -1,3 +1,7 @@
+# Migración de base de datos: creación de la tabla users
+# Define la estructura inicial de la tabla de usuarios con campos para autenticación
+# Incluye restricciones de unicidad para username y email
+
 """Corrección de nombre de tabla users
 
 Revision ID: 72c144c63040

@@ -1,3 +1,7 @@
+# API de autenticación: endpoints para registro, login y perfil de usuario
+# Gestiona el registro de usuarios, autenticación, generación de tokens JWT y consulta de perfiles
+# Incluye validación de datos y manejo de errores para cada operación
+
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import (
     create_access_token,

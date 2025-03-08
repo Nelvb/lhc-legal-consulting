@@ -1,3 +1,7 @@
+# Tests unitarios del modelo de usuario
+# Verifica atributos, hashing de contraseñas y restricciones de unicidad
+# Comprueba el correcto funcionamiento de la serialización y validación de datos
+
 import pytest
 from app.extensions import db
 from app.models.user import User

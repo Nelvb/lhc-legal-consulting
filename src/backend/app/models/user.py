@@ -1,3 +1,7 @@
+# Modelo de datos para usuarios con autenticación y seguridad de contraseñas
+# Define la estructura de la tabla users con campos para autenticación y timestamps
+# Incluye métodos para hash seguro de contraseñas y serialización de datos
+
 from app.extensions import db
 from sqlalchemy.sql import func
 from werkzeug.security import check_password_hash, generate_password_hash

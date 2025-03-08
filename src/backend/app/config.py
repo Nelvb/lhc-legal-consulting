@@ -1,3 +1,7 @@
+# Configuración centralizada para diferentes entornos de la aplicación
+# Define ajustes para desarrollo, pruebas y producción con carga dinámica de variables
+# Gestiona conexiones a bases de datos y configuración de seguridad según el entorno
+
 import os
 from dotenv import load_dotenv
 
