@@ -12,7 +12,7 @@ services:
     networks:
       - app-network
     env_file:
-      - ./src/backend/.env.docker  # 🔹 Ahora Docker usará el archivo de entorno correcto
+      - ./.env.docker
 
   frontend:
     build:
