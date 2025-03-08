@@ -105,8 +105,7 @@ starter-template/
         ├── hooks/
         │   └── useAuth.ts
         ├── lib/
-        │   ├── api.ts
-        │   └── auth.ts
+        │   └── api.ts
         ├── next-env.d.ts
         ├── next.config.js
         ├── node_modules/

@@ -1,4 +1,8 @@
-// src/frontend/lib/api.ts
+/**
+* Servicios de API: funciones para comunicación con endpoints del backend
+* Centraliza las llamadas HTTP para autenticación y gestión de usuario
+* Maneja automáticamente la serialización JSON y los encabezados de autenticación
+*/
 const API_BASE_URL = process.env.API_URL;
 
 export const authService = {

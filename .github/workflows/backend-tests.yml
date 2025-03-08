@@ -1,3 +1,7 @@
+# GitHub Actions workflow para pruebas automáticas del backend
+# Ejecuta todos los tests de pytest en cada push y pull request
+# Configura un entorno Python 3.9 y gestiona las dependencias necesarias
+
 name: Backend Tests
 on: [push, pull_request]
 jobs:

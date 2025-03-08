@@ -1,4 +1,9 @@
-// src/frontend/contexts/AuthContext.tsx
+/**
+* Contexto de autenticación: gestiona el estado global de autenticación
+* Proporciona funciones para login, registro y logout de usuarios
+* Persiste el estado de autenticación usando localStorage y sincroniza entre pestañas
+*/
+
 "use client";
 
 import React, {
