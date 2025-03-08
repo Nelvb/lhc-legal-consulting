@@ -1,10 +1,9 @@
-// components/auth/LoginForm.tsx
 "use client";
-
 import React, { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../hooks/useAuth";
 import Button from "../ui/Button";
+import Input from "../ui/Input";
 
 const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
@@ -40,43 +39,23 @@ const LoginForm = () => {
           </div>
         )}
 
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
-                     dark:bg-gray-700 dark:text-white rounded-md 
-                     focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
-        </div>
+        <Input
+          etiqueta="Email"
+          id="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
-            htmlFor="password"
-          >
-            Contraseña
-          </label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
-                     dark:bg-gray-700 dark:text-white rounded-md 
-                     focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
-        </div>
+        <Input
+          etiqueta="Contraseña"
+          id="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
         <div>
           <Button
