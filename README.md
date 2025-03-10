@@ -29,6 +29,10 @@ Un template completo para iniciar proyectos full-stack con Next.js en el fronten
 
 ```
 starter-template/
+├── .env
+├── .env.docker
+├── .env.example
+├── .env.docker.example
 ├── .github/
 │   └── workflows/
 │       └── backend-tests.yml
@@ -72,8 +76,6 @@ starter-template/
     │   │   ├── test_users.py
     │   │   ├── test_users_api.py
     │   │   └── __init__.py
-    │   ├── .env.example
-    │   ├── .env.docker.example
     │   ├── requirements.txt
     │   └── run.py
     └── frontend/

@@ -1,7 +1,6 @@
 // src/frontend/app/(auth)/signup/page.tsx
-import React from "react";
 import Link from "next/link";
-import SignupForm from "../../../components/auth/SignupForm";
+import SignupForm from "@/components/auth/SignupForm";
 
 export default function SignupPage() {
   return (

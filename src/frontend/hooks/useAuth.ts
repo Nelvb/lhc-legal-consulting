@@ -6,7 +6,7 @@
 
 "use client";
 
-import { useAuth as useAuthContext } from "../contexts/AuthContext";
+import { useAuth as useAuthContext } from "@/contexts/AuthContext";
 
 // Hook personalizado de autenticación (simplemente re-exporta el hook del contexto)
 export function useAuth() {

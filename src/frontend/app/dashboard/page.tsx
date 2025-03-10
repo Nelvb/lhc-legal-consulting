@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../../hooks/useAuth";
-import Button from "../../components/ui/Button";
+import { useAuth } from "@/hooks/useAuth";
+import Button from "@/components/ui/Button";
 
 export default function Dashboard() {
   const { user, logout } = useAuth();

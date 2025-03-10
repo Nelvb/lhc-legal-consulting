@@ -1,9 +1,9 @@
 "use client";
-import React, { useState, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../../hooks/useAuth";
-import Button from "../ui/Button";
-import Input from "../ui/Input";
+import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
+import { useAuth } from '@/hooks/useAuth';
 
 const LoginForm = () => {
   const [email, setEmail] = useState<string>("");

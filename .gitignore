@@ -57,3 +57,6 @@ instance/
 node_modules/
 src/frontend/.next/trace
 src/frontend/.next/
+
+# Tailwind CSS output
+src/frontend/styles/output.css

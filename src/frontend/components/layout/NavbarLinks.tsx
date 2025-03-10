@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAuth } from "../../hooks/useAuth";
-import Button from "../ui/Button";
+import { useAuth } from "@/hooks/useAuth";
+import Button from "@/components/ui/Button";
 
 const NavbarLinks: React.FC = () => {
   // Obtener estado de autenticación y funciones del contexto de autenticación

@@ -3,8 +3,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Button from '../ui/Button';
-import { useAuth } from '../../hooks/useAuth';
+import Button from '@/components/ui/Button';
+import { useAuth } from '@/hooks/useAuth';
 import { usePathname } from 'next/navigation';
 
 // Definimos una interfaz más precisa para las props

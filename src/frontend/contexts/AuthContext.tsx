@@ -15,7 +15,7 @@ import React, {
   useCallback,
 } from "react";
 import { useRouter } from "next/navigation";
-import { authService } from "../lib/api";
+import { authService } from "@/lib/api";
 
 // Definimos el tipo de usuario
 interface User {

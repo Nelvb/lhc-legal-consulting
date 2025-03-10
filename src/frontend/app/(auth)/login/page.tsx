@@ -1,8 +1,7 @@
 // app/login/page.tsx
-import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import LoginForm from "../../../components/auth/LoginForm";
+import LoginForm from "@/components/auth/LoginForm";
 
 export const metadata: Metadata = {
   title: "Iniciar Sesión | Starter Template",
