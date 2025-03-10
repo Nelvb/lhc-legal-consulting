@@ -337,6 +337,44 @@ npm run build
 npm start
 ```
 
+### Imports Absolutos
+
+El proyecto utiliza imports absolutos con aliases específicos para diferentes tipos de módulos, configurados en `tsconfig.json`.
+
+#### Configuración de Paths
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/contexts/*": ["contexts/*"],
+      "@/components/*": ["components/*"],
+      "@/styles/*": ["styles/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/lib/*": ["lib/*"]
+    }
+  }
+}
+```
+
+#### Ejemplos de Uso
+
+```typescript
+// Importaciones tradicionales
+import AuthProvider from '../../contexts/AuthContext';
+
+// Importaciones absolutas
+import AuthProvider from '@/contexts/AuthContext';
+import Button from '@/components/ui/Button';
+import useAuth from '@/hooks/useAuth';
+```
+
+Esta configuración permite:
+- Importaciones más limpias y legibles
+- Rutas independientes de la estructura de directorios
+- Mejor mantenibilidad del código
+
 ### Comandos Backend
 
 ```bash
@@ -381,26 +419,46 @@ flask db downgrade
 
 ## Despliegue
 
-### Frontend (Vercel recomendado)
+### Consideraciones para Despliegue
 
-```bash
-# Instalar Vercel CLI
-npm install -g vercel
+#### Frontend
+El frontend desarrollado con Next.js puede desplegarse en múltiples plataformas, incluyendo:
+- Vercel (recomendado por integración nativa)
+- Netlify
+- Cloudflare Pages
+- AWS Amplify
+- Otras plataformas de hosting para aplicaciones JAMstack
 
-# Despliegue
-vercel
-```
+Aspectos clave a considerar:
+- Configurar variables de entorno
+- Establecer scripts de build
+- Definir configuraciones de entorno (desarrollo/producción)
 
-### Backend
+#### Backend
+El backend basado en Flask es compatible con diversos servicios de hosting:
+- Plataformas de contenedores: Docker
+- Servicios de PaaS: 
+  - Heroku
+  - DigitalOcean App Platform
+  - Railway
+  - Render
+- Servicios de computación en la nube:
+  - AWS EC2
+  - Google Cloud Run
+  - Azure App Service
 
-Para el backend, puedes utilizar servicios como:
+Puntos importantes para el despliegue:
+- Gestionar dependencias con `requirements.txt`
+- Configurar variables de entorno seguras
+- Preparar scripts de inicialización
+- Considerar escalabilidad y rendimiento
+- Implementar estrategias de migración de base de datos
 
-- Heroku
-- DigitalOcean
-- Railway
-- Render
-
-Asegúrate de configurar las variables de entorno correspondientes en el entorno de producción.
+La elección dependerá de:
+- Necesidades específicas del proyecto
+- Presupuesto
+- Conocimientos del equipo
+- Requisitos de escalabilidad
 
 ## CI/CD con GitHub Actions
 
