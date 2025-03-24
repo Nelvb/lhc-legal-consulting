@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import NavbarLinks from "@/components/layout/NavbarLinks";
-import MobileMenu from "@/components/ui/MobileMenu";
+import MobileMenu from "@/components/layout/SideMenu";
 
 
 const Navbar: React.FC = () => {
