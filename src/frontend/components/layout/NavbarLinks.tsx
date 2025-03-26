@@ -10,7 +10,7 @@ const NavbarLinks: React.FC = () => {
   // Obtener estado de autenticación y funciones del contexto de autenticación
   const { isAuthenticated, user, logout } = useAuth();
   const pathname = usePathname();
-  
+
   // Estados para manejar transiciones suaves durante la carga
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [shouldRender, setShouldRender] = useState(false);
@@ -30,11 +30,11 @@ const NavbarLinks: React.FC = () => {
     }, 100);
 
     // Log de depuración para seguimiento del estado de autenticación
-    console.log("NavbarLinks - Render con:", { 
-      isAuthenticated, 
+    console.log("NavbarLinks - Render con:", {
+      isAuthenticated,
       pathname,
       isInitialLoad,
-      shouldRender 
+      shouldRender,
     });
 
     // Limpiar el temporizador para prevenir memory leaks
@@ -52,37 +52,36 @@ const NavbarLinks: React.FC = () => {
         <>
           {/* Enlace a Inicio solo si no estamos en la página principal */}
           {!isHomePage && (
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="transition-all ease-smooth hover:scale-hover text-gray-800 dark:text-white"
             >
               Inicio
             </Link>
           )}
-          
+
           {/* Botón de Iniciar Sesión - no mostrar en página de login */}
           {!isLoginPage && (
-            <Link 
-              href="/login" 
-              className="transition-all ease-smooth hover:scale-hover"
+            <Link
+              href="/login"
+              className="text-white text-lg font-medium transition-all duration-300 hover:scale-110 transform-gpu"
             >
-              <Button variant="outline" size="sm">Iniciar Sesión</Button>
+              Iniciar Sesión
             </Link>
           )}
-          
           {/* Botón de Registrarse - no mostrar en página de signup */}
           {!isSignupPage && (
-            <Link 
-              href="/signup" 
-              className="transition-all ease-smooth hover:scale-hover"
+            <Link
+              href="/signup"
+              className="text-white text-lg font-medium transition-all duration-300 hover:scale-110 transform-gpu mr-6"
             >
-              <Button variant="primary" size="sm">Registrarse</Button>
+              Registrarse
             </Link>
           )}
         </>
       );
     }
-    
+
     // Usuario autenticado en la página principal
     if (isHomePage) {
       return (
@@ -91,15 +90,15 @@ const NavbarLinks: React.FC = () => {
           <span className="text-gray-800 dark:text-white font-medium transition-all duration-300">
             Hola {user?.username}
           </span>
-          
+
           {/* Enlace a Área Privada */}
-          <Link 
-            href="/dashboard" 
+          <Link
+            href="/dashboard"
             className="transition-all ease-smooth hover:scale-hover text-gray-800 dark:text-white"
           >
             Área Privada
           </Link>
-          
+
           {/* Botón de Cerrar Sesión */}
           <Button
             variant="outline"
@@ -115,7 +114,7 @@ const NavbarLinks: React.FC = () => {
         </>
       );
     }
-    
+
     // Usuario autenticado en el dashboard
     if (isDashboardPage) {
       return (
@@ -124,15 +123,15 @@ const NavbarLinks: React.FC = () => {
           <span className="text-gray-800 dark:text-white font-medium transition-all duration-300">
             Hola {user?.username}
           </span>
-          
+
           {/* Enlace a Inicio */}
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="transition-all ease-smooth hover:scale-hover text-gray-800 dark:text-white"
           >
             Inicio
           </Link>
-          
+
           {/* Botón de Cerrar Sesión */}
           <Button
             variant="outline"
@@ -148,7 +147,7 @@ const NavbarLinks: React.FC = () => {
         </>
       );
     }
-    
+
     // Usuario autenticado en otras páginas
     return (
       <>
@@ -156,25 +155,25 @@ const NavbarLinks: React.FC = () => {
         <span className="text-gray-800 dark:text-white font-medium transition-all duration-300">
           Hola {user?.username}
         </span>
-        
+
         {/* Enlace a Inicio */}
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="transition-all ease-smooth hover:scale-hover text-gray-800 dark:text-white"
         >
           Inicio
         </Link>
-        
+
         {/* Enlace a Área Privada - no mostrar en dashboard */}
         {!isDashboardPage && (
-          <Link 
-            href="/dashboard" 
+          <Link
+            href="/dashboard"
             className="transition-all ease-smooth hover:scale-hover text-gray-800 dark:text-white"
           >
             Área Privada
           </Link>
         )}
-        
+
         {/* Botón de Cerrar Sesión */}
         <Button
           variant="outline"
@@ -193,16 +192,16 @@ const NavbarLinks: React.FC = () => {
 
   // Renderizado principal con control de transiciones
   return (
-    <div 
+    <div
       className={`
         hidden md:flex 
         items-center 
-        space-x-6 
+        space-x-10 
         transition-all 
         duration-300 
         ease-smooth
-        ${isInitialLoad ? 'opacity-0' : 'opacity-100'}
-        ${shouldRender ? 'visible' : 'invisible'}
+        ${isInitialLoad ? "opacity-0" : "opacity-100"}
+        ${shouldRender ? "visible" : "invisible"}
       `}
     >
       {renderNavigation()}

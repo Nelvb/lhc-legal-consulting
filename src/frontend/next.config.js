@@ -8,8 +8,14 @@ const nextConfig = {
         : "http://localhost:5000/api",
   },
   images: {
-    domains: ["res.cloudinary.com"],
-  },
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
+    ],
+  }
 };
 
 module.exports = nextConfig;

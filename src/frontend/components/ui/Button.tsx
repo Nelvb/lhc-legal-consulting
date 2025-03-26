@@ -28,11 +28,11 @@ const Button = ({
 
   const variantStyles = {
     primary:
-      "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 disabled:bg-blue-300",
+      "bg-[#1DA1F2] text-white hover:bg-[#1999e4] focus:ring-[#1DA1F2] disabled:bg-[#A8DCFA]",
     secondary:
       "bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-500 disabled:bg-gray-100",
-    outline:
-      "border border-gray-300 bg-transparent hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-gray-500 disabled:text-gray-300",
+      outline:
+      "border border-[#1A1341] text-[#1A1341] bg-white hover:bg-[#1A1341] hover:text-white focus:ring-[#1A1341] disabled:text-gray-300",
   };
 
   const sizeStyles = {
