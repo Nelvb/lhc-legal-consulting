@@ -32,7 +32,7 @@ const values = [
 
 const CompanyValues: React.FC = () => {
   return (
-    <section className="w-full bg-[#F1FFEF] py-20 px-4 sm:px-6 lg:px-24">
+    <section className="w-full bg-white py-20 px-4 sm:px-6 lg:px-24">
       <div className="max-w-screen-2xl mx-auto text-center mb-16">
         <h2 className="text-3xl sm:text-4xl font-bold text-[#1A1341]">
           ¿Por qué confiar en Boost A Project?
@@ -43,7 +43,7 @@ const CompanyValues: React.FC = () => {
         {values.map((value, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl p-6 shadow-md text-left flex flex-col items-start gap-4"
+            className="bg-[#F1FFEF] rounded-xl p-6 shadow-md text-left flex flex-col items-start gap-4"
           >
             {value.icon}
             <h3 className="text-xl font-semibold text-[#1A1341]">
