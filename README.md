@@ -145,11 +145,11 @@ starter-template/
 
    - Copia `.env.example` a `.env` para desarrollo local:
      ```bash
-     cp src/backend/.env.example src/backend/.env
+     cp .env.example .env
      ```
    - Copia `.env.docker.example` a `.env.docker` para Docker:
      ```bash
-     cp src/backend/.env.docker.example src/backend/.env.docker
+     cp .env.docker.example .env.docker
      ```
    - Actualiza los valores en los archivos con tus propias credenciales, especialmente:
      - SECRET_KEY
