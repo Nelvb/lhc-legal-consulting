@@ -27,3 +27,4 @@ class UserSchema(Schema):
         load_only=True
     )
     created_at = fields.DateTime(dump_only=True)
+    is_admin = fields.Boolean(dump_only=True)

@@ -22,6 +22,7 @@ interface User {
   id: string;
   name: string;
   email: string;
+  is_admin?: boolean;
   [key: string]: any; // Para cualquier propiedad adicional que pueda tener el usuario
 }
 

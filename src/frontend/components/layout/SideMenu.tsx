@@ -17,7 +17,7 @@ interface SideMenuProps {
 }
 
 const SideMenu: React.FC<SideMenuProps> = ({ isOpen, onClose }) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth(); // ← Añadimos user
   const pathname = usePathname();
 
   const isHomePage = pathname === "/" || pathname === "";
@@ -36,7 +36,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ isOpen, onClose }) => {
 
         {/* Enlaces de navegación pública */}
         <nav className="py-4 px-2">
-          <MainMenuLinks onClickLink={onClose}  />
+          <MainMenuLinks onClickLink={onClose} />
 
           {/* Link a Dashboard para usuarios autenticados (excepto si ya están ahí) */}
           {isAuthenticated && !isDashboardPage && (
@@ -49,7 +49,16 @@ const SideMenu: React.FC<SideMenuProps> = ({ isOpen, onClose }) => {
             </Link>
           )}
 
-          
+          {/* Enlace exclusivo para administradores */}
+          {user?.is_admin && (
+            <Link
+              href="/admin"
+              onClick={onClose}
+              className="block px-4 py-2 mt-2 rounded text-red-600 hover:bg-red-100 transition-colors font-semibold"
+            >
+              Admin
+            </Link>
+          )}
         </nav>
 
         {/* Botones de autenticación */}

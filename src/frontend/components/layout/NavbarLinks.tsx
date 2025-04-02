@@ -91,6 +91,16 @@ const NavbarLinks: React.FC = () => {
             Hola {user?.username}
           </span>
 
+          {/* Enlace a Admin si es administrador */}
+          {user?.is_admin && (
+            <Link
+              href="/admin"
+              className="transition-all ease-smooth hover:scale-hover text-red-600 dark:text-red-400 font-semibold"
+            >
+              Admin
+            </Link>
+          )}
+
           {/* Enlace a Área Privada */}
           <Link
             href="/dashboard"
