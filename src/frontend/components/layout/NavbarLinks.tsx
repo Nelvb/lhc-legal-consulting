@@ -54,7 +54,7 @@ const NavbarLinks: React.FC = () => {
           {!isHomePage && (
             <Link
               href="/"
-              className="transition-all ease-smooth hover:scale-hover text-gray-800 dark:text-white"
+              className="text-white text-lg font-medium transition-all duration-300 hover:scale-110 transform-gpu"
             >
               Inicio
             </Link>

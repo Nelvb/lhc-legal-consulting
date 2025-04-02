@@ -2,15 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* Navbar  */
-
+/* Navbar */
 .nav-link {
-    @apply text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium;
+  @apply text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium;
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
-  
-  @layer utilities {
-    .transition-smooth {
-      transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-    }
-  }
+}

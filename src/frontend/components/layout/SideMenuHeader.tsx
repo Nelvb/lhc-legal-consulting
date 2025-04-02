@@ -12,23 +12,25 @@ const SideMenuHeader: React.FC<SideMenuHeaderProps> = ({ onClose }) => {
   const { isAuthenticated, user } = useAuth();
 
   return (
-    <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
+    <div className="flex justify-between items-center p-4 bg-[#1DA1F2]">
       <div className="flex items-center space-x-3">
         <Image
-          src="https://res.cloudinary.com/dy1pkrd52/image/upload/v1742851714/Logo_2_x4vp4i.webp"
+          src="https://res.cloudinary.com/dy1pkrd52/image/upload/v1742894677/Logo-sin-fondo-3_d4ch0a.webp"
           alt="Boost A Project Logo"
-          width={32}
-          height={32}
-          className="w-8 h-8 object-contain"
+          width={64}
+          height={64}
+          className="w-16 h-16 object-contain"
         />
-        <span className="text-xl font-bold text-gray-900 dark:text-white">
-          {isAuthenticated ? `Hola ${user?.username}` : "Menú"}
-        </span>
+        {isAuthenticated && (
+          <span className="text-lg font-semibold text-white">
+            Hola {user?.username}
+          </span>
+        )}
       </div>
       <button
         onClick={onClose}
         aria-label="Cerrar menú"
-        className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+        className="text-white hover:text-[#C2E7DA]"
       >
         <svg
           className="h-6 w-6"

@@ -44,13 +44,13 @@ const Navbar: React.FC = () => {
           </Link>
 
           {/* Zona derecha: enlaces de auth + hamburguesa */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-8">
             <NavbarLinks key={`nav-links-${isAuthenticated}`} />
 
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white"
+              className="p-2 text-white text-lg font-medium transition-all duration-300 hover:scale-110 transform-gpu"
               aria-label="Abrir menú"
             >
               {isOpen ? (

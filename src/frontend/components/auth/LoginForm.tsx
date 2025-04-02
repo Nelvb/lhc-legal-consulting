@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Button from '@/components/ui/Button';
@@ -12,24 +13,19 @@ const LoginForm = () => {
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    console.log("handleSubmit ejecutado");
     e.preventDefault();
-    
     try {
       await login({ email, password });
-      // No necesitamos redirección aquí, useAuth ya maneja la redirección al dashboard
-    } catch (err) {
-      // Error ya gestionado en el hook useAuth
-    }
+    } catch (err) {}
   };
 
   return (
     <div className="w-full max-w-md">
       <form
         onSubmit={handleSubmit}
-        className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
+        className="bg-[#F1FFEF] border border-[#C2E7DA] p-8 rounded-xl shadow-md"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">
+        <h2 className="text-2xl font-bold mb-6 text-center text-[#1A1341]">
           Iniciar Sesión
         </h2>
 

@@ -1,5 +1,5 @@
 // src/frontend/app/layout.tsx
-import React from 'react';
+import React from "react";
 import { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
@@ -45,11 +45,11 @@ export default function RootLayout({
       */}
       <body
         className={`
-        ${geistSans.variable} ${geistMono.variable} 
-        antialiased 
-        bg-gray-50 dark:bg-gray-900 
-        text-black dark:text-white
-      `}
+          ${geistSans.variable} ${geistMono.variable}
+          antialiased
+          text-[#1A1341]
+          bg-white
+        `}
       >
         <AuthProvider>
           <Navbar />

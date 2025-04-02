@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-// Tipado explícito de las props
 interface MainMenuLinksProps {
   onClickLink?: () => void;
 }
@@ -29,7 +28,7 @@ const MainMenuLinks: React.FC<MainMenuLinksProps> = ({ onClickLink }) => {
           <Link
             href={href}
             onClick={onClickLink}
-            className={`block px-4 py-2 rounded text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+            className={`block px-4 py-2 rounded transition-colors text-[#1A1341] hover:bg-[#1A1341] hover:text-white ${
               pathname === href ? "font-semibold underline" : ""
             }`}
           >

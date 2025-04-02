@@ -8,8 +8,6 @@ module.exports = {
     "./styles/**/*.css",
   ],
 
-  // Modo oscuro automático basado en la configuración del sistema operativo
-  darkMode: 'media',
 
   theme: {
     extend: {

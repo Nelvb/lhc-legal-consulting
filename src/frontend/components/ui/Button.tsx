@@ -28,10 +28,10 @@ const Button = ({
 
   const variantStyles = {
     primary:
-      "bg-[#1DA1F2] text-white hover:bg-[#1999e4] focus:ring-[#1DA1F2] disabled:bg-[#A8DCFA]",
-    secondary:
-      "bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-500 disabled:bg-gray-100",
-      outline:
+      "bg-[#1DA1F2] text-white border border-transparent hover:bg-white hover:text-[#1DA1F2] hover:border-[#1DA1F2] focus:ring-[#1DA1F2] disabled:bg-[#A8DCFA]",
+      secondary:
+      "bg-[#C2E7DA] text-[#1A1341] border border-transparent hover:bg-white hover:border-[#C2E7DA] hover:text-[#1A1341] focus:ring-[#C2E7DA] disabled:bg-[#F1FFEF] disabled:text-gray-500",
+    outline:
       "border border-[#1A1341] text-[#1A1341] bg-white hover:bg-[#1A1341] hover:text-white focus:ring-[#1A1341] disabled:text-gray-300",
   };
 
