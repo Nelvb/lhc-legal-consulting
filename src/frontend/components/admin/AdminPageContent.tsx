@@ -29,7 +29,7 @@ const AdminPageContent = () => {
 
   return (
     <AdminLayout>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 md:pt-16">
         <AdminCard
           title="Proyectos"
           description="Gestiona, crea o edita los proyectos inmobiliarios activos."
