@@ -4,11 +4,9 @@ import { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import ClientLayout from "@/components/layout/ClientLayout";
 
 // Configuración de fuentes de Google usando Next.js Font Optimization
-// Geist Sans: Fuente principal para texto general
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -19,7 +17,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Metadatos del sitio web para SEO y configuraciones del navegador
 export const metadata: Metadata = {
   title: "Starter Template - Next.js, Flask, PostgreSQL & Tailwind",
   description:
@@ -29,7 +26,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Layout raíz que envuelve toda la aplicación
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,12 +33,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      {/* 
-        Configuración de clases globales:
-        - Fuentes personalizadas
-        - Antialiasing para mejor renderizado de texto
-        - Colores de fondo y texto para modo claro y oscuro 
-      */}
       <body
         className={`
           ${geistSans.variable} ${geistMono.variable}
@@ -52,9 +42,7 @@ export default function RootLayout({
         `}
       >
         <AuthProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <ClientLayout>{children}</ClientLayout>
         </AuthProvider>
       </body>
     </html>

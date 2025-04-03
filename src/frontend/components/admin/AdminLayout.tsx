@@ -11,25 +11,22 @@
 "use client";
 
 import React from "react";
+import AdminHeader from "@/components/admin/AdminHeader";
 
 interface AdminLayoutProps {
-  title?: string;
   children: React.ReactNode;
 }
 
-const AdminLayout: React.FC<AdminLayoutProps> = ({
-  title = "Panel de Administración",
-  children,
-}) => {
+const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   return (
     <div className="min-h-screen bg-[#F7FAFF] text-gray-800">
-      {/* Encabezado */}
-      <header className="bg-[#1A1341] text-white py-6 px-8 shadow-md">
-        <h1 className="text-2xl font-bold">{title}</h1>
-      </header>
+      {/* Encabezado personalizado del admin */}
+      <AdminHeader />
 
-      {/* Contenido principal */}
-      <main className="max-w-7xl mx-auto py-10 px-6">{children}</main>
+      {/* Contenido principal con padding superior para evitar solapamiento */}
+      <main className="max-w-7xl mx-auto pt-40 px-6 pb-20">
+        {children}
+      </main>
     </div>
   );
 };
