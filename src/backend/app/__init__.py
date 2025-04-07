@@ -5,6 +5,8 @@
 from app.api.auth import auth_bp  # Importamos el blueprint de autenticación
 from app.api.users import users_bp  # Importamos el blueprint de usuarios
 from app.api.routes import routes  # Importamos el blueprint de rutas generales
+from app.api.articles import articles_bp  # Importamos el blueprint de artículos
+from app.api.images import images_bp  # Importamos el blueprint de imágenes
 from app.config import DevelopmentConfig  # Configuración de la aplicación
 from app.extensions import (
     cors,
@@ -14,6 +16,7 @@ from app.extensions import (
     ma,
     migrate,
 )
+from app.services.image_service import ImageService  # Importamos el servicio de imágenes
 from flask import Flask
 
 
@@ -35,9 +38,14 @@ def create_app(config_object=DevelopmentConfig):
     # Inicializar todas las extensiones desde extensions.py
     init_app(app)
     
+    # Inicializar Cloudinary
+    ImageService.init_cloudinary(app)
+    
     # Registrar los blueprints
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(users_bp, url_prefix="/api/users")
     app.register_blueprint(routes, url_prefix="/api")
+    app.register_blueprint(articles_bp, url_prefix="/api/articles")
+    app.register_blueprint(images_bp, url_prefix="/api/images")
     
     return app

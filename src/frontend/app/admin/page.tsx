@@ -5,7 +5,7 @@
  * Renderiza el componente cliente que contiene la lógica de autenticación y el contenido
  */
 
-import AdminPageContent from "@/components/admin/AdminPageContent";
+import AdminPageContent from "@/components/admin/layout/AdminPageContent";
 
 export const metadata = {
   title: "Panel de Administración | Boost a Project",

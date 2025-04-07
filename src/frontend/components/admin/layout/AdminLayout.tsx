@@ -11,7 +11,7 @@
 "use client";
 
 import React from "react";
-import AdminHeader from "@/components/admin/AdminHeader";
+import AdminHeader from "@/components/admin/layout/AdminHeader";
 
 interface AdminLayoutProps {
   children: React.ReactNode;

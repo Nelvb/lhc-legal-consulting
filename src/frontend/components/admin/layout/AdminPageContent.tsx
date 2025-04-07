@@ -12,8 +12,8 @@
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import AdminLayout from "@/components/admin/AdminLayout";
-import AdminCard from "@/components/admin/AdminCard";
+import AdminLayout from "@/components/admin/layout/AdminLayout";
+import AdminCard from "@/components/admin/ui/AdminCard";
 
 const AdminPageContent = () => {
   const { user, isAuthenticated } = useAuth();
