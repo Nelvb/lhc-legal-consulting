@@ -1,64 +1,36 @@
-// /src/frontend/components/admin/blog/BlogArticleForm.tsx
-
 'use client';
 
-import React, { useState } from 'react';
+import React, { InputHTMLAttributes } from 'react';
 
-import Input from '@/components/ui/Input';
-import Button from '@/components/ui/Button';
-import ImageUpload from '@/components/ui/ImageUpload';
-import { createSlug } from '@/lib/utils/string-utils';
-
-interface BlogArticleFormProps {
-  onSubmit: (articleData: any) => void;
+interface PropiedadesInput extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
 }
 
-const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
-  const [title, setTitle] = useState('');
-  const [excerpt, setExcerpt] = useState('');
-  const [content, setContent] = useState('');
-  const [image, setImage] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Validaciones básicas
-    if (title.length < 10 || title.length > 80) {
-      alert('El título debe tener entre 10 y 80 caracteres');
-      return;
-    }
-
-    if (excerpt.length < 50 || excerpt.length > 200) {
-      alert('El extracto debe tener entre 50 y 200 caracteres');
-      return;
-    }
-
-    const articleData = {
-      title,
-      slug: createSlug(title),
-      excerpt,
-      content,
-      image
-    };
-
-    onSubmit(articleData);
-  };
-
-  const handleImageUpload = (imageUrl: string) => {
-    setImage(imageUrl);
-  };
-
+export const Input: React.FC<PropiedadesInput> = ({
+  id,
+  label,
+  className,
+  ...props
+}) => {
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {/* ... */}
-
-      <ImageUpload onImageUpload={handleImageUpload} />
-
-      <Button type="submit" variant="primary">
-        Crear Artículo
-      </Button>
-    </form>
+    <div className="mb-4">
+      {label && (
+        <label
+          htmlFor={id}
+          className="block text-[#1A1341] text-sm font-semibold mb-2"
+        >
+          {label}
+        </label>
+      )}
+      <input
+        id={id}
+        className={`w-full px-3 py-2 border border-[#C2E7DA] bg-white text-[#1A1341] rounded-md 
+          focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] 
+          ${className || ''}`}
+        {...props}
+      />
+    </div>
   );
 };
 
-export default BlogArticleForm;
+export default Input;

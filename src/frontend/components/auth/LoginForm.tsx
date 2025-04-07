@@ -36,7 +36,7 @@ const LoginForm = () => {
         )}
 
         <Input
-          etiqueta="Email"
+          label="Email"
           id="email"
           type="email"
           value={email}
@@ -45,7 +45,7 @@ const LoginForm = () => {
         />
 
         <Input
-          etiqueta="Contraseña"
+          label="Contraseña"
           id="password"
           type="password"
           value={password}

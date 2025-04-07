@@ -53,7 +53,7 @@ const SignupForm = () => {
         )}
 
         <Input
-          etiqueta="Nombre de Usuario"
+          label="Nombre de Usuario"
           id="username"
           type="text"
           value={username}
@@ -63,7 +63,7 @@ const SignupForm = () => {
         />
 
         <Input
-          etiqueta="Email"
+          label="Email"
           id="email"
           type="email"
           value={email}
@@ -73,7 +73,7 @@ const SignupForm = () => {
 
         <div className="relative">
           <Input
-            etiqueta="Contraseña"
+            label="Contraseña"
             id="password"
             type={showPassword ? "text" : "password"}
             value={password}
@@ -91,7 +91,7 @@ const SignupForm = () => {
 
         <div className="relative">
           <Input
-            etiqueta="Repetir Contraseña"
+            label="Repetir Contraseña"
             id="confirmPassword"
             type={showConfirm ? "text" : "password"}
             value={confirmPassword}
