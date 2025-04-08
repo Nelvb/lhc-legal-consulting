@@ -7,6 +7,22 @@ proporciona métodos para interactuar con los registros.
 
 from app.extensions import db
 from sqlalchemy.sql import func
+from sqlalchemy.types import TypeDecorator, Text
+import json
+
+# Tipo personalizado para almacenar listas como JSON en un campo de texto
+class JSONEncodedList(TypeDecorator):
+    impl = Text
+
+    def process_bind_param(self, value, dialect):
+        if value is None:
+            return "[]"
+        return json.dumps(value)
+
+    def process_result_value(self, value, dialect):
+        if value is None:
+            return []
+        return json.loads(value)
 
 class Article(db.Model):
     __tablename__ = "articles"  # Nombre explícito de la tabla
@@ -16,10 +32,12 @@ class Article(db.Model):
     slug = db.Column(db.String(255), unique=True, nullable=False)
     author = db.Column(db.String(100), nullable=False, default="Boost A Project")
     date = db.Column(db.DateTime(timezone=True), server_default=func.now(), nullable=False)
-    excerpt = db.Column(db.String(500), nullable=True)  # Extracto del artículo
-    image = db.Column(db.String(255), nullable=False)  # URL de la imagen (obligatoria)
-    content = db.Column(db.Text, nullable=False)  # Contenido completo del artículo
-    
+    excerpt = db.Column(db.String(500), nullable=True)
+    image = db.Column(db.String(255), nullable=False)
+    image_alt = db.Column(db.String(255), nullable=True)  # NUEVO CAMPO: descripción alt de la imagen
+    content = db.Column(db.Text, nullable=False)
+    related = db.Column(JSONEncodedList, nullable=True)
+
     # Campos para SEO
     meta_description = db.Column(db.String(160), nullable=True)
     meta_keywords = db.Column(db.String(255), nullable=True)
@@ -31,7 +49,6 @@ class Article(db.Model):
     def __repr__(self):
         return f"<Article {self.title}>"
     
-    # Método para serializar el artículo
     def serialize(self):
         return {
             "id": self.id,
@@ -41,7 +58,9 @@ class Article(db.Model):
             "date": self.date,
             "excerpt": self.excerpt,
             "image": self.image,
+            "image_alt": self.image_alt,
             "content": self.content,
+            "related": self.related,
             "meta_description": self.meta_description,
             "meta_keywords": self.meta_keywords,
             "created_at": self.created_at,

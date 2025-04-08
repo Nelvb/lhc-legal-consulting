@@ -15,6 +15,8 @@ from app.api.articles import articles_bp
 from app.api.images import images_bp
 from app.models.article import Article
 from app.services.image_service import ImageService
+from app.api.articles_static import static_articles_bp
+
 
 from app.config import config
 from app.extensions import db
@@ -43,6 +45,8 @@ app.register_blueprint(auth_bp, url_prefix="/api/auth")
 app.register_blueprint(users_bp, url_prefix="/api/users")
 app.register_blueprint(articles_bp, url_prefix="/api/articles")
 app.register_blueprint(images_bp, url_prefix="/api/images")
+app.register_blueprint(static_articles_bp, url_prefix="/api/articles")
+
 
 # Ruta de prueba
 @app.route("/")
