@@ -1,29 +1,15 @@
+// /src/frontend/components/ui/ImageUpload.tsx
+
 /**
  * Componente ImageUpload
  * 
- * Este componente permite al usuario seleccionar y subir una imagen desde su dispositivo
- * a través de un formulario tipo multipart. Utiliza una ruta del backend (/api/images/upload)
- * que redirige a Flask mediante la configuración de rewrites en next.config.js.
- * 
- * Funcionalidades:
- * - Previsualización de imagen seleccionada.
- * - Subida única por imagen (previene envíos duplicados).
- * - Mensaje de éxito tras la subida.
- * - Botón desactivado mientras se sube la imagen.
- * 
- * Requisitos:
- * - El backend debe tener definida la ruta /api/images/upload para recibir la imagen.
- * - Cloudinary debe estar correctamente configurado en Flask.
- * - El proxy inverso en Next.js debe estar activo para evitar hardcodear rutas.
- * 
- * Uso:
- * <ImageUpload onImageUpload={(url) => setImage(url)} />
+ * Permite seleccionar o arrastrar una imagen para subirla al backend (Cloudinary).
+ * Incluye vista previa, validación visible, subida única y posibilidad de reemplazo.
  */
-
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 interface ImageUploadProps {
   onImageUpload: (imageUrl: string) => void;
@@ -35,15 +21,32 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
   const [uploaded, setUploaded] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileSelect = (file: File) => {
+    setSelectedImage(file);
+    setPreviewUrl(URL.createObjectURL(file));
+    setUploaded(false);
+    setSuccessMessage('');
+    setErrorMessage('');
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setSelectedImage(file);
-      setPreviewUrl(URL.createObjectURL(file));
-      setUploaded(false);
-      setSuccessMessage('');
+      handleFileSelect(e.target.files[0]);
     }
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFileSelect(e.dataTransfer.files[0]);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
   };
 
   const handleImageUpload = async () => {
@@ -54,6 +57,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
 
     try {
       setIsUploading(true);
+      setErrorMessage('');
       const response = await fetch('/api/images/upload', {
         method: 'POST',
         body: formData,
@@ -65,33 +69,83 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
         setUploaded(true);
         setSuccessMessage('Imagen subida con éxito');
       } else {
-        console.error('Error al subir la imagen');
+        setErrorMessage('Error al subir la imagen');
       }
     } catch (error) {
-      console.error('Error al subir la imagen', error);
+      setErrorMessage('Error al subir la imagen');
     } finally {
       setIsUploading(false);
     }
   };
 
+  const handleReplaceImage = () => {
+    setSelectedImage(null);
+    setPreviewUrl(null);
+    setUploaded(false);
+    setSuccessMessage('');
+    setErrorMessage('');
+    fileInputRef.current?.click();
+  };
+
   return (
-    <div>
-      <input type="file" accept="image/*" onChange={handleImageChange} />
-      {previewUrl && (
-        <div>
-          <img src={previewUrl} alt="Vista previa" className="mt-4 max-w-full h-auto" />
+    <div className="space-y-4">
+      {!previewUrl && (
+        <div
+          className="border-2 border-dashed border-[#C2E7DA] rounded-lg p-6 text-center cursor-pointer bg-[#F1FFEF] hover:bg-[#e0f5eb] transition"
+          onClick={() => fileInputRef.current?.click()}
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+        >
+          <p className="text-sm text-[#1A1341] font-medium">
+            Arrastra una imagen aquí o haz clic para seleccionar
+          </p>
+          <p className="text-xs text-gray-500 mt-2">JPG, PNG o WEBP. Tamaño recomendado 1200x600px.</p>
         </div>
       )}
-      <button
-        type="button"
-        onClick={handleImageUpload}
-        disabled={!selectedImage || uploaded || isUploading}
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
-      >
-        {uploaded ? 'Imagen subida' : isUploading ? 'Subiendo...' : 'Subir imagen'}
-      </button>
+
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
+        className="hidden"
+      />
+
+      {previewUrl && (
+        <div className="flex flex-col items-center gap-4">
+          <img
+            src={previewUrl}
+            alt="Vista previa"
+            className="max-w-full h-auto rounded-lg border border-gray-300"
+          />
+          {!uploaded && (
+            <button
+              type="button"
+              onClick={handleImageUpload}
+              disabled={isUploading}
+              className="px-4 py-2 bg-[#1DA1F2] text-white rounded hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            >
+              {isUploading ? 'Subiendo...' : 'Subir imagen'}
+            </button>
+          )}
+          {uploaded && (
+            <button
+              type="button"
+              onClick={handleReplaceImage}
+              className="text-sm text-[#1DA1F2] underline hover:text-blue-700"
+            >
+              Reemplazar imagen
+            </button>
+          )}
+        </div>
+      )}
+
+      {errorMessage && (
+        <p className="text-red-600 text-sm font-medium">{errorMessage}</p>
+      )}
+
       {successMessage && (
-        <p className="mt-2 text-green-600 text-sm font-medium">{successMessage}</p>
+        <p className="text-green-600 text-sm font-medium">{successMessage}</p>
       )}
     </div>
   );
