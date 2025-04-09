@@ -38,6 +38,7 @@ const Navbar: React.FC = () => {
               alt="Boost A Project Logo"
               width={50}
               height={50}
+              priority
               className="w-32 h-32 object-contain"
             />
             <span className="sr-only">Boost A Project</span>

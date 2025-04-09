@@ -23,48 +23,55 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
   const [related, setRelated] = useState<string[]>([])
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const newErrors: { [key: string]: string } = {}
-
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
+    const newErrors: { [key: string]: string } = {};
+  
     if (title.length < 10 || title.length > 80) {
-      newErrors.title = 'El título debe tener entre 10 y 80 caracteres'
+      newErrors.title = 'El título debe tener entre 10 y 80 caracteres';
     }
-
+  
     if (excerpt.length < 50 || excerpt.length > 200) {
-      newErrors.excerpt = 'El extracto debe tener entre 50 y 200 caracteres'
+      newErrors.excerpt = 'El extracto debe tener entre 50 y 200 caracteres';
     }
-
-    const plainText = content.replace(/<[^>]+>/g, '')
-    const wordCount = plainText.trim().split(/\s+/).length
+  
+    const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    const wordCount = plainText.split(' ').length;
+  
+    console.log(`Contenido plano: ${plainText.substring(0, 100)}...`);
+    console.log(`Palabras contadas: ${wordCount}`);
+  
     if (wordCount < 1000) {
-      newErrors.content = 'El contenido debe tener al menos 1000 palabras'
+      newErrors.content = 'El contenido debe tener al menos 1000 palabras';
     }
-
+  
     if (!image) {
-      newErrors.image = 'Debes subir una imagen antes de continuar'
+      newErrors.image = 'Debes subir una imagen antes de continuar';
     }
-
+  
     if (related.length === 0) {
-      newErrors.related = 'Debes seleccionar al menos un artículo relacionado'
+      newErrors.related = 'Debes seleccionar al menos un artículo relacionado';
     }
-
+  
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
+      setErrors(newErrors);
+      return;
     }
-
+  
     const articleData = {
       title,
-      slug: createSlug(title),
       excerpt,
       content,
       image,
       related,
-    }
-
-    onSubmit(articleData)
-  }
+    };
+  
+    console.log("Contenido a enviar:", articleData);
+  
+    onSubmit(articleData);
+  };
+  
 
   const handleImageUpload = (imageUrl: string) => {
     setImage(imageUrl)

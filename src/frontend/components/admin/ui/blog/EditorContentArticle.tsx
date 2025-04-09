@@ -1,5 +1,5 @@
 // Componente de editor enriquecido para artículos del blog (admin).
-// Usa TipTap con StarterKit para formato básico: títulos, listas, negritas, links, etc.
+// Utiliza TipTap con StarterKit y configuración optimizada para evitar errores de SSR.
 
 'use client';
 
@@ -15,6 +15,13 @@ const EditorContentArticle: React.FC<EditorContentArticleProps> = ({ content, on
   const editor = useEditor({
     extensions: [StarterKit],
     content,
+    editorProps: {
+      attributes: {
+        class: 'prose max-w-none focus:outline-none',
+      },
+    },
+    
+    immediatelyRender: false,
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
     },

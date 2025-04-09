@@ -31,6 +31,7 @@ const AdminHeader: React.FC = () => {
               alt="Boost A Project Logo"
               width={50}
               height={50}
+              priority
               className="w-32 h-32 object-contain hidden md:block" // El logo solo se muestra en pantallas grandes
             />
             <span className="sr-only">Boost A Project</span>

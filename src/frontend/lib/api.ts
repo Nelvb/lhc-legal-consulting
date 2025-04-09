@@ -3,7 +3,13 @@
 * Centraliza las llamadas HTTP para autenticación y gestión de usuario
 * Maneja automáticamente la serialización JSON y los encabezados de autenticación
 */
-const API_BASE_URL = process.env.API_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+if (!API_BASE_URL) {
+  throw new Error("Falta la variable de entorno NEXT_PUBLIC_API_URL");
+}
+
+
 
 export const authService = {
   signup: async (userData: {

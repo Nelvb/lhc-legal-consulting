@@ -4,12 +4,15 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
+import { isPublicRoute } from '@/constants/publicRoutes';
 import Button from "@/components/ui/Button";
 
 const NavbarLinks: React.FC = () => {
   // Obtener estado de autenticación y funciones del contexto de autenticación
   const { isAuthenticated, user, logout } = useAuth();
   const pathname = usePathname();
+  const isPublicRouteValue = isPublicRoute(pathname);
+
 
   // Estados para manejar transiciones suaves durante la carga
   const [isInitialLoad, setIsInitialLoad] = useState(true);
@@ -47,7 +50,7 @@ const NavbarLinks: React.FC = () => {
    */
   const renderNavigation = () => {
     // Usuario no autenticado
-    if (!isAuthenticated) {
+    if (!isAuthenticated && isPublicRouteValue) {
       return (
         <>
           {/* Enlace a Inicio solo si no estamos en la página principal */}
@@ -81,6 +84,10 @@ const NavbarLinks: React.FC = () => {
         </>
       );
     }
+
+    // Usuario no autenticado y en ruta privada → no renderizar nada
+    if (!isAuthenticated && !isPublicRouteValue) return null;
+
 
     // Usuario autenticado en la página principal
     if (isHomePage) {

@@ -50,8 +50,10 @@ export async function getArticles({
   category,
   search
 }: ArticleParams = {}): Promise<ArticleResponse> {
+  console.log('API_URL:', process.env.NEXT_PUBLIC_API_URL);
   try {
     let url = `${API_URL}/articles?page=${page}&limit=${limit}`;
+    console.log('URL de la petición:', url);
     
     if (category) url += `&category=${encodeURIComponent(category)}`;
     if (search) url += `&search=${encodeURIComponent(search)}`;
@@ -147,21 +149,25 @@ export async function getFeaturedArticles(limit: number = 4): Promise<Article[]>
 export async function getArticleTitles(): Promise<ArticleListItem[]> {
   try {
     const response = await fetch(`${API_URL}/articles`);
-    
-    if (!response.ok) {
-      throw new Error(`Error obteniendo títulos de artículos: ${response.status}`);
-    }
-    
     const data = await response.json();
-    return data.map((a: any) => ({ 
-      title: a.title, 
-      slug: a.slug 
-    }));
+    console.log("Respuesta de la API:", data); // Agregar log para verificar los datos
+
+    // Verificar que data.articles sea un array
+    if (Array.isArray(data.articles)) {
+      return data.articles.map((a: any) => ({
+        title: a.title,
+        slug: a.slug
+      }));
+    } else {
+      console.error("Error: 'articles' no es un array", data);
+      return [];
+    }
   } catch (error) {
     console.error("Error en getArticleTitles:", error);
     return [];
   }
 }
+
 
 /**
  * Obtiene artículos estáticos desde el JSON local

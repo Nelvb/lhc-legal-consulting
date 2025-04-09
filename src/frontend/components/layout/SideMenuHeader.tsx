@@ -19,6 +19,7 @@ const SideMenuHeader: React.FC<SideMenuHeaderProps> = ({ onClose }) => {
           alt="Boost A Project Logo"
           width={64}
           height={64}
+          priority
           className="w-16 h-16 object-contain"
         />
         {isAuthenticated && (

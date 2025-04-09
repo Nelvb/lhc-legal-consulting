@@ -27,6 +27,7 @@ const AdminSideMenuHeader: React.FC<AdminSideMenuHeaderProps> = ({ onClose }) =>
           alt="Boost A Project Logo"
           width={64}
           height={64}
+          priority
           className="w-16 h-16 object-contain"
         />
         {user?.username && (

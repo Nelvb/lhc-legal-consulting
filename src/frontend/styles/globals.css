@@ -81,3 +81,52 @@
     @apply bg-background text-foreground;
   }
 }
+
+/*Estilos para ArticleContent, vista articulos*/
+
+/* Estilos para el contenido del artículo */
+.article-content h2 {
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #1A1341;
+}
+
+.article-content p {
+  text-align: justify;
+  margin-bottom: 1.5rem;
+  color: #1A1341;
+  line-height: 1.8;
+}
+
+.article-content ul,
+.article-content ol {
+  margin: 1.5rem 0;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+  color: #1A1341;
+}
+
+.article-content a {
+  color: #6290C3;
+  text-decoration: none;
+}
+
+.article-content a:hover {
+  text-decoration: underline;
+}
+
+.article-content strong,
+.article-content b {
+  font-weight: 700;
+  color: #1A1341;
+}
+
+@media (min-width: 768px) {
+  .article-content h2 {
+    font-size: 2rem;
+  }
+}

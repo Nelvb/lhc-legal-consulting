@@ -10,12 +10,33 @@ from app.extensions import db
 from flask import abort
 from sqlalchemy import desc
 import re
+import math
 
 class ArticleService:
     @staticmethod
-    def get_all_articles():
-        """Obtiene todos los artículos ordenados por fecha de creación."""
-        return Article.query.order_by(desc(Article.date)).all()
+    def get_all_articles(page=1, limit=10):
+        """Obtiene artículos paginados ordenados por fecha de creación."""
+        # Calcula el offset
+        offset = (page - 1) * limit
+        
+        # Obtiene los artículos paginados
+        articles = Article.query.order_by(desc(Article.date)) \
+            .offset(offset) \
+            .limit(limit) \
+            .all()
+        
+        # Cuenta total de artículos
+        total_articles = Article.query.count()
+        
+        # Calcula total de páginas
+        total_pages = math.ceil(total_articles / limit)
+        
+        return {
+            'articles': articles,
+            'total': total_articles,
+            'current_page': page,
+            'total_pages': total_pages
+        }
 
     @staticmethod
     def get_article_by_id(article_id):

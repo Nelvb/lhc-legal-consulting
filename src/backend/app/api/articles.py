@@ -14,9 +14,18 @@ articles_bp = Blueprint("articles", __name__)
 
 @articles_bp.route("/", methods=["GET"])
 def get_articles():
-    """Obtiene todos los artículos."""
-    articles = ArticleService.get_all_articles()
-    return jsonify(articles_schema.dump(articles)), 200
+    """Obtiene artículos paginados."""
+    page = request.args.get('page', 1, type=int)
+    limit = request.args.get('limit', 10, type=int)
+    
+    articles_data = ArticleService.get_all_articles(page, limit)
+    
+    return jsonify({
+        'articles': articles_schema.dump(articles_data['articles']),
+        'total': articles_data['total'],
+        'current_page': articles_data['current_page'],
+        'total_pages': articles_data['total_pages']
+    }), 200
 
 @articles_bp.route("/<int:article_id>", methods=["GET"])
 def get_article(article_id):
