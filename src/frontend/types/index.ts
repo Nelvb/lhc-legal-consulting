@@ -5,3 +5,5 @@
  */
 
 // Ejemplo: export interface User { ... }
+
+export * from './blog';

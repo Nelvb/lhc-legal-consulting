@@ -5,11 +5,7 @@
 // Está listo para producción.
 
 import { useEffect, useState } from 'react'
-
-type Article = {
-  title: string
-  slug: string
-}
+import { getArticleTitles, ArticleListItem } from '@/lib/blogService'
 
 interface ArticlesSelectorProps {
   selected: string[]
@@ -17,20 +13,26 @@ interface ArticlesSelectorProps {
 }
 
 const ArticlesSelector = ({ selected, setSelected }: ArticlesSelectorProps) => {
-  const [articles, setArticles] = useState<Article[]>([])
+  const [articles, setArticles] = useState<ArticleListItem[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchArticles = async () => {
+    const loadArticles = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`)
-        const data = await res.json()
-        setArticles(data.map((a: any) => ({ title: a.title, slug: a.slug })))
+        setIsLoading(true)
+        const articlesList = await getArticleTitles()
+        setArticles(articlesList)
+        setError(null)
       } catch (err) {
         console.error('Error al cargar los artículos:', err)
+        setError('No se pudieron cargar los artículos')
+      } finally {
+        setIsLoading(false)
       }
     }
 
-    fetchArticles()
+    loadArticles()
   }, [])
 
   const toggleArticle = (slug: string) => {
@@ -48,20 +50,28 @@ const ArticlesSelector = ({ selected, setSelected }: ArticlesSelectorProps) => {
         Artículos relacionados (máx. 3)
       </label>
       <div className="flex flex-col gap-2 max-h-48 overflow-y-auto border rounded-md p-3 bg-slate-50">
-        {articles.map((article) => (
-          <button
-            key={article.slug}
-            onClick={() => toggleArticle(article.slug)}
-            type="button"
-            className={`text-left px-3 py-2 rounded-md transition-all text-sm border ${
-              selected.includes(article.slug)
-                ? 'bg-slate-800 text-white border-slate-800'
-                : 'bg-white text-slate-800 border-slate-300 hover:bg-slate-100'
-            }`}
-          >
-            {article.title}
-          </button>
-        ))}
+        {isLoading ? (
+          <p className="text-sm text-gray-500 p-2">Cargando artículos...</p>
+        ) : error ? (
+          <p className="text-sm text-red-500 p-2">{error}</p>
+        ) : articles.length === 0 ? (
+          <p className="text-sm text-gray-500 p-2">No hay artículos disponibles</p>
+        ) : (
+          articles.map((article) => (
+            <button
+              key={article.slug}
+              onClick={() => toggleArticle(article.slug)}
+              type="button"
+              className={`text-left px-3 py-2 rounded-md transition-all text-sm border ${
+                selected.includes(article.slug)
+                  ? 'bg-slate-800 text-white border-slate-800'
+                  : 'bg-white text-slate-800 border-slate-300 hover:bg-slate-100'
+              }`}
+            >
+              {article.title}
+            </button>
+          ))
+        )}
       </div>
       {selected.length === 0 && (
         <p className="text-sm text-gray-500 mt-1">

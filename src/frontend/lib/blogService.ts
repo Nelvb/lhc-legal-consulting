@@ -1,0 +1,187 @@
+/**
+ * Servicio centralizado para operaciones relacionadas con artículos del blog
+ * 
+ * Este módulo proporciona funciones para interactuar con la API de artículos
+ * del backend, facilitando la reutilización en componentes tanto públicos
+ * como administrativos.
+ * 
+ * @module blogService
+ */
+
+import { Article } from '@/types';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
+
+/**
+ * Interfaz para parámetros de paginación y filtrado
+ */
+interface ArticleParams {
+  page?: number;
+  limit?: number;
+  category?: string;
+  search?: string;
+}
+
+/**
+ * Interfaz para la respuesta paginada de artículos
+ */
+interface ArticleResponse {
+  articles: Article[];
+  total: number;
+  current_page: number;
+  total_pages: number;
+}
+
+/**
+ * Tipo simplificado para listados básicos de artículos
+ * Usado en selectores y componentes de UI simples
+ */
+export interface ArticleListItem {
+  title: string;
+  slug: string;
+}
+
+/**
+ * Obtiene un listado de artículos con opciones de paginación y filtrado
+ */
+export async function getArticles({
+  page = 1,
+  limit = 10,
+  category,
+  search
+}: ArticleParams = {}): Promise<ArticleResponse> {
+  try {
+    let url = `${API_URL}/articles?page=${page}&limit=${limit}`;
+    
+    if (category) url += `&category=${encodeURIComponent(category)}`;
+    if (search) url += `&search=${encodeURIComponent(search)}`;
+    
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`Error obteniendo artículos: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return {
+      articles: data.articles || [],
+      total: data.total || 0,
+      current_page: data.current_page || 1,
+      total_pages: data.total_pages || 1
+    };
+  } catch (error) {
+    console.error("Error en getArticles:", error);
+    return {
+      articles: [],
+      total: 0,
+      current_page: 1,
+      total_pages: 1
+    };
+  }
+}
+
+/**
+ * Obtiene un artículo específico por su slug
+ */
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  try {
+    const response = await fetch(`${API_URL}/articles/slug/${slug}`);
+    
+    if (!response.ok) {
+      if (response.status === 404) {
+        return null;
+      }
+      throw new Error(`Error obteniendo artículo: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(`Error en getArticleBySlug (${slug}):`, error);
+    return null;
+  }
+}
+
+/**
+ * Obtiene artículos relacionados a un artículo específico
+ */
+export async function getRelatedArticles(slug: string, limit: number = 3): Promise<Article[]> {
+  try {
+    const response = await fetch(`${API_URL}/articles/related/${slug}?limit=${limit}`);
+    
+    if (!response.ok) {
+      throw new Error(`Error obteniendo artículos relacionados: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.articles || [];
+  } catch (error) {
+    console.error(`Error en getRelatedArticles (${slug}):`, error);
+    return [];
+  }
+}
+
+/**
+ * Obtiene artículos destacados o populares
+ */
+export async function getFeaturedArticles(limit: number = 4): Promise<Article[]> {
+  try {
+    const response = await fetch(`${API_URL}/articles/featured?limit=${limit}`);
+    
+    if (!response.ok) {
+      throw new Error(`Error obteniendo artículos destacados: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.articles || [];
+  } catch (error) {
+    console.error("Error en getFeaturedArticles:", error);
+    return [];
+  }
+}
+
+/**
+ * Obtiene solo los títulos y slugs de todos los artículos
+ * Útil para selectores, menús y componentes de navegación
+ */
+export async function getArticleTitles(): Promise<ArticleListItem[]> {
+  try {
+    const response = await fetch(`${API_URL}/articles`);
+    
+    if (!response.ok) {
+      throw new Error(`Error obteniendo títulos de artículos: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.map((a: any) => ({ 
+      title: a.title, 
+      slug: a.slug 
+    }));
+  } catch (error) {
+    console.error("Error en getArticleTitles:", error);
+    return [];
+  }
+}
+
+/**
+ * Obtiene artículos estáticos desde el JSON local
+ * Utilizado para el selector de artículos relacionados en el panel de administración
+ */
+export async function getStaticArticles(): Promise<ArticleListItem[]> {
+  try {
+    const response = await fetch(`${API_URL}/articles/static-articles`);
+    
+    if (!response.ok) {
+      throw new Error(`Error obteniendo artículos estáticos: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.map((a: any) => ({ 
+      title: a.title, 
+      slug: a.slug 
+    }));
+  } catch (error) {
+    console.error("Error en getStaticArticles:", error);
+    return [];
+  }
+}
