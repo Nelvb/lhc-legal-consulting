@@ -9,6 +9,7 @@ import Button from '@/components/ui/Button'
 import ImageUpload from '@/components/ui/ImageUpload'
 import EditorContentArticle from '@/components/admin/ui/blog/EditorContentArticle'
 import ArticlesSelector from '@/components/admin/ui/blog/ArticlesSelector'
+import ArticlePreview from '@/components/admin/ui/blog/ArticlePreview'
 import { createSlug } from '@/lib/utils/string-utils'
 
 interface BlogArticleFormProps {
@@ -22,60 +23,109 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
   const [image, setImage] = useState('')
   const [related, setRelated] = useState<string[]>([])
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
+  const [isPreviewMode, setIsPreviewMode] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-  
-    const newErrors: { [key: string]: string } = {};
-  
-    if (title.length < 10 || title.length > 80) {
-      newErrors.title = 'El título debe tener entre 10 y 80 caracteres';
+    e.preventDefault()
+
+    const newErrors: { [key: string]: string } = {}
+
+    if (title.length < 10 || title.length > 100) {
+      newErrors.title = 'El título debe tener entre 10 y 100 caracteres'
     }
-  
+
     if (excerpt.length < 50 || excerpt.length > 200) {
-      newErrors.excerpt = 'El extracto debe tener entre 50 y 200 caracteres';
+      newErrors.excerpt = 'El extracto debe tener entre 50 y 200 caracteres'
     }
-  
-    const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-    const wordCount = plainText.split(' ').length;
-  
-    console.log(`Contenido plano: ${plainText.substring(0, 100)}...`);
-    console.log(`Palabras contadas: ${wordCount}`);
-  
+
+    const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+    const wordCount = plainText.split(' ').length
+
+    console.log(`Contenido plano: ${plainText.substring(0, 100)}...`)
+    console.log(`Palabras contadas: ${wordCount}`)
+
     if (wordCount < 1000) {
-      newErrors.content = 'El contenido debe tener al menos 1000 palabras';
+      newErrors.content = 'El contenido debe tener al menos 1000 palabras'
     }
-  
+
     if (!image) {
-      newErrors.image = 'Debes subir una imagen antes de continuar';
+      newErrors.image = 'Debes subir una imagen antes de continuar'
     }
-  
+
     if (related.length === 0) {
-      newErrors.related = 'Debes seleccionar al menos un artículo relacionado';
+      newErrors.related = 'Debes seleccionar al menos un artículo relacionado'
     }
-  
+
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
+      setErrors(newErrors)
+      return
     }
-  
+
     const articleData = {
       title,
       excerpt,
       content,
       image,
       related,
-    };
-  
-    console.log("Contenido a enviar:", articleData);
-  
-    onSubmit(articleData);
-  };
-  
+    }
+
+    console.log('Contenido a enviar:', articleData)
+
+    onSubmit(articleData)
+  }
+
+  const handlePreview = () => {
+    const newErrors: { [key: string]: string } = {}
+
+    if (title.length < 10 || title.length > 100) {
+      newErrors.title = 'El título debe tener entre 10 y 100 caracteres'
+    }
+
+    if (excerpt.length < 50 || excerpt.length > 200) {
+      newErrors.excerpt = 'El extracto debe tener entre 50 y 200 caracteres'
+    }
+
+    const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+    const wordCount = plainText.split(' ').length
+
+    if (wordCount < 1000) {
+      newErrors.content = 'El contenido debe tener al menos 1000 palabras'
+    }
+
+    if (!image) {
+      newErrors.image = 'Debes subir una imagen antes de continuar'
+    }
+
+    if (related.length === 0) {
+      newErrors.related = 'Debes seleccionar al menos un artículo relacionado'
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
+
+    setIsPreviewMode(true)
+  }
 
   const handleImageUpload = (imageUrl: string) => {
     setImage(imageUrl)
     setErrors((prev) => ({ ...prev, image: '' }))
+  }
+
+  if (isPreviewMode) {
+    return (
+      <ArticlePreview
+        articleData={{
+          title,
+          excerpt,
+          content,
+          image,
+          related,
+        }}
+        onBack={() => setIsPreviewMode(false)}
+      />
+    )
   }
 
   return (
@@ -92,8 +142,8 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
               placeholder="Ej: IA en el sector inmobiliario"
               required
             />
-            <p className="text-xs text-gray-500 mt-1">Entre 10 y 80 caracteres</p>
-            {errors.title && <p className="text-red-600 text-sm mt-1">⚠️ {errors.title}</p>}
+            <p className="text-xs text-gray-500 mt-3">Entre 10 y 100 caracteres</p>
+            {errors.title && <p className="text-red-600 text-sm mt-1">{errors.title}</p>}
           </div>
 
           <div>
@@ -104,7 +154,7 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
               placeholder="Resumen breve para vista previa"
               required
             />
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-gray-500 mt-3">
               Entre 50 y 200 caracteres. Se usará como introducción del artículo.
             </p>
             {errors.excerpt && <p className="text-red-600 text-sm mt-1">⚠️ {errors.excerpt}</p>}
@@ -113,8 +163,8 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Contenido del artículo</label>
             <EditorContentArticle content={content} onChange={setContent} />
-            <p className="text-xs text-gray-500 mt-1">
-              El contenido debe tener entre 1000 y 2000 palabras. Puedes pegar el texto desde Google Docs o Word con títulos (H2), listas, negritas, enlaces, etc.
+            <p className="text-xs text-gray-500 mt-3">
+              El contenido debe tener entre 1000 y 2000 palabras. El editor reconoce texto enriquecido de Google Docs o Word. Simplemente copia y pega manteniendo el formato según las guías del placeholder.
             </p>
             {errors.content && <p className="text-red-600 text-sm mt-1">⚠️ {errors.content}</p>}
           </div>
@@ -134,9 +184,14 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
             <Button type="button" variant="secondary" onClick={() => history.back()}>
               Cancelar
             </Button>
-            <Button type="submit" variant="primary">
-              Publicar artículo
-            </Button>
+            <div className="flex gap-4">
+              <Button type="button" variant="secondary" onClick={handlePreview}>
+                Vista previa
+              </Button>
+              <Button type="submit" variant="primary">
+                Publicar artículo
+              </Button>
+            </div>
           </div>
         </form>
       </div>

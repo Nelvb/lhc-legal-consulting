@@ -125,6 +125,17 @@
   color: #1A1341;
 }
 
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: #a0aec0;
+  font-style: italic;
+  float: left;
+  height: 0;
+  pointer-events: none;
+  white-space: pre-line;
+}
+
+
 @media (min-width: 768px) {
   .article-content h2 {
     font-size: 2rem;

@@ -74,7 +74,7 @@ const ArticlesSelector = ({ selected, setSelected }: ArticlesSelectorProps) => {
         )}
       </div>
       {selected.length === 0 && (
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-xs text-gray-500 mt-3">
           Selecciona al menos un artículo relacionado.
         </p>
       )}
