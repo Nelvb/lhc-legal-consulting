@@ -191,3 +191,21 @@ export async function getStaticArticles(): Promise<ArticleListItem[]> {
     return [];
   }
 }
+
+/**
+ * Elimina un artículo por su slug
+ */
+export async function deleteArticleBySlug(slug: string): Promise<void> {
+  try {
+    const response = await fetch(`${API_URL}/articles/slug/${slug}`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error eliminando artículo: ${response.status}`);
+    }
+  } catch (error) {
+    console.error(`Error en deleteArticleBySlug (${slug}):`, error);
+    throw error;
+  }
+}

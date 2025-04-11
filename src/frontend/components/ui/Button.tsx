@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "outline";
+  variant?: "primary" | "secondary" | "outline" | "danger";
   size?: "sm" | "md" | "lg";
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   className?: string;
@@ -29,10 +29,12 @@ const Button = ({
   const variantStyles = {
     primary:
       "bg-[#1DA1F2] text-white border border-transparent hover:bg-white hover:text-[#1DA1F2] hover:border-[#1DA1F2] focus:ring-[#1DA1F2] disabled:bg-[#A8DCFA]",
-      secondary:
+    secondary:
       "bg-[#C2E7DA] text-[#1A1341] border border-transparent hover:bg-white hover:border-[#C2E7DA] hover:text-[#1A1341] focus:ring-[#C2E7DA] disabled:bg-[#F1FFEF] disabled:text-gray-500",
     outline:
       "border border-[#1A1341] text-[#1A1341] bg-white hover:bg-[#1A1341] hover:text-white focus:ring-[#1A1341] disabled:text-gray-300",
+    danger:
+      "bg-red-600 text-white border border-transparent hover:bg-white hover:text-red-600 hover:border-red-600 focus:ring-red-600 disabled:bg-red-300",
   };
 
   const sizeStyles = {

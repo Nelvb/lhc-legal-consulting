@@ -87,3 +87,12 @@ class ArticleService:
         db.session.delete(article)
         db.session.commit()
         return True
+    
+    @staticmethod
+    def delete_article_by_slug(slug):
+        """Elimina un artículo por su slug."""
+        article = Article.query.filter_by(slug=slug).first_or_404()
+        db.session.delete(article)
+        db.session.commit()
+        return True
+

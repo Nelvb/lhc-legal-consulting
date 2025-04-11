@@ -79,10 +79,18 @@ def update_article(article_id):
 
 @articles_bp.route("/<int:article_id>", methods=["DELETE"])
 def delete_article(article_id):
-    """Elimina un artículo."""
+    """Elimina un artículo por su ID."""
     try:
-        # Eliminar el artículo usando el servicio
         ArticleService.delete_article(article_id)
+        return jsonify({"message": "Artículo eliminado correctamente"}), 200
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400
+
+@articles_bp.route("/slug/<string:slug>", methods=["DELETE"])
+def delete_article_by_slug(slug):
+    """Elimina un artículo por su slug."""
+    try:
+        ArticleService.delete_article_by_slug(slug)
         return jsonify({"message": "Artículo eliminado correctamente"}), 200
     except Exception as e:
         return jsonify({"message": str(e)}), 400
