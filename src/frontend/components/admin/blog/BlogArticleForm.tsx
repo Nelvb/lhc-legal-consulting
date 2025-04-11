@@ -1,29 +1,46 @@
 'use client'
 
-// Formulario para crear nuevos artículos en el blog del admin.
+// Formulario para crear o editar artículos en el blog del admin.
 // Integra validaciones, subida de imagen destacada, editor enriquecido y selector de artículos relacionados.
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 import ImageUpload from '@/components/ui/ImageUpload'
 import EditorContentArticle from '@/components/admin/ui/blog/EditorContentArticle'
 import ArticlesSelector from '@/components/admin/ui/blog/ArticlesSelector'
 import ArticlePreview from '@/components/admin/ui/blog/ArticlePreview'
-import { createSlug } from '@/lib/utils/string-utils'
 
 interface BlogArticleFormProps {
   onSubmit: (articleData: any) => void
+  initialData?: {
+    title: string
+    excerpt: string
+    content: string
+    image: string
+    related: string[]
+  }
 }
 
-const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
-  const [title, setTitle] = useState('')
-  const [excerpt, setExcerpt] = useState('')
-  const [content, setContent] = useState('')
-  const [image, setImage] = useState('')
-  const [related, setRelated] = useState<string[]>([])
+const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData }) => {
+  const [title, setTitle] = useState(initialData?.title || '')
+  const [excerpt, setExcerpt] = useState(initialData?.excerpt || '')
+  const [content, setContent] = useState(initialData?.content || '')
+  const [image, setImage] = useState(initialData?.image || '')
+  const [related, setRelated] = useState<string[]>(initialData?.related || [])
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
   const [isPreviewMode, setIsPreviewMode] = useState(false)
+
+  // Effect to pre-load the data if it's editing an article
+  useEffect(() => {
+    if (initialData) {
+      setTitle(initialData.title)
+      setExcerpt(initialData.excerpt)
+      setContent(initialData.content)
+      setImage(initialData.image)
+      setRelated(initialData.related)
+    }
+  }, [initialData])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -40,9 +57,6 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
 
     const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
     const wordCount = plainText.split(' ').length
-
-    console.log(`Contenido plano: ${plainText.substring(0, 100)}...`)
-    console.log(`Palabras contadas: ${wordCount}`)
 
     if (wordCount < 1000) {
       newErrors.content = 'El contenido debe tener al menos 1000 palabras'
@@ -68,8 +82,6 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
       image,
       related,
     }
-
-    console.log('Contenido a enviar:', articleData)
 
     onSubmit(articleData)
   }
@@ -131,7 +143,9 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
   return (
     <div className="min-h-screen py-12 px-4 bg-gradient-to-br from-[#F1FFEF] to-[#C2E7DA] flex items-start justify-center">
       <div className="w-full max-w-3xl bg-white p-8 rounded-xl shadow-xl">
-        <h1 className="text-3xl font-bold mb-6 text-[#1A1341]">Crear nuevo artículo</h1>
+        <h2 className="text-3xl font-bold mb-6 text-[#1A1341]">
+          {initialData ? 'Editar artículo' : 'Crear nuevo artículo'}
+        </h2>
 
         <form onSubmit={handleSubmit} className="space-y-8">
           <div>
@@ -157,7 +171,7 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
             <p className="text-xs text-gray-500 mt-3">
               Entre 50 y 200 caracteres. Se usará como introducción del artículo.
             </p>
-            {errors.excerpt && <p className="text-red-600 text-sm mt-1">⚠️ {errors.excerpt}</p>}
+            {errors.excerpt && <p className="text-red-600 text-sm mt-1">{errors.excerpt}</p>}
           </div>
 
           <div>
@@ -166,18 +180,18 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
             <p className="text-xs text-gray-500 mt-3">
               El contenido debe tener entre 1000 y 2000 palabras. El editor reconoce texto enriquecido de Google Docs o Word. Simplemente copia y pega manteniendo el formato según las guías del placeholder.
             </p>
-            {errors.content && <p className="text-red-600 text-sm mt-1">⚠️ {errors.content}</p>}
+            {errors.content && <p className="text-red-600 text-sm mt-1">{errors.content}</p>}
           </div>
 
           <div>
             <p className="block text-sm font-medium text-gray-700 mb-2">Imagen destacada</p>
             <ImageUpload onImageUpload={handleImageUpload} />
-            {errors.image && <p className="text-red-600 text-sm mt-1">⚠️ {errors.image}</p>}
+            {errors.image && <p className="text-red-600 text-sm mt-1">{errors.image}</p>}
           </div>
 
           <div>
             <ArticlesSelector selected={related} setSelected={setRelated} />
-            {errors.related && <p className="text-red-600 text-sm mt-1">⚠️ {errors.related}</p>}
+            {errors.related && <p className="text-red-600 text-sm mt-1">{errors.related}</p>}
           </div>
 
           <div className="flex justify-between gap-4 pt-4">
@@ -189,7 +203,7 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit }) => {
                 Vista previa
               </Button>
               <Button type="submit" variant="primary">
-                Publicar artículo
+                {initialData ? 'Guardar cambios' : 'Publicar artículo'}
               </Button>
             </div>
           </div>

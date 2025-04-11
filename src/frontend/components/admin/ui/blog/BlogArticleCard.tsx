@@ -3,7 +3,6 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { Article } from '@/types'
 import Button from '@/components/ui/Button'
 
@@ -12,14 +11,6 @@ interface BlogArticleCardProps extends Pick<Article, 'title' | 'slug' | 'image' 
 }
 
 const BlogArticleCard: React.FC<BlogArticleCardProps> = ({ title, slug, image, excerpt, created_at, onDelete }) => {
-  const router = useRouter()
-
-  const handleDelete = () => {
-    if (confirm('¿Estás seguro de que deseas eliminar este artículo?')) {
-      onDelete(slug)
-    }
-  }
-
   const formatDate = (date: string) =>
     new Date(date).toLocaleDateString('es-ES', {
       day: 'numeric',
@@ -46,17 +37,16 @@ const BlogArticleCard: React.FC<BlogArticleCardProps> = ({ title, slug, image, e
         <Link href={`/blog/${slug}`} target="_blank">
           <Button variant="primary" size="sm">Ver</Button>
         </Link>
+        
+        {/* Botón Editar */}
+        <Link href={`/admin/blog/editar/${slug}`}>
+          <Button variant="secondary" size="sm">Editar</Button>
+        </Link>
+        
         <Button
-          variant="secondary"
+          variant="outline"
           size="sm"
-          onClick={() => router.push(`/admin/blog/editar/${slug}`)}
-        >
-          Editar
-        </Button>
-        <Button
-          variant="danger"
-          size="sm"
-          onClick={handleDelete}
+          onClick={() => onDelete(slug)}
         >
           Eliminar
         </Button>
