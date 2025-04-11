@@ -1,9 +1,9 @@
 /**
  * Página para editar artículos en el panel de administración del blog.
- * 
+ *
  * Este componente obtiene los datos del artículo a través de su 'slug' y los muestra
  * en un formulario editable. Al enviarlo, se actualiza el artículo en la base de datos.
- * 
+ *
  * Utiliza:
  * - useParams para obtener el slug del artículo desde la URL
  * - useEffect para cargar los datos del artículo desde la API
@@ -14,9 +14,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { useParams } from 'next/navigation' // Obtener el slug de la URL
-import { getArticleBySlug } from '@/lib/blogService'
+import { useRouter, useParams } from 'next/navigation'
+import { getArticleBySlug, updateArticleBySlug } from '@/lib/blogService'
 import BlogArticleForm from '@/components/admin/blog/BlogArticleForm'
 import Button from '@/components/ui/Button'
 import AdminLayout from '@/components/admin/layout/AdminLayout'
@@ -25,11 +24,12 @@ export default function EditArticlePage() {
     const [articleData, setArticleData] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const router = useRouter()
-    const { slug } = useParams() // Usamos useParams para obtener el slug de la URL
+    const { slug } = useParams()
 
-    // Asegurarse de que `slug` sea un string, no un array
+    // Asegura que el slug sea string plano
     const slugValue = Array.isArray(slug) ? slug[0] : slug
 
+    // Carga el artículo por slug al montar
     useEffect(() => {
         if (slugValue) {
             const fetchArticle = async () => {
@@ -37,7 +37,7 @@ export default function EditArticlePage() {
                     const article = await getArticleBySlug(slugValue)
                     setArticleData(article)
                 } catch (error) {
-                    console.error('Error fetching article:', error)
+                    console.error('Error obteniendo el artículo:', error)
                 } finally {
                     setIsLoading(false)
                 }
@@ -47,24 +47,16 @@ export default function EditArticlePage() {
         }
     }, [slugValue])
 
+    /**
+     * Envía los datos modificados al backend para actualizar el artículo.
+     * Utiliza el servicio centralizado `updateArticleBySlug`.
+     */
     const handleSubmit = async (updatedData: any) => {
         try {
-            const response = await fetch(`/api/articles/${slugValue}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedData),
-            })
-
-            if (response.ok) {
-                alert('Artículo actualizado correctamente')
-                router.push('/admin/blog') // Redirige al listado de artículos
-            } else {
-                const errorData = await response.json()
-                alert(`Error al actualizar el artículo: ${errorData.message}`)
-            }
-        } catch (error) {
+            await updateArticleBySlug(slugValue, updatedData)
+            alert('Artículo actualizado correctamente')
+            router.push('/admin/blog')
+        } catch (error: any) {
             console.error('Error al actualizar el artículo:', error)
             alert('Error al actualizar el artículo. Por favor, intenta nuevamente.')
         }

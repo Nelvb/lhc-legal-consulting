@@ -79,6 +79,20 @@ class ArticleService:
 
         db.session.commit()
         return article
+    
+    @staticmethod
+    def update_article_by_slug(slug, article_data):
+        """Actualiza un artículo existente por su slug."""
+        article = Article.query.filter_by(slug=slug).first_or_404()
+
+        for key, value in article_data.items():
+            if key == 'related' and isinstance(value, list):
+                value = ','.join(value)
+            setattr(article, key, value)
+
+        db.session.commit()
+        return article
+
 
     @staticmethod
     def delete_article(article_id):

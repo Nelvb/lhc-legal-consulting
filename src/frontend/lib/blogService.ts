@@ -209,3 +209,28 @@ export async function deleteArticleBySlug(slug: string): Promise<void> {
     throw error;
   }
 }
+
+/**
+ * Actualiza un artículo existente utilizando su slug como identificador.
+ * 
+ * Este método se utiliza en la vista de edición del panel de administración.
+ * Envía una solicitud PUT al backend con los nuevos datos del artículo.
+ * 
+ * @param slug - Identificador único legible en URL (slug) del artículo
+ * @param articleData - Objeto con los campos a actualizar (título, contenido, imagen, etc.)
+ * @throws Error si la petición falla o el backend devuelve un mensaje de error
+ */
+export async function updateArticleBySlug(slug: string, articleData: any): Promise<void> {
+  const response = await fetch(`${API_URL}/articles/slug/${slug}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(articleData),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Error al actualizar el artículo');
+  }
+}

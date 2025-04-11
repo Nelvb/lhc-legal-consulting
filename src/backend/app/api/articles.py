@@ -94,3 +94,22 @@ def delete_article_by_slug(slug):
         return jsonify({"message": "Artículo eliminado correctamente"}), 200
     except Exception as e:
         return jsonify({"message": str(e)}), 400
+
+@articles_bp.route("/slug/<string:slug>", methods=["PUT"])
+def update_article_by_slug(slug):
+    """Actualiza un artículo existente por su slug."""
+    if not request.is_json:
+        return jsonify({"message": "La solicitud debe ser JSON"}), 400
+
+    data = request.get_json()
+
+    try:
+        # Validar los datos usando el esquema (permitiendo datos parciales)
+        article_data = article_schema.load(data, partial=True)
+
+        # Actualizar el artículo usando el servicio
+        updated_article = ArticleService.update_article_by_slug(slug, article_data)
+
+        return jsonify(article_schema.dump(updated_article)), 200
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400
