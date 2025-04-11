@@ -31,16 +31,12 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
   const [isPreviewMode, setIsPreviewMode] = useState(false)
 
-  // Effect to pre-load the data if it's editing an article
+  // Sincronizar `image` en edición o al volver de vista previa
   useEffect(() => {
-    if (initialData) {
-      setTitle(initialData.title)
-      setExcerpt(initialData.excerpt)
-      setContent(initialData.content)
+    if (initialData?.image) {
       setImage(initialData.image)
-      setRelated(initialData.related)
     }
-  }, [initialData])
+  }, [initialData?.image])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -87,36 +83,6 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
   }
 
   const handlePreview = () => {
-    const newErrors: { [key: string]: string } = {}
-
-    if (title.length < 10 || title.length > 100) {
-      newErrors.title = 'El título debe tener entre 10 y 100 caracteres'
-    }
-
-    if (excerpt.length < 50 || excerpt.length > 200) {
-      newErrors.excerpt = 'El extracto debe tener entre 50 y 200 caracteres'
-    }
-
-    const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
-    const wordCount = plainText.split(' ').length
-
-    if (wordCount < 1000) {
-      newErrors.content = 'El contenido debe tener al menos 1000 palabras'
-    }
-
-    if (!image) {
-      newErrors.image = 'Debes subir una imagen antes de continuar'
-    }
-
-    if (related.length === 0) {
-      newErrors.related = 'Debes seleccionar al menos un artículo relacionado'
-    }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
-    }
-
     setIsPreviewMode(true)
   }
 
@@ -156,7 +122,6 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
               placeholder="Ej: IA en el sector inmobiliario"
               required
             />
-            <p className="text-xs text-gray-500 mt-3">Entre 10 y 100 caracteres</p>
             {errors.title && <p className="text-red-600 text-sm mt-1">{errors.title}</p>}
           </div>
 
@@ -168,24 +133,18 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
               placeholder="Resumen breve para vista previa"
               required
             />
-            <p className="text-xs text-gray-500 mt-3">
-              Entre 50 y 200 caracteres. Se usará como introducción del artículo.
-            </p>
             {errors.excerpt && <p className="text-red-600 text-sm mt-1">{errors.excerpt}</p>}
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Contenido del artículo</label>
             <EditorContentArticle content={content} onChange={setContent} />
-            <p className="text-xs text-gray-500 mt-3">
-              El contenido debe tener entre 1000 y 2000 palabras. El editor reconoce texto enriquecido de Google Docs o Word. Simplemente copia y pega manteniendo el formato según las guías del placeholder.
-            </p>
             {errors.content && <p className="text-red-600 text-sm mt-1">{errors.content}</p>}
           </div>
 
           <div>
             <p className="block text-sm font-medium text-gray-700 mb-2">Imagen destacada</p>
-            <ImageUpload onImageUpload={handleImageUpload} />
+            <ImageUpload onImageUpload={handleImageUpload} initialImage={image} />
             {errors.image && <p className="text-red-600 text-sm mt-1">{errors.image}</p>}
           </div>
 

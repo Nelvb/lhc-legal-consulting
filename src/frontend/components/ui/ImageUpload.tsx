@@ -1,20 +1,13 @@
-/**
- * Componente ImageUpload
- * 
- * Permite seleccionar o arrastrar una imagen para subirla al backend (Cloudinary).
- * Incluye vista previa, validación visible, subida única y posibilidad de reemplazo.
- * Añade feedback visual cuando el archivo se arrastra por encima del área.
- */
-
 'use client'
 
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 
 interface ImageUploadProps {
   onImageUpload: (imageUrl: string) => void
+  initialImage?: string
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload, initialImage }) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [uploaded, setUploaded] = useState(false)
@@ -24,6 +17,13 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
   const [isDragOver, setIsDragOver] = useState(false)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (initialImage) {
+      setPreviewUrl(initialImage)
+      setUploaded(true)
+    }
+  }, [initialImage])
 
   const handleFileSelect = (file: File) => {
     setSelectedImage(file)
@@ -78,7 +78,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
       } else {
         setErrorMessage('Error al subir la imagen')
       }
-    } catch (error) {
+    } catch {
       setErrorMessage('Error al subir la imagen')
     } finally {
       setIsUploading(false)
@@ -149,13 +149,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
         </div>
       )}
 
-      {errorMessage && (
-        <p className="text-red-600 text-sm font-medium">{errorMessage}</p>
-      )}
-
-      {successMessage && (
-        <p className="text-green-600 text-sm font-medium">{successMessage}</p>
-      )}
+      {errorMessage && <p className="text-red-600 text-sm font-medium">{errorMessage}</p>}
+      {successMessage && <p className="text-green-600 text-sm font-medium">{successMessage}</p>}
     </div>
   )
 }

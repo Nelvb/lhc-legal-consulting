@@ -26,6 +26,8 @@ const BlogArticleCard: React.FC<BlogArticleCardProps> = ({ title, slug, image, e
           alt={title}
           fill
           className="object-cover rounded"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority
         />
       </div>
 
