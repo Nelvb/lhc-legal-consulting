@@ -18,7 +18,6 @@ import { useRouter, useParams } from 'next/navigation'
 import { getArticleBySlug, updateArticleBySlug } from '@/lib/blogService'
 import BlogArticleForm from '@/components/admin/blog/BlogArticleForm'
 import Button from '@/components/ui/Button'
-import AdminLayout from '@/components/admin/layout/AdminLayout'
 
 export default function EditArticlePage() {
     const [articleData, setArticleData] = useState(null)
@@ -63,10 +62,9 @@ export default function EditArticlePage() {
     }
 
     return (
-        <AdminLayout>
             <div className="container mx-auto py-8">
                 <div className="flex justify-between items-center mb-6">
-                    <h1 className="text-3xl font-bold text-[#1A1341]">Editar Artículo</h1>
+                    <h1 className="text-3xl font-bold text-[#1A1341]">Editor Artículo</h1>
                     <Button variant="outline" size="sm" onClick={() => router.push('/admin/blog')}>
                         ← Volver al listado
                     </Button>
@@ -78,6 +76,5 @@ export default function EditArticlePage() {
                     articleData && <BlogArticleForm initialData={articleData} onSubmit={handleSubmit} />
                 )}
             </div>
-        </AdminLayout>
     )
 }

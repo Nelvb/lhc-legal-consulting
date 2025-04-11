@@ -14,12 +14,11 @@ export const metadata = {
 
 // No necesitas 'use client' aquí, ya que 'metadata' es del lado servidor
 import { ReactNode } from 'react'
-import AdminLayout from '@/components/admin/layout/AdminLayout'
 
 interface EditArticleLayoutProps {
     children: ReactNode
 }
 
 export default function EditArticleLayout({ children }: EditArticleLayoutProps) {
-    return <AdminLayout>{children}</AdminLayout>
+    return <>{children}</>
 }

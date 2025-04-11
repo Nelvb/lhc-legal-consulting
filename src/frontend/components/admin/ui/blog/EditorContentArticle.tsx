@@ -67,8 +67,8 @@ const EditorContentArticle: React.FC<EditorContentArticleProps> = ({ content, on
           <pre className="mt-2 whitespace-pre-wrap text-sm text-gray-700 bg-white p-3 rounded border border-gray-200 overflow-auto max-h-60">
 {`Guía para redactar correctamente:
 
-- Títulos → Escríbelos en negrita. Empieza con mayúscula, el resto en minúscula. No pongas punto al final.
-  Ejemplo: Tendencias inmobiliarias en 2025
+- Títulos → Escríbelos en negrita (rodea el texto con dobles asteriscos). Empieza con mayúscula, el resto en minúscula. No pongas punto al final.
+  Ejemplo: **Tendencias inmobiliarias en 2025**
 
 - Listas numeradas → Usa números seguidos de punto y espacio. No uses saltos de líneas entre ellas.
   Ejemplo:
