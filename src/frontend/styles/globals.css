@@ -100,15 +100,6 @@
   line-height: 1.8;
 }
 
-.article-content ul,
-.article-content ol {
-  margin: 1.5rem 0;
-}
-
-.article-content li {
-  margin-bottom: 0.5rem;
-  color: #1A1341;
-}
 
 .article-content a {
   color: #6290C3;
@@ -125,15 +116,25 @@
   color: #1A1341;
 }
 
-.tiptap p.is-editor-empty:first-child::before {
-  content: attr(data-placeholder);
-  color: #a0aec0;
-  font-style: italic;
-  float: left;
-  height: 0;
-  pointer-events: none;
-  white-space: pre-line;
+.article-content ul,
+.article-content ol {
+  padding-left: 1.5rem;
+  list-style-position: outside;
+  margin-bottom: 1.5rem;
 }
+
+.article-content ul {
+  list-style-type: disc;
+}
+
+.article-content ol {
+  list-style-type: decimal;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+}
+
 
 
 @media (min-width: 768px) {

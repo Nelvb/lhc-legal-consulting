@@ -11,21 +11,21 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article }) => {
   // Funciones para compartir en redes sociales
   const shareOnTwitter = () => {
     window.open(
-      `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}`, 
+      `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}`,
       '_blank'
     );
   };
 
   const shareOnLinkedIn = () => {
     window.open(
-      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, 
+      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`,
       '_blank'
     );
   };
 
   const shareByEmail = () => {
     window.open(
-      `mailto:?subject=${encodeURIComponent(article.title)}&body=${encodeURIComponent(`Te recomiendo este artículo: ${window.location.href}`)}`, 
+      `mailto:?subject=${encodeURIComponent(article.title)}&body=${encodeURIComponent(`Te recomiendo este artículo: ${window.location.href}`)}`,
       '_blank'
     );
   };
@@ -39,16 +39,18 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article }) => {
             {article.excerpt}
           </div>
         )}
-        
+
         {/* Contenido HTML del artículo con estilos directos de Tailwind */}
-        <div 
-          className="article-content text-[#1A1341]"
+        <div
+          className="prose prose-lg max-w-none text-[#1A1341] article-content"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
-        
+
+
+
         {/* Botones para compartir */}
         <div className="flex justify-center mt-16 space-x-4">
-          <button 
+          <button
             className="text-[#6290C3] hover:text-[#1A1341] transition-colors p-2 rounded-full bg-[#F7FAFF] shadow-md hover:shadow-lg"
             aria-label="Compartir en Twitter"
             onClick={shareOnTwitter}
@@ -57,7 +59,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article }) => {
               <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
             </svg>
           </button>
-          <button 
+          <button
             className="text-[#6290C3] hover:text-[#1A1341] transition-colors p-2 rounded-full bg-[#F7FAFF] shadow-md hover:shadow-lg"
             aria-label="Compartir en LinkedIn"
             onClick={shareOnLinkedIn}
@@ -68,7 +70,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article }) => {
               <circle cx="4" cy="4" r="2"></circle>
             </svg>
           </button>
-          <button 
+          <button
             className="text-[#6290C3] hover:text-[#1A1341] transition-colors p-2 rounded-full bg-[#F7FAFF] shadow-md hover:shadow-lg"
             aria-label="Compartir por correo"
             onClick={shareByEmail}

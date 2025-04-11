@@ -148,7 +148,7 @@ export async function getFeaturedArticles(limit: number = 4): Promise<Article[]>
  */
 export async function getArticleTitles(): Promise<ArticleListItem[]> {
   try {
-    const response = await fetch(`${API_URL}/articles`);
+    const response = await fetch(`${API_URL}/articles?limit=999`);
     const data = await response.json();
     console.log("Respuesta de la API:", data); // Agregar log para verificar los datos
 
