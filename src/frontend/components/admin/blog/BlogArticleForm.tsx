@@ -1,7 +1,18 @@
-'use client'
+/**
+ * Formulario reutilizable para crear o editar artículos del blog en el panel de administración.
+ *
+ * Este componente incluye:
+ * - Validaciones estrictas (longitud mínima y máxima por campo)
+ * - Contador de caracteres en Título y Resumen
+ * - Prompt para IA (instrucciones + textarea opcional)
+ * - Subida de imagen destacada (con vista previa y validación)
+ * - Editor enriquecido simplificado (textarea + formateo automático)
+ * - Selector de artículos relacionados (1 a 3)
+ * - Vista previa del artículo antes de publicar
+ * - Totalmente responsive con Tailwind CSS
+ */
 
-// Formulario para crear o editar artículos en el blog del admin.
-// Integra validaciones, subida de imagen destacada, editor enriquecido y selector de artículos relacionados.
+'use client'
 
 import React, { useState, useEffect } from 'react'
 import Input from '@/components/ui/Input'
@@ -19,6 +30,7 @@ interface BlogArticleFormProps {
     content: string
     image: string
     related: string[]
+    ai_prompt?: string
   }
 }
 
@@ -28,14 +40,12 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
   const [content, setContent] = useState(initialData?.content || '')
   const [image, setImage] = useState(initialData?.image || '')
   const [related, setRelated] = useState<string[]>(initialData?.related || [])
+  const [aiPrompt, setAiPrompt] = useState(initialData?.ai_prompt || '')
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
   const [isPreviewMode, setIsPreviewMode] = useState(false)
 
-  // Sincronizar `image` en edición o al volver de vista previa
   useEffect(() => {
-    if (initialData?.image) {
-      setImage(initialData.image)
-    }
+    if (initialData?.image) setImage(initialData.image)
   }, [initialData?.image])
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,7 +58,7 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
     }
 
     if (excerpt.length < 50 || excerpt.length > 200) {
-      newErrors.excerpt = 'El extracto debe tener entre 50 y 200 caracteres'
+      newErrors.excerpt = 'El resumen debe tener entre 50 y 200 caracteres'
     }
 
     const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
@@ -62,8 +72,8 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
       newErrors.image = 'Debes subir una imagen antes de continuar'
     }
 
-    if (related.length === 0) {
-      newErrors.related = 'Debes seleccionar al menos un artículo relacionado'
+    if (related.length < 1 || related.length > 3) {
+      newErrors.related = 'Selecciona entre 1 y 3 artículos relacionados'
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -77,6 +87,7 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
       content,
       image,
       related,
+      ai_prompt: aiPrompt
     }
 
     onSubmit(articleData)
@@ -88,7 +99,7 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
 
   const handleImageUpload = (imageUrl: string) => {
     setImage(imageUrl)
-    setErrors((prev) => ({ ...prev, image: '' }))
+    setErrors(prev => ({ ...prev, image: '' }))
   }
 
   if (isPreviewMode) {
@@ -99,7 +110,7 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
           excerpt,
           content,
           image,
-          related,
+          related
         }}
         onBack={() => setIsPreviewMode(false)}
       />
@@ -114,6 +125,7 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-8">
+          {/* TÍTULO */}
           <div>
             <Input
               label="Título"
@@ -122,37 +134,49 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
               placeholder="Ej: IA en el sector inmobiliario"
               required
             />
+            <p className="text-xs text-gray-500 mt-2">Entre 10 y 100 caracteres</p>
+            <p className="text-xs text-gray-400">({title.length} caracteres)</p>
             {errors.title && <p className="text-red-600 text-sm mt-1">{errors.title}</p>}
           </div>
 
+          {/* RESUMEN */}
           <div>
             <Input
-              label="Extracto"
+              label="Resumen"
               value={excerpt}
               onChange={(e) => setExcerpt(e.target.value)}
               placeholder="Resumen breve para vista previa"
               required
             />
+            <p className="text-xs text-gray-500 mt-2">Entre 50 y 200 caracteres</p>
+            <p className="text-xs text-gray-400">({excerpt.length} caracteres)</p>
             {errors.excerpt && <p className="text-red-600 text-sm mt-1">{errors.excerpt}</p>}
           </div>
 
+          {/* CONTENIDO */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Contenido del artículo</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Contenido del artículo</label>
             <EditorContentArticle content={content} onChange={setContent} />
+            <p className="text-xs text-gray-500 mt-3">
+              El contenido debe tener al menos 1000 palabras. Puedes pegar desde Word o Google Docs.
+            </p>
             {errors.content && <p className="text-red-600 text-sm mt-1">{errors.content}</p>}
           </div>
 
+          {/* IMAGEN */}
           <div>
             <p className="block text-sm font-medium text-gray-700 mb-2">Imagen destacada</p>
             <ImageUpload onImageUpload={handleImageUpload} initialImage={image} />
             {errors.image && <p className="text-red-600 text-sm mt-1">{errors.image}</p>}
           </div>
 
+          {/* RELACIONADOS */}
           <div>
             <ArticlesSelector selected={related} setSelected={setRelated} />
             {errors.related && <p className="text-red-600 text-sm mt-1">{errors.related}</p>}
           </div>
 
+          {/* ACCIONES */}
           <div className="flex justify-between gap-4 pt-4">
             <Button type="button" variant="secondary" onClick={() => history.back()}>
               Cancelar

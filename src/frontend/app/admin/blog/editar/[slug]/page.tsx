@@ -4,11 +4,11 @@
  * Este componente obtiene los datos del artículo a través de su 'slug' y los muestra
  * en un formulario editable. Al enviarlo, se actualiza el artículo en la base de datos.
  *
- * Utiliza:
- * - useParams para obtener el slug del artículo desde la URL
- * - useEffect para cargar los datos del artículo desde la API
- * - useState para gestionar el estado de la carga del artículo y su modificación
- * - BlogArticleForm para editar los campos del artículo
+ * Incluye:
+ * - Carga del artículo desde el backend por slug
+ * - Estado de carga mientras se obtiene la información
+ * - Envío del formulario con validación previa (gestionado por BlogArticleForm)
+ * - Estilo consistente con resto del admin sin duplicar encabezado <h1>
  */
 
 'use client'
@@ -25,10 +25,8 @@ export default function EditArticlePage() {
     const router = useRouter()
     const { slug } = useParams()
 
-    // Asegura que el slug sea string plano
     const slugValue = Array.isArray(slug) ? slug[0] : slug
 
-    // Carga el artículo por slug al montar
     useEffect(() => {
         if (slugValue) {
             const fetchArticle = async () => {
@@ -46,10 +44,6 @@ export default function EditArticlePage() {
         }
     }, [slugValue])
 
-    /**
-     * Envía los datos modificados al backend para actualizar el artículo.
-     * Utiliza el servicio centralizado `updateArticleBySlug`.
-     */
     const handleSubmit = async (updatedData: any) => {
         try {
             await updateArticleBySlug(slugValue, updatedData)
@@ -62,19 +56,19 @@ export default function EditArticlePage() {
     }
 
     return (
-            <div className="container mx-auto py-8">
-                <div className="flex justify-between items-center mb-6">
-                    <h1 className="text-3xl font-bold text-[#1A1341]">Editor Artículo</h1>
-                    <Button variant="outline" size="sm" onClick={() => router.push('/admin/blog')}>
-                        ← Volver al listado
-                    </Button>
-                </div>
-
-                {isLoading ? (
-                    <p>Cargando...</p>
-                ) : (
-                    articleData && <BlogArticleForm initialData={articleData} onSubmit={handleSubmit} />
-                )}
+        <div className="container mx-auto py-8">
+            <div className="flex justify-between items-center mb-6">
+                <p className="text-3xl font-bold text-[#1A1341]">Editor Artículo</p>
+                <Button variant="outline" size="sm" onClick={() => router.push('/admin/blog')}>
+                    ← Volver al listado
+                </Button>
             </div>
+
+            {isLoading ? (
+                <p>Cargando...</p>
+            ) : (
+                articleData && <BlogArticleForm initialData={articleData} onSubmit={handleSubmit} />
+            )}
+        </div>
     )
 }
