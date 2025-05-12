@@ -123,10 +123,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       const data = await authService.login(credentials);
 
-      // Guardar token y usuario en localStorage
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-      }
+      // Guardar solo el usuario (el token ya está en cookie)
       localStorage.setItem("user", JSON.stringify(data.user));
 
       console.log("AuthContext - Login exitoso:", data.user);
@@ -189,13 +186,26 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   // Función para cerrar sesión
-  const logout = () => {
+  const logout = async () => {
     console.log("AuthContext - Ejecutando logout...");
+
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
+        method: "POST",
+        credentials: "include", // Para que la cookie se envíe
+      });
+
+      console.log("AuthContext - Cookie eliminada correctamente");
+    } catch (error) {
+      console.error("AuthContext - Error al llamar a /logout:", error);
+    }
+
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     setUser(null);
-    router.push("/login");
+    router.push("/");
   };
+
 
   // Valor del contexto que se proporcionará
   const value = {

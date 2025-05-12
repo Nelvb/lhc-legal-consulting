@@ -38,7 +38,7 @@ ImageService.init_cloudinary(app)
 db.init_app(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
-CORS(app)
+CORS(app, supports_credentials=True, origins=["http://localhost:3000"])
 
 # Registrar blueprints
 app.register_blueprint(auth_bp, url_prefix="/api/auth")

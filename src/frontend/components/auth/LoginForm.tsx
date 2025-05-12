@@ -1,3 +1,9 @@
+/**
+ * Formulario de inicio de sesión
+ * Permite al usuario autenticarse con email y contraseña
+ * Incluye funcionalidad para mostrar/ocultar la contraseña con ícono visual
+ */
+
 "use client";
 
 import { useState, FormEvent } from "react";
@@ -5,10 +11,12 @@ import { useRouter } from "next/navigation";
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import { useAuth } from '@/hooks/useAuth';
+import { Eye, EyeOff } from "lucide-react";
 
 const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const { login, loading, error } = useAuth();
   const router = useRouter();
 
@@ -44,16 +52,24 @@ const LoginForm = () => {
           required
         />
 
-        <Input
-          label="Contraseña"
-          id="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <div className="relative">
+          <Input
+            label="Contraseña"
+            id="password"
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <div
+            className="absolute right-3 top-[38px] cursor-pointer text-[#1A1341]"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </div>
+        </div>
 
-        <div>
+        <div className="mt-4">
           <Button
             type="submit"
             variant="primary"

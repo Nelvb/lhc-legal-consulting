@@ -8,6 +8,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import Button from "@/components/ui/Button";
 import AdminSideMenu from "@/components/admin/sideMenu/AdminSideMenu";
@@ -24,18 +25,19 @@ const AdminHeader: React.FC = () => {
         bg-[#1DA1F2] shadow-md`}
       >
         <div className="w-full px-4 flex justify-between items-center h-full">
-          {/* Logo izquierda */}
-          <div className="flex items-center space-x-2">
+          {/* Logo izquierda con enlace a home */}
+          <Link href="/" className="flex items-center space-x-2">
             <Image
               src="https://res.cloudinary.com/dy1pkrd52/image/upload/v1742894677/Logo-sin-fondo-3_d4ch0a.webp"
               alt="Boost A Project Logo"
               width={50}
               height={50}
               priority
-              className="w-32 h-32 object-contain hidden md:block" // El logo solo se muestra en pantallas grandes
+              className="w-32 h-32 object-contain hidden md:block"
             />
             <span className="sr-only">Boost A Project</span>
-          </div>
+          </Link>
+
 
           {/* Centro: Título */}
           <h1 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-center flex-1">

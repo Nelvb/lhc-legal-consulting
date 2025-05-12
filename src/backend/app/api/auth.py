@@ -1,17 +1,22 @@
-# API de autenticación: endpoints para registro, login y perfil de usuario
-# Gestiona el registro de usuarios, autenticación, generación de tokens JWT y consulta de perfiles
-# Incluye validación de datos y manejo de errores para cada operación
+# API de autenticación: endpoints para registro, login, logout y perfil de usuario
+# Gestiona el registro de usuarios, autenticación mediante JWT y el almacenamiento
+# del token en cookies seguras HttpOnly para protección profesional en middleware.
+# Incluye validación de datos, roles, y manejo de errores para cada operación.
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, make_response
 from flask_jwt_extended import (
     create_access_token,
     get_jwt_identity,
     jwt_required,
+    set_access_cookies,
+    unset_jwt_cookies,
 )
 from marshmallow import ValidationError
+from datetime import timedelta
 from app.extensions import db
 from app.models.user import User
 from app.schemas import user_schema
+from flask import current_app as app
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -50,7 +55,7 @@ def signup():
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
-    """Autentica un usuario y genera un token de acceso."""
+    """Autentica un usuario, genera un token JWT y lo guarda en cookie segura."""
     try:
         data = request.get_json()
         email = data.get("email", "").strip()
@@ -64,15 +69,32 @@ def login():
         if user is None or not user.check_password(password):
             return jsonify({"msg": "Credenciales inválidas"}), 401
 
-        access_token = create_access_token(identity=str(user.id))
+        # Generar token con rol
+        access_token = create_access_token(
+            identity=str(user.id),
+            additional_claims={"role": "admin" if user.is_admin else "user"},
+            expires_delta=timedelta(seconds=app.config["JWT_ACCESS_TOKEN_EXPIRES"])
+        )
 
-        return jsonify({
-            "access_token": access_token,
+        # Crear respuesta y setear cookie HttpOnly
+        response = make_response(jsonify({
+            "msg": "Inicio de sesión exitoso",
             "user": user_schema.dump(user)
-        }), 200
+        }), 200)
+
+        set_access_cookies(response, access_token, max_age=app.config["JWT_ACCESS_TOKEN_EXPIRES"])
+
+        return response
 
     except Exception as e:
         return jsonify({"msg": f"Error: {str(e)}"}), 500
+
+@auth_bp.route("/logout", methods=["POST"])
+def logout():
+    """Elimina la cookie JWT del usuario actual (logout profesional)."""
+    response = make_response(jsonify({"msg": "Sesión cerrada correctamente"}), 200)
+    unset_jwt_cookies(response)
+    return response
 
 @auth_bp.route("/profile", methods=["GET"])
 @jwt_required()

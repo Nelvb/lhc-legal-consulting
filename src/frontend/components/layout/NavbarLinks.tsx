@@ -94,15 +94,16 @@ const NavbarLinks: React.FC = () => {
       return (
         <>
           {/* Saludo personalizado con transición */}
-          <span className="text-gray-800 dark:text-white font-medium transition-all duration-300">
+          <span className="text-white font-medium transition-all duration-300">
             Hola {user?.username}
           </span>
+
 
           {/* Enlace a Admin si es administrador */}
           {user?.is_admin && (
             <Link
               href="/admin"
-              className="transition-all ease-smooth hover:scale-hover text-red-600 dark:text-red-400 font-semibold"
+              className="transition-all ease-smooth hover:scale-hover text-white font-semibold"
             >
               Admin
             </Link>
@@ -111,7 +112,7 @@ const NavbarLinks: React.FC = () => {
           {/* Enlace a Área Privada */}
           <Link
             href="/dashboard"
-            className="transition-all ease-smooth hover:scale-hover text-gray-800 dark:text-white"
+            className="transition-all ease-smooth hover:scale-hover text-white"
           >
             Área Privada
           </Link>
