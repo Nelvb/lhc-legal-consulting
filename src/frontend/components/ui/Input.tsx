@@ -1,14 +1,25 @@
+/**
+ * Componente Input.tsx
+ *
+ * Este input reutilizable admite etiqueta (`label`), estilos con Tailwind
+ * y mensajes de error visibles. Está diseñado para formularios accesibles
+ * y profesionales en toda la aplicación. Compatible con validaciones, test
+ * automatizados y escalado futuro. Tipado con TypeScript y preparado para SSR.
+ */
+
 'use client';
 import React, { InputHTMLAttributes } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  error?: string;
 }
 
 const Input: React.FC<InputProps> = ({
   id,
   label,
   className,
+  error,
   ...props
 }) => {
   return (
@@ -28,6 +39,11 @@ const Input: React.FC<InputProps> = ({
           ${className || ''}`}
         {...props}
       />
+      {error && (
+        <p className="text-sm text-red-600 mt-1">
+          {error}
+        </p>
+      )}
     </div>
   );
 };
