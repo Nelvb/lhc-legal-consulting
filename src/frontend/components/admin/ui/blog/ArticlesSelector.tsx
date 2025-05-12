@@ -4,6 +4,8 @@
 // Recupera los artículos desde el backend (json + artículos nuevos).
 // Está listo para producción.
 
+import React from 'react';
+
 import { useEffect, useState } from 'react'
 import { getArticleTitles, ArticleListItem } from '@/lib/blogService'
 
