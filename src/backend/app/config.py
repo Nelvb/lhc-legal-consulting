@@ -27,6 +27,16 @@ class Config:
     CLOUDINARY_API_KEY = os.getenv("CLOUDINARY_API_KEY")
     CLOUDINARY_API_SECRET = os.getenv("CLOUDINARY_API_SECRET")
 
+    # Configuración de Flask-Mail
+    MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.gmail.com")
+    MAIL_PORT = int(os.getenv("MAIL_PORT", 587))
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.getenv("MAIL_USERNAME")
+    MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
+    MAIL_DEFAULT_SENDER = os.getenv("MAIL_DEFAULT_SENDER", MAIL_USERNAME)
+    MAIL_MAX_EMAILS_PER_DAY = int(os.getenv("MAIL_MAX_EMAILS_PER_DAY", 100))  # Límite para Gmail gratuito
+
+
 class DevelopmentConfig(Config):
     """Configuración para el entorno de desarrollo."""
     
