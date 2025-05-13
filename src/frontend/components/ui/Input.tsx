@@ -1,10 +1,10 @@
 /**
  * Componente Input.tsx
  *
- * Este input reutilizable admite etiqueta (`label`), estilos con Tailwind
- * y mensajes de error visibles. Está diseñado para formularios accesibles
- * y profesionales en toda la aplicación. Compatible con validaciones, test
- * automatizados y escalado futuro. Tipado con TypeScript y preparado para SSR.
+ * Campo de formulario reutilizable.
+ * Acepta props estándar de input (name, type, value, onChange, etc.), además de `label` y `error`.
+ * Incluye etiqueta accesible con `htmlFor`, mensaje de error visible y estilos personalizados con Tailwind.
+ * Se recomienda su uso en formularios de toda la aplicación para mantener coherencia y accesibilidad.
  */
 
 'use client';
@@ -22,18 +22,20 @@ const Input: React.FC<InputProps> = ({
   error,
   ...props
 }) => {
+  const inputId = id || props.name;
+
   return (
     <div className="mb-4">
       {label && (
         <label
-          htmlFor={id}
+          htmlFor={inputId}
           className="block text-[#1A1341] text-sm font-semibold mb-2"
         >
           {label}
         </label>
       )}
       <input
-        id={id}
+        id={inputId}
         className={`w-full px-3 py-2 border border-[#C2E7DA] bg-white text-[#1A1341] rounded-md 
           focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] 
           ${className || ''}`}

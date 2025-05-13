@@ -9,6 +9,9 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@/__tests__/utils/test-utils';
 import ImageUpload from '@/components/ui/ImageUpload';
 
+// Mock global para evitar error con JSDOM
+global.URL.createObjectURL = jest.fn(() => 'blob:http://localhost/fake-preview');
+
 describe('ImageUpload (con fetch simulado)', () => {
     it('permite seleccionar una imagen y subirla correctamente', async () => {
         const mockOnImageUpload = jest.fn();

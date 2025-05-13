@@ -9,16 +9,21 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@/__tests__/utils/test-utils';
 import AdminHeader from '@/components/admin/layout/AdminHeader';
+import { mockLogout } from '@/__mocks__/useAuth';
 
-// Mock del hook de autenticación
 jest.mock('@/hooks/useAuth', () => ({
     useAuth: () => ({
-        user: { username: 'Alberto' },
-        logout: jest.fn(),
+        isAuthenticated: true,
+        logout: mockLogout,
+        user: { username: 'Alberto', is_admin: true },
     }),
 }));
 
 describe('AdminHeader', () => {
+    beforeEach(() => {
+        mockLogout.mockClear();
+    });
+
     it('renderiza el título del panel correctamente', () => {
         render(<AdminHeader />);
         expect(
@@ -32,21 +37,16 @@ describe('AdminHeader', () => {
     });
 
     it('muestra el botón de cerrar sesión y ejecuta logout al hacer clic', () => {
-        const { logout } = require('@/hooks/useAuth').useAuth();
         render(<AdminHeader />);
         const logoutButton = screen.getByRole('button', { name: /cerrar sesión/i });
-        expect(logoutButton).toBeInTheDocument();
         fireEvent.click(logoutButton);
-        expect(logout).toHaveBeenCalledTimes(1);
+        expect(mockLogout).toHaveBeenCalledTimes(1);
     });
 
     it('muestra el botón hamburguesa en móvil y abre el menú al hacer clic', () => {
         render(<AdminHeader />);
         const menuButton = screen.getByRole('button', { name: /abrir menú admin/i });
         expect(menuButton).toBeInTheDocument();
-
-        // Simulamos clic para abrir el menú lateral (solo comprobamos que el botón responde)
         fireEvent.click(menuButton);
-        // No validamos el contenido del menú aquí, solo la existencia y clic del botón
     });
 });
