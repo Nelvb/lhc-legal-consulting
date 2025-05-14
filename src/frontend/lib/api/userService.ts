@@ -8,8 +8,8 @@
  * - Recuperación de contraseña
  * - Eliminación permanente de la cuenta
  *
- * Todas las peticiones usan cookies para mantener la sesión autenticada.
- * Diseñado para ser reutilizable, seguro y escalable.
+ * Todas las peticiones usan cookies HttpOnly para mantener la sesión autenticada.
+ * No se requiere Authorization manual con Bearer.
  */
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -21,13 +21,15 @@ if (!API_URL) {
 export const userService = {
     /**
      * Actualiza nombre y/o email del usuario.
-     * Requiere autenticación con cookies.
+     * Requiere autenticación mediante cookie (JWT).
      * @param data - { name, email }
      */
     updateNameAndEmail: async (data: { name: string; email: string }) => {
         const response = await fetch(`${API_URL}/account/update-profile`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+            },
             credentials: "include",
             body: JSON.stringify(data),
         });
@@ -42,8 +44,7 @@ export const userService = {
     },
 
     /**
-     * Cambia la contraseña del usuario.
-     * Requiere contraseña actual + nueva.
+     * Cambia la contraseña del usuario autenticado.
      * @param data - { current_password, new_password }
      */
     changePassword: async (data: {
@@ -52,7 +53,9 @@ export const userService = {
     }) => {
         const response = await fetch(`${API_URL}/account/change-password`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+            },
             credentials: "include",
             body: JSON.stringify(data),
         });
@@ -67,8 +70,7 @@ export const userService = {
     },
 
     /**
-     * Solicita la recuperación de contraseña (vista pública).
-     * Envía un email con enlace de recuperación si el correo existe.
+     * Solicita la recuperación de contraseña (no requiere autenticación).
      * @param email - correo electrónico del usuario
      */
     requestPasswordReset: async (email: string) => {
@@ -88,9 +90,8 @@ export const userService = {
     },
 
     /**
-     * Elimina permanentemente la cuenta del usuario autenticado.
-     * Requiere autenticación con cookies.
-     * No devuelve nada si tiene éxito; lanza error si falla.
+     * Elimina la cuenta del usuario autenticado.
+     * Requiere autenticación mediante cookie (JWT).
      */
     deleteAccount: async (): Promise<void> => {
         const response = await fetch(`${API_URL}/users/delete`, {
@@ -102,5 +103,5 @@ export const userService = {
             const data = await response.json();
             throw new Error(data.msg || "No se pudo eliminar la cuenta.");
         }
-    }
+    },
 };
