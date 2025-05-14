@@ -29,7 +29,7 @@ class ArticleSchema(Schema):
     id = fields.Int(dump_only=True)  # Solo para serializar, no se espera al crear
     title = fields.Str(required=True, validate=validate.Length(min=3, max=255))
     slug = fields.Str(dump_only=True)  # Generado automáticamente
-    author = fields.Str(default="Boost A Project", validate=validate.Length(max=100))
+    author = fields.Str(load_default="Boost A Project", validate=validate.Length(max=100))
     date = fields.DateTime(dump_only=True)  # Generado automáticamente
     excerpt = fields.Str(validate=validate.Length(max=500))
     image = fields.Str(required=True, validate=validate.Length(max=255))
