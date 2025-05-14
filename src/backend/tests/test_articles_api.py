@@ -24,7 +24,6 @@ def init_db(app):
 def test_create_article(app, init_db):
     article_data = {
         'title': 'Nuevo artículo de prueba',
-        'slug': 'nuevo-articulo-de-prueba',
         'author': 'Boost A Project',
         'date': '2025-04-10',
         'excerpt': 'Este es un artículo de prueba',
