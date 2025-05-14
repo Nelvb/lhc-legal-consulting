@@ -29,6 +29,7 @@ def test_create_article(app, init_db):
         'date': '2025-04-10',
         'excerpt': 'Este es un artículo de prueba',
         'image': 'https://example.com/image.jpg',
+        'image_alt': 'Imagen decorativa del artículo', 
         'content': 'Contenido del artículo',
         'meta_description': 'Descripción meta del artículo',
         'meta_keywords': 'artículo, prueba, seo'
@@ -41,7 +42,12 @@ def test_create_article(app, init_db):
 def test_get_articles(app, init_db):
     response = app.test_client().get('/api/articles/')
     assert response.status_code == 200
-    assert isinstance(response.json, list)  # Asegurarse de que es una lista
+
+    json_data = response.get_json()
+    assert isinstance(json_data, dict)
+    assert "articles" in json_data
+    assert isinstance(json_data["articles"], list)
+
 
 # Test para obtener un artículo por slug
 def test_get_article_by_slug(app, init_db):
