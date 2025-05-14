@@ -2,11 +2,13 @@ import pytest
 from app import create_app
 from app.extensions import db
 from app.models.article import Article
+from app.config import TestingConfig
+
 
 # Crear la app de prueba
 @pytest.fixture
 def app():
-    app = create_app('testing')  # Usar el entorno de testing
+    app = create_app(TestingConfig)  # Usar el entorno de testing
     with app.app_context():
         yield app
 
