@@ -25,10 +25,8 @@ def test_create_article(app, init_db):
     article_data = {
         'title': 'Nuevo artículo de prueba',
         'author': 'Boost A Project',
-        'date': '2025-04-10',
         'excerpt': 'Este es un artículo de prueba',
         'image': 'https://example.com/image.jpg',
-        'image_alt': 'Imagen decorativa del artículo', 
         'content': 'Contenido del artículo',
         'meta_description': 'Descripción meta del artículo',
         'meta_keywords': 'artículo, prueba, seo'
