@@ -33,13 +33,13 @@ def test_create_article(app, init_db):
         'meta_description': 'Descripción meta del artículo',
         'meta_keywords': 'artículo, prueba, seo'
     }
-    response = app.test_client().post('/api/articles', json=article_data)
+    response = app.test_client().post('/api/articles/', json=article_data)
     assert response.status_code == 201  # 201 creado
     assert 'slug' in response.json  # Asegurarse de que el slug está en la respuesta
 
 # Test para obtener todos los artículos
 def test_get_articles(app, init_db):
-    response = app.test_client().get('/api/articles')
+    response = app.test_client().get('/api/articles/')
     assert response.status_code == 200
     assert isinstance(response.json, list)  # Asegurarse de que es una lista
 
@@ -49,6 +49,6 @@ def test_get_article_by_slug(app, init_db):
     db.session.add(article)
     db.session.commit()
     
-    response = app.test_client().get(f'/api/articles/{article.slug}')
+    response = app.test_client().get(f'/api/articles/slug/{article.slug}')
     assert response.status_code == 200
     assert response.json['slug'] == article.slug  # Asegurarse de que el slug es correcto
