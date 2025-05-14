@@ -34,6 +34,8 @@ def test_create_article(app, init_db):
         'meta_keywords': 'artículo, prueba, seo'
     }
     response = app.test_client().post('/api/articles/', json=article_data)
+    print(">>> RESPONSE JSON:", response.get_json())
+    print(">>> STATUS CODE:", response.status_code)
     assert response.status_code == 201  # 201 creado
     assert 'slug' in response.json  # Asegurarse de que el slug está en la respuesta
 
