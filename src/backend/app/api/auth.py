@@ -79,6 +79,7 @@ def login():
         # Crear respuesta y setear cookie HttpOnly
         response = make_response(jsonify({
             "msg": "Inicio de sesión exitoso",
+            "access_token": access_token,
             "user": user_schema.dump(user)
         }), 200)
 

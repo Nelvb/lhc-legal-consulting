@@ -7,12 +7,13 @@ from app import create_app
 from app.extensions import db
 from app.models.user import User
 from sqlalchemy import text
+from app.config import TestingConfig
 
 
 @pytest.fixture(scope="function")
 def app():
     """Crea y configura una instancia de Flask para las pruebas."""
-    app = create_app("app.config.TestingConfig")
+    app = create_app(TestingConfig)
 
     # Establecer el contexto de la aplicación
     with app.app_context():
