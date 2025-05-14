@@ -65,3 +65,26 @@ def update_user():
     except Exception as e:
         db.session.rollback()
         return jsonify({"msg": f"Error: {str(e)}"}), 500
+
+@users_bp.route("/delete", methods=["DELETE"])
+@jwt_required()
+def delete_user():
+    """
+    Elimina permanentemente la cuenta del usuario autenticado.
+    Requiere autenticación con JWT.
+    """
+    try:
+        user_id = int(get_jwt_identity())
+        user = db.session.get(User, user_id)
+
+        if not user:
+            return jsonify({"msg": "Usuario no encontrado"}), 404
+
+        db.session.delete(user)
+        db.session.commit()
+
+        return jsonify({"msg": "Cuenta eliminada correctamente"}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"msg": f"Error al eliminar la cuenta: {str(e)}"}), 500

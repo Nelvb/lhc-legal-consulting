@@ -1,7 +1,7 @@
 /**
  * Cabecera del área privada del usuario.
  * Replica la estructura visual del admin adaptada al usuario.
- * Contiene logo, saludo, logout y botón hamburguesa que activa el UserSideMenu.
+ * Contiene logo, saludo, acceso directo a perfil, logout y botón hamburguesa que activa el UserSideMenu.
  */
 
 "use client";
@@ -39,13 +39,23 @@ const UserHeader: React.FC = () => {
                         Área Privada
                     </h1>
 
-                    {/* Saludo y logout */}
+                    {/* Saludo, perfil y logout */}
                     <div className="flex items-center space-x-4">
                         {user?.username && (
                             <span className="text-white font-medium hidden md:inline">
                                 Hola {user.username}
                             </span>
                         )}
+
+                        {/* Acceso directo a perfil */}
+                        <button
+                            type="button"
+                            onClick={() => setIsOpen(true)}
+                            className="hidden md:inline text-white font-medium hover:underline transition-colors"
+                        >
+                            Mi Perfil
+                        </button>
+
 
                         <div className="hidden md:block">
                             <Button variant="outline" size="sm" onClick={logout}>

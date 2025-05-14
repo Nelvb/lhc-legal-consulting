@@ -1,8 +1,15 @@
 /**
+ * userService.ts
+ *
  * Servicio de usuario para el frontend.
- * Gestiona la actualización de nombre, email, contraseña
- * y solicitud de recuperación de contraseña.
- * Centraliza todas las llamadas relacionadas al perfil del usuario.
+ * Centraliza todas las llamadas al backend relacionadas con el perfil del usuario:
+ * - Actualización de nombre y email
+ * - Cambio de contraseña
+ * - Recuperación de contraseña
+ * - Eliminación permanente de la cuenta
+ *
+ * Todas las peticiones usan cookies para mantener la sesión autenticada.
+ * Diseñado para ser reutilizable, seguro y escalable.
  */
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -79,4 +86,21 @@ export const userService = {
 
         return result;
     },
+
+    /**
+     * Elimina permanentemente la cuenta del usuario autenticado.
+     * Requiere autenticación con cookies.
+     * No devuelve nada si tiene éxito; lanza error si falla.
+     */
+    deleteAccount: async (): Promise<void> => {
+        const response = await fetch(`${API_URL}/users/delete`, {
+            method: "DELETE",
+            credentials: "include",
+        });
+
+        if (!response.ok) {
+            const data = await response.json();
+            throw new Error(data.msg || "No se pudo eliminar la cuenta.");
+        }
+    }
 };
