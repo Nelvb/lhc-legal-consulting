@@ -27,6 +27,7 @@ def test_create_article(app, init_db):
         'author': 'Boost A Project',
         'excerpt': 'Este es un artículo de prueba',
         'image': 'https://example.com/image.jpg',
+        'image_alt': 'Imagen decorativa del artículo', 
         'content': 'Contenido del artículo',
         'meta_description': 'Descripción meta del artículo',
         'meta_keywords': 'artículo, prueba, seo'

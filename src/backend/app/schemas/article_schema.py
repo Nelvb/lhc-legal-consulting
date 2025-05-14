@@ -33,6 +33,7 @@ class ArticleSchema(Schema):
     date = fields.DateTime(dump_only=True)  # Generado automáticamente
     excerpt = fields.Str(validate=validate.Length(max=500))
     image = fields.Str(required=True, validate=validate.Length(max=255))
+    image_alt = fields.Str(validate=validate.Length(max=255))
     content = fields.Str(required=True)
     related = fields.List(fields.Str(), required=False)  # Lista de slugs relacionados
     meta_description = fields.Str(validate=validate.Length(max=160))
