@@ -1,12 +1,9 @@
 # Punto de entrada principal para la aplicación Flask
 # Configura el entorno, extensiones y rutas para ejecutar el servidor
-# Define manejadores de errores globales y configura CORS para peticiones entre dominios
+# Define manejadores de errores globales y usa init_app para inicializar extensiones como JWT, CORS, DB, etc.
 
 import os
 from flask import Flask, jsonify
-from flask_cors import CORS
-from flask_jwt_extended import JWTManager
-from flask_migrate import Migrate
 from dotenv import load_dotenv
 
 from app.api.auth import auth_bp
@@ -16,10 +13,11 @@ from app.api.images import images_bp
 from app.models.article import Article
 from app.services.image_service import ImageService
 from app.api.articles_static import static_articles_bp
+from app.api.account import account_bp
 
 
 from app.config import config
-from app.extensions import db
+from app.extensions import init_app  # Importa init_app desde extensions
 
 # Cargar variables de entorno desde .env
 load_dotenv()
@@ -31,21 +29,19 @@ app = Flask(__name__)
 env = os.getenv("FLASK_ENV", "development")
 app.config.from_object(config[env])
 
-# Inicializar Cloudinary
+# Inicializar servicios externos (como Cloudinary)
 ImageService.init_cloudinary(app)
 
-# Inicializar extensiones
-db.init_app(app)
-migrate = Migrate(app, db)
-jwt = JWTManager(app)
-CORS(app, supports_credentials=True, origins=["http://localhost:3000"])
+# Inicializar extensiones Flask (DB, JWT, CORS, Mail, etc.)
+init_app(app)
 
-# Registrar blueprints
+# Registrar blueprints de rutas
 app.register_blueprint(auth_bp, url_prefix="/api/auth")
 app.register_blueprint(users_bp, url_prefix="/api/users")
 app.register_blueprint(articles_bp, url_prefix="/api/articles")
 app.register_blueprint(images_bp, url_prefix="/api/images")
 app.register_blueprint(static_articles_bp, url_prefix="/api/articles")
+app.register_blueprint(account_bp, url_prefix="/api/account")
 
 
 # Ruta de prueba
@@ -62,6 +58,6 @@ def not_found(error):
 def internal_error(error):
     return jsonify({"error": "Error interno del servidor"}), 500
 
-# Ejecutar
+# Ejecutar la aplicación
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')

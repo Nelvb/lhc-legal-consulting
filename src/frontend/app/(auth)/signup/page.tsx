@@ -1,50 +1,148 @@
-// src/frontend/app/(auth)/signup/page.tsx
-import type { Metadata } from "next";
-import Link from "next/link";
-import SignupForm from "@/components/auth/SignupForm";
+/**
+ * Formulario para restablecer la contraseña mediante token.
+ * Se accede desde el enlace enviado por email (/reset-password?token=...).
+ * Valida las contraseñas, permite verlas, y tras éxito ofrece botón para iniciar sesión automáticamente.
+ */
 
-export const metadata: Metadata = {
-  title: "Crear Cuenta | Boost a Project",
-  description: "Regístrate en la plataforma de inversión Boost a Project",
+"use client";
+
+import { useState, FormEvent } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import Input from "@/components/ui/Input";
+import Button from "@/components/ui/Button";
+import { Eye, EyeOff } from "lucide-react";
+import { userService } from "@/lib/api/userService";
+import { useAuth } from "@/hooks/useAuth";
+
+const ResetPasswordForm = () => {
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [error, setError] = useState("");
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
+  const { login } = useAuth();
+  const router = useRouter();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError("");
+
+    if (!token) {
+      setError("Token no válido o ausente.");
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("La contraseña debe tener al menos 6 caracteres.");
+      return;
+    }
+
+    if (password !== confirm) {
+      setError("Las contraseñas no coinciden.");
+      return;
+    }
+
+    setStatus("sending");
+
+    try {
+      await userService.resetPassword({ token, new_password: password });
+      setStatus("success");
+    } catch (err: any) {
+      setError(err.message || "Error al restablecer la contraseña");
+      setStatus("error");
+    }
+  };
+
+  const handleLoginClick = async () => {
+    try {
+      const email = atob(token!.split(".")[0].replace(/"/g, "")); // token contiene el email como único dato serializado
+      await login({ email, password });
+    } catch (err) {
+      router.push("/login");
+    }
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-md bg-[#F1FFEF] border border-[#C2E7DA] p-8 rounded-xl shadow-md"
+    >
+      <h2 className="text-2xl font-bold mb-6 text-center text-[#1A1341]">
+        Nueva contraseña
+      </h2>
+
+      <p className="text-sm text-gray-700 mb-4 text-center">
+        Introduce tu nueva contraseña para completar el proceso de recuperación.
+      </p>
+
+      <div className="relative">
+        <Input
+          label="Contraseña nueva"
+          id="new-password"
+          type={showPassword ? "text" : "password"}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <div
+          className="absolute right-3 top-[38px] cursor-pointer text-[#1A1341]"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+        </div>
+      </div>
+
+      <div className="relative mt-4">
+        <Input
+          label="Confirmar contraseña"
+          id="confirm-password"
+          type={showConfirm ? "text" : "password"}
+          value={confirm}
+          onChange={(e) => setConfirm(e.target.value)}
+          required
+        />
+        <div
+          className="absolute right-3 top-[38px] cursor-pointer text-[#1A1341]"
+          onClick={() => setShowConfirm(!showConfirm)}
+        >
+          {showConfirm ? <EyeOff size={20} /> : <Eye size={20} />}
+        </div>
+      </div>
+
+      <div className="mt-6">
+        <Button
+          type="submit"
+          variant="primary"
+          className="w-full"
+          disabled={status === "sending"}
+        >
+          {status === "sending" ? "Enviando..." : "Restablecer contraseña"}
+        </Button>
+      </div>
+
+      {error && (
+        <p className="text-red-600 text-sm text-center mt-4">{error}</p>
+      )}
+
+      {status === "success" && (
+        <>
+          <p className="text-green-600 text-sm text-center mt-4">
+            Contraseña restablecida con éxito.
+          </p>
+          <Button
+            variant="primary"
+            className="w-full mt-4"
+            onClick={handleLoginClick}
+          >
+            Iniciar sesión
+          </Button>
+        </>
+      )}
+    </form>
+  );
 };
 
-export default function SignupPage() {
-  return (
-    <section className="w-full relative min-h-screen overflow-hidden px-4 py-20 flex items-center justify-center pt-40">
-      {/* Fondo dividido */}
-      <div className="absolute inset-0 flex">
-        <div className="w-[30%] bg-[#C2E7DA]" />
-        <div className="w-[70%] bg-[#1A1341]" />
-      </div>
-
-      {/* Contenido principal */}
-      <div className="relative w-full max-w-5xl bg-white rounded-xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2 z-10">
-        {/* Columna izquierda */}
-        <div className="hidden md:flex flex-col justify-center items-center bg-[#6290C3] p-10">
-          <h2 className="text-3xl font-bold text-white text-center mb-4">
-            Crea tu cuenta
-          </h2>
-          <p className="text-md text-white text-center">
-            Empieza a invertir en proyectos inmobiliarios seleccionados con transparencia, datos reales y acompañamiento profesional.
-          </p>
-        </div>
-
-        {/* Columna derecha */}
-        <div className="flex flex-col justify-center items-center p-8">
-          <SignupForm />
-          <div className="text-center mt-6">
-            <p className="text-sm text-gray-700">
-              ¿Ya tienes cuenta?{" "}
-              <Link
-                href="/login"
-                className="font-medium text-[#1DA1F2] hover:underline"
-              >
-                Inicia sesión
-              </Link>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+export default ResetPasswordForm;

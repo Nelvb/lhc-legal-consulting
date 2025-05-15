@@ -19,7 +19,7 @@ export async function middleware(req: NextRequest) {
     const publicPaths = ['/', '/login', '/signup', '/blog', '/blog/', '/blog/[slug]']
     const isPublic = publicPaths.some((path) => pathname === path || pathname.startsWith(path))
 
-    const token = req.cookies.get('token')?.value
+    const token = req.cookies.get('access_token_cookie')?.value
 
     if (!token && (pathname.startsWith('/admin') || pathname.startsWith('/dashboard'))) {
         return NextResponse.redirect(new URL('/login', req.url))

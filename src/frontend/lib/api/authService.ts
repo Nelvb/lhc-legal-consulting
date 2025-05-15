@@ -43,7 +43,7 @@ export const authService = {
         const response = await fetch(`${API_BASE_URL}/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            credentials: "include", // Enviar cookies JWT
+            credentials: "include",
             body: JSON.stringify(credentials),
         });
 
@@ -65,16 +65,12 @@ export const authService = {
     },
 
     /**
-     * Obtiene el perfil del usuario autenticado (opcional si usas cookies y contexto).
-     * @param token JWT opcional (usado si no se envían cookies)
+     * Obtiene el perfil del usuario autenticado (requiere cookie JWT).
      */
-    profile: async (token: string) => {
+    profile: async () => {
         const response = await fetch(`${API_BASE_URL}/auth/profile`, {
             method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
+            credentials: "include",
         });
 
         const data = await response.json();

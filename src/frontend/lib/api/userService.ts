@@ -1,15 +1,8 @@
 /**
  * userService.ts
  *
- * Servicio de usuario para el frontend.
- * Centraliza todas las llamadas al backend relacionadas con el perfil del usuario:
- * - Actualización de nombre y email
- * - Cambio de contraseña
- * - Recuperación de contraseña
- * - Eliminación permanente de la cuenta
- *
- * Todas las peticiones usan cookies HttpOnly para mantener la sesión autenticada.
- * No se requiere Authorization manual con Bearer.
+ * Servicio de usuario para frontend.
+ * Todas las llamadas se autentican usando cookies HttpOnly con CSRF Token incluido en headers.
  */
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -18,84 +11,99 @@ if (!API_URL) {
     throw new Error("Falta la variable de entorno NEXT_PUBLIC_API_URL");
 }
 
+// Leer CSRF desde cookie si existe
+const getCSRFToken = () => {
+    const name = "csrf_access_token=";
+    const cookies = document.cookie.split(";");
+    for (let c of cookies) {
+        const cookie = c.trim();
+        if (cookie.startsWith(name)) {
+            return cookie.substring(name.length);
+        }
+    }
+    return "";
+};
+
 export const userService = {
-    /**
-     * Actualiza nombre y/o email del usuario.
-     * Requiere autenticación mediante cookie (JWT).
-     * @param data - { name, email }
-     */
     updateNameAndEmail: async (data: { name: string; email: string }) => {
         const response = await fetch(`${API_URL}/account/update-profile`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
+                "X-CSRF-TOKEN": getCSRFToken(),
             },
             credentials: "include",
             body: JSON.stringify(data),
         });
 
         const result = await response.json();
-
-        if (!response.ok) {
-            throw new Error(result?.msg || "Error al actualizar perfil");
-        }
-
+        if (!response.ok) throw new Error(result?.msg || "Error al actualizar perfil");
         return result;
     },
 
-    /**
-     * Cambia la contraseña del usuario autenticado.
-     * @param data - { current_password, new_password }
-     */
-    changePassword: async (data: {
-        current_password: string;
-        new_password: string;
-    }) => {
+    changePassword: async (data: { current_password: string; new_password: string }) => {
         const response = await fetch(`${API_URL}/account/change-password`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
+                "X-CSRF-TOKEN": getCSRFToken(),
             },
             credentials: "include",
             body: JSON.stringify(data),
         });
 
         const result = await response.json();
-
-        if (!response.ok) {
-            throw new Error(result?.msg || "Error al cambiar contraseña");
-        }
-
+        if (!response.ok) throw new Error(result?.msg || "Error al cambiar contraseña");
         return result;
     },
 
-    /**
-     * Solicita la recuperación de contraseña (no requiere autenticación).
-     * @param email - correo electrónico del usuario
-     */
     requestPasswordReset: async (email: string) => {
-        const response = await fetch(`${API_URL}/account/request-password-reset`, {
+        try {
+            const response = await fetch(`${API_URL}/account/request-password-reset`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
+            });
+
+            const text = await response.text();
+            let result;
+
+            try {
+                result = text ? JSON.parse(text) : {};
+            } catch (e) {
+                console.error("Error parsing response:", text);
+                result = { msg: "Error de formato en la respuesta" };
+            }
+
+            if (!response.ok) {
+                throw new Error(result?.msg || `Error ${response.status}: ${response.statusText}`);
+            }
+
+            return result;
+        } catch (err) {
+            console.error("Password reset error:", err);
+            throw err;
+        }
+    },
+
+    resetPassword: async (data: { token: string; new_password: string }) => {
+        const response = await fetch(`${API_URL}/account/reset-password`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email }),
+            body: JSON.stringify(data),
         });
 
         const result = await response.json();
-
-        if (!response.ok) {
-            throw new Error(result?.msg || "Error al solicitar recuperación");
-        }
-
+        if (!response.ok) throw new Error(result?.msg || "Error al restablecer la contraseña");
         return result;
     },
 
-    /**
-     * Elimina la cuenta del usuario autenticado.
-     * Requiere autenticación mediante cookie (JWT).
-     */
     deleteAccount: async (): Promise<void> => {
         const response = await fetch(`${API_URL}/users/delete`, {
             method: "DELETE",
+            headers: {
+                "X-CSRF-TOKEN": getCSRFToken(),
+            },
             credentials: "include",
         });
 

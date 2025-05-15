@@ -27,13 +27,23 @@ def init_app(app):
 
     jwt.init_app(app)
     ma.init_app(app)
-    cors.init_app(app)
+    
+    # Configuración completa de CORS
+    cors.init_app(app, 
+            resources={r"/api/*": {
+                    "origins": ["http://localhost:3000"],
+                    "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+                    "allow_headers": ["Content-Type", "Authorization", "X-CSRF-TOKEN"],
+                    "supports_credentials": True
+                }},
+                supports_credentials=True)
+    
     mail.init_app(app)
 
     # Configuración adicional de JWT
-    app.config["JWT_TOKEN_LOCATION"] = ["headers"]
-    app.config["JWT_HEADER_NAME"] = "Authorization"
-    app.config["JWT_HEADER_TYPE"] = "Bearer"
+    app.config["JWT_TOKEN_LOCATION"] = ["cookies"]  # Cambiado a cookies si estás usando HttpOnly cookies
+    app.config["JWT_COOKIE_CSRF_PROTECT"] = True
+    app.config["JWT_ACCESS_CSRF_HEADER_NAME"] = "X-CSRF-TOKEN"
 
 
 # Asegurándonos de que init_app está exportado correctamente

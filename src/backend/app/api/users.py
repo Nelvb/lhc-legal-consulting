@@ -12,7 +12,7 @@ from marshmallow import ValidationError
 users_bp = Blueprint("users", __name__)
 
 @users_bp.route("/list", methods=["GET"])
-@jwt_required()
+@jwt_required(locations=["cookies"])
 def get_users():
     """Retorna la lista de usuarios registrados."""
     try:
@@ -22,7 +22,7 @@ def get_users():
         return jsonify({"msg": f"Error: {str(e)}"}), 500
 
 @users_bp.route("/<int:user_id>", methods=["GET"])
-@jwt_required()
+@jwt_required(locations=["cookies"])
 def get_user(user_id):
     """Obtiene los detalles de un usuario específico por ID."""
     try:
@@ -34,7 +34,7 @@ def get_user(user_id):
         return jsonify({"msg": f"Error: {str(e)}"}), 500
 
 @users_bp.route("/update", methods=["PUT"])
-@jwt_required()
+@jwt_required(locations=["cookies"])
 def update_user():
     """Permite actualizar información del usuario autenticado."""
     try:
@@ -67,7 +67,7 @@ def update_user():
         return jsonify({"msg": f"Error: {str(e)}"}), 500
 
 @users_bp.route("/delete", methods=["DELETE"])
-@jwt_required()
+@jwt_required(locations=["cookies"])
 def delete_user():
     """
     Elimina permanentemente la cuenta del usuario autenticado.

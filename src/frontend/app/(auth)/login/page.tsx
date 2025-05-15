@@ -1,4 +1,10 @@
-// app/login/page.tsx
+/**
+ * Página de inicio de sesión de la plataforma Boost A Project.
+ * Renderiza el formulario de login, fondo visual dividido, mensaje de bienvenida
+ * y enlaces secundarios para registro y recuperación de contraseña.
+ * Esta ruta es pública y forma parte del layout de autenticación.
+ */
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import LoginForm from "@/components/auth/LoginForm";
@@ -32,6 +38,18 @@ export default function LoginPage() {
         {/* Columna derecha */}
         <div className="flex flex-col justify-center items-center p-8">
           <LoginForm />
+
+          {/* Enlace para recuperación de contraseña */}
+          <div className="text-center mt-4">
+            <Link
+              href="/recuperar-contrasena"
+              className="text-sm text-[#1DA1F2] hover:underline"
+            >
+              ¿Has olvidado tu contraseña?
+            </Link>
+          </div>
+
+          {/* Enlace para registro */}
           <div className="text-center mt-6">
             <p className="text-sm text-gray-700">
               ¿No tienes cuenta?{" "}
