@@ -2,20 +2,23 @@
 # ------------------------------------------------------------------------------
 # Tests funcionales de gestión de cuenta: recuperación de contraseña y cambio de email
 # Verifica flujos de:
-# - Solicitud de recuperación de contraseña (envío correcto del email)
+# - Solicitud de recuperación de contraseña (con mocking del envío de email)
 # - Restablecimiento real de contraseña con token válido
 # - Error si el token es inválido o expirado
-# - Solicitud de cambio de email autenticado con cookie + CSRF
+# - Solicitud de cambio de email autenticado con cookie + CSRF (mocked)
 # - Confirmación de email por token
 # Incluye casos de borde y fallos esperados
 # ------------------------------------------------------------------------------
 
 import pytest
+from unittest.mock import patch
 from app.extensions import db
 from app.models.user import User
 from itsdangerous import URLSafeTimedSerializer
 
-def test_request_password_reset(client, app):
+
+@patch("app.api.account.send_email_with_limit", return_value={"success": True, "message": "Correo enviado correctamente."})
+def test_request_password_reset(mock_send, client, app):
     """Solicita enlace de recuperación si el email existe (respuesta siempre 200)."""
     with app.app_context():
         user = User(username="resetuser", email="reset@example.com")
@@ -29,6 +32,7 @@ def test_request_password_reset(client, app):
     )
     assert response.status_code == 200
     assert "enlace de recuperación" in response.json["msg"].lower()
+    assert mock_send.called
 
 
 def test_reset_password_with_valid_token(client, app):
@@ -67,7 +71,8 @@ def test_reset_password_invalid_or_expired_token(client, app):
     assert "token" in response.json["msg"].lower()
 
 
-def test_request_email_change_and_confirm(client, app):
+@patch("app.api.account.send_email_with_limit", return_value={"success": True, "message": "Correo enviado correctamente."})
+def test_request_email_change_and_confirm(mock_send, client, app):
     """Prueba completa de solicitud y confirmación de cambio de email."""
     with app.app_context():
         user = User(username="change_email", email="old@example.com")
@@ -75,7 +80,6 @@ def test_request_email_change_and_confirm(client, app):
         db.session.add(user)
         db.session.commit()
 
-    # Login
     login = client.post(
         "/api/auth/login",
         json={"email": "old@example.com", "password": "changepass"},
@@ -83,7 +87,6 @@ def test_request_email_change_and_confirm(client, app):
     assert login.status_code == 200
     csrf_token = login.json["csrf_token"]
 
-    # Solicitar cambio
     response = client.post(
         "/api/account/request-email-change",
         json={"new_email": "new@example.com"},
@@ -91,8 +94,8 @@ def test_request_email_change_and_confirm(client, app):
     )
     assert response.status_code == 200
     assert "confirmación" in response.json["msg"].lower()
+    assert mock_send.called
 
-    # Simular token
     with app.app_context():
         serializer = URLSafeTimedSerializer(app.config["SECRET_KEY"])
         token = serializer.dumps(

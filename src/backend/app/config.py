@@ -60,11 +60,15 @@ class DevelopmentConfig(Config):
 
 
 class TestingConfig(Config):
-    """Configuración para entorno de testing."""
+    """Configuración para entorno de testing (Pytest)."""
     TESTING = True
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
     WTF_CSRF_ENABLED = False
+    SECRET_KEY = "test-secret-key"
+    JWT_SECRET_KEY = "test-jwt-secret"
+    MAIL_SUPPRESS_SEND = True
+
 
 
 class ProductionConfig(Config):
