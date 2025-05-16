@@ -1,5 +1,5 @@
 # Tests de API de usuarios: listar, consultar, actualizar y eliminar cuenta
-# Verifica endpoints protegidos para gestión de usuarios con autenticación JWT
+# Verifica endpoints protegidos con autenticación basada en cookies + CSRF
 # Incluye pruebas de actualización de datos y persistencia en base de datos
 
 import pytest
@@ -18,14 +18,18 @@ def test_get_users_list(client, app):
         db.session.add(new_user)
         db.session.commit()
 
+    # Login
     login_response = client.post(
         "/api/auth/login",
         json={"email": "testapi@example.com", "password": "password123"},
     )
-    token = login_response.json["access_token"]
+    assert login_response.status_code == 200
+    csrf_token = login_response.json["csrf_token"]
 
+    # Acceder a recurso protegido con cookie + CSRF
     response = client.get(
-        "/api/users/list", headers={"Authorization": f"Bearer {token}"}
+        "/api/users/list",
+        headers={"X-CSRF-TOKEN": csrf_token},
     )
 
     assert response.status_code == 200
@@ -52,10 +56,12 @@ def test_get_user_by_id(client, app):
         "/api/auth/login",
         json={"email": "testuserid@example.com", "password": "password123"},
     )
-    token = login_response.json["access_token"]
+    assert login_response.status_code == 200
+    csrf_token = login_response.json["csrf_token"]
 
     response = client.get(
-        f"/api/users/{user_id}", headers={"Authorization": f"Bearer {token}"}
+        f"/api/users/{user_id}",
+        headers={"X-CSRF-TOKEN": csrf_token},
     )
 
     assert response.status_code == 200
@@ -83,11 +89,12 @@ def test_update_user(client, app):
         "/api/auth/login",
         json={"email": "testupdate@example.com", "password": "password123"},
     )
-    token = login_response.json["access_token"]
+    assert login_response.status_code == 200
+    csrf_token = login_response.json["csrf_token"]
 
     response = client.put(
         "/api/users/update",
-        headers={"Authorization": f"Bearer {token}"},
+        headers={"X-CSRF-TOKEN": csrf_token},
         json={"username": "updated_username"}
     )
 
@@ -115,11 +122,11 @@ def test_delete_account(client, app):
         json={"email": "deleteme@example.com", "password": "password123"}
     )
     assert login_response.status_code == 200
-    token = login_response.get_json()["access_token"]
+    csrf_token = login_response.json["csrf_token"]
 
     delete_response = client.delete(
         "/api/users/delete",
-        headers={"Authorization": f"Bearer {token}"}
+        headers={"X-CSRF-TOKEN": csrf_token},
     )
 
     assert delete_response.status_code == 200
