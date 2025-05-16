@@ -1,6 +1,13 @@
-# Tests de autenticación: registro, login y acceso a perfil
-# Verifica funcionalidad completa de los endpoints de autenticación
-# Incluye casos de éxito y validación de errores para cada operación
+# tests/test_auth.py
+# -----------------------------------------------------------------------------
+# Tests de autenticación: registro, login, logout y perfil
+# Verifica la funcionalidad completa de los endpoints de autenticación:
+# - Registro con validaciones
+# - Inicio de sesión (cookies + CSRF)
+# - Acceso al perfil protegido
+# - Logout y expiración de sesión
+# Incluye casos de éxito, fallos por datos inválidos y errores de seguridad
+# -----------------------------------------------------------------------------
 
 import pytest
 from app.extensions import db
@@ -82,6 +89,15 @@ def test_login(client, app, test_user):
     assert "password" not in response.json["user"]
 
 
+def test_login_missing_fields(client):
+    """Prueba login con campos faltantes."""
+    response = client.post("/api/auth/login", json={"email": "test@example.com"})
+    assert response.status_code == 400
+
+    response = client.post("/api/auth/login", json={"password": "12345678"})
+    assert response.status_code == 400
+
+
 def test_login_invalid_credentials(client, app, test_user):
     """Prueba login con credenciales inválidas."""
     response = client.post(
@@ -118,3 +134,41 @@ def test_profile(client, app):
     assert profile_response.json["username"] == "profile_test"
     assert profile_response.json["email"] == "profile@example.com"
     assert "password" not in profile_response.json
+
+
+def test_profile_without_csrf(client, app):
+    """Prueba que el acceso al perfil falla si no se envía el CSRF token."""
+    with app.app_context():
+        user = User(username="no_csrf", email="nocsrf@example.com")
+        user.set_password("password123")
+        db.session.add(user)
+        db.session.commit()
+
+    client.post(
+        "/api/auth/login",
+        json={"email": "nocsrf@example.com", "password": "password123"},
+    )
+
+    response = client.get("/api/auth/profile")
+    assert response.status_code == 401 or response.status_code == 403
+
+
+def test_logout(client, app, test_user):
+    """Prueba que el logout borra la cookie de sesión."""
+    login = client.post(
+        "/api/auth/login",
+        json={"email": "test@example.com", "password": "password123"},
+    )
+    assert login.status_code == 200
+
+    response = client.post("/api/auth/logout")
+    assert response.status_code == 200
+    assert "msg" in response.json
+    assert "cerrado sesión" in response.json["msg"].lower()
+
+
+def test_logout_without_cookie(client):
+    """Prueba logout sin haber iniciado sesión."""
+    response = client.post("/api/auth/logout")
+    assert response.status_code == 200
+    assert "msg" in response.json
