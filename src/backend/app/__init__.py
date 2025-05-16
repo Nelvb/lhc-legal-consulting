@@ -7,6 +7,7 @@ from app.api.users import users_bp  # Importamos el blueprint de usuarios
 from app.api.routes import routes  # Importamos el blueprint de rutas generales
 from app.api.articles import articles_bp  # Importamos el blueprint de artículos
 from app.api.images import images_bp  # Importamos el blueprint de imágenes
+from app.api.account import account_bp
 from app.config import DevelopmentConfig  # Configuración de la aplicación
 from app.extensions import (
     cors,
@@ -47,5 +48,6 @@ def create_app(config_object=DevelopmentConfig):
     app.register_blueprint(routes, url_prefix="/api")
     app.register_blueprint(articles_bp, url_prefix="/api/articles")
     app.register_blueprint(images_bp, url_prefix="/api/images")
-    
+    app.register_blueprint(account_bp, url_prefix="/api/account")
+
     return app
