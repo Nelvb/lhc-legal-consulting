@@ -85,7 +85,7 @@ const UserSideMenu: React.FC<UserSideMenuProps> = ({ isOpen, onClose }) => {
                         <ul className="flex flex-col space-y-1">
                             <li>
                                 <Link
-                                    href="/dashboard/perfil"
+                                    href="/perfil"
                                     onClick={onClose}
                                     className="block px-4 py-2 rounded text-[#1A1341] hover:bg-[#F1FFEF] transition-colors"
                                 >
