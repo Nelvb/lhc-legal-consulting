@@ -79,6 +79,7 @@ def test_request_email_change_and_confirm(mock_send, client, app):
         user.set_password("changepass")
         db.session.add(user)
         db.session.commit()
+        user_id = user.id
 
     login = client.post(
         "/api/auth/login",
@@ -99,7 +100,7 @@ def test_request_email_change_and_confirm(mock_send, client, app):
     with app.app_context():
         serializer = URLSafeTimedSerializer(app.config["SECRET_KEY"])
         token = serializer.dumps(
-            {"user_id": user.id, "new_email": "new@example.com"},
+            {"user_id": user_id, "new_email": "new@example.com"},
             salt="email-change"
         )
 
@@ -108,5 +109,6 @@ def test_request_email_change_and_confirm(mock_send, client, app):
     assert "actualizado" in confirm.json["msg"].lower()
 
     with app.app_context():
-        updated_user = User.query.get(user.id)
+        updated_user = User.query.get(user_id)
         assert updated_user.email == "new@example.com"
+
