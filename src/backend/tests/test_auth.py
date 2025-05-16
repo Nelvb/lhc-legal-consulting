@@ -18,11 +18,10 @@ def test_signup(client, app):
                 "password": "securepass",
             },
         )
-        
+
         assert response.status_code == 201
         assert b"Usuario registrado correctamente" in response.data
-        
-        # Verificar que el usuario existe en la base de datos
+
         usuario = User.query.filter_by(email="test@example.com").first()
         assert usuario is not None
         assert usuario.username == "testuser"
@@ -30,7 +29,8 @@ def test_signup(client, app):
 
 def test_signup_invalid_data(client, app):
     """Prueba la validación de datos en el registro."""
-    # Caso 1: Contraseña demasiado corta
+
+    # Contraseña corta
     response = client.post(
         "/api/auth/signup",
         json={
@@ -40,10 +40,9 @@ def test_signup_invalid_data(client, app):
         },
     )
     assert response.status_code == 400
-    assert "errors" in response.json
-    assert "password" in response.json["errors"]
-    
-    # Caso 2: Email inválido
+    assert "password" in response.json.get("errors", {})
+
+    # Email inválido
     response = client.post(
         "/api/auth/signup",
         json={
@@ -53,10 +52,9 @@ def test_signup_invalid_data(client, app):
         },
     )
     assert response.status_code == 400
-    assert "errors" in response.json
-    assert "email" in response.json["errors"]
-    
-    # Caso 3: Nombre de usuario inválido (caracteres no permitidos)
+    assert "email" in response.json.get("errors", {})
+
+    # Nombre de usuario inválido
     response = client.post(
         "/api/auth/signup",
         json={
@@ -66,25 +64,22 @@ def test_signup_invalid_data(client, app):
         },
     )
     assert response.status_code == 400
-    assert "errors" in response.json
-    assert "username" in response.json["errors"]
+    assert "username" in response.json.get("errors", {})
 
 
 def test_login(client, app, test_user):
-    """Prueba el inicio de sesión de un usuario."""
+    """Prueba el inicio de sesión de un usuario con cookies y CSRF."""
     response = client.post(
         "/api/auth/login",
         json={"email": "test@example.com", "password": "password123"},
     )
-    
+
     assert response.status_code == 200
-    assert "access_token" in response.json
-    
-    # Verificar que la respuesta incluye datos de usuario serializados por el schema
+    assert "csrf_token" in response.json
     assert "user" in response.json
     assert response.json["user"]["email"] == "test@example.com"
     assert response.json["user"]["username"] == "testuser"
-    assert "password" not in response.json["user"]  # Verificar que el password no se incluye
+    assert "password" not in response.json["user"]
 
 
 def test_login_invalid_credentials(client, app, test_user):
@@ -98,32 +93,28 @@ def test_login_invalid_credentials(client, app, test_user):
 
 
 def test_profile(client, app):
-    """Prueba el acceso al perfil con un token JWT."""
-    # Crear un usuario específico para esta prueba
+    """Prueba el acceso al perfil usando cookies + CSRF en vez de token."""
     with app.app_context():
         user = User(username="profile_test", email="profile@example.com")
         user.set_password("password123")
         db.session.add(user)
         db.session.commit()
-        user_id = user.id  # Guardar el ID para comprobar después
-    
-    # Iniciar sesión para obtener token
+
+    # Login primero para obtener cookie + csrf
     login_response = client.post(
         "/api/auth/login",
         json={"email": "profile@example.com", "password": "password123"},
     )
-    
-    # Verificar login exitoso
     assert login_response.status_code == 200
-    token = login_response.json["access_token"]
-    
-    # Usar el token para acceder al perfil
+    csrf_token = login_response.json.get("csrf_token")
+
+    # Acceder al perfil con cookie y CSRF
     profile_response = client.get(
-        "/api/auth/profile", headers={"Authorization": f"Bearer {token}"}
+        "/api/auth/profile",
+        headers={"X-CSRF-TOKEN": csrf_token},
     )
-    
-    # Verificar respuesta correcta
+
     assert profile_response.status_code == 200
     assert profile_response.json["username"] == "profile_test"
     assert profile_response.json["email"] == "profile@example.com"
-    assert "password" not in profile_response.json  # Verificar que el password no se incluye
+    assert "password" not in profile_response.json
