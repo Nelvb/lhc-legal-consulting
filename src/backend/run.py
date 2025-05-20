@@ -4,6 +4,7 @@
 
 import os
 from flask import Flask, jsonify
+from flask_cors import CORS
 from dotenv import load_dotenv
 
 from app.api.auth import auth_bp
@@ -14,6 +15,7 @@ from app.models.article import Article
 from app.services.image_service import ImageService
 from app.api.articles_static import static_articles_bp
 from app.api.account import account_bp
+from app import create_app
 
 
 from app.config import config
@@ -29,6 +31,17 @@ app = Flask(__name__)
 env = os.getenv("FLASK_ENV", "development")
 app.config.from_object(config[env])
 
+# Configuración GLOBAL de CORS
+CORS(app, resources={
+    r"/api/*": {
+        "origins": ["http://localhost:3000"],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization", "X-CSRF-TOKEN"],
+        "supports_credentials": True,
+        "expose_headers": ["Content-Type", "X-CSRFToken"]
+    }
+}, supports_credentials=True)
+
 # Inicializar servicios externos (como Cloudinary)
 ImageService.init_cloudinary(app)
 
@@ -42,7 +55,7 @@ app.register_blueprint(articles_bp, url_prefix="/api/articles")
 app.register_blueprint(images_bp, url_prefix="/api/images")
 app.register_blueprint(static_articles_bp, url_prefix="/api/articles")
 app.register_blueprint(account_bp, url_prefix="/api/account")
-
+print("✔ Blueprint account_bp registrado correctamente")
 
 # Ruta de prueba
 @app.route("/")
@@ -60,4 +73,5 @@ def internal_error(error):
 
 # Ejecutar la aplicación
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    app = create_app()
+    app.run(debug=False, use_reloader=False)

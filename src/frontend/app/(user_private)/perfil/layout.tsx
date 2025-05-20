@@ -1,8 +1,6 @@
 /**
- * layout.tsx para /perfil
- * 
- * Define metadata SEO específica para la ruta /perfil.
- * Evita mezclar "use client" con metadata en el archivo page.tsx.
+ * Layout de /perfil
+ * Solo añade metadata. Deja que el layout principal lo envuelva con Navbar y estructura.
  */
 
 import type { Metadata } from "next";

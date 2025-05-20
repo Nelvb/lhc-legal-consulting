@@ -1,8 +1,15 @@
+/**
+ * Componente Navbar global para todas las vistas.
+ * Muestra logo a la izquierda, título contextual centrado (como "Área Privada") y enlaces dinámicos a la derecha.
+ * Mantiene fondo transparente al inicio y azul con sombra al hacer scroll.
+ */
+
 "use client";
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import NavbarLinks from "@/components/layout/NavbarLinks";
 import SideMenu from "@/components/layout/SideMenu";
@@ -10,7 +17,11 @@ import SideMenu from "@/components/layout/SideMenu";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
   const { isAuthenticated } = useAuth();
+
+  const isUserArea =
+    pathname?.startsWith("/dashboard") || pathname?.startsWith("/perfil");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +41,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav className={navbarClasses}>
-        <div className="w-full px-4 flex justify-between items-center h-full">
+        <div className="w-full px-4 flex justify-between items-center h-full relative">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
@@ -44,7 +55,14 @@ const Navbar: React.FC = () => {
             <span className="sr-only">Boost A Project</span>
           </Link>
 
-          {/* Zona derecha: enlaces de auth + hamburguesa */}
+          {/* Título central (Área Privada) */}
+          {isUserArea && (
+            <h1 className="absolute left-1/2 -translate-x-1/2 text-white text-3xl font-bold">
+              Área Privada
+            </h1>
+          )}
+
+          {/* Enlaces + hamburguesa */}
           <div className="flex items-center space-x-8">
             <NavbarLinks key={`nav-links-${isAuthenticated}`} />
 

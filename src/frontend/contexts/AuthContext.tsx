@@ -39,6 +39,7 @@ interface AuthContextType {
     password: string;
   }) => Promise<any>;
   logout: () => void;
+  refreshUser: () => Promise<void>;
 }
 
 // Creamos el contexto con un valor por defecto
@@ -206,6 +207,27 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     router.push("/");
   };
 
+  // Función para refrescar los datos del usuario desde el backend
+  const refreshUser = async () => {
+    console.log("AuthContext - Refrescando usuario desde /auth/profile...");
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/profile`, {
+        credentials: "include", // Enviar cookies
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al obtener perfil actualizado");
+      }
+
+      const updatedUser = await response.json();
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      setUser(updatedUser);
+      console.log("AuthContext - Usuario actualizado:", updatedUser);
+    } catch (err) {
+      console.error("AuthContext - Error al refrescar usuario:", err);
+    }
+  };
+
 
   // Valor del contexto que se proporcionará
   const value = {
@@ -216,6 +238,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     login,
     signup,
     logout,
+    refreshUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { render, screen, fireEvent } from '@/__tests__/utils/test-utils';
-import UserProfileForm from '@/components/user/profile/UserProfileForm';
+import UserProfileForm from '@/components/shared/ProfileForm';
 
 jest.mock('@/hooks/useAuth', () => ({
     useAuth: () => ({

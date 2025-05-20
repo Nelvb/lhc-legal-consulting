@@ -16,7 +16,66 @@ from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
 
 # Definición del blueprint y aplicación de CORS solo a este módulo
 account_bp = Blueprint("account", __name__)
-CORS(account_bp, supports_credentials=True, origins=["http://localhost:3000"])
+
+
+@account_bp.route("/update-profile", methods=["OPTIONS"])
+def update_profile_options():
+    response = jsonify({})
+    response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-CSRF-TOKEN')
+    response.headers.add('Access-Control-Allow-Methods', 'PUT,POST,OPTIONS')
+    response.headers.add('Access-Control-Allow-Credentials', 'true')
+    return response
+
+@account_bp.route("/update-profile", methods=["PUT"])
+@jwt_required(locations=["cookies"])
+def update_profile():
+    """
+    Actualiza nombre y email del usuario autenticado.
+    Requiere contraseña actual para confirmar.
+    """
+    user_id = get_jwt_identity()
+    data = request.get_json()
+
+    name = data.get("name", "").strip()
+    email = data.get("email", "").strip()
+    current_password = data.get("current_password", "")
+
+    if not name or not current_password:
+        return jsonify({"msg": "Nombre y contraseña son obligatorios"}), 400
+
+    user = db.session.get(User, int(user_id))
+    if not user:
+        return jsonify({"msg": "Usuario no encontrado"}), 404
+
+    print(">> current_password recibido:", repr(current_password))
+    print(">> hash en BD:", repr(user.password_hash))
+    print(">> resultado check:", user.check_password(current_password))
+
+
+    if not user.check_password(current_password):
+        return jsonify({"msg": "La contraseña actual no es válida"}), 401
+
+    # Actualizar nombre
+    user.username = name
+
+    # Solo actualizar email si se ha enviado y es distinto
+    if email:
+        if email != user.email:
+            existing = User.query.filter(User.email == email, User.id != user.id).first()
+            if existing:
+                return jsonify({"msg": "Ese email ya está en uso"}), 400
+            user.email = email
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        print("Error al guardar:", e)
+        return jsonify({"msg": "Error al guardar los cambios"}), 500
+
+    return jsonify({"msg": "Perfil actualizado correctamente"}), 200
+
 
 @account_bp.route("/request-password-reset", methods=["POST"])
 def request_password_reset():

@@ -65,6 +65,27 @@ export const authService = {
     },
 
     /**
+     * Cierra la sesión del usuario.
+     * Elimina la cookie JWT del navegador.
+     */
+    logout: async () => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/auth/logout`, {
+                method: "POST",
+                credentials: "include",
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.msg || "Error al cerrar sesión");
+            }
+        } catch (error) {
+            console.error("Error al cerrar sesión:", error);
+            // Incluso si hay error, continuar con el proceso de logout local
+        }
+    },
+
+    /**
      * Obtiene el perfil del usuario autenticado (requiere cookie JWT).
      */
     profile: async () => {

@@ -25,7 +25,7 @@ const getCSRFToken = () => {
 };
 
 export const userService = {
-    updateNameAndEmail: async (data: { name: string; email: string }) => {
+    updateNameAndEmail: async (data: { name: string; email?: string; current_password: string }) => {
         const response = await fetch(`${API_URL}/account/update-profile`, {
             method: "PUT",
             headers: {
