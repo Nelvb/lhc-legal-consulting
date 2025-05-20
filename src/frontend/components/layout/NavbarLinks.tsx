@@ -1,8 +1,9 @@
 /**
  * NavbarLinks.tsx
  *
- * Renderiza los enlaces dinámicos de la navbar según la autenticación y la ruta actual.
- * Muestra saludo personalizado, enlaces condicionales y botón de cierre de sesión.
+ * Renderiza los enlaces superiores de navegación.
+ * En modo público muestra Inicio, Iniciar sesión y Registro.
+ * En modo autenticado solo muestra el saludo y botón de logout.
  */
 
 "use client";
@@ -25,11 +26,6 @@ const NavbarLinks: React.FC = () => {
   const isHomePage = pathname === "/" || pathname === "";
   const isLoginPage = pathname === "/login";
   const isSignupPage = pathname === "/signup";
-
-  const perfilPath = user?.is_admin ? "/admin/perfil" : "/perfil";
-  const dashboardPath = user?.is_admin ? "/admin" : "/dashboard";
-  const isPerfilPage = pathname === perfilPath;
-  const isDashboardPage = pathname === dashboardPath;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -72,32 +68,13 @@ const NavbarLinks: React.FC = () => {
       );
     }
 
-    if (!isAuthenticated && !isPublicRouteValue) return null;
+    if (!isAuthenticated) return null;
 
     return (
       <>
         <span className="text-white font-medium transition-all duration-300">
           Hola {user?.username}
         </span>
-
-        {!isPerfilPage && (
-          <Link
-            href={perfilPath}
-            className="transition-all ease-smooth hover:scale-hover text-white"
-          >
-            Mi Perfil
-          </Link>
-        )}
-
-        {!isDashboardPage && (
-          <Link
-            href={dashboardPath}
-            className="transition-all ease-smooth hover:scale-hover text-white"
-          >
-            Área Privada
-          </Link>
-        )}
-
         <Button
           variant="outline"
           size="sm"

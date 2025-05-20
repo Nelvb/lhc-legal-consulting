@@ -1,4 +1,12 @@
-// src/frontend/components/common/MainMenuLinks.tsx
+/**
+ * MainMenuLinks.tsx
+ *
+ * Enlaces principales del menú lateral.
+ * Se utilizan en el SideMenu público y sirven de base visual para user/admin.
+ * Resaltan el enlace activo con subrayado y negrita.
+ * Aplican hover con fondo azul marino y texto blanco.
+ */
+
 "use client";
 
 import Link from "next/link";
@@ -15,8 +23,8 @@ const MainMenuLinks: React.FC<MainMenuLinksProps> = ({ onClickLink }) => {
   const links = [
     { href: "/", label: "Inicio" },
     { href: "/proyectos", label: "Proyectos" },
-    { href: "/blog", label: "Blog" },
     { href: "/nosotros", label: "Nosotros" },
+    { href: "/blog", label: "Blog" },
     { href: "/faq", label: "Preguntas Frecuentes" },
     { href: "/contacto", label: "Contacto" },
   ];
@@ -28,9 +36,10 @@ const MainMenuLinks: React.FC<MainMenuLinksProps> = ({ onClickLink }) => {
           <Link
             href={href}
             onClick={onClickLink}
-            className={`block px-4 py-2 rounded transition-colors text-[#1A1341] hover:bg-[#1A1341] hover:text-white ${
-              pathname === href ? "font-semibold underline" : ""
-            }`}
+            className={`block px-4 py-2 rounded transition-colors text-[#1A1341] 
+              hover:bg-[#1A1341] hover:text-white
+              ${pathname === href ? "font-semibold underline" : ""}
+            `}
           >
             {label}
           </Link>

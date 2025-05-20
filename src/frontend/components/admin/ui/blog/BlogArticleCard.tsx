@@ -46,7 +46,7 @@ const BlogArticleCard: React.FC<BlogArticleCardProps> = ({ title, slug, image, e
         </Link>
         
         <Button
-          variant="outline"
+          variant="danger"
           size="sm"
           onClick={() => onDelete(slug)}
         >

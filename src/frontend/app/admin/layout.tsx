@@ -1,28 +1,32 @@
 /**
  * Layout base para el área de administración (/admin/*)
- * Añade la Navbar y el Footer globales, como en el área de usuario.
- * El fondo y el diseño visual lo define cada página.
+ * Muestra Navbar y Footer solo en rutas concretas (/admin y /admin/perfil).
+ * En el resto de vistas de administración (blog, proyectos...) se ocultan automáticamente.
+ * Esto permite una experiencia de edición o gestión más limpia y sin distracciones.
  */
 
-import type { Metadata } from "next";
+"use client";
+
+import { usePathname } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
-export const metadata: Metadata = {
-    title: "Área de Administración | Boost a Project",
-    description: "Gestión de contenidos y usuarios desde el panel de administración.",
-};
 
 export default function AdminLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
+    const pathname = usePathname();
+
+    // Definir las rutas donde SÍ se muestra Navbar y Footer en el admin
+    const showLayoutFor = ["/admin", "/admin/perfil"];
+    const shouldShowLayout = showLayoutFor.includes(pathname);
+
     return (
         <div className="min-h-screen bg-white text-gray-800 flex flex-col">
-            <Navbar />
+            {shouldShowLayout && <Navbar />}
             <main className="flex-grow">{children}</main>
-            <Footer />
+            {shouldShowLayout && <Footer />}
         </div>
     );
 }

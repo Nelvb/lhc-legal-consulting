@@ -47,12 +47,23 @@ const BlogAdminPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 pt-12">
-      <div className="flex justify-between items-center mb-8">
+    <div className="container mx-auto px-4 pt-12 pb-12">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <h1 className="text-3xl font-bold text-[#1A1341]">Gestión de Blog</h1>
-        <Link href="/admin/blog/new-article">
-          <Button variant="primary">Crear Nuevo Artículo</Button>
-        </Link>
+
+        <div className="flex flex-wrap gap-4">
+          <Link href="/admin">
+            <Button variant="outline" size="md">
+              ← Volver al panel
+            </Button>
+          </Link>
+
+          <Link href="/admin/blog/new-article">
+            <Button variant="primary" size="md">
+              Crear Nuevo Artículo
+            </Button>
+          </Link>
+        </div>
       </div>
 
       {isLoading ? (

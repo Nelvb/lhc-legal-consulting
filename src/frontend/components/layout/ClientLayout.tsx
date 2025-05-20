@@ -1,6 +1,9 @@
 /**
- * ClientLayout envuelve las vistas del usuario y las vistas públicas.
- * Oculta automáticamente Navbar y Footer si la ruta comienza con /admin.
+ * ClientLayout.tsx
+ *
+ * Layout general para vistas públicas y de usuario.
+ * Muestra Navbar y Footer excepto en rutas profundas del admin (/admin/blog, /admin/projects...).
+ * En las rutas raíz del admin (/admin y /admin/perfil) la Navbar y Footer siguen visibles.
  */
 
 "use client";
@@ -17,14 +20,16 @@ interface ClientLayoutProps {
 const ClientLayout: React.FC<ClientLayoutProps> = ({ children }) => {
   const pathname = usePathname();
 
-  // Ocultar Navbar y Footer si estamos en /admin o alguna subruta de /admin
-  const isAdminRoute = pathname.startsWith("/admin");
+  const isStrictlyAdminHomeOrProfile =
+    pathname === "/admin" || pathname === "/admin/perfil";
+
+  const hideLayout = pathname.startsWith("/admin") && !isStrictlyAdminHomeOrProfile;
 
   return (
     <>
-      {!isAdminRoute && <Navbar />}
+      {!hideLayout && <Navbar />}
       {children}
-      {!isAdminRoute && <Footer />}
+      {!hideLayout && <Footer />}
     </>
   );
 };

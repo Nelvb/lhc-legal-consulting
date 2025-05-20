@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { render, screen } from '@/__tests__/utils/test-utils';
-import SideMenu from '@/components/layout/SideMenu';
+import SideMenu from '@/components/sideMenus/SideMenu';
 
 // Mocks
 jest.mock('@/hooks/useAuth', () => ({

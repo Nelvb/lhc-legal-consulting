@@ -9,7 +9,7 @@
 
 import React from 'react';
 import { render, screen, fireEvent } from '@/__tests__/utils/test-utils';
-import AdminSideMenu from '@/components/admin/sideMenu/AdminSideMenu';
+import AdminSideMenu from '@/components/sideMenus/AdminSideMenu';
 
 // Creamos un mock local para logout que podemos controlar
 const mockLogout = jest.fn();

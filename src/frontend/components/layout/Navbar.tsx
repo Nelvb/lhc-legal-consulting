@@ -1,7 +1,10 @@
 /**
- * Componente Navbar global para todas las vistas.
- * Muestra logo a la izquierda, título contextual centrado (como "Área Privada") y enlaces dinámicos a la derecha.
- * Mantiene fondo transparente al inicio y azul con sombra al hacer scroll.
+ * Navbar.tsx
+ *
+ * Componente de navegación global para todas las vistas.
+ * Muestra el logo, enlaces condicionales y el botón hamburguesa.
+ * Renderiza el menú lateral según el tipo de usuario: público, autenticado o administrador.
+ * Mejora la UX ocultando título redundante ("Área Privada") y manteniendo consistencia visual.
  */
 
 "use client";
@@ -12,16 +15,15 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import NavbarLinks from "@/components/layout/NavbarLinks";
-import SideMenu from "@/components/layout/SideMenu";
+import AdminSideMenu from "@/components/sideMenus/AdminSideMenu";
+import UserSideMenu from "@/components/sideMenus/UserSideMenu";
+import SideMenu from "@/components/sideMenus/SideMenu";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const { isAuthenticated } = useAuth();
-
-  const isUserArea =
-    pathname?.startsWith("/dashboard") || pathname?.startsWith("/perfil");
+  const { isAuthenticated, user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +44,7 @@ const Navbar: React.FC = () => {
     <>
       <nav className={navbarClasses}>
         <div className="w-full px-4 flex justify-between items-center h-full relative">
-          {/* Logo */}
+          {/* Logo principal */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
               src="https://res.cloudinary.com/dy1pkrd52/image/upload/v1742894677/Logo-sin-fondo-3_d4ch0a.webp"
@@ -55,14 +57,7 @@ const Navbar: React.FC = () => {
             <span className="sr-only">Boost A Project</span>
           </Link>
 
-          {/* Título central (Área Privada) */}
-          {isUserArea && (
-            <h1 className="absolute left-1/2 -translate-x-1/2 text-white text-3xl font-bold">
-              Área Privada
-            </h1>
-          )}
-
-          {/* Enlaces + hamburguesa */}
+          {/* Enlaces visibles y botón hamburguesa */}
           <div className="flex items-center space-x-8">
             <NavbarLinks key={`nav-links-${isAuthenticated}`} />
 
@@ -108,8 +103,14 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      {/* Menú lateral */}
-      <SideMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      {/* Menú lateral condicional por tipo de usuario */}
+      {user?.is_admin ? (
+        <AdminSideMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      ) : user ? (
+        <UserSideMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      ) : (
+        <SideMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      )}
     </>
   );
 };
