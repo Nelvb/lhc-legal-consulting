@@ -1,6 +1,8 @@
 # Boost A Project
 
-Plataforma web profesional de inversión inmobiliaria que conecta inversores con proyectos de élite, ofreciendo transparencia total, documentación completa y acompañamiento personalizado durante todo el proceso de inversión.
+![Backend Tests](https://github.com/Nelvb/Plataforma-inversion/actions/workflows/backend-tests.yml/badge.svg)
+
+Plataforma web de inversión inmobiliaria diseñada para ofrecer transparencia, documentación clara y acompañamiento personalizado en cada etapa del proceso. Facilita el acceso a oportunidades seleccionadas, enfocándose en la confianza, la seguridad y una experiencia de usuario cuidada.
 
 ## Tecnologías
 
