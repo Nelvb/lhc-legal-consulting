@@ -109,6 +109,6 @@ def test_request_email_change_and_confirm(mock_send, client, app):
     assert "actualizado" in confirm.json["msg"].lower()
 
     with app.app_context():
-        updated_user = User.query.get(user_id)
+        updated_user = db.session.get(User, user_id)
         assert updated_user.email == "new@example.com"
 
