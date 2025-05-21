@@ -1,522 +1,197 @@
-# Full-Stack Starter Template
+# Boost A Project
 
-Un template completo para iniciar proyectos full-stack con Next.js en el frontend y Flask en el backend. Incluye autenticación JWT, PostgreSQL, y Tailwind CSS, con soporte completo para Docker y integración continua mediante GitHub Actions.
+Plataforma web profesional de inversión inmobiliaria que conecta inversores con proyectos de élite, ofreciendo transparencia total, documentación completa y acompañamiento personalizado durante todo el proceso de inversión.
 
 ## Tecnologías
 
 ### Frontend
 
-- Next.js (v15.2.0)
-- TypeScript
-- Tailwind CSS
-- clsx para manejo de clases condicionales
+- Next.js 15.2 con App Router
+- TypeScript para desarrollo sostenible
+- Tailwind CSS + componentes personalizados 
+- React Testing Library + Jest
+- JWT para autenticación segura
 
 ### Backend
 
-- Flask
-- SQLAlchemy
-- PostgreSQL
-- JWT para autenticación
-- Black & isort para formateo de código
-- Pytest para testing automatizado
+- Flask con arquitectura modular
+- SQLAlchemy + Alembic para migraciones
+- PostgreSQL como base de datos
+- JWT en cookies HttpOnly + protección CSRF
+- Flask-Mail para recuperación de contraseñas y notificaciones
 
 ### DevOps
 
 - Docker y Docker Compose
 - GitHub Actions para CI/CD
+- Cloudinary para gestión de imágenes
 
 ## Estructura del Proyecto
 
 ```
-starter-template/
-├── .env
-├── .env.docker
-├── .env.example
-├── .env.docker.example
-├── .github/
-│   └── workflows/
-│       └── backend-tests.yml
-├── .gitattributes
-├── .gitignore
-├── Dockerfile.backend
-├── Dockerfile.frontend
-├── LICENSE
-├── README.md
+Plataforma-inversion/
+├── .env, .env.example, .env.docker
 ├── docker-compose.yml
-├── package-lock.json
-├── pyproject.toml
-└── src/
-    ├── backend/
-    │   ├── app/
-    │   │   ├── api/
-    │   │   │   ├── auth.py
-    │   │   │   ├── routes.py
-    │   │   │   ├── users.py
-    │   │   │   └── __init__.py
-    │   │   ├── models/
-    │   │   │   ├── user.py
-    │   │   │   └── __init__.py
-    │   │   ├── schemas/
-    │   │   │   ├── user.py
-    │   │   │   └── __init__.py
-    │   │   ├── services/
-    │   │   │   └── __init__.py
-    │   │   ├── utils/
-    │   │   │   ├── utils.py
-    │   │   │   └── __init__.py
-    │   │   ├── config.py
-    │   │   ├── extensions.py
-    │   │   └── __init__.py
-    │   ├── instance/
-    │   ├── migrations/
-    │   ├── tests/
-    │   │   ├── conftest.py
-    │   │   ├── test_auth.py
-    │   │   ├── test_db.py
-    │   │   ├── test_users.py
-    │   │   ├── test_users_api.py
-    │   │   └── __init__.py
-    │   ├── requirements.txt
-    │   └── run.py
-    └── frontend/
-        ├── .next/
-        ├── app/
-        │   ├── (auth)/
-        │   │   ├── login/
-        │   │   │   └── page.tsx
-        │   │   └── signup/
-        │   │       └── page.tsx
-        │   ├── dashboard/
-        │   │   └── page.tsx
-        │   ├── layout.tsx
-        │   └── page.tsx
-        ├── components/
-        │   ├── auth/
-        │   │   ├── LoginForm.tsx
-        │   │   └── SignupForm.tsx
-        │   ├── layout/
-        │   │   ├── Footer.tsx
-        │   │   ├── Navbar.tsx
-        │   │   └── NavbarLinks.tsx
-        │   ├── ui/
-        │   │   ├── Button.tsx
-        │   │   ├── Card.tsx
-        │   │   └── Input.tsx
-        ├── contexts/
-        │   └── AuthContext.tsx
-        ├── hooks/
-        │   └── useAuth.ts
-        ├── lib/
-        │   └── api.ts
-        ├── next-env.d.ts
-        ├── next.config.js
-        ├── node_modules/
-        ├── package-lock.json
-        ├── package.json
-        ├── postcss.config.js
-        ├── public/
-        ├── styles/
-        │   ├── globals.css
-        │   └── output.css
-        ├── tailwind.config.js
-        ├── tsconfig.json
-        └── types/
-            └── index.ts
+├── package-lock.json, pyproject.toml
+├── README.md
+├── src/
+│   ├── frontend/
+│   │   ├── app/                        # App Router de Next.js
+│   │   │   ├── (auth)/                 # Rutas de login y signup
+│   │   │   ├── admin/                  # Panel de administración
+│   │   │   ├── blog/                   # Blog público
+│   │   │   ├── dashboard/              # Área privada de usuario
+│   │   │   └── ...
+│   │   ├── components/                 # Componentes React
+│   │   │   ├── admin/                  # Componentes del panel admin
+│   │   │   ├── articles/               # Componentes de blog
+│   │   │   ├── auth/                   # Formularios de autenticación
+│   │   │   ├── Home/                   # Secciones de landing
+│   │   │   ├── layout/                 # Navbar, Footer, etc.
+│   │   │   └── ui/                     # Componentes básicos (Button, Input)
+│   │   ├── contexts/                   # Context Providers
+│   │   ├── hooks/                      # Hooks personalizados
+│   │   ├── lib/
+│   │   │   ├── api/                    # Servicios de API
+│   │   │   └── utils/                  # Utilidades (fetchWithAuth)
+│   │   ├── styles/                     # CSS global
+│   │   ├── types/                      # TypeScript interfaces
+│   │   └── __tests__/                  # Tests organizados por categoría
+│   └── backend/
+│       ├── app/
+│       │   ├── api/                    # Endpoints REST
+│       │   ├── models/                 # Modelos SQLAlchemy
+│       │   ├── schemas/                # Esquemas de datos
+│       │   ├── services/               # Lógica de negocio
+│       │   └── utils/                  # Utilidades
+│       ├── migrations/                 # Migraciones Alembic
+│       └── tests/                      # Tests con pytest
 ```
 
 ## Requisitos Previos
 
-- Docker
-- Docker Compose
-- Git
+- Docker y Docker Compose (recomendado)
+- Alternativamente:
+  - Node.js (v18 o superior)
+  - Python (v3.9 o superior)
+  - PostgreSQL
 
 ## Instalación y Configuración
 
-### Configuración con Docker (Recomendado)
+### Con Docker (recomendado)
 
 1. Clonar el repositorio:
-
    ```bash
-   git clone https://github.com/tu-usuario/starter-template.git
-   cd starter-template
+   git clone https://github.com/tu-usuario/boost-a-project.git
+   cd boost-a-project
    ```
 
 2. Configuración de variables de entorno:
+   ```bash
+   cp .env.example .env
+   cp .env.docker.example .env.docker
+   ```
+   Actualiza los valores con tus credenciales.
 
-   - Copia `.env.example` a `.env` para desarrollo local:
-     ```bash
-     cp .env.example .env
-     ```
-   - Copia `.env.docker.example` a `.env.docker` para Docker:
-     ```bash
-     cp .env.docker.example .env.docker
-     ```
-   - Actualiza los valores en los archivos con tus propias credenciales, especialmente:
-     - SECRET_KEY
-     - JWT_SECRET_KEY
-     - DB_PASSWORD
-
-3. Iniciar todos los servicios:
+3. Iniciar servicios:
    ```bash
    docker-compose up --build
    ```
 
-### Servicios Disponibles
+### Sin Docker
 
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:5000
-- **Base de datos PostgreSQL**:
-  - Host: localhost
-  - Puerto: 5432
-  - Usuario: postgres
-  - Contraseña: postgres
-  - Base de datos: starter_db
-
-### Comandos de Docker Compose
-
+#### Frontend
 ```bash
-# Iniciar todos los servicios
-docker-compose up
-
-# Iniciar servicios específicos
-docker-compose up backend
-docker-compose up frontend
-docker-compose up db
-
-# Detener servicios
-docker-compose down
-
-# Detener servicios y eliminar volúmenes
-docker-compose down -v
-
-# Ejecutar migraciones de base de datos
-docker-compose exec backend flask db upgrade
+cd src/frontend
+npm install
+npm run dev
 ```
 
-## Configuración sin Docker (Alternativa)
-
-### Requisitos Previos
-
-- Node.js (v18 o superior)
-- Python (v3.8 o superior)
-- PostgreSQL
-
-### Frontend
-
-1. Instalar dependencias:
-
-   ```bash
-   cd src/frontend
-   npm install
-   ```
-
-2. Iniciar servidor de desarrollo:
-
-   ```bash
-   npm run dev
-   ```
-
-   El frontend estará disponible en http://localhost:3000
-
-### Backend
-
-1. Navegar al directorio del backend:
-
-   ```bash
-   cd src/backend
-   ```
-
-2. Crear un entorno virtual:
-
-   ```bash
-   python -m venv venv
-   ```
-
-3. Activar el entorno virtual:
-
-   - En Windows:
-     ```bash
-     venv\Scripts\activate
-     ```
-   - En macOS/Linux:
-     ```bash
-     source venv/bin/activate
-     ```
-
-4. Instalar dependencias:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-5. Configurar archivo `.env`:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-   Luego edita el archivo `.env` con tus configuraciones.
-
-6. Configurar la base de datos:
-
-   ```bash
-   flask db init
-   flask db migrate -m "Initial migration"
-   flask db upgrade
-   ```
-
-7. Iniciar el servidor Flask:
-
-   ```bash
-   python run.py
-   ```
-
-   El backend API estará disponible en http://localhost:5000
-
-## Testing
-
-### Backend Tests
-
-El proyecto incluye pruebas automatizadas para el backend utilizando pytest:
-
-1. Asegúrate de tener el entorno virtual activado:
-
-   ```bash
-   # En Windows
-   venv\Scripts\activate
-
-   # En macOS/Linux
-   source venv/bin/activate
-   ```
-
-2. Ejecutar las pruebas:
-
-   ```bash
-   cd src/backend
-   python -m pytest
-   ```
-
-3. Las pruebas están organizadas en los siguientes archivos:
-   - `tests/test_auth.py`: Pruebas de autenticación y JWT
-   - `tests/test_db.py`: Pruebas de conexión y operaciones de base de datos
-   - `tests/test_users.py`: Pruebas de modelo de usuario
-   - `tests/test_users_api.py`: Pruebas de API de usuarios
-
-### Integración Continua
-
-El proyecto incluye una configuración de GitHub Actions para ejecutar automáticamente las pruebas del backend cada vez que se hace push al repositorio. La configuración se encuentra en `.github/workflows/backend-tests.yml`.
+#### Backend
+```bash
+cd src/backend
+python -m venv venv
+source venv/bin/activate  # En Windows: venv\Scripts\activate
+pip install -r requirements.txt
+flask db upgrade
+python run.py
+```
 
 ## Funcionalidades
 
+### Públicas
+- Página principal con secciones Hero, ValueProposition, InvestorSupport, CompanyValues, ActiveProjects
+- Blog con artículos sobre inversión inmobiliaria
+- Vista detallada de proyectos inmobiliarios
+
 ### Autenticación
-
 - Registro de usuarios
-- Inicio de sesión con JWT
-- Middleware de autenticación para rutas protegidas
+- Login con JWT en cookies HttpOnly + CSRF
+- Recuperación de contraseña vía email
+- Perfil editable y seguro
 
-### Temas y UI
+### Panel de usuario
+- Dashboard personalizado
+- Gestión de perfil (nombre, email, contraseña)
+- Seguimiento de proyectos de interés
 
-- Sistema de temas claro/oscuro
-- Componentes UI personalizados
-  - Botones con diferentes variantes: default, outline, ghost
-  - Formularios estilizados
-  - Layouts responsivos
+### Panel de administración
+- Gestión completa de blog (CRUD)
+- Gestión de proyectos inmobiliarios
+- Editor de artículos con conversión automática HTML
+- Selector de imágenes destacadas
+- Selector de artículos relacionados
 
-## Desarrollo
+## Testing
 
-### Comandos Frontend
-
+### Frontend
 ```bash
-# Desarrollo
-npm run dev
-
-# Construcción para producción
-npm run build
-
-# Iniciar versión de producción
-npm start
+cd src/frontend
+npm run test
 ```
 
-### Imports Absolutos
+Tests implementados para componentes UI (Button, Card), formularios (BlogArticleForm, ProfileForm) y componentes complejos (SideMenu, NavbarLinks).
 
-El proyecto utiliza imports absolutos con aliases específicos para diferentes tipos de módulos, configurados en `tsconfig.json`.
-
-#### Configuración de Paths
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@/contexts/*": ["contexts/*"],
-      "@/components/*": ["components/*"],
-      "@/styles/*": ["styles/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/lib/*": ["lib/*"]
-    }
-  }
-}
-```
-
-#### Ejemplos de Uso
-
-```typescript
-// Importaciones tradicionales
-import AuthProvider from '../../contexts/AuthContext';
-
-// Importaciones absolutas
-import AuthProvider from '@/contexts/AuthContext';
-import Button from '@/components/ui/Button';
-import useAuth from '@/hooks/useAuth';
-```
-
-Esta configuración permite:
-- Importaciones más limpias y legibles
-- Rutas independientes de la estructura de directorios
-- Mejor mantenibilidad del código
-
-### Comandos Backend
-
+### Backend
 ```bash
-# Activar entorno virtual
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
-
-# Iniciar servidor de desarrollo
-python run.py
-
-# Ejecutar pruebas
+cd src/backend
 python -m pytest
-
-# Migraciones de base de datos
-flask db migrate -m "Descripción del cambio"
-flask db upgrade
-
-# Formatear código
-black .
-isort .
 ```
 
-## Base de Datos
+Incluye tests para autenticación, gestión de usuario y artículos, con base de datos SQLite en memoria.
 
-### Migraciones
+## Arquitectura y Decisiones Técnicas
 
-Cuando realices cambios en los modelos de datos, deberás actualizar la base de datos:
-
-```bash
-# Generar migración
-flask db migrate -m "Descripción del cambio"
-
-# Aplicar migración
-flask db upgrade
-```
-
-### Restaurar a una migración anterior
-
-```bash
-flask db downgrade
-```
+- **JWT en cookies HttpOnly**: Mayor seguridad contra XSS
+- **Editor HTML manual**: Reemplaza TipTap/Quill por solución más estable
+- **fetchWithAuth**: Wrapper para renovación automática de tokens expirados
+- **AdminLayout**: Separación completa de interfaces admin/usuario
+- **Arquitectura de componentes**: Modular y reutilizable
+- **Sistema SEO**: Metadata dinámica con Next.js App Router
 
 ## Despliegue
 
-### Consideraciones para Despliegue
-
-#### Frontend
-El frontend desarrollado con Next.js puede desplegarse en múltiples plataformas, incluyendo:
-- Vercel (recomendado por integración nativa)
+### Frontend
+El frontend de Next.js puede desplegarse en:
+- Vercel (recomendado)
 - Netlify
-- Cloudflare Pages
 - AWS Amplify
-- Otras plataformas de hosting para aplicaciones JAMstack
 
-Aspectos clave a considerar:
-- Configurar variables de entorno
-- Establecer scripts de build
-- Definir configuraciones de entorno (desarrollo/producción)
-
-#### Backend
-El backend basado en Flask es compatible con diversos servicios de hosting:
-- Plataformas de contenedores: Docker
-- Servicios de PaaS: 
-  - Heroku
-  - DigitalOcean App Platform
-  - Railway
-  - Render
-- Servicios de computación en la nube:
-  - AWS EC2
-  - Google Cloud Run
-  - Azure App Service
-
-Puntos importantes para el despliegue:
-- Gestionar dependencias con `requirements.txt`
-- Configurar variables de entorno seguras
-- Preparar scripts de inicialización
-- Considerar escalabilidad y rendimiento
-- Implementar estrategias de migración de base de datos
-
-La elección dependerá de:
-- Necesidades específicas del proyecto
-- Presupuesto
-- Conocimientos del equipo
-- Requisitos de escalabilidad
-
-## CI/CD con GitHub Actions
-
-### Backend Tests
-
-El proyecto incluye un workflow de GitHub Actions para ejecutar pruebas automatizadas en el backend:
-
-- El workflow se activa en cada push y pull request a la rama principal
-- Configura un entorno Python y ejecuta todas las pruebas del backend
-- Verifica que todos los tests pasen antes de permitir la integración de cambios
-
-Para ver el estado de las ejecuciones de CI, visita la pestaña "Actions" en tu repositorio de GitHub.
-
-## Personalización
-
-### Tema UI
-
-El tema de la interfaz de usuario se puede personalizar en:
-
-- `tailwind.config.js` para configuración de colores
-- `app/styles/globals.css` para estilos globales
-
-### Configuración del Backend
-
-La configuración del backend se puede ajustar en el archivo `backend/config.py`.
-
-## Solución de Problemas Comunes
-
-### Error de conexión a la base de datos
-
-Verifica que PostgreSQL esté en ejecución y que las credenciales en el archivo `.env` sean correctas.
-
-### Errores de CORS
-
-Si experimentas problemas de CORS, verifica la configuración en `backend/app/__init__.py`.
-
-### Errores de JWT
-
-Asegúrate de que `JWT_SECRET_KEY` esté correctamente configurado y que los tokens no hayan expirado.
-
-### Fallos en los tests
-
-Si los tests fallan en GitHub Actions pero pasan localmente, verifica:
-
-- Diferencias en versiones de dependencias
-- Configuración de variables de entorno en el workflow
-- Posibles problemas de compatibilidad entre sistemas operativos
+### Backend
+El backend Flask funciona en:
+- Railway
+- Render
+- DigitalOcean App Platform
+- VPS tradicional con Docker
 
 ## Contribución
 
-Las contribuciones son bienvenidas. Por favor:
-
-1. Haz fork del repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/amazing-feature`)
-3. Realiza tus cambios y haz commit (`git commit -m 'Add some amazing feature'`)
-4. Push a la rama (`git push origin feature/amazing-feature`)
-5. Abre un Pull Request
+1. Fork del repositorio
+2. Crear rama de funcionalidad (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit de cambios (`git commit -m 'Añadir nueva funcionalidad'`)
+4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
+5. Abrir Pull Request
 
 ## Licencia
 
-MIT
+MIT - Nelson Valero Barcelona
