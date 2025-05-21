@@ -112,3 +112,26 @@ def test_request_email_change_and_confirm(mock_send, client, app):
         updated_user = db.session.get(User, user_id)
         assert updated_user.email == "new@example.com"
 
+@patch("app.api.account.send_email_with_limit", return_value={"success": True})
+def test_update_profile_success(mock_send, client, app):
+    with app.app_context():
+        user = User(username="update_me", email="me@example.com")
+        user.set_password("mypassword")
+        db.session.add(user)
+        db.session.commit()
+        user_id = user.id
+
+    login = client.post("/api/auth/login", json={"email": "me@example.com", "password": "mypassword"})
+    csrf_token = login.json["csrf_token"]
+
+    res = client.put("/api/account/update-profile", json={
+        "name": "NuevoNombre",
+        "email": "me@example.com",
+        "current_password": "mypassword"
+    }, headers={"X-CSRF-TOKEN": csrf_token})
+    assert res.status_code == 200
+    assert "actualizado" in res.json["msg"].lower()
+
+def test_update_profile_options(client):
+    res = client.options("/api/account/update-profile")
+    assert res.status_code == 200

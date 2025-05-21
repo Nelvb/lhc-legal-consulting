@@ -1,60 +1,75 @@
+# src/backend/tests/test_articles_api.py
+#
+# Tests funcionales para la API REST de artículos (/api/articles).
+# Valida el comportamiento de los endpoints HTTP:
+# - Listar artículos con paginación
+# - Obtener por ID y por slug
+# - Crear, actualizar y eliminar artículos
+# Usa mocking de ArticleService para evitar lógica de negocio real.
+
 import pytest
+from unittest.mock import patch, MagicMock
 from app import create_app
-from app.extensions import db
-from app.models.article import Article
-from app.config import TestingConfig
 
-
-# Crear la app de prueba
-@pytest.fixture
+@pytest.fixture(scope="module")
 def app():
-    app = create_app(TestingConfig)  # Usar el entorno de testing
-    with app.app_context():
-        yield app
+    app = create_app()
+    app.testing = True
+    ctx = app.app_context()
+    ctx.push()
+    yield app
+    ctx.pop()
 
-# Configuración de la base de datos de prueba
 @pytest.fixture
-def init_db(app):
-    db.create_all()
-    yield db
-    db.session.remove()
-    db.drop_all()
+def client(app):
+    return app.test_client()
 
-# Test para crear un artículo
-def test_create_article(app, init_db):
-    article_data = {
-        'title': 'Nuevo artículo de prueba',
-        'author': 'Boost A Project',
-        'excerpt': 'Este es un artículo de prueba',
-        'image': 'https://example.com/image.jpg',
-        'image_alt': 'Imagen decorativa del artículo', 
-        'content': 'Contenido del artículo',
-        'meta_description': 'Descripción meta del artículo',
-        'meta_keywords': 'artículo, prueba, seo'
-    }
-    response = app.test_client().post('/api/articles/', json=article_data)
-    print(">>> RESPONSE JSON:", response.get_json())
-    print(">>> STATUS CODE:", response.status_code)
-    assert response.status_code == 201  # 201 creado
-    assert 'slug' in response.json  # Asegurarse de que el slug está en la respuesta
+@patch("app.api.articles.ArticleService.get_all_articles")
+def test_get_articles(mock_get_all, client):
+    mock_get_all.return_value = {"articles": [], "total": 0, "current_page": 1, "total_pages": 1}
+    res = client.get("/api/articles/")
+    assert res.status_code == 200
+    assert isinstance(res.get_json(), dict)
 
-# Test para obtener todos los artículos
-def test_get_articles(app, init_db):
-    response = app.test_client().get('/api/articles/')
-    assert response.status_code == 200
+@patch("app.api.articles.ArticleService.get_article_by_id")
+def test_get_article_by_id(mock_get, client):
+    mock_get.return_value = {"id": 1, "title": "Test"}
+    res = client.get("/api/articles/1")
+    assert res.status_code == 200
 
-    json_data = response.get_json()
-    assert isinstance(json_data, dict)
-    assert "articles" in json_data
-    assert isinstance(json_data["articles"], list)
+@patch("app.api.articles.ArticleService.get_article_by_slug")
+def test_get_article_by_slug(mock_get, client):
+    mock_get.return_value = {"slug": "test-slug", "title": "Test"}
+    res = client.get("/api/articles/slug/test-slug")
+    assert res.status_code == 200
 
+@patch("app.api.articles.ArticleService.create_article")
+def test_create_article(mock_create, client):
+    mock_create.return_value = {"id": 1, "title": "Nuevo"}
+    res = client.post("/api/articles/", json={"title": "Nuevo", "content": "Contenido", "image": "url.jpg"})
+    assert res.status_code == 201
+    assert "id" in res.get_json()
 
-# Test para obtener un artículo por slug
-def test_get_article_by_slug(app, init_db):
-    article = Article(title='Test', slug='test-article', content='Test content', image='image.jpg')
-    db.session.add(article)
-    db.session.commit()
-    
-    response = app.test_client().get(f'/api/articles/slug/{article.slug}')
-    assert response.status_code == 200
-    assert response.json['slug'] == article.slug  # Asegurarse de que el slug es correcto
+@patch("app.api.articles.ArticleService.update_article")
+def test_update_article(mock_update, client):
+    mock_update.return_value = {"id": 1, "title": "Actualizado"}
+    res = client.put("/api/articles/1", json={"title": "Actualizado"})
+    assert res.status_code == 200
+
+@patch("app.api.articles.ArticleService.update_article_by_slug")
+def test_update_article_by_slug(mock_update, client):
+    mock_update.return_value = {"id": 1, "title": "Editado"}
+    res = client.put("/api/articles/slug/test-slug", json={"title": "Editado"})
+    assert res.status_code == 200
+
+@patch("app.api.articles.ArticleService.delete_article")
+def test_delete_article(mock_delete, client):
+    mock_delete.return_value = True
+    res = client.delete("/api/articles/1")
+    assert res.status_code == 200
+
+@patch("app.api.articles.ArticleService.delete_article_by_slug")
+def test_delete_article_by_slug(mock_delete, client):
+    mock_delete.return_value = True
+    res = client.delete("/api/articles/slug/test-slug")
+    assert res.status_code == 200

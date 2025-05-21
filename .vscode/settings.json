@@ -1,5 +1,11 @@
 {
     "workbench.editorAssociations": {
         "*.md": "vscode.markdown.preview.editor"
+    },
+    // Configuración local de VS Code para este proyecto.
+    // Se fuerza a tratar el archivo Alembic README como texto plano
+    // para evitar que Pylance lo analice como Python y dé errores falsos.
+    "files.associations": {
+        "**/migrations/README": "plaintext"
     }
 }
