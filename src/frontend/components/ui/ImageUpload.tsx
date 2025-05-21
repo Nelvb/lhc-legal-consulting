@@ -1,98 +1,103 @@
-'use client'
+/**
+ * Componente ImageUpload
+ *
+ * Encargado de gestionar la subida de imágenes desde el panel de administración:
+ * - Permite seleccionar archivo manualmente o mediante arrastrar y soltar
+ * - Muestra vista previa de la imagen seleccionada
+ * - Sube la imagen al backend usando el servicio `uploadImage` con protección JWT/CSRF
+ * - Permite reemplazar imagen una vez subida
+ *
+ * Compatible con valores iniciales (modo edición) y pensado para formularios del blog u otros contenidos multimedia.
+ */
 
-import React, { useRef, useState, useEffect } from 'react'
+'use client';
+
+import React, { useRef, useState, useEffect } from 'react';
+import { uploadImage } from '@/lib/api/imageService';
 
 interface ImageUploadProps {
-  onImageUpload: (imageUrl: string) => void
-  initialImage?: string
+  onImageUpload: (imageUrl: string) => void;
+  initialImage?: string;
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload, initialImage }) => {
-  const [selectedImage, setSelectedImage] = useState<File | null>(null)
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-  const [uploaded, setUploaded] = useState(false)
-  const [isUploading, setIsUploading] = useState(false)
-  const [successMessage, setSuccessMessage] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
-  const [isDragOver, setIsDragOver] = useState(false)
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [uploaded, setUploaded] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isDragOver, setIsDragOver] = useState(false);
 
-  const fileInputRef = useRef<HTMLInputElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (initialImage) {
-      setPreviewUrl(initialImage)
-      setUploaded(true)
+      setPreviewUrl(initialImage);
+      setUploaded(true);
     }
-  }, [initialImage])
+  }, [initialImage]);
 
   const handleFileSelect = (file: File) => {
-    setSelectedImage(file)
-    setPreviewUrl(URL.createObjectURL(file))
-    setUploaded(false)
-    setSuccessMessage('')
-    setErrorMessage('')
-  }
+    setSelectedImage(file);
+    setPreviewUrl(URL.createObjectURL(file));
+    setUploaded(false);
+    setSuccessMessage('');
+    setErrorMessage('');
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      handleFileSelect(e.target.files[0])
+      handleFileSelect(e.target.files[0]);
     }
-  }
+  };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    setIsDragOver(false)
+    e.preventDefault();
+    setIsDragOver(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFileSelect(e.dataTransfer.files[0])
+      handleFileSelect(e.dataTransfer.files[0]);
     }
-  }
+  };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    setIsDragOver(true)
-  }
+    e.preventDefault();
+    setIsDragOver(true);
+  };
 
   const handleDragLeave = () => {
-    setIsDragOver(false)
-  }
+    setIsDragOver(false);
+  };
 
   const handleImageUpload = async () => {
-    if (!selectedImage || uploaded) return
+    if (!selectedImage || uploaded) return;
 
-    const formData = new FormData()
-    formData.append('image', selectedImage)
+    const formData = new FormData();
+    formData.append('image', selectedImage);
 
     try {
-      setIsUploading(true)
-      setErrorMessage('')
-      const response = await fetch('/api/images/upload', {
-        method: 'POST',
-        body: formData,
-      })
-
-      if (response.ok) {
-        const data = await response.json()
-        onImageUpload(data.image.url)
-        setUploaded(true)
-        setSuccessMessage('Imagen subida con éxito')
-      } else {
-        setErrorMessage('Error al subir la imagen')
-      }
-    } catch {
-      setErrorMessage('Error al subir la imagen')
+      setIsUploading(true);
+      setErrorMessage('');
+      const imageUrl = await uploadImage(formData);
+      onImageUpload(imageUrl);
+      setUploaded(true);
+      setSuccessMessage('Imagen subida con éxito');
+    } catch (error) {
+      console.error('Error en handleImageUpload:', error);
+      setErrorMessage('Error al subir la imagen');
     } finally {
-      setIsUploading(false)
+      setIsUploading(false);
     }
-  }
+  };
 
   const handleReplaceImage = () => {
-    setSelectedImage(null)
-    setPreviewUrl(null)
-    setUploaded(false)
-    setSuccessMessage('')
-    setErrorMessage('')
-    fileInputRef.current?.click()
-  }
+    setSelectedImage(null);
+    setPreviewUrl(null);
+    setUploaded(false);
+    setSuccessMessage('');
+    setErrorMessage('');
+    fileInputRef.current?.click();
+  };
 
   return (
     <div className="space-y-4">
@@ -152,7 +157,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload, initialImage }
       {errorMessage && <p className="text-red-600 text-sm font-medium">{errorMessage}</p>}
       {successMessage && <p className="text-green-600 text-sm font-medium">{successMessage}</p>}
     </div>
-  )
-}
+  );
+};
 
-export default ImageUpload
+export default ImageUpload;

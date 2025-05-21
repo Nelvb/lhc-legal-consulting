@@ -4,6 +4,8 @@
  * Usa JWT con cookies seguras e incluye control de errores.
  */
 
+import { fetchWithAuth } from "@/lib/utils/fetchWithAuth";
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 if (!API_BASE_URL) {
@@ -89,9 +91,8 @@ export const authService = {
      * Obtiene el perfil del usuario autenticado (requiere cookie JWT).
      */
     profile: async () => {
-        const response = await fetch(`${API_BASE_URL}/auth/profile`, {
+        const response = await fetchWithAuth(`${API_BASE_URL}/auth/profile`, {
             method: "GET",
-            credentials: "include",
         });
 
         const data = await response.json();

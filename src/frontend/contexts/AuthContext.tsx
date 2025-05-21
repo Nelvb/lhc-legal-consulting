@@ -1,10 +1,17 @@
 /**
- * Contexto de autenticación: gestiona el estado global de autenticación
- * Proporciona funciones para login, registro y logout de usuarios
- * Persiste el estado de autenticación usando localStorage y sincroniza entre pestañas
+ * Contexto de autenticación global para el frontend.
+ *
+ * Este provider gestiona:
+ * - Login, registro y logout de usuarios (con cookies HttpOnly)
+ * - Almacenamiento del usuario en localStorage
+ * - Sincronización automática entre pestañas
+ * - Refresco del perfil desde el backend (/auth/profile)
+ *
+ * Las funciones están delegadas al servicio `authService` y utilizan `fetchWithAuth` cuando es necesario.
+ * Este archivo sigue arquitectura limpia y es compatible con rutas protegidas, SSR y futuras extensiones.
  */
 
-"use client";
+'use client';
 
 import React, {
   createContext,
@@ -13,20 +20,19 @@ import React, {
   useEffect,
   ReactNode,
   useCallback,
-} from "react";
-import { useRouter } from "next/navigation";
-import { authService } from "@/lib/api";
+} from 'react';
+import { useRouter } from 'next/navigation';
+import { authService } from '@/lib/api/authService';
+import { fetchWithAuth } from '@/lib/utils/fetchWithAuth';
 
-// Definimos el tipo de usuario
 interface User {
   id: string;
   name: string;
   email: string;
   is_admin?: boolean;
-  [key: string]: any; // Para cualquier propiedad adicional que pueda tener el usuario
+  [key: string]: any;
 }
 
-// Definimos la interfaz del contexto
 interface AuthContextType {
   user: User | null;
   loading: boolean;
@@ -42,15 +48,12 @@ interface AuthContextType {
   refreshUser: () => Promise<void>;
 }
 
-// Creamos el contexto con un valor por defecto
 const AuthContext = createContext<AuthContextType | null>(null);
 
-// Props para el provider
 interface AuthProviderProps {
   children: ReactNode;
 }
 
-// Provider que contendrá la lógica de autenticación
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -58,32 +61,21 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authChecked, setAuthChecked] = useState<boolean>(false);
   const router = useRouter();
 
-  // Función para verificar autenticación (memoizada para evitar recreación)
   const checkAuth = useCallback(() => {
     try {
-      const storedUser = localStorage.getItem("user");
-      const token = localStorage.getItem("token");
-
-      console.log("AuthContext - Verificando auth:", {
-        storedUser: !!storedUser,
-        token: !!token,
-      });
+      const storedUser = localStorage.getItem('user');
+      const token = localStorage.getItem('token');
 
       if (storedUser) {
         const parsedUser = JSON.parse(storedUser);
         setUser(parsedUser);
-        console.log(
-          "AuthContext - Usuario cargado desde localStorage:",
-          parsedUser
-        );
       } else {
         setUser(null);
-        console.log("AuthContext - No hay usuario en localStorage");
       }
     } catch (error) {
-      console.error("AuthContext - Error al verificar autenticación:", error);
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
+      console.error('AuthContext - Error al verificar autenticación:', error);
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
       setUser(null);
     } finally {
       setLoading(false);
@@ -91,59 +83,40 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   }, []);
 
-  // Efecto para cargar el usuario cuando se monta el componente
   useEffect(() => {
-    console.log("AuthContext - Iniciando verificación de autenticación");
     checkAuth();
 
-    // Escuchar cambios en localStorage (para sincronizar entre pestañas)
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === "token" || e.key === "user") {
-        console.log("AuthContext - Cambio detectado en localStorage:", e.key);
+      if (e.key === 'token' || e.key === 'user') {
         checkAuth();
       }
     };
 
-    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener('storage', handleStorageChange);
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener('storage', handleStorageChange);
     };
   }, [checkAuth]);
 
-  // Log cuando cambia el usuario
-  useEffect(() => {
-    console.log("AuthContext - Estado actualizado de user:", user);
-  }, [user]);
-
-  // Función para iniciar sesión
   const login = async (credentials: { email: string; password: string }) => {
-    console.log("AuthContext - Intentando login con:", credentials.email);
     setLoading(true);
     setError(null);
 
     try {
       const data = await authService.login(credentials);
-
-      // Guardar solo el usuario (el token ya está en cookie)
-      localStorage.setItem("user", JSON.stringify(data.user));
-
-      console.log("AuthContext - Login exitoso:", data.user);
-      setUser(data.user);
-
-      // Primero actualizar el estado, luego navegar
+      localStorage.setItem('user', JSON.stringify(data.user));
       setUser(data.user);
 
       if (data.user?.is_admin) {
-        router.push("/admin");
+        router.push('/admin');
       } else {
-        router.push("/dashboard");
+        router.push('/dashboard');
       }
 
       return data;
     } catch (error) {
       const errorMsg =
-        error instanceof Error ? error.message : "Error desconocido";
-      console.error("AuthContext - Error en login:", errorMsg);
+        error instanceof Error ? error.message : 'Error desconocido';
       setError(errorMsg);
       throw error;
     } finally {
@@ -151,34 +124,24 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  // Función para registrarse
   const signup = async (userData: {
     username: string;
     email: string;
     password: string;
   }) => {
-    console.log("AuthContext - Intentando registro con:", userData.email);
     setLoading(true);
     setError(null);
 
     try {
-      // Registrar al usuario
       const data = await authService.signup(userData);
-      console.log(
-        "AuthContext - Registro exitoso, intentando login automático"
-      );
-
-      // Iniciar sesión automáticamente después del registro
       await login({
         email: userData.email,
         password: userData.password,
       });
-
       return data;
     } catch (error) {
       const errorMsg =
-        error instanceof Error ? error.message : "Error desconocido";
-      console.error("AuthContext - Error en registro:", errorMsg);
+        error instanceof Error ? error.message : 'Error desconocido';
       setError(errorMsg);
       throw error;
     } finally {
@@ -186,51 +149,41 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  // Función para cerrar sesión
   const logout = async () => {
-    console.log("AuthContext - Ejecutando logout...");
-
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
-        method: "POST",
-        credentials: "include", // Para que la cookie se envíe
-      });
-
-      console.log("AuthContext - Cookie eliminada correctamente");
+      await authService.logout();
     } catch (error) {
-      console.error("AuthContext - Error al llamar a /logout:", error);
+      console.error('AuthContext - Error en logout:', error);
     }
 
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     setUser(null);
-    router.push("/");
+    router.push('/');
   };
 
-  // Función para refrescar los datos del usuario desde el backend
   const refreshUser = async () => {
-    console.log("AuthContext - Refrescando usuario desde /auth/profile...");
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/profile`, {
-        credentials: "include", // Enviar cookies
-      });
+      const response = await fetchWithAuth(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/profile`,
+        {
+          method: 'GET',
+        }
+      );
 
       if (!response.ok) {
-        throw new Error("Error al obtener perfil actualizado");
+        throw new Error('Error al obtener perfil actualizado');
       }
 
       const updatedUser = await response.json();
-      localStorage.setItem("user", JSON.stringify(updatedUser));
+      localStorage.setItem('user', JSON.stringify(updatedUser));
       setUser(updatedUser);
-      console.log("AuthContext - Usuario actualizado:", updatedUser);
     } catch (err) {
-      console.error("AuthContext - Error al refrescar usuario:", err);
+      console.error('AuthContext - Error al refrescar usuario:', err);
     }
   };
 
-
-  // Valor del contexto que se proporcionará
-  const value = {
+  const value: AuthContextType = {
     user,
     loading,
     error,
@@ -244,11 +197,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-// Hook personalizado para usar el contexto
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth debe ser usado dentro de un AuthProvider");
+    throw new Error('useAuth debe ser usado dentro de un AuthProvider');
   }
   return context;
 };

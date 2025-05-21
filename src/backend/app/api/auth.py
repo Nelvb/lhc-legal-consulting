@@ -1,15 +1,17 @@
-# API de autenticación: login, registro, logout y perfil de usuario.
+# API de autenticación: login, registro, logout, perfil y renovación de token.
 # Usa JWT almacenado en cookies HttpOnly con protección CSRF.
-# Permite registrar nuevos usuarios, iniciar sesión, cerrar sesión y obtener datos del perfil.
-# Rutas públicas: /signup, /login, /logout
+# Permite registrar nuevos usuarios, iniciar sesión, cerrar sesión, renovar el access_token y obtener datos del perfil.
+# Rutas públicas: /signup, /login, /logout, /refresh
 # Ruta protegida: /profile
 
 from flask import Blueprint, jsonify, request, make_response
 from flask_jwt_extended import (
     create_access_token,
+    create_refresh_token,
     get_jwt_identity,
     jwt_required,
     set_access_cookies,
+    set_refresh_cookies,
     unset_jwt_cookies,
     get_csrf_token,
 )
@@ -19,7 +21,7 @@ from app.extensions import db
 from app.models.user import User
 from app.schemas import user_schema
 from flask import current_app as app
-from flask_cors import cross_origin  # Importación para control CORS por ruta
+from flask_cors import cross_origin
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -57,7 +59,7 @@ def signup():
 @auth_bp.route("/login", methods=["POST"])
 @cross_origin(supports_credentials=True, origins=["http://localhost:3000"])
 def login():
-    """Inicio de sesión. Devuelve JWT en cookie HttpOnly + token CSRF en respuesta."""
+    """Inicio de sesión. Devuelve JWT (access + refresh) en cookies HttpOnly + token CSRF."""
     try:
         data = request.get_json()
         email = data.get("email", "").strip()
@@ -75,6 +77,7 @@ def login():
             additional_claims={"role": "admin" if user.is_admin else "user"},
             expires_delta=timedelta(seconds=app.config["JWT_ACCESS_TOKEN_EXPIRES"])
         )
+        refresh_token = create_refresh_token(identity=str(user.id))
 
         response = make_response(jsonify({
             "msg": "Inicio de sesión exitoso",
@@ -83,10 +86,34 @@ def login():
         }), 200)
 
         set_access_cookies(response, access_token)
+        set_refresh_cookies(response, refresh_token)
         return response
 
     except Exception as e:
         return jsonify({"msg": f"Error: {str(e)}"}), 500
+
+@auth_bp.route("/refresh", methods=["POST"])
+@cross_origin(supports_credentials=True, origins=["http://localhost:3000"])
+@jwt_required(refresh=True, locations=["cookies"])
+def refresh():
+    """Renueva el access_token usando el refresh_token. Devuelve nuevo CSRF."""
+    try:
+        user_id = get_jwt_identity()
+        access_token = create_access_token(
+            identity=user_id,
+            expires_delta=timedelta(seconds=app.config["JWT_ACCESS_TOKEN_EXPIRES"])
+        )
+
+        response = make_response(jsonify({
+            "msg": "Token renovado correctamente",
+            "csrf_token": get_csrf_token(access_token)
+        }), 200)
+
+        set_access_cookies(response, access_token)
+        return response
+
+    except Exception as e:
+        return jsonify({"msg": f"Error al renovar token: {str(e)}"}), 500
 
 @auth_bp.route("/logout", methods=["POST"])
 @cross_origin(supports_credentials=True, origins=["http://localhost:3000"])

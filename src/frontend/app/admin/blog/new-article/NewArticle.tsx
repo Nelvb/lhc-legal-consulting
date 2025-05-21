@@ -1,40 +1,34 @@
+/**
+ * Página para crear un nuevo artículo en el panel de administración del blog.
+ *
+ * Esta vista utiliza el componente BlogArticleForm para recoger los datos del nuevo artículo.
+ * La lógica de creación se delega a blogService.ts con protección JWT y CSRF vía fetchWithAuth.
+ * 
+ * En el futuro puede adaptarse a edición activando `isEditMode` con lógica adicional si se requiere.
+ */
+
 'use client'
 
 import React, { useState } from 'react'
 import BlogArticleForm from '@/components/admin/blog/BlogArticleForm'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
+import { createArticle, updateArticleBySlug } from '@/lib/blogService'
 
 const NewArticle = () => {
-  const [isEditMode, setIsEditMode] = useState(false) // Suponiendo que se pasa el estado para edición si es necesario.
+  const [isEditMode, setIsEditMode] = useState(false) // En esta vista, siempre es false por ahora
 
   const handleSubmit = async (articleData: any) => {
     try {
-      const response = isEditMode
-        ? await fetch(`/api/articles/${articleData.slug}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(articleData),
-          })
-        : await fetch('/api/articles/', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(articleData),
-          })
-
-      if (response.ok) {
-        alert(isEditMode ? 'Artículo actualizado correctamente' : 'Artículo creado correctamente')
+      if (isEditMode) {
+        await updateArticleBySlug(articleData.slug, articleData)
       } else {
-        const errorData = await response.json()
-        alert(`Error al ${isEditMode ? 'actualizar' : 'crear'} el artículo: ${errorData.message}`)
+        await createArticle(articleData)
       }
-    } catch (error) {
+      alert(isEditMode ? 'Artículo actualizado correctamente' : 'Artículo creado correctamente')
+    } catch (error: any) {
       console.error('Error al enviar los datos:', error)
-      alert('Error al guardar el artículo. Por favor, intenta nuevamente.')
+      alert(`Error al ${isEditMode ? 'actualizar' : 'crear'} el artículo: ${error.message}`)
     }
   }
 

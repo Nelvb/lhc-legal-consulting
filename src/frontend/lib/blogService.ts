@@ -8,6 +8,7 @@
  * @module blogService
  */
 
+import { fetchWithAuth } from "@/lib/utils/fetchWithAuth";
 import { Article } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
@@ -54,16 +55,16 @@ export async function getArticles({
   try {
     let url = `${API_URL}/articles?page=${page}&limit=${limit}`;
     console.log('URL de la petición:', url);
-    
+
     if (category) url += `&category=${encodeURIComponent(category)}`;
     if (search) url += `&search=${encodeURIComponent(search)}`;
-    
+
     const response = await fetch(url);
-    
+
     if (!response.ok) {
       throw new Error(`Error obteniendo artículos: ${response.status}`);
     }
-    
+
     const data = await response.json();
     return {
       articles: data.articles || [],
@@ -88,14 +89,14 @@ export async function getArticles({
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   try {
     const response = await fetch(`${API_URL}/articles/slug/${slug}`);
-    
+
     if (!response.ok) {
       if (response.status === 404) {
         return null;
       }
       throw new Error(`Error obteniendo artículo: ${response.status}`);
     }
-    
+
     const data = await response.json();
     return data;
   } catch (error) {
@@ -110,11 +111,11 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 export async function getRelatedArticles(slug: string, limit: number = 3): Promise<Article[]> {
   try {
     const response = await fetch(`${API_URL}/articles/related/${slug}?limit=${limit}`);
-    
+
     if (!response.ok) {
       throw new Error(`Error obteniendo artículos relacionados: ${response.status}`);
     }
-    
+
     const data = await response.json();
     return data.articles || [];
   } catch (error) {
@@ -129,11 +130,11 @@ export async function getRelatedArticles(slug: string, limit: number = 3): Promi
 export async function getFeaturedArticles(limit: number = 4): Promise<Article[]> {
   try {
     const response = await fetch(`${API_URL}/articles/featured?limit=${limit}`);
-    
+
     if (!response.ok) {
       throw new Error(`Error obteniendo artículos destacados: ${response.status}`);
     }
-    
+
     const data = await response.json();
     return data.articles || [];
   } catch (error) {
@@ -175,15 +176,15 @@ export async function getArticleTitles(): Promise<ArticleListItem[]> {
 export async function getStaticArticles(): Promise<ArticleListItem[]> {
   try {
     const response = await fetch(`${API_URL}/articles/static-articles`);
-    
+
     if (!response.ok) {
       throw new Error(`Error obteniendo artículos estáticos: ${response.status}`);
     }
-    
+
     const data = await response.json();
-    return data.map((a: any) => ({ 
-      title: a.title, 
-      slug: a.slug 
+    return data.map((a: any) => ({
+      title: a.title,
+      slug: a.slug
     }));
   } catch (error) {
     console.error("Error en getStaticArticles:", error);
@@ -196,7 +197,7 @@ export async function getStaticArticles(): Promise<ArticleListItem[]> {
  */
 export async function deleteArticleBySlug(slug: string): Promise<void> {
   try {
-    const response = await fetch(`${API_URL}/articles/slug/${slug}`, {
+    const response = await fetchWithAuth(`${API_URL}/articles/slug/${slug}`, {
       method: 'DELETE',
     });
 
@@ -209,6 +210,7 @@ export async function deleteArticleBySlug(slug: string): Promise<void> {
   }
 }
 
+
 /**
  * Actualiza un artículo existente utilizando su slug como identificador.
  * 
@@ -220,7 +222,7 @@ export async function deleteArticleBySlug(slug: string): Promise<void> {
  * @throws Error si la petición falla o el backend devuelve un mensaje de error
  */
 export async function updateArticleBySlug(slug: string, articleData: any): Promise<void> {
-  const response = await fetch(`${API_URL}/articles/slug/${slug}`, {
+  const response = await fetchWithAuth(`${API_URL}/articles/slug/${slug}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -231,5 +233,27 @@ export async function updateArticleBySlug(slug: string, articleData: any): Promi
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.message || 'Error al actualizar el artículo');
+  }
+}
+
+/**
+ * Crea un nuevo artículo en la base de datos
+ *
+ * Utilizado en la vista de creación de artículos del panel de administración.
+ * Envía una solicitud POST al backend con los datos del nuevo artículo.
+ *
+ * @param articleData - Objeto con los campos del nuevo artículo (título, contenido, imagen, etc.)
+ * @throws Error si la petición falla o el backend devuelve un mensaje de error
+ */
+export async function createArticle(articleData: any): Promise<void> {
+  const response = await fetchWithAuth(`${API_URL}/articles/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(articleData),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Error al crear el artículo');
   }
 }
