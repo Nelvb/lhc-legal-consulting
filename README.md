@@ -2,6 +2,9 @@
 
 ![Backend Tests](https://github.com/Nelvb/Plataforma-inversion/actions/workflows/backend-tests.yml/badge.svg)
 
+![Coverage](https://img.shields.io/badge/Coverage-91%25-brightgreen)
+
+
 Plataforma web de inversión inmobiliaria diseñada para ofrecer transparencia, documentación clara y acompañamiento personalizado en cada etapa del proceso. Facilita el acceso a oportunidades seleccionadas, enfocándose en la confianza, la seguridad y una experiencia de usuario cuidada.
 
 ## Tecnologías
