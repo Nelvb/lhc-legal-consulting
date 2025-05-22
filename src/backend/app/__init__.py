@@ -5,46 +5,52 @@
 # extensiones, middlewares y rutas (blueprints) registradas.
 # Centraliza toda la configuración para mantener el proyecto organizado y escalable.
 
-from app.api.auth import auth_bp               # Blueprint de autenticación (login, registro, logout)
-from app.api.users import users_bp             # Blueprint para gestión de usuarios
-from app.api.routes import routes               # Blueprint para rutas generales o raíz del API
-from app.api.articles import articles_bp        # Blueprint para gestión de artículos dinámicos en BD
-from app.api.images import images_bp             # Blueprint para gestión de imágenes (subida, borrado)
-from app.api.account import account_bp           # Blueprint para funcionalidades de cuenta (recuperación, cambio email)
-from app.config import DevelopmentConfig         # Configuración base para entorno de desarrollo
-from app.extensions import (                      # Extensiones Flask usadas en el proyecto
-    cors, db, init_app, jwt, ma, migrate,
-)
-from app.services.image_service import ImageService  # Servicio para integración con Cloudinary
 from flask import Flask
+from flask_cors import CORS
+from app.api.auth import auth_bp
+from app.api.users import users_bp
+from app.api.routes import routes
+from app.api.articles import articles_bp
+from app.api.images import images_bp
+from app.api.account import account_bp
+from app.config import DevelopmentConfig
+from app.extensions import cors, db, init_app, jwt, ma, migrate
+from app.services.image_service import ImageService
 
 def create_app(config_object=DevelopmentConfig):
     """
     Función fábrica para crear la aplicación Flask.
     - Carga configuración según entorno.
-    - Inicializa extensiones (BD, JWT, CORS, migraciones, etc.).
+    - Inicializa extensiones (DB, JWT, CORS, migraciones, etc.).
     - Inicializa Cloudinary para subir imágenes.
-    - Registra todos los blueprints con sus prefijos de ruta.
-    - Devuelve la instancia de la app lista para ejecutar o testear.
+    - Registra todos los blueprints.
+    - Devuelve la app lista para ejecutarse.
     """
 
-    # Crear la instancia de Flask
+    # Crear la instancia Flask
     app = Flask(__name__)
 
-    # Cargar configuración desde el objeto de configuración
+    # Cargar configuración según entorno
     app.config.from_object(config_object)
 
-    # Establecer clave JWT si no está configurada (solo desarrollo)
-    if not app.config.get("JWT_SECRET_KEY"):
-        app.config["JWT_SECRET_KEY"] = "development-key-not-for-production"
+    # Configuración global de CORS para el frontend (Next.js en localhost:3000)
+    CORS(app, resources={
+        r"/api/*": {
+            "origins": ["http://localhost:3000"],
+            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+            "allow_headers": ["Content-Type", "Authorization", "X-CSRF-TOKEN"],
+            "supports_credentials": True,
+            "expose_headers": ["Content-Type", "X-CSRFToken"],
+        }
+    }, supports_credentials=True)
 
-    # Inicializar todas las extensiones (db, jwt, cors, migraciones, etc.)
+    # Inicializar extensiones (db, jwt, mail, etc.)
     init_app(app)
 
-    # Inicializar configuración y credenciales de Cloudinary para imágenes
+    # Inicializar Cloudinary para imágenes
     ImageService.init_cloudinary(app)
 
-    # Registrar blueprints de la API con sus rutas base (url_prefix)
+    # Registrar blueprints
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(users_bp, url_prefix="/api/users")
     app.register_blueprint(routes, url_prefix="/api")
@@ -52,5 +58,4 @@ def create_app(config_object=DevelopmentConfig):
     app.register_blueprint(images_bp, url_prefix="/api/images")
     app.register_blueprint(account_bp, url_prefix="/api/account")
 
-    # Retornar la app Flask configurada
     return app

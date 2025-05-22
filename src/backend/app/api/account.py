@@ -6,16 +6,26 @@
 # Se aplica CORS a nivel de blueprint para permitir acceso desde frontend (Next.js).
 
 from flask import Blueprint, request, jsonify, current_app
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity, verify_jwt_in_request
 from flask_cors import CORS
+from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
+
 from app.extensions import db
 from app.models.user import User
-from app.schemas import user_schema
+from app.schemas.contact_schema import ContactSchema
 from app.services.email_service import send_email_with_limit
-from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
 
 # Definición del blueprint y aplicación de CORS solo a este módulo
 account_bp = Blueprint("account", __name__)
+CORS(account_bp, origins="http://localhost:3000", supports_credentials=True)
+
+@account_bp.before_request
+def debug_request_data():
+    print("🔍 Método:", request.method)
+    print("🔍 Headers:", dict(request.headers))
+    print("🔍 request.data:", request.data)
+    print("🔍 request.get_json(force=True):", request.get_json(force=True, silent=True))
+
 
 
 @account_bp.route("/update-profile", methods=["OPTIONS"])
@@ -205,3 +215,50 @@ def confirm_email_change():
     db.session.commit()
 
     return jsonify({"msg": "Email actualizado correctamente"}), 200
+
+contact_schema = ContactSchema()
+
+@account_bp.route("/contact", methods=["POST"])
+def contact():
+    verify_jwt_in_request(optional=True)
+    try:
+        user_id = get_jwt_identity()
+    except Exception:
+        user_id = None
+
+    data = request.get_json()
+
+    print(">>> DATA RECIBIDA EN CONTACTO:", data)
+
+    errors = contact_schema.validate(data)
+    if errors:
+        print(">>> ERRORES DE VALIDACIÓN:", errors)
+        return jsonify({"errors": errors}), 400
+
+    name = data["name"]
+    email = data.get("email", "no enviado")
+    subject = data["subject"]
+    message = data["message"]
+
+    full_message = (
+        f"Nuevo mensaje desde el formulario de contacto\n\n"
+        f"{'ID usuario: ' + str(user_id) if user_id else 'Usuario no autenticado'}\n"
+        f"Nombre: {name}\n"
+        f"Email: {email}\n"
+        f"Asunto: {subject}\n\n"
+        f"Mensaje:\n{message}"
+    )
+
+    result = send_email_with_limit(
+        subject=f"[Boost A Project] Contacto: {subject}",
+        recipients=[current_app.config.get("MAIL_DEFAULT_RECEIVER") or "bapboostaproject@gmail.com"],
+        body=full_message
+    )
+
+    if result.get("success"):
+        return jsonify({"msg": "Mensaje enviado correctamente"}), 200
+    else:
+        return jsonify({
+            "msg": "No se pudo enviar el mensaje",
+            "error": result.get("error")
+        }), 500
