@@ -163,6 +163,14 @@ cd src/backend
 python -m pytest
 ```
 
+### Ejecutar tests con cobertura
+```bash
+cd src/backend
+coverage run -m pytest
+coverage report -m
+coverage html  # Genera informe visual en htmlcov/index.html
+```
+
 Incluye tests para autenticación, gestión de usuario y artículos, con base de datos SQLite en memoria.
 
 ## Arquitectura y Decisiones Técnicas
