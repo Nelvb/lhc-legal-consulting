@@ -135,3 +135,45 @@ def test_update_profile_success(mock_send, client, app):
 def test_update_profile_options(client):
     res = client.options("/api/account/update-profile")
     assert res.status_code == 200
+
+@patch("app.api.account.send_email_with_limit", return_value={"success": True})
+def test_contact_publico_sin_login(mock_send, client):
+    """Permite enviar un mensaje de contacto sin estar autenticado."""
+    data = {
+        "name": "Cliente Público",
+        "email": "cliente@publico.com",
+        "subject": "Información general",
+        "message": "Hola, me interesa saber más sobre los proyectos activos."
+    }
+
+    response = client.post("/api/account/contact", json=data)
+    assert response.status_code == 200
+    assert response.json["msg"] == "Mensaje enviado correctamente"
+    assert mock_send.called
+
+
+@patch("app.api.account.send_email_with_limit", return_value={"success": True})
+def test_contact_usuario_autenticado(mock_send, client, test_user):
+    """Permite enviar un mensaje de contacto como usuario logueado usando token por cookies."""
+    # Extrae el email y username antes de que se "desvincule"
+    email = test_user["email"]
+    username = test_user["username"]
+
+
+    login = client.post("/api/auth/login", json={
+        "email": email,
+        "password": "password123"
+    })
+    csrf_token = login.json["csrf_token"]
+
+    data = {
+        "name": username,
+        "email": email,
+        "subject": "Consulta personal",
+        "message": "Me gustaría hablar de inversión personalizada."
+    }
+
+    response = client.post("/api/account/contact", json=data, headers={"X-CSRF-TOKEN": csrf_token})
+    assert response.status_code == 200
+    assert response.json["msg"] == "Mensaje enviado correctamente"
+    assert mock_send.called

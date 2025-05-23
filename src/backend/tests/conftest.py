@@ -45,16 +45,15 @@ def _db(app):
 
 @pytest.fixture
 def test_user(app):
-    """Crea un usuario de prueba."""
-    user = User(username="testuser", email="test@example.com")
-    user.set_password("password123")
-
+    """Crea un usuario de prueba y devuelve sus datos planos para evitar errores de sesión."""
     with app.app_context():
+        user = User(username="testuser", email="test@example.com")
+        user.set_password("password123")
         db.session.add(user)
         db.session.commit()
+        return {
+            "id": user.id,
+            "email": user.email,
+            "username": user.username
+        }
 
-    yield user
-
-    with app.app_context():
-        db.session.delete(user)
-        db.session.commit()

@@ -19,14 +19,6 @@ from app.services.email_service import send_email_with_limit
 account_bp = Blueprint("account", __name__)
 CORS(account_bp, origins="http://localhost:3000", supports_credentials=True)
 
-@account_bp.before_request
-def debug_request_data():
-    print("🔍 Método:", request.method)
-    print("🔍 Headers:", dict(request.headers))
-    print("🔍 request.data:", request.data)
-    print("🔍 request.get_json(force=True):", request.get_json(force=True, silent=True))
-
-
 
 @account_bp.route("/update-profile", methods=["OPTIONS"])
 def update_profile_options():
@@ -58,10 +50,6 @@ def update_profile():
     if not user:
         return jsonify({"msg": "Usuario no encontrado"}), 404
 
-    print(">> current_password recibido:", repr(current_password))
-    print(">> hash en BD:", repr(user.password_hash))
-    print(">> resultado check:", user.check_password(current_password))
-
 
     if not user.check_password(current_password):
         return jsonify({"msg": "La contraseña actual no es válida"}), 401
@@ -81,7 +69,7 @@ def update_profile():
         db.session.commit()
     except Exception as e:
         db.session.rollback()
-        print("Error al guardar:", e)
+        current_app.logger.error(f"Error al guardar: {e}")
         return jsonify({"msg": "Error al guardar los cambios"}), 500
 
     return jsonify({"msg": "Perfil actualizado correctamente"}), 200
@@ -114,7 +102,6 @@ def request_password_reset():
         body=f"Haz clic aquí para restablecer tu contraseña: {reset_url}",
     )
 
-    print(">>>> RESULTADO DEL ENVÍO:", result)
     # Mostrar resultado en consola para depuración
     current_app.logger.info(f"Resultado del envío de recuperación: {result}")
 
@@ -228,11 +215,11 @@ def contact():
 
     data = request.get_json()
 
-    print(">>> DATA RECIBIDA EN CONTACTO:", data)
+    current_app.logger.info(f"Datos recibidos en contacto: {data}")
 
     errors = contact_schema.validate(data)
     if errors:
-        print(">>> ERRORES DE VALIDACIÓN:", errors)
+        current_app.logger.warning(f"Errores de validación en contacto: {errors}")
         return jsonify({"errors": errors}), 400
 
     name = data["name"]
