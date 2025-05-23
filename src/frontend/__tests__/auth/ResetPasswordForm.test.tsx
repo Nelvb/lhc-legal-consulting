@@ -91,7 +91,8 @@ describe("ResetPasswordForm", () => {
             });
         });
 
-        expect(screen.getByText(/éxito/i)).toBeInTheDocument();
+        // CORREGIDO: El texto real que muestra el componente
+        expect(screen.getByText(/contraseña restablecida con éxito/i)).toBeInTheDocument();
     });
 
     it("muestra mensaje de error si el servicio falla", async () => {
@@ -113,5 +114,26 @@ describe("ResetPasswordForm", () => {
         expect(
             await screen.findByText(/error al restablecer la contraseña/i)
         ).toBeInTheDocument();
+    });
+
+    it("muestra botón de iniciar sesión tras éxito", async () => {
+        mockResetPassword.mockResolvedValueOnce({});
+
+        render(<ResetPasswordForm />);
+
+        fireEvent.change(screen.getByLabelText(/contraseña nueva/i), {
+            target: { value: "123456" },
+        });
+        fireEvent.change(screen.getByLabelText(/confirmar contraseña/i), {
+            target: { value: "123456" },
+        });
+
+        fireEvent.click(screen.getByRole("button", { name: /restablecer contraseña/i }));
+
+        await waitFor(() => {
+            expect(screen.getByText(/contraseña restablecida con éxito/i)).toBeInTheDocument();
+        });
+
+        expect(screen.getByRole("button", { name: /iniciar sesión/i })).toBeInTheDocument();
     });
 });

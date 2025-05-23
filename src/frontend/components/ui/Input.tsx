@@ -15,6 +15,9 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
+const normalizeLabel = (label: string) =>
+  label.toLowerCase().replace(/[^a-z0-9]/gi, '-');
+
 const Input: React.FC<InputProps> = ({
   id,
   label,
@@ -22,7 +25,8 @@ const Input: React.FC<InputProps> = ({
   error,
   ...props
 }) => {
-  const inputId = id || props.name;
+  const generatedId = label ? `input-${normalizeLabel(label)}` : undefined;
+  const inputId = id || generatedId || props.name;
 
   return (
     <div className="mb-4">

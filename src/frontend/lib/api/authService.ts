@@ -83,7 +83,7 @@ export const authService = {
             }
         } catch (error) {
             console.error("Error al cerrar sesión:", error);
-            // Incluso si hay error, continuar con el proceso de logout local
+            throw error;
         }
     },
 

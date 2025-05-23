@@ -43,19 +43,21 @@ const EditorContentArticle: React.FC<EditorContentArticleProps> = ({ content, on
     <div>
       <div className="border border-gray-300 rounded-md overflow-hidden bg-white">
         <textarea
+          id="editor-content"
           ref={textAreaRef}
           value={rawText}
           onChange={handleChange}
           placeholder="Pega tu artículo aquí..."
           className="w-full h-[600px] p-4 resize-none focus:outline-none"
         />
+
       </div>
 
       <div className="mt-4 bg-gray-50 p-4 rounded-md border border-gray-200">
         <details>
           <summary className="font-medium text-blue-600 cursor-pointer">Ver instrucciones de formato</summary>
           <pre className="mt-2 whitespace-pre-wrap text-sm text-gray-700 bg-white p-3 rounded border border-gray-200 overflow-auto max-h-60">
-{`Guía para redactar correctamente:
+            {`Guía para redactar correctamente:
 
 - Títulos → Escríbelos en negrita (rodea el texto con dobles asteriscos). Empieza con mayúscula, el resto en minúscula. No pongas punto al final.
   Ejemplo: **Tendencias inmobiliarias en 2025**
@@ -85,7 +87,7 @@ const EditorContentArticle: React.FC<EditorContentArticleProps> = ({ content, on
         <details>
           <summary className="font-medium text-green-700 cursor-pointer">Ver prompt sugerido para IA</summary>
           <pre className="mt-2 whitespace-pre-wrap text-sm text-gray-700 bg-white p-3 rounded border border-gray-200 overflow-auto max-h-60">
-{`Necesito un artículo para mi plataforma web de inversión inmobiliaria "Boost A Project" en TEXTO PLANO, siguiendo exactamente estas normas de formato:
+            {`Necesito un artículo para mi plataforma web de inversión inmobiliaria "Boost A Project" en TEXTO PLANO, siguiendo exactamente estas normas de formato:
 
 1. Extensión: Mínimo 1000 palabras, ideal 1500 palabras. El sistema rechazará automáticamente contenido más corto.
 

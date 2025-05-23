@@ -155,7 +155,7 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
 
           {/* CONTENIDO */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Contenido del artículo</label>
+            <label htmlFor="editor-content" className="block text-sm font-medium text-gray-700 mb-2">Contenido del artículo</label>
             <EditorContentArticle content={content} onChange={setContent} />
             <p className="text-xs text-gray-500 mt-3">
               El contenido debe tener al menos 1000 palabras. Puedes pegar desde Word o Google Docs.

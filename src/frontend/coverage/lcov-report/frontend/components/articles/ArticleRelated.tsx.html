@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>8/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -174,26 +174,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,7 +196,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -262,19 +262,19 @@ interface ArticleRelatedProps {
   articles: Article[];
 }
 &nbsp;
-const formatDate = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(d</span>ateString: string): string =&gt; {</span>
-  const date = <span class="cstat-no" title="statement not covered" >new Date(dateString);</span>
-<span class="cstat-no" title="statement not covered" >  return date.toLocaleDateString('es-ES', {</span>
+const formatDate = (dateString: string): string =&gt; {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('es-ES', {
     day: 'numeric',
     month: 'long',
     year: 'numeric'
   });
 };
 &nbsp;
-const ArticleRelated: React.FC&lt;ArticleRelatedProps&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> articles }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  if (!articles || articles.length === 0) <span class="cstat-no" title="statement not covered" >return null;</span></span>
+const ArticleRelated: React.FC&lt;ArticleRelatedProps&gt; = ({ articles }) =&gt; {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!articles || articles.length === 0) <span class="cstat-no" title="statement not covered" >return null;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div className="py-16 bg-gradient-to-t from-[#C2E7DA]/10 to-[#F7FAFF]"&gt;
       &lt;div className="max-w-6xl mx-auto px-4"&gt;
         &lt;h2 className="text-2xl font-bold text-[#1A1341] mb-12 text-center"&gt;
@@ -285,13 +285,13 @@ const ArticleRelated: React.FC&lt;ArticleRelatedProps&gt; = <span class="cstat-n
           className={`grid gap-8 ${
             articles.length === 1
               ? 'grid-cols-1 justify-items-center'
-              : articles.length === 2
+              : <span class="branch-1 cbranch-no" title="branch not covered" >articles.length === 2</span>
               ? 'grid-cols-1 sm:grid-cols-2 justify-items-center sm:justify-items-stretch'
               : 'grid-cols-1 sm:grid-cols-3'
           }`}
         &gt;
-          {articles.map(<span class="fstat-no" title="function not covered" >(a</span>rticle) =&gt; (
-<span class="cstat-no" title="statement not covered" >            &lt;Link</span>
+          {articles.map((article) =&gt; (
+            &lt;Link
               href={`/blog/${article.slug}`}
               key={article.id}
               className="group w-full max-w-md"
@@ -300,7 +300,7 @@ const ArticleRelated: React.FC&lt;ArticleRelatedProps&gt; = <span class="cstat-n
                 &lt;div className="relative h-48 w-full"&gt;
                   &lt;Image
                     src={article.image}
-                    alt={article.image_alt || article.title}
+                    alt={article.image_alt || <span class="branch-1 cbranch-no" title="branch not covered" >article.title}</span>
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   /&gt;
@@ -311,7 +311,7 @@ const ArticleRelated: React.FC&lt;ArticleRelatedProps&gt; = <span class="cstat-n
                     {article.title}
                   &lt;/h3&gt;
                   &lt;p className="text-sm text-gray-500 mb-2"&gt;
-                    {formatDate(article.date || article.created_at)}
+                    {formatDate(article.date || <span class="branch-1 cbranch-no" title="branch not covered" >article.created_at)</span>}
                   &lt;/p&gt;
                   {article.excerpt &amp;&amp; (
                     &lt;p className="text-gray-700 line-clamp-2"&gt;{article.excerpt}&lt;/p&gt;
@@ -334,7 +334,7 @@ export default ArticleRelated;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-21T12:58:45.707Z
+                at 2025-05-23T13:26:02.554Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
