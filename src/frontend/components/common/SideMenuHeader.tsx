@@ -1,22 +1,34 @@
+/**
+ * SideMenuHeader.tsx
+ *
+ * Cabecera del menú lateral (SideMenu).
+ * Muestra el logotipo de Boost A Project y, si el usuario está autenticado, un saludo personalizado.
+ * Incluye botón para cerrar el menú lateral. Preparado para Zustand.
+ *
+ * - Reemplaza `useAuth` por `useAuthStore`.
+ * - Accesible, responsivo y optimizado para SSR.
+ * - Mantiene consistencia visual con el resto de la aplicación.
+ */
+
 "use client";
 
 import React from "react";
 import Image from "next/image";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 interface SideMenuHeaderProps {
   onClose: () => void;
 }
 
 const SideMenuHeader: React.FC<SideMenuHeaderProps> = ({ onClose }) => {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user } = useAuthStore();
 
   return (
     <div className="flex justify-between items-center p-4 bg-[#1DA1F2]">
       <div className="flex items-center space-x-3">
         <Image
           src="https://res.cloudinary.com/dy1pkrd52/image/upload/v1742894677/Logo-sin-fondo-3_d4ch0a.webp"
-          alt="Boost A Project Logo"
+          alt="Logo Boost A Project"
           width={64}
           height={64}
           priority

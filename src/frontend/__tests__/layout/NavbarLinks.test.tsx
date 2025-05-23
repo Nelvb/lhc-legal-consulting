@@ -6,22 +6,17 @@
  * - Ruta actual (pathname)
  * - Estado de autenticación (usuario autenticado o no)
  *
- * Se mockean:
- * - useAuth: para simular el estado global de autenticación
- * - usePathname: para simular la ruta actual
- *
- * Cobertura:
- * - Renderizado de enlaces públicos cuando no está autenticado
- * - Renderizado del saludo y logout cuando está autenticado
- * - Comportamiento del botón "Cerrar Sesión"
+ * Mockea:
+ * - useAuthStore: para simular el estado global
+ * - usePathname: para simular rutas
  */
 
 import React from "react";
 import { render, screen, fireEvent } from "@/__tests__/utils/test-utils";
 import NavbarLinks from "@/components/layout/NavbarLinks";
-import { mockLogout } from "@/__mocks__/useAuth";
+import { mockLogout, useAuthStore } from "@/__mocks__/useAuthStore";
 
-jest.mock("@/hooks/useAuth", () => require("@/__mocks__/useAuth"));
+jest.mock("@/stores/useAuthStore", () => require("@/__mocks__/useAuthStore"));
 jest.mock("next/navigation", () => ({
     usePathname: jest.fn(),
 }));
@@ -30,48 +25,62 @@ describe("NavbarLinks (usuario autenticado)", () => {
     const { usePathname } = require("next/navigation");
 
     afterEach(() => {
-        mockLogout.mockClear();
+        jest.clearAllMocks();
     });
 
     it("renderiza saludo y botón de logout en '/'", () => {
         usePathname.mockReturnValue("/");
 
-        render(<NavbarLinks />);
+        (useAuthStore as jest.Mock).mockReturnValue({
+            isAuthenticated: true,
+            user: { username: "Nelson" },
+            logout: mockLogout,
+        });
 
-        expect(screen.getByText(/hola/i)).toBeInTheDocument();
+        render(<NavbarLinks />);
+        expect(screen.getByText(/hola nelson/i)).toBeInTheDocument();
         expect(screen.getByRole("button", { name: /cerrar sesión/i })).toBeInTheDocument();
     });
 
     it("renderiza saludo y botón de logout en '/dashboard'", () => {
         usePathname.mockReturnValue("/dashboard");
 
-        render(<NavbarLinks />);
+        (useAuthStore as jest.Mock).mockReturnValue({
+            isAuthenticated: true,
+            user: { username: "Nelson" },
+            logout: mockLogout,
+        });
 
-        expect(screen.getByText(/hola/i)).toBeInTheDocument();
+        render(<NavbarLinks />);
+        expect(screen.getByText(/hola nelson/i)).toBeInTheDocument();
         expect(screen.getByRole("button", { name: /cerrar sesión/i })).toBeInTheDocument();
     });
 
     it("ejecuta logout al hacer clic en 'Cerrar Sesión'", () => {
         usePathname.mockReturnValue("/dashboard");
 
+        (useAuthStore as jest.Mock).mockReturnValue({
+            isAuthenticated: true,
+            user: { username: "Nelson" },
+            logout: mockLogout,
+        });
+
         render(<NavbarLinks />);
-        const logoutButton = screen.getByRole("button", { name: /cerrar sesión/i });
-        fireEvent.click(logoutButton);
+        fireEvent.click(screen.getByRole("button", { name: /cerrar sesión/i }));
 
         expect(mockLogout).toHaveBeenCalledTimes(1);
     });
 });
 
 describe("NavbarLinks (usuario no autenticado)", () => {
-    const { useAuth } = require("@/__mocks__/useAuth");
     const { usePathname } = require("next/navigation");
 
-    beforeAll(() => {
-        // Sobrescribimos el mock de useAuth para esta sección
-        useAuth.mockReturnValue({
+    beforeEach(() => {
+        jest.clearAllMocks();
+        (useAuthStore as jest.Mock).mockReturnValue({
             isAuthenticated: false,
             user: null,
-            logout: jest.fn(),
+            logout: mockLogout,
         });
     });
 
@@ -79,7 +88,6 @@ describe("NavbarLinks (usuario no autenticado)", () => {
         usePathname.mockReturnValue("/");
 
         render(<NavbarLinks />);
-
         expect(screen.getByText(/iniciar sesión/i)).toBeInTheDocument();
         expect(screen.getByText(/registrarse/i)).toBeInTheDocument();
     });
@@ -88,7 +96,6 @@ describe("NavbarLinks (usuario no autenticado)", () => {
         usePathname.mockReturnValue("/login");
 
         render(<NavbarLinks />);
-
         expect(screen.getByText(/inicio/i)).toBeInTheDocument();
         expect(screen.getByText(/registrarse/i)).toBeInTheDocument();
     });
@@ -97,7 +104,6 @@ describe("NavbarLinks (usuario no autenticado)", () => {
         usePathname.mockReturnValue("/signup");
 
         render(<NavbarLinks />);
-
         expect(screen.getByText(/inicio/i)).toBeInTheDocument();
         expect(screen.getByText(/iniciar sesión/i)).toBeInTheDocument();
     });

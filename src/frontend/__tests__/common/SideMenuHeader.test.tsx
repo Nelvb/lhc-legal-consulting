@@ -1,4 +1,6 @@
 /**
+ * SideMenuHeader.test.tsx
+ *
  * Test unitario de SideMenuHeader.tsx
  *
  * Verifica:
@@ -11,9 +13,9 @@ import React from "react";
 import { render, screen, fireEvent } from "@/__tests__/utils/test-utils";
 import SideMenuHeader from "@/components/common/SideMenuHeader";
 
-// Mock de useAuth
-jest.mock("@/hooks/useAuth", () => ({
-    useAuth: () => ({
+// Mock de Zustand
+jest.mock("@/stores/useAuthStore", () => ({
+    useAuthStore: () => ({
         isAuthenticated: true,
         user: { username: "Nelson" },
     }),
@@ -24,7 +26,7 @@ describe("SideMenuHeader", () => {
         render(<SideMenuHeader onClose={jest.fn()} />);
 
         expect(
-            screen.getByAltText(/boost a project logo/i)
+            screen.getByAltText(/boost a project/i)
         ).toBeInTheDocument();
         expect(screen.getByText(/hola nelson/i)).toBeInTheDocument();
     });

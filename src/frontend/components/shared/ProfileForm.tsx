@@ -5,6 +5,9 @@
  * El campo email puede mostrarse o no, y puede ser editable o solo de lectura.
  * Siempre requiere contraseña actual para confirmar los cambios.
  * Valida localmente los campos visibles y envía solo los datos permitidos al backend.
+ *
+ * - Migrado a Zustand (`useAuthStore`) para sincronización global de usuario.
+ * - Profesional, validado, seguro y con diseño consistente.
  */
 
 "use client";
@@ -12,7 +15,7 @@
 import React, { useEffect, useState } from "react";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/stores/useAuthStore";
 import { userService } from "@/lib/api/userService";
 import { Eye, EyeOff } from "lucide-react";
 
@@ -25,7 +28,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     showEmail = true,
     editableEmail = true,
 }) => {
-    const { user, refreshUser } = useAuth();
+    const { user, refreshUser } = useAuthStore();
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -35,7 +38,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Sincroniza los datos cuando el usuario se carga (tras login o refresh)
     useEffect(() => {
         if (user) {
             setName(user.name || "");
@@ -115,7 +117,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 )}
             </div>
 
-            {/* Email (siempre visible, editable solo para usuarios) */}
+            {/* Email (si aplica) */}
             {showEmail && (
                 <div>
                     <Input

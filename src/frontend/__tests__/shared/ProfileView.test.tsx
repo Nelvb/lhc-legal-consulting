@@ -16,23 +16,30 @@ import React from "react";
 import { render, screen } from "@/__tests__/utils/test-utils";
 import ProfileView from "@/components/shared/ProfileView";
 
-// Mock del usuario con nombre, email y rol
-jest.mock("@/hooks/useAuth", () => ({
-    useAuth: () => ({
-        user: {
-            name: "Nelson",
-            email: "nelson@example.com",
-            is_admin: false,
-        },
-    }),
+// Mock profesional del store Zustand
+jest.mock("@/stores/useAuthStore", () => ({
+    useAuthStore: jest.fn(),
 }));
 
-// Mock de ProfileForm (solo para verificar props)
+// Mock de ProfileForm (verifica props)
 jest.mock("@/components/shared/ProfileForm", () => (props: any) => (
     <div data-testid="mock-profile-form">{JSON.stringify(props)}</div>
 ));
 
+const { useAuthStore } = require("@/stores/useAuthStore");
+
 describe("ProfileView", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+        useAuthStore.mockReturnValue({
+            user: {
+                name: "Nelson",
+                email: "nelson@example.com",
+                is_admin: false,
+            },
+        });
+    });
+
     it("renderiza título, subtítulo y datos del usuario", () => {
         render(
             <ProfileView
@@ -59,21 +66,15 @@ describe("ProfileView", () => {
     });
 
     it("cuando el usuario es admin, editableEmail se pasa como false", () => {
-        jest.resetModules();
-        jest.doMock("@/hooks/useAuth", () => ({
-            useAuth: () => ({
-                user: {
-                    name: "Admin",
-                    email: "admin@boost.com",
-                    is_admin: true,
-                },
-            }),
-        }));
+        useAuthStore.mockReturnValueOnce({
+            user: {
+                name: "Admin",
+                email: "admin@boost.com",
+                is_admin: true,
+            },
+        });
 
-        const ProfileViewAdmin =
-            require("@/components/shared/ProfileView").default;
-
-        render(<ProfileViewAdmin showEmail={true} />);
+        render(<ProfileView showEmail={true} />);
 
         const form = screen.getByTestId("mock-profile-form");
         expect(form.textContent).toContain('"editableEmail":false');

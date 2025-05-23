@@ -4,13 +4,16 @@
  * Modal de confirmación para eliminar permanentemente la cuenta del usuario.
  * Usa colores corporativos y diseño coherente con la plataforma.
  * Llama a userService.deleteAccount(), ejecuta logout y redirige tras éxito.
+ *
+ * - Migrado a Zustand (`useAuthStore`) para logout global.
+ * - Diseño accesible, visual y adaptado al branding.
  */
 
 "use client";
 
 import React from "react";
 import { userService } from "@/lib/api/userService";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/stores/useAuthStore";
 import { useRouter } from "next/navigation";
 
 interface DeleteAccountModalProps {
@@ -19,7 +22,7 @@ interface DeleteAccountModalProps {
 }
 
 const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({ isOpen, onClose }) => {
-    const { logout } = useAuth();
+    const { logout } = useAuthStore();
     const router = useRouter();
 
     if (!isOpen) return null;

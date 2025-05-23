@@ -1,8 +1,13 @@
 /**
  * Layout base para el área de administración (/admin/*)
- * Muestra Navbar y Footer solo en rutas concretas (/admin y /admin/perfil).
- * En el resto de vistas de administración (blog, proyectos...) se ocultan automáticamente.
- * Esto permite una experiencia de edición o gestión más limpia y sin distracciones.
+ * 
+ * Características principales:
+ * - Protección automática: Solo usuarios con is_admin = true pueden acceder
+ * - Navbar y Footer condicionales en rutas específicas (/admin y /admin/perfil)
+ * - Resto de vistas administrativas (blog, proyectos) sin distracciones visuales
+ * - Redirección automática a home si no cumple requisitos de administrador
+ * 
+ * Seguridad: Integra AdminPageContent para verificación de permisos
  */
 
 "use client";
@@ -10,6 +15,7 @@
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AdminPageContent from "@/components/admin/layout/AdminPageContent";
 
 export default function AdminLayout({
     children,
@@ -25,7 +31,9 @@ export default function AdminLayout({
     return (
         <div className="min-h-screen bg-white text-gray-800 flex flex-col">
             {shouldShowLayout && <Navbar />}
-            <main className="flex-grow">{children}</main>
+            <AdminPageContent>
+                <main className="flex-grow">{children}</main>
+            </AdminPageContent>
             {shouldShowLayout && <Footer />}
         </div>
     );

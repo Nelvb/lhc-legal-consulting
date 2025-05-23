@@ -8,23 +8,31 @@
 
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import Button from '@/components/ui/Button';
-import Input from '@/components/ui/Input';
-import { useAuth } from '@/hooks/useAuth';
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import { useAuthStore } from "@/stores/useAuthStore";
 import { Eye, EyeOff } from "lucide-react";
 
 const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const { login, loading, error } = useAuth();
+  const { login, loading, error } = useAuthStore();
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await login({ email, password });
-    } catch (err) {}
+      const user = await login({ email, password });
+
+      if (user?.is_admin) {
+        router.push("/admin");
+      } else {
+        router.push("/dashboard");
+      }
+    } catch (err) {
+      // El error ya se gestiona en el store
+    }
   };
 
   return (

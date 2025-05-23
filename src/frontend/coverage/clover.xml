@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1748006762848" clover="3.2.0">
-  <project timestamp="1748006762849" name="All files">
-    <metrics statements="1011" coveredstatements="638" conditionals="600" coveredconditionals="382" methods="237" coveredmethods="123" elements="1848" coveredelements="1143" complexity="0" loc="1011" ncloc="1011" packages="40" files="88" classes="88"/>
+<coverage generated="1748008633263" clover="3.2.0">
+  <project timestamp="1748008633264" name="All files">
+    <metrics statements="1011" coveredstatements="637" conditionals="600" coveredconditionals="382" methods="237" coveredmethods="123" elements="1848" coveredelements="1142" complexity="0" loc="1011" ncloc="1011" packages="40" files="88" classes="88"/>
     <package name="frontend">
       <metrics statements="7" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name=".babelrc.js" path="C:\Users\Nelson\Desktop\PROYECTOS\BOOST A PROJECT\Plataforma-inversion\src\frontend\.babelrc.js">
@@ -32,9 +32,9 @@
       <file name="test-utils.tsx" path="C:\Users\Nelson\Desktop\PROYECTOS\BOOST A PROJECT\Plataforma-inversion\src\frontend\__tests__\utils\test-utils.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="14" count="26" type="stmt"/>
-        <line num="15" count="89" type="stmt"/>
+        <line num="15" count="90" type="stmt"/>
         <line num="23" count="26" type="stmt"/>
-        <line num="26" count="86" type="stmt"/>
+        <line num="26" count="87" type="stmt"/>
       </file>
     </package>
     <package name="frontend.app">
@@ -625,37 +625,37 @@
       <file name="ResetPasswordForm.tsx" path="C:\Users\Nelson\Desktop\PROYECTOS\BOOST A PROJECT\Plataforma-inversion\src\frontend\components\auth\ResetPasswordForm.tsx">
         <metrics statements="34" coveredstatements="29" conditionals="22" coveredconditionals="16" methods="7" coveredmethods="4"/>
         <line num="17" count="1" type="stmt"/>
-        <line num="18" count="19" type="stmt"/>
-        <line num="19" count="19" type="stmt"/>
-        <line num="20" count="19" type="stmt"/>
-        <line num="21" count="19" type="stmt"/>
-        <line num="22" count="19" type="stmt"/>
-        <line num="23" count="19" type="stmt"/>
-        <line num="25" count="19" type="stmt"/>
-        <line num="26" count="19" type="stmt"/>
-        <line num="27" count="19" type="stmt"/>
-        <line num="29" count="19" type="stmt"/>
-        <line num="30" count="4" type="stmt"/>
-        <line num="31" count="4" type="stmt"/>
-        <line num="33" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="24" type="stmt"/>
+        <line num="19" count="24" type="stmt"/>
+        <line num="20" count="24" type="stmt"/>
+        <line num="21" count="24" type="stmt"/>
+        <line num="22" count="24" type="stmt"/>
+        <line num="23" count="24" type="stmt"/>
+        <line num="25" count="24" type="stmt"/>
+        <line num="26" count="24" type="stmt"/>
+        <line num="27" count="24" type="stmt"/>
+        <line num="29" count="24" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
+        <line num="31" count="5" type="stmt"/>
+        <line num="33" count="5" type="cond" truecount="1" falsecount="1"/>
         <line num="34" count="0" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
-        <line num="38" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="39" count="1" type="stmt"/>
         <line num="40" count="1" type="stmt"/>
-        <line num="43" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="43" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="44" count="1" type="stmt"/>
         <line num="45" count="1" type="stmt"/>
-        <line num="48" count="2" type="stmt"/>
-        <line num="50" count="2" type="stmt"/>
-        <line num="51" count="2" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+        <line num="50" count="3" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
         <line num="54" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="55" count="1" type="stmt"/>
-        <line num="59" count="19" type="stmt"/>
-        <line num="78" count="4" type="stmt"/>
+        <line num="59" count="24" type="stmt"/>
+        <line num="78" count="5" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
-        <line num="95" count="4" type="stmt"/>
+        <line num="95" count="5" type="stmt"/>
         <line num="100" count="0" type="stmt"/>
         <line num="129" count="0" type="stmt"/>
       </file>
@@ -933,10 +933,10 @@
       <file name="Button.tsx" path="C:\Users\Nelson\Desktop\PROYECTOS\BOOST A PROJECT\Plataforma-inversion\src\frontend\components\ui\Button.tsx">
         <metrics statements="5" coveredstatements="5" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
         <line num="17" count="12" type="stmt"/>
-        <line num="27" count="117" type="stmt"/>
-        <line num="29" count="117" type="stmt"/>
-        <line num="40" count="117" type="stmt"/>
-        <line num="46" count="117" type="stmt"/>
+        <line num="27" count="123" type="stmt"/>
+        <line num="29" count="123" type="stmt"/>
+        <line num="40" count="123" type="stmt"/>
+        <line num="46" count="123" type="stmt"/>
       </file>
       <file name="Card.tsx" path="C:\Users\Nelson\Desktop\PROYECTOS\BOOST A PROJECT\Plataforma-inversion\src\frontend\components\ui\Card.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
@@ -1004,11 +1004,11 @@
       <file name="Input.tsx" path="C:\Users\Nelson\Desktop\PROYECTOS\BOOST A PROJECT\Plataforma-inversion\src\frontend\components\ui\Input.tsx">
         <metrics statements="6" coveredstatements="6" conditionals="11" coveredconditionals="9" methods="2" coveredmethods="2"/>
         <line num="18" count="8" type="stmt"/>
-        <line num="19" count="245" type="stmt"/>
+        <line num="19" count="255" type="stmt"/>
         <line num="21" count="8" type="stmt"/>
-        <line num="28" count="245" type="cond" truecount="1" falsecount="1"/>
-        <line num="29" count="245" type="cond" truecount="2" falsecount="1"/>
-        <line num="31" count="245" type="stmt"/>
+        <line num="28" count="255" type="cond" truecount="1" falsecount="1"/>
+        <line num="29" count="255" type="cond" truecount="2" falsecount="1"/>
+        <line num="31" count="255" type="stmt"/>
       </file>
     </package>
     <package name="frontend.components.user">
@@ -1346,29 +1346,29 @@
       </file>
     </package>
     <package name="frontend.lib.utils">
-      <metrics statements="34" coveredstatements="31" conditionals="17" coveredconditionals="15" methods="3" coveredmethods="2"/>
+      <metrics statements="34" coveredstatements="30" conditionals="17" coveredconditionals="15" methods="3" coveredmethods="2"/>
       <file name="fetchWithAuth.ts" path="C:\Users\Nelson\Desktop\PROYECTOS\BOOST A PROJECT\Plataforma-inversion\src\frontend\lib\utils\fetchWithAuth.ts">
-        <metrics statements="32" coveredstatements="31" conditionals="17" coveredconditionals="15" methods="2" coveredmethods="2"/>
+        <metrics statements="32" coveredstatements="30" conditionals="17" coveredconditionals="15" methods="2" coveredmethods="2"/>
         <line num="16" count="2" type="stmt"/>
-        <line num="17" count="9" type="stmt"/>
-        <line num="18" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="9" type="stmt"/>
-        <line num="21" count="9" type="stmt"/>
-        <line num="22" count="11" type="stmt"/>
-        <line num="23" count="11" type="cond" truecount="2" falsecount="0"/>
-        <line num="24" count="8" type="stmt"/>
+        <line num="17" count="10" type="stmt"/>
+        <line num="18" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="10" type="stmt"/>
+        <line num="21" count="10" type="stmt"/>
+        <line num="22" count="13" type="stmt"/>
+        <line num="23" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="9" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
         <line num="39" count="2" type="stmt"/>
-        <line num="43" count="7" type="cond" truecount="1" falsecount="1"/>
-        <line num="44" count="7" type="stmt"/>
-        <line num="45" count="7" type="stmt"/>
-        <line num="47" count="7" type="stmt"/>
-        <line num="49" count="7" type="stmt"/>
-        <line num="55" count="7" type="stmt"/>
-        <line num="61" count="7" type="stmt"/>
-        <line num="62" count="7" type="stmt"/>
-        <line num="64" count="7" type="cond" truecount="4" falsecount="0"/>
-        <line num="65" count="5" type="stmt"/>
+        <line num="43" count="8" type="cond" truecount="1" falsecount="1"/>
+        <line num="44" count="8" type="stmt"/>
+        <line num="45" count="8" type="stmt"/>
+        <line num="47" count="8" type="stmt"/>
+        <line num="49" count="8" type="stmt"/>
+        <line num="55" count="8" type="stmt"/>
+        <line num="61" count="8" type="stmt"/>
+        <line num="62" count="8" type="stmt"/>
+        <line num="64" count="8" type="cond" truecount="4" falsecount="0"/>
+        <line num="65" count="6" type="stmt"/>
         <line num="68" count="2" type="stmt"/>
         <line num="71" count="2" type="stmt"/>
         <line num="73" count="2" type="stmt"/>
@@ -1377,10 +1377,10 @@
         <line num="87" count="1" type="stmt"/>
         <line num="88" count="1" type="stmt"/>
         <line num="89" count="1" type="stmt"/>
-        <line num="90" count="0" type="stmt"/>
+        <line num="90" count="1" type="stmt"/>
         <line num="94" count="1" type="stmt"/>
-        <line num="96" count="1" type="stmt"/>
-        <line num="97" count="1" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
       </file>
       <file name="string-utils.ts" path="C:\Users\Nelson\Desktop\PROYECTOS\BOOST A PROJECT\Plataforma-inversion\src\frontend\lib\utils\string-utils.ts">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>

@@ -12,15 +12,21 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@/__tests__/utils/test-utils";
 import DeleteAccountModal from "@/components/user/DeleteAccountModal";
-import { mockLogout } from "@/__mocks__/useAuth";
+import { mockLogout } from "@/__mocks__/useAuthStore";
 
 // Mocks
-jest.mock("@/hooks/useAuth", () => require("@/__mocks__/useAuth"));
+jest.mock("@/stores/useAuthStore", () => ({
+    useAuthStore: () => ({
+        logout: require("@/__mocks__/useAuthStore").mockLogout,
+    }),
+}));
+
 jest.mock("next/navigation", () => ({
     useRouter: () => ({
         push: jest.fn(),
     }),
 }));
+
 jest.mock("@/lib/api/userService", () => ({
     userService: {
         deleteAccount: jest.fn(),
@@ -47,7 +53,7 @@ describe("DeleteAccountModal", () => {
         expect(container.firstChild).toBeNull();
     });
 
-    it("muestra el modal correctamente si isOpen es true", () => {
+    it("renderiza correctamente si isOpen es true", () => {
         render(<DeleteAccountModal isOpen={true} onClose={onCloseMock} />);
         expect(
             screen.getByText(/¿estás seguro de que quieres eliminar tu cuenta/i)
@@ -62,7 +68,7 @@ describe("DeleteAccountModal", () => {
         expect(onCloseMock).toHaveBeenCalledTimes(1);
     });
 
-    it("llama a deleteAccount y logout al confirmar eliminación", async () => {
+    it("llama a deleteAccount y logout correctamente", async () => {
         deleteAccount.mockResolvedValueOnce({});
         render(<DeleteAccountModal isOpen={true} onClose={onCloseMock} />);
         fireEvent.click(screen.getByText(/eliminar cuenta/i));
@@ -73,7 +79,7 @@ describe("DeleteAccountModal", () => {
         });
     });
 
-    it("muestra alerta si deleteAccount falla", async () => {
+    it("muestra una alerta si deleteAccount lanza error", async () => {
         const alertMock = jest.spyOn(window, "alert").mockImplementation(() => { });
         deleteAccount.mockRejectedValueOnce(new Error("Error del servidor"));
 

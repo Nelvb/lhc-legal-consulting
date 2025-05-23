@@ -1,56 +1,66 @@
 /**
- * Test unitario de SideMenuAuthSection.tsx
+ * SideMenuAuthSection.test.tsx
  *
- * Verifica:
- * - Render de botones de login/registro si no autenticado.
- * - Render de botón de logout si autenticado.
- * - Llamada a logout y onClose al hacer clic.
+ * Test unitario del componente SideMenuAuthSection.
+ * Valida:
+ * - Renderizado de botones de login/registro si el usuario no está autenticado
+ * - Renderizado del botón de logout si el usuario está autenticado
+ * - Llamada a logout y onClose al hacer clic en cerrar sesión
+ *
+ * Usa mocks de Zustand con el nuevo sistema de autenticación.
  */
 
 import React from "react";
 import { render, screen, fireEvent } from "@/__tests__/utils/test-utils";
 import SideMenuAuthSection from "@/components/sideMenus/SideMenuAuthSection";
-import { mockLogout } from "@/__mocks__/useAuth";
 
-// Mock global de useAuth
-jest.mock("@/hooks/useAuth", () => require("@/__mocks__/useAuth"));
+// Mock de Zustand store
+jest.mock("@/stores/useAuthStore", () => ({
+    useAuthStore: jest.fn(),
+}));
+
 jest.mock("next/navigation", () => ({
     usePathname: jest.fn(() => "/"),
 }));
+
+const { useAuthStore } = require("@/stores/useAuthStore");
 
 describe("SideMenuAuthSection", () => {
     const onCloseMock = jest.fn();
 
     afterEach(() => {
-        mockLogout.mockClear();
-        onCloseMock.mockClear();
+        jest.clearAllMocks();
     });
 
     it("renderiza botón de logout si usuario autenticado", () => {
+        useAuthStore.mockReturnValue({
+            isAuthenticated: true,
+            logout: jest.fn(),
+        });
+
         render(<SideMenuAuthSection onClose={onCloseMock} />);
 
         expect(screen.getByText(/cerrar sesión/i)).toBeInTheDocument();
     });
 
     it("llama a logout y onClose al hacer clic en 'Cerrar Sesión'", () => {
+        const logoutMock = jest.fn();
+
+        useAuthStore.mockReturnValue({
+            isAuthenticated: true,
+            logout: logoutMock,
+        });
+
         render(<SideMenuAuthSection onClose={onCloseMock} />);
 
         fireEvent.click(screen.getByText(/cerrar sesión/i));
-        expect(mockLogout).toHaveBeenCalledTimes(1);
+        expect(logoutMock).toHaveBeenCalledTimes(1);
         expect(onCloseMock).toHaveBeenCalledTimes(1);
     });
 
     it("renderiza botones de login y registro si no autenticado", () => {
-        // Overwrite el mock con no autenticado
-        const { useAuth } = require("@/__mocks__/useAuth");
-        useAuth.mockReturnValue({
+        useAuthStore.mockReturnValue({
             isAuthenticated: false,
-            user: null,
-            logout: jest.fn(),
-            login: jest.fn(),
-            signup: jest.fn(),
-            loading: false,
-            error: null,
         });
 
         render(<SideMenuAuthSection onClose={onCloseMock} />);

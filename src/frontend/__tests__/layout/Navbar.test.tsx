@@ -4,29 +4,34 @@
  * Test unitario del componente Navbar.
  * Valida el renderizado del logo, botón hamburguesa y los menús laterales.
  * Simula los distintos tipos de usuario: no autenticado, autenticado, admin.
- * Mockea useAuth, NavbarLinks y menús laterales.
+ * Mockea useAuthStore, NavbarLinks y menús laterales.
  */
 
 import React from "react";
 import { render, screen, fireEvent } from "@/__tests__/utils/test-utils";
 import Navbar from "@/components/layout/Navbar";
-import { useAuth as mockUseAuth, mockLogout } from "@/__mocks__/useAuth";
+import { mockLogout, useAuthStore } from "@/__mocks__/useAuthStore";
 
-// Mocks
-jest.mock("@/hooks/useAuth", () => require("@/__mocks__/useAuth"));
+// Mocks de Zustand
+jest.mock("@/stores/useAuthStore", () => require("@/__mocks__/useAuthStore"));
+
+// Mocks de componentes relacionados
 jest.mock("@/components/layout/NavbarLinks", () => () => (
     <div data-testid="mock-navbar-links">NavbarLinks</div>
 ));
+
 jest.mock("@/components/sideMenus/SideMenu", () => ({
     __esModule: true,
     default: ({ isOpen }: { isOpen: boolean }) =>
         isOpen ? <div data-testid="side-menu-publico">Menú público abierto</div> : null,
 }));
+
 jest.mock("@/components/sideMenus/UserSideMenu", () => ({
     __esModule: true,
     default: ({ isOpen }: { isOpen: boolean }) =>
         isOpen ? <div data-testid="side-menu-usuario">Menú usuario abierto</div> : null,
 }));
+
 jest.mock("@/components/sideMenus/AdminSideMenu", () => ({
     __esModule: true,
     default: ({ isOpen }: { isOpen: boolean }) =>
@@ -39,7 +44,7 @@ describe("Navbar", () => {
     });
 
     it("renderiza logo y menú público cuando no hay usuario", () => {
-        mockUseAuth.mockReturnValue({
+        (useAuthStore as jest.Mock).mockReturnValue({
             isAuthenticated: false,
             loading: false,
             error: null,
@@ -59,7 +64,7 @@ describe("Navbar", () => {
     });
 
     it("renderiza menú lateral de usuario autenticado", () => {
-        mockUseAuth.mockReturnValue({
+        (useAuthStore as jest.Mock).mockReturnValue({
             isAuthenticated: true,
             loading: false,
             error: null,
@@ -80,7 +85,7 @@ describe("Navbar", () => {
     });
 
     it("renderiza menú lateral de administrador", () => {
-        mockUseAuth.mockReturnValue({
+        (useAuthStore as jest.Mock).mockReturnValue({
             isAuthenticated: true,
             loading: false,
             error: null,

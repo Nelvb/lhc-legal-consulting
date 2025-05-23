@@ -1,8 +1,15 @@
+/**
+ * Formulario de registro
+ * Permite al usuario crear una nueva cuenta
+ * Incluye validación de contraseñas y feedback visual
+ */
+
 "use client";
+
 import { useState, FormEvent } from "react";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/stores/useAuthStore";
 import { Eye, EyeOff } from "lucide-react";
 
 const SignupForm = () => {
@@ -14,7 +21,7 @@ const SignupForm = () => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [matchError, setMatchError] = useState(false);
 
-  const { signup, loading, error } = useAuth();
+  const { signup, loading, error } = useAuthStore();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,7 +34,10 @@ const SignupForm = () => {
     setMatchError(false);
     try {
       await signup({ username, email, password });
-    } catch (err) {}
+      // Redirección tras registro + login automático está dentro del store
+    } catch (err) {
+      // error ya gestionado en el store
+    }
   };
 
   return (

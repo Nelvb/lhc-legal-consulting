@@ -6,13 +6,15 @@
  * Si se usan props dinámicas, sobrescriben los valores por defecto.
  * Para el título, permite mostrar el nombre del usuario si no se proporciona manualmente.
  *
- * Escalable, estilizado con Tailwind y pensado para diseño compartido en producción.
+ * - Migrado a Zustand (`useAuthStore`).
+ * - Estilo profesional y escalable.
+ * - Compatible con SSR y diseño compartido entre vistas protegidas.
  */
 
 "use client";
 
 import React from "react";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 interface DashboardHeaderProps {
     badge?: string;
@@ -25,7 +27,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
     title,
     subtitle = "Resumen de tu actividad como inversor",
 }) => {
-    const { user } = useAuth();
+    const { user } = useAuthStore();
 
     return (
         <div className="relative overflow-hidden rounded-2xl mb-12">

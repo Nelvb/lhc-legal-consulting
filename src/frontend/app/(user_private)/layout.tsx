@@ -1,18 +1,26 @@
 /**
- * Layout exclusivo de /perfil
- * Sustituye el layout global del área privada para evitar padding, márgenes o anchuras que rompan el diseño tipo login.
- * Usa la Navbar global sin envoltorios adicionales.
+ * Layout para áreas privadas de usuario (/dashboard, /usuario/*, /perfil)
+ * 
+ * Características principales:
+ * - Protección automática: Solo usuarios autenticados pueden acceder
+ * - Navbar global sin envoltorios adicionales para diseño limpio
+ * - Compatible con cualquier rol de usuario (admin o user)
+ * - Redirección automática a home si no hay sesión activa
+ * 
+ * Seguridad: Integra UserPageContent para verificación de autenticación
+ * Diseño: Evita padding/márgenes que rompan layouts tipo login/dashboard
  */
 
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
+import UserPageContent from "@/components/user/layout/UserPageContent";
 
 export const metadata: Metadata = {
-    title: "Editar Perfil | Boost a Project",
-    description: "Edita tu información personal en la plataforma de inversión Boost a Project",
+    title: "Área Privada | Boost a Project",
+    description: "Gestiona tu cuenta y inversiones en la plataforma Boost a Project",
 };
 
-export default function PerfilLayout({
+export default function UserPrivateLayout({
     children,
 }: {
     children: React.ReactNode;
@@ -20,7 +28,9 @@ export default function PerfilLayout({
     return (
         <div className="min-h-screen bg-white text-gray-800">
             <Navbar />
-            {children}
+            <UserPageContent>
+                {children}
+            </UserPageContent>
         </div>
     );
 }

@@ -10,24 +10,26 @@
  *   * "Introduce un email válido."
  *   * "El nombre es obligatorio."
  *   * "La contraseña es obligatoria."
- * - Usa mocks locales de useAuth y userService
+ * - Usa mocks locales de useAuthStore y userService
  */
 
 import React from "react";
 import { render, screen, fireEvent } from "@/__tests__/utils/test-utils";
 import ProfileForm from "@/components/shared/ProfileForm";
 
-// Mock dinámico para cambiar datos por test
-jest.mock("@/hooks/useAuth", () => ({
-    useAuth: jest.fn(),
+// Mock de Zustand store
+jest.mock("@/stores/useAuthStore", () => ({
+    useAuthStore: jest.fn(),
 }));
 
 // Mock del servicio de usuario
 jest.mock("@/lib/api/userService", () => ({
-    updateProfile: jest.fn().mockResolvedValue({ success: true }),
+    userService: {
+        updateNameAndEmail: jest.fn().mockResolvedValue({ success: true }),
+    },
 }));
 
-const mockUseAuth = require("@/hooks/useAuth").useAuth;
+const { useAuthStore } = require("@/stores/useAuthStore");
 
 describe("ProfileForm", () => {
     beforeEach(() => {
@@ -35,7 +37,7 @@ describe("ProfileForm", () => {
     });
 
     it("renderiza todos los campos correctamente", () => {
-        mockUseAuth.mockReturnValue({
+        useAuthStore.mockReturnValue({
             user: { name: "Nelson", email: "nelson@example.com" },
             refreshUser: jest.fn(),
         });
@@ -49,7 +51,7 @@ describe("ProfileForm", () => {
     });
 
     it("muestra error si el email no es válido", async () => {
-        mockUseAuth.mockReturnValue({
+        useAuthStore.mockReturnValue({
             user: { name: "Nelson", email: "" },
             refreshUser: jest.fn(),
         });
@@ -66,7 +68,7 @@ describe("ProfileForm", () => {
     });
 
     it("muestra error si el nombre está vacío", async () => {
-        mockUseAuth.mockReturnValue({
+        useAuthStore.mockReturnValue({
             user: { name: "", email: "nelson@example.com" },
             refreshUser: jest.fn(),
         });
@@ -83,7 +85,7 @@ describe("ProfileForm", () => {
     });
 
     it("muestra error si la contraseña actual está vacía", async () => {
-        mockUseAuth.mockReturnValue({
+        useAuthStore.mockReturnValue({
             user: { name: "Nelson", email: "nelson@example.com" },
             refreshUser: jest.fn(),
         });

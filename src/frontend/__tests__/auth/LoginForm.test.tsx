@@ -12,10 +12,10 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@/__tests__/utils/test-utils";
 import LoginForm from "@/components/auth/LoginForm";
-import { mockLogin } from "@/__mocks__/useAuth";
+import { mockLogin, useAuthStore } from "@/__mocks__/useAuthStore";
 
 // Mocks
-jest.mock("@/hooks/useAuth", () => require("@/__mocks__/useAuth"));
+jest.mock("@/stores/useAuthStore", () => require("@/__mocks__/useAuthStore"));
 jest.mock("next/navigation", () => ({
     useRouter: () => ({ push: jest.fn() }),
 }));
@@ -69,22 +69,14 @@ describe("LoginForm", () => {
     });
 
     it("muestra mensaje de error si existe", () => {
-        const { rerender } = render(<LoginForm />);
         const error = "Credenciales inválidas";
 
-        // Forzamos error
-        const useAuth = require("@/__mocks__/useAuth");
-        useAuth.useAuth.mockReturnValue({
-            login: mockLogin,
-            signup: jest.fn(),
-            logout: jest.fn(),
-            isAuthenticated: false,
-            loading: false,
+        (useAuthStore as jest.Mock).mockReturnValue({
+            ...useAuthStore(),
             error,
-            user: null,
         });
 
-        rerender(<LoginForm />);
+        render(<LoginForm />);
         expect(screen.getByText(error)).toBeInTheDocument();
     });
 });

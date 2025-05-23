@@ -6,12 +6,16 @@
  * y formulario de edición a la derecha.
  * Reutiliza el formulario ProfileForm con configuración condicional.
  * El título y subtítulo se personalizan con props.
+ *
+ * - Migrado a Zustand (`useAuthStore`).
+ * - Visual consistente y adaptable por rol.
+ * - Componentizado y reutilizable en /perfil y /admin/perfil.
  */
 
 "use client";
 
 import React from "react";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/stores/useAuthStore";
 import ProfileForm from "@/components/shared/ProfileForm";
 
 interface ProfileViewProps {
@@ -27,7 +31,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({
     subtitle = "Aquí puedes actualizar tu nombre y correo electrónico.",
     showEmail = true,
 }) => {
-    const { user } = useAuth();
+    const { user } = useAuthStore();
 
     const isAdmin = user?.is_admin ?? false;
 
@@ -64,10 +68,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({
 
                 {/* Columna derecha (formulario) */}
                 <div className="flex flex-col justify-center items-center p-8">
-                    <ProfileForm
-                        showEmail={showEmail}
-                        editableEmail={!isAdmin}
-                    />
+                    <ProfileForm showEmail={showEmail} editableEmail={!isAdmin} />
                 </div>
             </div>
         </section>

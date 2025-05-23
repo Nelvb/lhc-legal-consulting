@@ -13,7 +13,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/stores/useAuthStore";
 import NavbarLinks from "@/components/layout/NavbarLinks";
 import AdminSideMenu from "@/components/sideMenus/AdminSideMenu";
 import UserSideMenu from "@/components/sideMenus/UserSideMenu";
@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user } = useAuthStore();
 
   useEffect(() => {
     const handleScroll = () => {

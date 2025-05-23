@@ -10,7 +10,7 @@ import React from "react";
 import { render, screen, fireEvent, waitFor } from "@/__tests__/utils/test-utils";
 import ContactForm from "@/components/contact/ContactForm";
 import { contactService } from "@/lib/api/contactService";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/__mocks__/useAuthStore";
 
 // Mock del servicio de contacto
 jest.mock("@/lib/api/contactService", () => ({
@@ -19,10 +19,8 @@ jest.mock("@/lib/api/contactService", () => ({
     },
 }));
 
-// Mock del hook de autenticación
-jest.mock("@/hooks/useAuth", () => ({
-    useAuth: jest.fn(),
-}));
+// Mock Zustand
+jest.mock("@/stores/useAuthStore", () => require("@/__mocks__/useAuthStore"));
 
 describe("ContactForm", () => {
     beforeEach(() => {
@@ -31,7 +29,10 @@ describe("ContactForm", () => {
 
     describe("cuando el usuario NO está autenticado", () => {
         beforeEach(() => {
-            (useAuth as jest.Mock).mockReturnValue({ user: null });
+            (useAuthStore as jest.Mock).mockReturnValue({
+                user: null,
+                isAuthenticated: false,
+            });
         });
 
         it("valida campos obligatorios y no envía si están vacíos", async () => {
@@ -90,8 +91,9 @@ describe("ContactForm", () => {
 
     describe("cuando el usuario está autenticado", () => {
         beforeEach(() => {
-            (useAuth as jest.Mock).mockReturnValue({
+            (useAuthStore as jest.Mock).mockReturnValue({
                 user: { username: "Nelson", email: "nelson@example.com" },
+                isAuthenticated: true,
             });
         });
 

@@ -1,9 +1,18 @@
+/**
+ * SideMenuAuthSection.tsx
+ *
+ * Sección inferior del menú lateral que gestiona el acceso o cierre de sesión del usuario.
+ * Muestra botones para login o registro si el usuario no está autenticado.
+ * Si está autenticado, muestra botón de cierre de sesión.
+ * Usa Zustand (`useAuthStore`) para manejar el estado global de autenticación.
+ */
+
 "use client";
 
 import React from "react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/stores/useAuthStore";
 import { usePathname } from "next/navigation";
 
 interface SideMenuAuthSectionProps {
@@ -11,7 +20,7 @@ interface SideMenuAuthSectionProps {
 }
 
 const SideMenuAuthSection: React.FC<SideMenuAuthSectionProps> = ({ onClose }) => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuthStore();
   const pathname = usePathname();
 
   const isLoginPage = pathname === "/login";

@@ -6,4 +6,5 @@
 
 // Ejemplo: export interface User { ... }
 
-export * from './blog';
+export * from "./blog";
+export * from "./user";

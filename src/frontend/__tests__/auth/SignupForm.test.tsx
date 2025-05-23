@@ -12,10 +12,10 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@/__tests__/utils/test-utils";
 import SignupForm from "@/components/auth/SignupForm";
-import { mockSignup } from "@/__mocks__/useAuth";
+import { mockSignup, useAuthStore } from "@/__mocks__/useAuthStore";
 
 // Mocks
-jest.mock("@/hooks/useAuth", () => require("@/__mocks__/useAuth"));
+jest.mock("@/stores/useAuthStore", () => require("@/__mocks__/useAuthStore"));
 
 describe("SignupForm", () => {
     afterEach(() => {
@@ -81,22 +81,15 @@ describe("SignupForm", () => {
         });
     });
 
-    it("muestra error del contexto si existe", () => {
-        const { rerender } = render(<SignupForm />);
+    it("muestra error del store si existe", () => {
         const error = "Email ya registrado";
 
-        const useAuth = require("@/__mocks__/useAuth");
-        useAuth.useAuth.mockReturnValue({
-            signup: mockSignup,
-            login: jest.fn(),
-            logout: jest.fn(),
-            isAuthenticated: false,
-            loading: false,
+        (useAuthStore as jest.Mock).mockReturnValue({
+            ...useAuthStore(),
             error,
-            user: null,
         });
 
-        rerender(<SignupForm />);
+        render(<SignupForm />);
         expect(screen.getByText(error)).toBeInTheDocument();
     });
 });

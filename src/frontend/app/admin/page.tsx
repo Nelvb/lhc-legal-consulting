@@ -3,19 +3,19 @@
  *
  * Visual unificado con el dashboard de usuario: fondo dividido, cabecera profesional,
  * tarjetas con acceso rápido a funcionalidades clave.
- * Protección de ruta mediante verificación de is_admin.
+ * Protección de ruta mediante verificación de is_admin usando Zustand.
  */
 
 "use client";
 
 import React, { useEffect } from "react";
-import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/stores/useAuthStore";
 import DashboardHeader from "@/components/shared/DashboardHeader";
 import AdminCard from "@/components/admin/ui/AdminCard";
 
 const AdminDashboardPage: React.FC = () => {
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {

@@ -4,18 +4,15 @@
  * Test unitario del componente compartido DashboardHeader.
  * Valida el renderizado correcto del título, subtítulo y badge,
  * así como la lógica condicional según props y estado de usuario.
- *
- * Cobertura:
- * - Render con valores por defecto (usa user.username)
- * - Render con props personalizadas (title, subtitle, badge)
  */
 
 import React from "react";
 import { render, screen } from "@/__tests__/utils/test-utils";
 import DashboardHeader from "@/components/shared/DashboardHeader";
 
-jest.mock("@/hooks/useAuth", () => ({
-    useAuth: () => ({
+// Mock profesional de Zustand store
+jest.mock("@/stores/useAuthStore", () => ({
+    useAuthStore: () => ({
         user: { username: "Nelson" },
     }),
 }));

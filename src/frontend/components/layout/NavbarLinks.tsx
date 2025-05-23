@@ -4,6 +4,8 @@
  * Renderiza los enlaces superiores de navegación.
  * En modo público muestra Inicio, Iniciar sesión y Registro.
  * En modo autenticado solo muestra el saludo y botón de logout.
+ * 
+ * SOLUCIONADO: Loop infinito causado por useEffect con dependencias incorrectas
  */
 
 "use client";
@@ -11,12 +13,13 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/stores/useAuthStore";
 import { isPublicRoute } from "@/constants/publicRoutes";
 import Button from "@/components/ui/Button";
 
 const NavbarLinks: React.FC = () => {
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, user, logout } = useAuthStore();
+
   const pathname = usePathname();
   const isPublicRouteValue = isPublicRoute(pathname);
 
@@ -27,6 +30,7 @@ const NavbarLinks: React.FC = () => {
   const isLoginPage = pathname === "/login";
   const isSignupPage = pathname === "/signup";
 
+  // ARREGLO: useEffect solo se ejecuta una vez al montar
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsInitialLoad(false);
@@ -34,7 +38,7 @@ const NavbarLinks: React.FC = () => {
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [isAuthenticated, pathname]);
+  }, []); // ← SIN DEPENDENCIAS - solo se ejecuta una vez
 
   const renderNavigation = () => {
     if (!isAuthenticated && isPublicRouteValue) {

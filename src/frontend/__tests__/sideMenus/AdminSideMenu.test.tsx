@@ -1,24 +1,22 @@
 /**
- * Test unitario de AdminSideMenu.tsx
+ * AdminSideMenu.test.tsx
  *
- * Verifica que el menú lateral del administrador se renderiza correctamente
- * con enlaces de gestión y logout. Mockea dependencias internas.
+ * Test unitario del componente AdminSideMenu.
+ * Valida:
+ * - No renderizar cuando isOpen es false
+ * - Renderizado completo con isOpen true
+ * - Renderizado de enlaces de gestión y botón de logout
+ *
+ * Usa mocks de Zustand para simular el store de autenticación.
  */
 
 import React from "react";
 import { render, screen } from "@/__tests__/utils/test-utils";
 import AdminSideMenu from "@/components/sideMenus/AdminSideMenu";
 
-jest.mock("@/hooks/useAuth", () => ({
-    useAuth: () => ({
-        logout: jest.fn(),
-        user: {
-            id: "admin1",
-            name: "Admin",
-            email: "admin@example.com",
-            is_admin: true,
-        },
-    }),
+// Mocks
+jest.mock("@/stores/useAuthStore", () => ({
+    useAuthStore: jest.fn(),
 }));
 
 jest.mock("next/navigation", () => ({
@@ -33,7 +31,23 @@ jest.mock("@/components/common/MainMenuLinks", () => ({ onClickLink }: any) => (
     <div data-testid="main-menu-links" onClick={onClickLink}>Main Links</div>
 ));
 
+const { useAuthStore } = require("@/stores/useAuthStore");
+
 describe("AdminSideMenu", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+
+        useAuthStore.mockReturnValue({
+            user: {
+                id: "admin1",
+                name: "Admin",
+                email: "admin@example.com",
+                is_admin: true,
+            },
+            logout: jest.fn(),
+        });
+    });
+
     it("no renderiza nada si isOpen es false", () => {
         const { container } = render(<AdminSideMenu isOpen={false} onClose={jest.fn()} />);
         expect(container.firstChild).toBeNull();

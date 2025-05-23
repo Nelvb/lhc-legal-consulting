@@ -5,6 +5,10 @@
  * Incluye navegación pública general, rutas privadas relevantes (perfil, dashboard),
  * y acciones de cuenta como eliminación y logout.
  * Usa diseño coherente con el SideMenu público para mantener consistencia visual.
+ *
+ * - Migrado a Zustand (`useAuthStore`).
+ * - Reutiliza SideMenuHeader, MainMenuLinks y DeleteAccountModal.
+ * - Componente accesible y visualmente consistente.
  */
 
 "use client";
@@ -12,7 +16,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/stores/useAuthStore";
 import Button from "@/components/ui/Button";
 import DeleteAccountModal from "../user/DeleteAccountModal";
 import SideMenuHeader from "@/components/common/SideMenuHeader";
@@ -24,7 +28,7 @@ interface UserSideMenuProps {
 }
 
 const UserSideMenu: React.FC<UserSideMenuProps> = ({ isOpen, onClose }) => {
-    const { user, logout } = useAuth();
+    const { logout } = useAuthStore();
     const pathname = usePathname();
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
