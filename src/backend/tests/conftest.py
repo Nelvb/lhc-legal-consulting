@@ -47,13 +47,15 @@ def _db(app):
 def test_user(app):
     """Crea un usuario de prueba y devuelve sus datos planos para evitar errores de sesión."""
     with app.app_context():
-        user = User(username="testuser", email="test@example.com")
+        user = User(username="testuser", last_name="TestApellido", email="test@example.com")
         user.set_password("password123")
         db.session.add(user)
         db.session.commit()
         return {
             "id": user.id,
             "email": user.email,
-            "username": user.username
+            "username": user.username,
+            "last_name": user.last_name
         }
+
 

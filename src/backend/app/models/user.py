@@ -1,5 +1,5 @@
 # Modelo de datos para usuarios con autenticación y seguridad de contraseñas
-# Define la estructura de la tabla users con campos para autenticación y timestamps
+# Define la estructura de la tabla users con campos para autenticación, datos personales y timestamps
 # Incluye métodos para hash seguro de contraseñas y serialización de datos
 
 from app.extensions import db
@@ -12,6 +12,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
+    last_name = db.Column(db.String(120), nullable=True)  # Campo nuevo: apellidos
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
     is_admin = db.Column(db.Boolean, nullable=False, server_default='false')
@@ -22,17 +23,16 @@ class User(db.Model):
     def __repr__(self):
         return f"<User {self.username}>"
 
-    # Método para establecer la contraseña encriptada
     def set_password(self, password: str) -> None:
-        """Genera un hash seguro de la contraseña proporcionada."""
         self.password_hash = generate_password_hash(password)
 
-    # Método para verificar la contraseña
     def check_password(self, password: str) -> bool:
-        """Verifica si la contraseña ingresada coincide con el hash almacenado."""
         return check_password_hash(self.password_hash, password)
 
-    # Método para serializar los datos del usuario (sin incluir la contraseña)
     def serialize(self) -> dict:
-        """Convierte el objeto User en un diccionario sin exponer la contraseña."""
-        return {"id": self.id, "username": self.username, "email": self.email}
+        return {
+            "id": self.id,
+            "username": self.username,
+            "last_name": self.last_name,
+            "email": self.email,
+        }

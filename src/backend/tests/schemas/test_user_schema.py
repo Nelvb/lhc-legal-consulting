@@ -7,18 +7,19 @@ from marshmallow import ValidationError
 from app.schemas.user import UserSchema
 from datetime import datetime
 
-
 user_schema = UserSchema()
 
 def test_user_schema_valid_data():
     """Carga datos válidos y verifica que se procesan correctamente."""
     data = {
         "username": "usuario123",
+        "last_name": "ApellidoPrueba",
         "email": "usuario@example.com",
         "password": "segura1234"
     }
     result = user_schema.load(data)
     assert result["username"] == "usuario123"
+    assert result["last_name"] == "ApellidoPrueba"
     assert result["email"] == "usuario@example.com"
     assert result["password"] == "segura1234"
 
@@ -55,11 +56,24 @@ def test_user_schema_short_password():
         user_schema.load(data)
     assert "password" in err.value.messages
 
+def test_user_schema_invalid_last_name():
+    """Verifica error por last_name demasiado corto."""
+    data = {
+        "username": "usuario123",
+        "last_name": "A",
+        "email": "usuario@example.com",
+        "password": "segura1234"
+    }
+    with pytest.raises(ValidationError) as err:
+        user_schema.load(data)
+    assert "last_name" in err.value.messages
+
 def test_user_schema_dump_excludes_password_and_includes_admin():
     """Verifica que password no aparece en dump y is_admin sí se permite como solo lectura."""
     input_data = {
         "id": 1,
         "username": "usuario123",
+        "last_name": "ApellidoDump",
         "email": "usuario@example.com",
         "is_admin": True,
         "created_at": datetime(2024, 1, 1, 0, 0, 0)
@@ -69,3 +83,4 @@ def test_user_schema_dump_excludes_password_and_includes_admin():
     assert "password" not in dumped
     assert dumped["is_admin"] is True
     assert dumped["username"] == "usuario123"
+    assert dumped["last_name"] == "ApellidoDump"

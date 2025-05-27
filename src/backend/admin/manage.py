@@ -29,6 +29,7 @@ def create_admin():
     Crea un usuario administrador con valores predefinidos si no existe aún.
     """
     username = "Alberto"
+    last_name = "Modroño Martin"
     email = "bapboostaproject@gmail.com"
     password = "Ayb.1981"
 
@@ -39,6 +40,7 @@ def create_admin():
 
     admin_user = User(
         username=username,
+        last_name=last_name,
         email=email,
         password_hash=generate_password_hash(password),
         is_admin=True,
@@ -46,7 +48,7 @@ def create_admin():
 
     db.session.add(admin_user)
     db.session.commit()
-    click.echo("✅ Usuario administrador creado correctamente.")
+    click.echo("Usuario administrador creado correctamente.")
 
 if __name__ == "__main__":
     cli()

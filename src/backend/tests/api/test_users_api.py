@@ -13,7 +13,7 @@ def test_get_users_list(client, app):
         User.query.filter_by(email="testapi@example.com").delete()
         db.session.commit()
 
-        new_user = User(username="testapi", email="testapi@example.com")
+        new_user = User(username="testapi", last_name="ApellidoAPI", email="testapi@example.com")
         new_user.set_password("password123")
         db.session.add(new_user)
         db.session.commit()
@@ -46,7 +46,7 @@ def test_get_user_by_id(client, app):
         User.query.filter_by(email="testuserid@example.com").delete()
         db.session.commit()
 
-        user = User(username="testuserid", email="testuserid@example.com")
+        user = User(username="testuserid", last_name="ApellidoID", email="testuserid@example.com")
         user.set_password("password123")
         db.session.add(user)
         db.session.commit()
@@ -67,6 +67,7 @@ def test_get_user_by_id(client, app):
     assert response.status_code == 200
     assert response.json["email"] == "testuserid@example.com"
     assert response.json["username"] == "testuserid"
+    assert response.json["last_name"] == "ApellidoID"
 
     with app.app_context():
         db.session.delete(user)
@@ -79,7 +80,7 @@ def test_update_user(client, app):
         User.query.filter_by(email="testupdate@example.com").delete()
         db.session.commit()
 
-        user = User(username="testupdate", email="testupdate@example.com")
+        user = User(username="testupdate", last_name="ApellidoOriginal", email="testupdate@example.com")
         user.set_password("password123")
         db.session.add(user)
         db.session.commit()
@@ -95,16 +96,18 @@ def test_update_user(client, app):
     response = client.put(
         "/api/users/update",
         headers={"X-CSRF-TOKEN": csrf_token},
-        json={"username": "updated_username"}
+        json={"username": "updated_username", "last_name": "ApellidoNuevo"}
     )
 
     assert response.status_code == 200
     assert "Usuario actualizado correctamente" in response.json["msg"]
     assert response.json["user"]["username"] == "updated_username"
+    assert response.json["user"]["last_name"] == "ApellidoNuevo"
 
     with app.app_context():
         updated_user = db.session.get(User, user_id)
         assert updated_user.username == "updated_username"
+        assert updated_user.last_name == "ApellidoNuevo"
         db.session.delete(updated_user)
         db.session.commit()
 
@@ -112,7 +115,7 @@ def test_update_user(client, app):
 def test_delete_account(client, app):
     """Prueba la eliminación de la cuenta autenticada."""
     with app.app_context():
-        user = User(username="delete_me", email="deleteme@example.com")
+        user = User(username="delete_me", last_name="DeleteApellido", email="deleteme@example.com")
         user.set_password("password123")
         db.session.add(user)
         db.session.commit()

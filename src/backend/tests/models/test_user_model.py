@@ -10,13 +10,14 @@ def test_user_model_attributes(app):
     """Prueba los atributos y métodos del modelo User."""
     with app.app_context():
         # Crear un usuario para pruebas
-        usuario = User(username="usertest", email="usertest@example.com")
+        usuario = User(username="usertest", last_name="ApellidoTest", email="usertest@example.com")
         usuario.set_password("securepassword")
         db.session.add(usuario)
         db.session.commit()
         
         # Probar atributos del modelo
         assert usuario.username == "usertest"
+        assert usuario.last_name == "ApellidoTest"
         assert usuario.email == "usertest@example.com"
         assert hasattr(usuario, "created_at")
         
@@ -27,6 +28,7 @@ def test_user_model_attributes(app):
         # Probar método serialize
         serialized = usuario.serialize()
         assert serialized["username"] == "usertest"
+        assert serialized["last_name"] == "ApellidoTest"
         assert serialized["email"] == "usertest@example.com"
         assert "password_hash" not in serialized
         
@@ -65,7 +67,7 @@ def test_user_unique_constraints(app):
         db.session.add(user2)
         
         # Debería fallar al hacer commit por violación de constraint
-        with pytest.raises(Exception) as excinfo:
+        with pytest.raises(Exception):
             db.session.commit()
         
         # Limpiar la sesión después del error
@@ -77,7 +79,7 @@ def test_user_unique_constraints(app):
         db.session.add(user3)
         
         # Debería fallar al hacer commit
-        with pytest.raises(Exception) as excinfo:
+        with pytest.raises(Exception):
             db.session.commit()
             
         # Limpiar

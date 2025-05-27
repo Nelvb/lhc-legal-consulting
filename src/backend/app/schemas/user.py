@@ -1,5 +1,5 @@
 # Esquema de validación y serialización para usuarios
-# Define reglas de validación para campos como username, email y password
+# Define reglas de validación para campos como username, email, apellidos y password
 # Controla qué campos son visibles en respuestas API vs. aceptados en peticiones
 
 from marshmallow import Schema, fields, validate
@@ -11,6 +11,12 @@ class UserSchema(Schema):
         validate=[
             validate.Length(min=3, max=50, error="El nombre de usuario debe tener entre 3 y 50 caracteres."),
             validate.Regexp(r"^[a-zA-Z0-9_]+$", error="El nombre de usuario solo puede contener letras, números y guiones bajos.")
+        ]
+    )
+    last_name = fields.Str(
+        required=False,
+        validate=[
+            validate.Length(min=2, max=120, error="El apellido debe tener entre 2 y 120 caracteres.")
         ]
     )
     email = fields.Email(

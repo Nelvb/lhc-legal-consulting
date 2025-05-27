@@ -21,6 +21,7 @@ def test_signup(client, app):
             "/api/auth/signup",
             json={
                 "username": "testuser",
+                "last_name": "TestApellido", 
                 "email": "test@example.com",
                 "password": "securepass",
             },
@@ -32,6 +33,7 @@ def test_signup(client, app):
         usuario = User.query.filter_by(email="test@example.com").first()
         assert usuario is not None
         assert usuario.username == "testuser"
+        assert usuario.last_name == "TestApellido"
 
 
 def test_signup_invalid_data(client, app):
@@ -86,6 +88,7 @@ def test_login(client, app, test_user):
     assert "user" in response.json
     assert response.json["user"]["email"] == "test@example.com"
     assert response.json["user"]["username"] == "testuser"
+    assert response.json["user"]["last_name"] == "TestApellido"
     assert "password" not in response.json["user"]
 
 
@@ -111,7 +114,7 @@ def test_login_invalid_credentials(client, app, test_user):
 def test_profile(client, app):
     """Prueba el acceso al perfil usando cookies + CSRF en vez de token."""
     with app.app_context():
-        user = User(username="profile_test", email="profile@example.com")
+        user = User(username="profile_test", last_name="ApellidoTest", email="profile@example.com")
         user.set_password("password123")
         db.session.add(user)
         db.session.commit()
@@ -132,6 +135,7 @@ def test_profile(client, app):
 
     assert profile_response.status_code == 200
     assert profile_response.json["username"] == "profile_test"
+    assert profile_response.json["last_name"] == "ApellidoTest"
     assert profile_response.json["email"] == "profile@example.com"
     assert "password" not in profile_response.json
 

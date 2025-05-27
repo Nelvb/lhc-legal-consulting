@@ -20,7 +20,7 @@ def test_create_admin_command_crea_usuario_admin(runner, app):
             db.session.commit()
 
     result = runner.invoke(args=["create_admin"])
-    assert "✅ Usuario administrador creado correctamente." in result.output
+    assert "Usuario administrador creado correctamente." in result.output
 
 
     # Verificar en base de datos
@@ -28,5 +28,6 @@ def test_create_admin_command_crea_usuario_admin(runner, app):
         user = User.query.filter_by(email="bapboostaproject@gmail.com").first()
         assert user is not None
         assert user.username == "Alberto"
+        assert user.last_name == "Modroño Martin"
         assert user.is_admin is True
         assert user.check_password("Ayb.1981")

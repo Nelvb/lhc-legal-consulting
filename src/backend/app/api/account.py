@@ -40,6 +40,7 @@ def update_profile():
     data = request.get_json()
 
     name = data.get("name", "").strip()
+    last_name = data.get("last_name", "").strip()
     email = data.get("email", "").strip()
     current_password = data.get("current_password", "")
 
@@ -56,6 +57,7 @@ def update_profile():
 
     # Actualizar nombre
     user.username = name
+    user.last_name = last_name
 
     # Solo actualizar email si se ha enviado y es distinto
     if email:
@@ -223,6 +225,7 @@ def contact():
         return jsonify({"errors": errors}), 400
 
     name = data["name"]
+    last_name = data.get("last_name", "").strip()
     email = data.get("email", "no enviado")
     subject = data["subject"]
     message = data["message"]
@@ -230,7 +233,7 @@ def contact():
     full_message = (
         f"Nuevo mensaje desde el formulario de contacto\n\n"
         f"{'ID usuario: ' + str(user_id) if user_id else 'Usuario no autenticado'}\n"
-        f"Nombre: {name}\n"
+        f"Nombre: {name} {last_name}\n"
         f"Email: {email}\n"
         f"Asunto: {subject}\n\n"
         f"Mensaje:\n{message}"

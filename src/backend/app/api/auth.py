@@ -39,7 +39,12 @@ def signup():
         if User.query.filter_by(username=user_data["username"]).first():
             return jsonify({"msg": "El nombre de usuario ya existe"}), 409
 
-        new_user = User(username=user_data["username"], email=user_data["email"])
+        new_user = User(
+            username=user_data["username"],
+            last_name=user_data.get("last_name", "").strip(),
+            email=user_data["email"]
+)
+
         new_user.set_password(user_data["password"])
 
         db.session.add(new_user)

@@ -45,7 +45,7 @@ def update_user():
             return jsonify({"msg": "Usuario no encontrado"}), 404
 
         data = request.get_json()
-        allowed_updates = {"username", "email"}
+        allowed_updates = {"username", "email", "last_name"}
         updates = {k: v for k, v in data.items() if k in allowed_updates}
 
         validated_data = user_schema.load(updates, partial=True)

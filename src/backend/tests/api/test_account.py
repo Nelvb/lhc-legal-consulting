@@ -126,11 +126,18 @@ def test_update_profile_success(mock_send, client, app):
 
     res = client.put("/api/account/update-profile", json={
         "name": "NuevoNombre",
+        "last_name": "ApellidoActualizado",
         "email": "me@example.com",
         "current_password": "mypassword"
     }, headers={"X-CSRF-TOKEN": csrf_token})
     assert res.status_code == 200
     assert "actualizado" in res.json["msg"].lower()
+
+    with app.app_context():
+        updated_user = db.session.get(User, user_id)
+        assert updated_user.last_name == "ApellidoActualizado"
+        assert updated_user.username == "NuevoNombre"
+
 
 def test_update_profile_options(client):
     res = client.options("/api/account/update-profile")

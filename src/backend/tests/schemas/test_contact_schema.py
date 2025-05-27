@@ -12,14 +12,16 @@ schema = ContactSchema()
 
 def test_contact_schema_valido():
     data = {
-        "name": "Juan Pérez",
+        "name": "Juan",
+        "last_name": "Pérez",
         "email": "juan@example.com",
         "subject": "Interesado en invertir",
         "message": "Quiero información detallada sobre el próximo proyecto."
     }
 
     result = schema.load(data)
-    assert result["name"] == "Juan Pérez"
+    assert result["name"] == "Juan"
+    assert result["last_name"] == "Pérez"
     assert result["email"] == "juan@example.com"
 
 
@@ -28,6 +30,7 @@ def test_contact_schema_valido():
     ({"name": "Ana", "email": "no-es-email", "subject": "Hola", "message": "Mensaje válido"}, "email"),
     ({"name": "Ana", "email": "ana@example.com", "subject": "Hi", "message": "Mensaje válido"}, "subject"),
     ({"name": "Ana", "email": "ana@example.com", "subject": "Asunto válido", "message": "Hola"}, "message"),
+    ({"name": "Juan", "last_name": "A", "email": "juan@example.com", "subject": "Tema", "message": "Mensaje válido"}, "last_name"),
 ])
 def test_contact_schema_invalido(data, campo_esperado):
     with pytest.raises(Exception) as exc:
