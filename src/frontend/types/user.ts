@@ -5,7 +5,8 @@
 
 export interface User {
     id: string;
-    name: string;
+    username: string;
+    last_name: string;
     email: string;
     is_admin?: boolean;
     [key: string]: any;

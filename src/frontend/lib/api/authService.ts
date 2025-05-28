@@ -5,6 +5,7 @@
  */
 
 import { fetchWithAuth } from "@/lib/utils/fetchWithAuth";
+import type { SignupData } from "@/types/auth";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -15,17 +16,15 @@ if (!API_BASE_URL) {
 export const authService = {
     /**
      * Registro de un nuevo usuario.
-     * @param userData - username, email y password
+     * @param userData - datos de registro (username, last_name, email y password)
      */
-    signup: async (userData: {
-        username: string;
-        email: string;
-        password: string;
-    }) => {
+    signup: async (userData: SignupData) => {
+        const { username, last_name, email, password } = userData;
+
         const response = await fetch(`${API_BASE_URL}/auth/signup`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userData),
+            body: JSON.stringify({ username, last_name, email, password }),
         });
 
         const data = await response.json();
@@ -36,6 +35,7 @@ export const authService = {
 
         return data;
     },
+
 
     /**
      * Login de usuario con email y password.

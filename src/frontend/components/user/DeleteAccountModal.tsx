@@ -3,35 +3,32 @@
  *
  * Modal de confirmación para eliminar permanentemente la cuenta del usuario.
  * Usa colores corporativos y diseño coherente con la plataforma.
- * Llama a userService.deleteAccount(), ejecuta logout y redirige tras éxito.
- *
- * - Migrado a Zustand (`useAuthStore`) para logout global.
- * - Diseño accesible, visual y adaptado al branding.
+ * 
+ * - Migrado a Zustand (`useAuthStore` y `useUiStore`) para control global.
+ * - Mantiene diseño accesible, modular y desacoplado del SideMenu.
  */
 
 "use client";
 
 import React from "react";
-import { userService } from "@/lib/api/userService";
-import { useAuthStore } from "@/stores/useAuthStore";
 import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { useUiStore } from "@/stores/useUiStore";
+import { userService } from "@/lib/api/userService";
 
-interface DeleteAccountModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-}
-
-const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({ isOpen, onClose }) => {
+const DeleteAccountModal: React.FC = () => {
     const { logout } = useAuthStore();
+    const { showDeleteModal, closeDeleteModal } = useUiStore();
     const router = useRouter();
 
-    if (!isOpen) return null;
+    if (!showDeleteModal) return null;
 
     const handleDelete = async () => {
         try {
             await userService.deleteAccount();
             logout();
             alert("Tu cuenta ha sido eliminada. Gracias por formar parte de Boost A Project.");
+            closeDeleteModal();
             router.push("/");
         } catch (error: any) {
             alert(error.message || "Error al eliminar la cuenta.");
@@ -56,7 +53,7 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({ isOpen, onClose
 
                     <div className="flex justify-end gap-3 pt-4">
                         <button
-                            onClick={onClose}
+                            onClick={closeDeleteModal}
                             className="px-4 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
                         >
                             Cancelar

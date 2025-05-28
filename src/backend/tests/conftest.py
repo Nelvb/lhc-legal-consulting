@@ -1,6 +1,7 @@
 # Configuración de fixtures para tests de la aplicación
 # Define recursos compartidos como instancia de app, cliente HTTP, usuario de prueba y BD
 # Gestiona ciclos de vida de los recursos con setup y teardown automáticos
+# Actualizado para coincidir con UserSchema profesional (nombres reales, contraseñas seguras)
 
 import pytest
 from app import create_app
@@ -45,10 +46,12 @@ def _db(app):
 
 @pytest.fixture
 def test_user(app):
-    """Crea un usuario de prueba y devuelve sus datos planos para evitar errores de sesión."""
+    """Crea un usuario de prueba y devuelve sus datos planos para evitar errores de sesión.
+    Actualizado para cumplir con UserSchema profesional: nombre real sin números,
+    contraseña segura con complejidad requerida."""
     with app.app_context():
-        user = User(username="testuser", last_name="TestApellido", email="test@example.com")
-        user.set_password("password123")
+        user = User(username="TestUser", last_name="Test García", email="test@example.com")
+        user.set_password("SecurePass123!")
         db.session.add(user)
         db.session.commit()
         return {
@@ -57,5 +60,3 @@ def test_user(app):
             "username": user.username,
             "last_name": user.last_name
         }
-
-

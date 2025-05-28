@@ -73,9 +73,16 @@ def login():
         if not email or not password:
             return jsonify({"msg": "Email y contraseña son obligatorios"}), 400
 
+        # Buscar usuario por email
         user = User.query.filter_by(email=email).first()
-        if not user or not user.check_password(password):
-            return jsonify({"msg": "Credenciales inválidas"}), 401
+        
+        # Verificar si el usuario existe
+        if not user:
+            return jsonify({"msg": "No existe una cuenta con ese email"}), 401
+        
+        # Verificar contraseña
+        if not user.check_password(password):
+            return jsonify({"msg": "La contraseña es incorrecta"}), 401
 
         access_token = create_access_token(
             identity=str(user.id),

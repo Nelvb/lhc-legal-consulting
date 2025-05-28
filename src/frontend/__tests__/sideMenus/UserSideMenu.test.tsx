@@ -1,27 +1,29 @@
 /**
  * UserSideMenu.test.tsx
  *
- * Test unitario del componente UserSideMenu.
+ * Test unitario para UserSideMenu usando mocks reales Zustand.
  * Valida:
- * - Renderizado condicional según isOpen
- * - Visualización de enlaces privados
- * - Llamada a logout y apertura de modal de eliminación
- *
- * Usa mocks de Zustand y subcomponentes dependientes.
+ * - Renderizado condicional (prop isOpen)
+ * - Enlaces visibles
+ * - Llamadas a logout() y openDeleteModal()
  */
 
 import React from "react";
 import { render, screen, fireEvent } from "@/__tests__/utils/test-utils";
 import UserSideMenu from "@/components/sideMenus/UserSideMenu";
 
-// Mocks
-jest.mock("@/components/user/DeleteAccountModal", () => ({ isOpen }: any) =>
-    isOpen ? <div data-testid="modal-eliminar-cuenta">Eliminar cuenta</div> : null
-);
+// Mocks reales
+import {
+    mockOpenDeleteModal,
+    resetUiStoreMock,
+} from "@/__mocks__/useUiStore";
+import {
+    mockLogout,
+    mockAuthStoreState,
+} from "@/__mocks__/useAuthStore";
 
-jest.mock("@/stores/useAuthStore", () => ({
-    useAuthStore: jest.fn(),
-}));
+jest.mock("@/stores/useAuthStore", () => require("@/__mocks__/useAuthStore"));
+jest.mock("@/stores/useUiStore", () => require("@/__mocks__/useUiStore"));
 
 jest.mock("next/navigation", () => ({
     usePathname: () => "/dashboard",
@@ -35,21 +37,10 @@ jest.mock("@/components/common/MainMenuLinks", () => ({ onClickLink }: any) => (
     <div data-testid="main-links" onClick={onClickLink}>Enlaces</div>
 ));
 
-const { useAuthStore } = require("@/stores/useAuthStore");
-
-describe("UserSideMenu", () => {
-    const logoutMock = jest.fn();
-
+describe("UserSideMenu (Zustand + mocks)", () => {
     beforeEach(() => {
-        useAuthStore.mockReturnValue({
-            logout: logoutMock,
-            user: {
-                id: "u1",
-                name: "Nelson",
-                email: "nelson@example.com",
-                is_admin: false,
-            },
-        });
+        mockAuthStoreState.authenticated(); // usuario autenticado mock
+        resetUiStoreMock();
     });
 
     afterEach(() => {
@@ -61,26 +52,27 @@ describe("UserSideMenu", () => {
         expect(container.firstChild).toBeNull();
     });
 
-    it("renderiza correctamente enlaces y botones si isOpen es true", () => {
+    it("renderiza correctamente si isOpen es true", () => {
         render(<UserSideMenu isOpen={true} onClose={jest.fn()} />);
-
         expect(screen.getByText(/editar perfil/i)).toBeInTheDocument();
         expect(screen.getByText(/área privada/i)).toBeInTheDocument();
         expect(screen.getByText(/eliminar cuenta/i)).toBeInTheDocument();
         expect(screen.getByText(/cerrar sesión/i)).toBeInTheDocument();
     });
 
-    it("abre modal de eliminación al hacer clic en 'Eliminar cuenta'", () => {
-        render(<UserSideMenu isOpen={true} onClose={jest.fn()} />);
+    it("llama a openDeleteModal y onClose al hacer clic en 'Eliminar cuenta'", () => {
+        const onCloseMock = jest.fn();
+        render(<UserSideMenu isOpen={true} onClose={onCloseMock} />);
         fireEvent.click(screen.getByText(/eliminar cuenta/i));
-        expect(screen.getByTestId("modal-eliminar-cuenta")).toBeInTheDocument();
+        expect(mockOpenDeleteModal).toHaveBeenCalledTimes(1);
+        expect(onCloseMock).toHaveBeenCalledTimes(1);
     });
 
-    it("llama a logout al hacer clic en 'Cerrar sesión'", () => {
+    it("llama a logout y onClose al hacer clic en 'Cerrar sesión'", () => {
         const onCloseMock = jest.fn();
         render(<UserSideMenu isOpen={true} onClose={onCloseMock} />);
         fireEvent.click(screen.getByText(/cerrar sesión/i));
-        expect(logoutMock).toHaveBeenCalledTimes(1);
+        expect(mockLogout).toHaveBeenCalledTimes(1);
         expect(onCloseMock).toHaveBeenCalledTimes(1);
     });
 });

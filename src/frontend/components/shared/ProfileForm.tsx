@@ -30,7 +30,8 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 }) => {
     const { user, refreshUser } = useAuthStore();
 
-    const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [currentPassword, setCurrentPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +41,8 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
     useEffect(() => {
         if (user) {
-            setName(user.name || "");
+            setUsername(user.username || "");
+            setLastName(user.last_name || "");
             setEmail(user.email || "");
         }
     }, [user]);
@@ -50,8 +52,12 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         setSuccessMessage("");
         const newErrors: { [key: string]: string } = {};
 
-        if (!name.trim()) {
-            newErrors.name = "El nombre es obligatorio.";
+        if (!username.trim()) {
+            newErrors.username = "El nombre de usuario es obligatorio.";
+        }
+
+        if (!lastName.trim()) {
+            newErrors.lastName = "Los apellidos son obligatorios.";
         }
 
         if (showEmail && editableEmail) {
@@ -76,7 +82,8 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
         try {
             const payload = {
-                name,
+                username,
+                last_name: lastName,
                 email,
                 current_password: currentPassword,
             };
@@ -102,18 +109,33 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 <p className="text-green-600 font-medium">{successMessage}</p>
             )}
 
-            {/* Nombre */}
+            {/* Nombre de usuario */}
             <div>
                 <Input
-                    label="Nuevo nombre"
-                    name="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Tu nombre"
+                    label="Nombre de usuario"
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Tu nombre de usuario"
                     required
                 />
-                {errors.name && (
-                    <p className="text-sm text-red-600 mt-1">{errors.name}</p>
+                {errors.username && (
+                    <p className="text-sm text-red-600 mt-1">{errors.username}</p>
+                )}
+            </div>
+
+            {/* Apellidos */}
+            <div>
+                <Input
+                    label="Apellidos"
+                    name="lastName"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    placeholder="Tus apellidos"
+                    required
+                />
+                {errors.lastName && (
+                    <p className="text-sm text-red-600 mt-1">{errors.lastName}</p>
                 )}
             </div>
 

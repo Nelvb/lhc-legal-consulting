@@ -1,24 +1,38 @@
 /**
- * Formulario de inicio de sesión
- * Permite al usuario autenticarse con email y contraseña
- * Incluye funcionalidad para mostrar/ocultar la contraseña con ícono visual
+ * LoginForm.tsx
+ *
+ * Formulario de inicio de sesión para la aplicación Boost A Project.
+ * Permite al usuario autenticarse con email y contraseña usando cookies seguras + CSRF.
+ * Incluye redirección automática según el rol (admin → /admin, usuario → /dashboard).
+ * 
+ * Características profesionales:
+ * - Placeholders profesionales, manejo de errores del backend
+ * - Compatible con Zustand (useAuthStore)
+ * - Diseño responsive y accesible
+ * - Componente Spinner reutilizable
  */
 
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import Spinner from "@/components/ui/Spinner";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { Eye, EyeOff } from "lucide-react";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const { login, loading, error } = useAuthStore();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  
+  const { login, loading, error, clearError } = useAuthStore();
   const router = useRouter();
+
+  useEffect(() => {
+    clearError();
+  }, [clearError]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,7 +44,7 @@ const LoginForm = () => {
       } else {
         router.push("/dashboard");
       }
-    } catch (err) {
+    } catch {
       // El error ya se gestiona en el store
     }
   };
@@ -57,6 +71,7 @@ const LoginForm = () => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="tu@email.com"
           required
         />
 
@@ -67,14 +82,16 @@ const LoginForm = () => {
             type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Tu contraseña"
             required
           />
-          <div
+          <button
+            type="button"
             className="absolute right-3 top-[38px] cursor-pointer text-[#1A1341]"
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-          </div>
+          </button>
         </div>
 
         <div className="mt-4">
@@ -84,7 +101,14 @@ const LoginForm = () => {
             className="w-full"
             disabled={loading}
           >
-            {loading ? "Procesando..." : "Iniciar Sesión"}
+            {loading ? (
+              <div className="flex items-center justify-center space-x-2">
+                <Spinner />
+                <span>Iniciando sesión...</span>
+              </div>
+            ) : (
+              "Iniciar Sesión"
+            )}
           </Button>
         </div>
       </form>

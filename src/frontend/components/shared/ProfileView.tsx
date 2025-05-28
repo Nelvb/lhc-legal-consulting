@@ -56,11 +56,12 @@ const ProfileView: React.FC<ProfileViewProps> = ({
                         {title}
                     </h2>
                     <p className="text-md text-white text-center">{subtitle}</p>
-                    {user?.name && (
+                    {(user?.username || user?.last_name) && (
                         <p className="mt-6 text-white font-semibold">
-                            Nombre actual: {user.name}
+                            Nombre actual: {user.username} {user.last_name}
                         </p>
                     )}
+
                     {showEmail && user?.email && (
                         <p className="text-white text-sm">{user.email}</p>
                     )}

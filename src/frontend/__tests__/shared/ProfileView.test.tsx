@@ -33,7 +33,8 @@ describe("ProfileView", () => {
         jest.clearAllMocks();
         useAuthStore.mockReturnValue({
             user: {
-                name: "Nelson",
+                username: "Nelson",
+                last_name: "Valero",
                 email: "nelson@example.com",
                 is_admin: false,
             },
@@ -68,11 +69,13 @@ describe("ProfileView", () => {
     it("cuando el usuario es admin, editableEmail se pasa como false", () => {
         useAuthStore.mockReturnValueOnce({
             user: {
-                name: "Admin",
+                username: "Admin",
+                last_name: "AdminLastName",
                 email: "admin@boost.com",
                 is_admin: true,
             },
         });
+
 
         render(<ProfileView showEmail={true} />);
 

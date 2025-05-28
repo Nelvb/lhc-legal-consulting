@@ -16,6 +16,7 @@ if (!API_URL) {
 
 interface ContactData {
     name: string;
+    last_name?: string;
     subject: string;
     message: string;
     email?: string;

@@ -85,7 +85,8 @@ describe('AdminPageContent', () => {
             user: {
                 id: '1',
                 email: 'user@test.com',
-                name: 'Usuario Normal',
+                username: 'Usuario',
+                last_name: 'Normal',
                 is_admin: false,
             },
             loading: false,
@@ -109,7 +110,8 @@ describe('AdminPageContent', () => {
             user: {
                 id: '1',
                 email: 'admin@test.com',
-                name: 'Administrador',
+                username: 'Administrador',
+                last_name: 'Administrador',
                 is_admin: true,
             },
             loading: false,
@@ -163,7 +165,8 @@ describe('AdminPageContent', () => {
             user: {
                 id: '1',
                 email: 'admin@test.com',
-                name: 'Administrador',
+                username: 'Administrador',
+                last_name: 'Administrador',
                 is_admin: true,
             },
             loading: false,

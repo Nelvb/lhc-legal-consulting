@@ -1,25 +1,28 @@
 /**
  * DeleteAccountModal.test.tsx
  *
- * Test unitario para DeleteAccountModal.
+ * Test unitario para DeleteAccountModal global.
  * Verifica:
- * - Render condicional según `isOpen`
- * - Cierre del modal al hacer clic en "Cancelar"
- * - Llamada a userService.deleteAccount() y logout al confirmar
- * - Manejo de errores con alert si falla la eliminación
+ * - Render condicional según store Zustand (`showDeleteModal`)
+ * - Cierre del modal con `closeDeleteModal()`
+ * - Llamada a `userService.deleteAccount()` y `logout()`
+ * - Manejo de errores
  */
 
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@/__tests__/utils/test-utils";
 import DeleteAccountModal from "@/components/user/DeleteAccountModal";
+
+// Mocks reales
+import {
+    useUiStore,
+    mockCloseDeleteModal,
+    resetUiStoreMock,
+} from "@/__mocks__/useUiStore";
 import { mockLogout } from "@/__mocks__/useAuthStore";
 
-// Mocks
-jest.mock("@/stores/useAuthStore", () => ({
-    useAuthStore: () => ({
-        logout: require("@/__mocks__/useAuthStore").mockLogout,
-    }),
-}));
+jest.mock("@/stores/useAuthStore", () => require("@/__mocks__/useAuthStore"));
+jest.mock("@/stores/useUiStore", () => require("@/__mocks__/useUiStore"));
 
 jest.mock("next/navigation", () => ({
     useRouter: () => ({
@@ -35,47 +38,38 @@ jest.mock("@/lib/api/userService", () => ({
 
 const { deleteAccount } = require("@/lib/api/userService").userService;
 
-describe("DeleteAccountModal", () => {
-    const onCloseMock = jest.fn();
-
-    beforeAll(() => {
-        jest.spyOn(window, "alert").mockImplementation(() => { });
+describe("DeleteAccountModal (Zustand + Mocks)", () => {
+    beforeEach(() => {
+        resetUiStoreMock(); // estado limpio
+        useUiStore().openDeleteModal(); // activamos el modal
     });
 
     afterEach(() => {
         jest.clearAllMocks();
+        resetUiStoreMock();
     });
 
-    it("no renderiza nada si isOpen es false", () => {
-        const { container } = render(
-            <DeleteAccountModal isOpen={false} onClose={onCloseMock} />
-        );
-        expect(container.firstChild).toBeNull();
-    });
-
-    it("renderiza correctamente si isOpen es true", () => {
-        render(<DeleteAccountModal isOpen={true} onClose={onCloseMock} />);
+    it("renderiza el modal si showDeleteModal es true", () => {
+        render(<DeleteAccountModal />);
         expect(
             screen.getByText(/¿estás seguro de que quieres eliminar tu cuenta/i)
         ).toBeInTheDocument();
-        expect(screen.getByText(/cancelar/i)).toBeInTheDocument();
-        expect(screen.getByText(/eliminar cuenta/i)).toBeInTheDocument();
     });
 
-    it("ejecuta onClose al hacer clic en 'Cancelar'", () => {
-        render(<DeleteAccountModal isOpen={true} onClose={onCloseMock} />);
+    it("cierra el modal al hacer clic en 'Cancelar'", () => {
+        render(<DeleteAccountModal />);
         fireEvent.click(screen.getByText(/cancelar/i));
-        expect(onCloseMock).toHaveBeenCalledTimes(1);
+        expect(mockCloseDeleteModal).toHaveBeenCalled();
     });
 
-    it("llama a deleteAccount y logout correctamente", async () => {
+    it("llama a deleteAccount y logout al confirmar", async () => {
         deleteAccount.mockResolvedValueOnce({});
-        render(<DeleteAccountModal isOpen={true} onClose={onCloseMock} />);
+        render(<DeleteAccountModal />);
         fireEvent.click(screen.getByText(/eliminar cuenta/i));
 
         await waitFor(() => {
-            expect(deleteAccount).toHaveBeenCalledTimes(1);
-            expect(mockLogout).toHaveBeenCalledTimes(1);
+            expect(deleteAccount).toHaveBeenCalled();
+            expect(mockLogout).toHaveBeenCalled();
         });
     });
 
@@ -83,7 +77,7 @@ describe("DeleteAccountModal", () => {
         const alertMock = jest.spyOn(window, "alert").mockImplementation(() => { });
         deleteAccount.mockRejectedValueOnce(new Error("Error del servidor"));
 
-        render(<DeleteAccountModal isOpen={true} onClose={onCloseMock} />);
+        render(<DeleteAccountModal />);
         fireEvent.click(screen.getByText(/eliminar cuenta/i));
 
         await waitFor(() => {

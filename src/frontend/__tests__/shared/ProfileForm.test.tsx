@@ -8,7 +8,8 @@
  * - Renderiza todos los campos visibles correctamente
  * - Verifica los mensajes de error con el mismo texto exacto del componente:
  *   * "Introduce un email válido."
- *   * "El nombre es obligatorio."
+ *   * "El nombre de usuario es obligatorio."
+ *   * "Los apellidos son obligatorios."
  *   * "La contraseña es obligatoria."
  * - Usa mocks locales de useAuthStore y userService
  */
@@ -38,13 +39,14 @@ describe("ProfileForm", () => {
 
     it("renderiza todos los campos correctamente", () => {
         useAuthStore.mockReturnValue({
-            user: { name: "Nelson", email: "nelson@example.com" },
+            user: { username: "Nelson", last_name: "Valero", email: "nelson@example.com" },
             refreshUser: jest.fn(),
         });
 
         render(<ProfileForm />);
 
-        expect(screen.getByLabelText(/^nuevo nombre$/i)).toBeInTheDocument();
+        expect(screen.getByLabelText(/^nombre de usuario$/i)).toBeInTheDocument();
+        expect(screen.getByLabelText(/^apellidos$/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/^correo electrónico$/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/^contraseña actual$/i)).toBeInTheDocument();
         expect(screen.getByRole("button", { name: /guardar cambios/i })).toBeInTheDocument();
@@ -52,7 +54,7 @@ describe("ProfileForm", () => {
 
     it("muestra error si el email no es válido", async () => {
         useAuthStore.mockReturnValue({
-            user: { name: "Nelson", email: "" },
+            user: { username: "Nelson", last_name: "Valero", email: "" },
             refreshUser: jest.fn(),
         });
 
@@ -67,26 +69,43 @@ describe("ProfileForm", () => {
         expect(await screen.findByText("Introduce un email válido.")).toBeInTheDocument();
     });
 
-    it("muestra error si el nombre está vacío", async () => {
+    it("muestra error si el nombre de usuario está vacío", async () => {
         useAuthStore.mockReturnValue({
-            user: { name: "", email: "nelson@example.com" },
+            user: { username: "", last_name: "Valero", email: "nelson@example.com" },
             refreshUser: jest.fn(),
         });
 
         render(<ProfileForm />);
 
-        const nameInput = screen.getByLabelText(/^nuevo nombre$/i);
+        const nameInput = screen.getByLabelText(/^nombre de usuario$/i);
         const form = nameInput.closest("form")!;
 
         fireEvent.change(nameInput, { target: { value: "" } });
         fireEvent.submit(form);
 
-        expect(await screen.findByText("El nombre es obligatorio.")).toBeInTheDocument();
+        expect(await screen.findByText("El nombre de usuario es obligatorio.")).toBeInTheDocument();
+    });
+
+    it("muestra error si los apellidos están vacíos", async () => {
+        useAuthStore.mockReturnValue({
+            user: { username: "Nelson", last_name: "", email: "nelson@example.com" },
+            refreshUser: jest.fn(),
+        });
+
+        render(<ProfileForm />);
+
+        const lastNameInput = screen.getByLabelText(/^apellidos$/i);
+        const form = lastNameInput.closest("form")!;
+
+        fireEvent.change(lastNameInput, { target: { value: "" } });
+        fireEvent.submit(form);
+
+        expect(await screen.findByText("Los apellidos son obligatorios.")).toBeInTheDocument();
     });
 
     it("muestra error si la contraseña actual está vacía", async () => {
         useAuthStore.mockReturnValue({
-            user: { name: "Nelson", email: "nelson@example.com" },
+            user: { username: "Nelson", last_name: "Valero", email: "nelson@example.com" },
             refreshUser: jest.fn(),
         });
 

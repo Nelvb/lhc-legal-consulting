@@ -35,14 +35,16 @@ jest.mock("@/lib/utils/fetchWithAuth", () => ({
 // Datos de prueba
 const mockUser: User = {
     id: "user-123",
-    name: "Nelson Test",
+    username: "Nelson Test",
+    last_name: "Valero Test",
     email: "nelson@test.com",
     is_admin: false,
 };
 
 const mockAdminUser: User = {
     id: "admin-456",
-    name: "Admin User",
+    username: "Admin User",
+    last_name: "AdminLastName",
     email: "admin@test.com",
     is_admin: true,
 };
@@ -54,6 +56,7 @@ const mockCredentials: LoginCredentials = {
 
 const mockSignupData: SignupData = {
     username: "Nelson",
+    last_name: "Valero",
     email: "nelson@test.com",
     password: "password123",
 };

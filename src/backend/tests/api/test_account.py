@@ -8,6 +8,7 @@
 # - Solicitud de cambio de email autenticado con cookie + CSRF (mocked)
 # - Confirmación de email por token
 # Incluye casos de borde y fallos esperados
+# Actualizado para coincidir con UserSchema profesional (nombres reales, contraseñas seguras)
 # ------------------------------------------------------------------------------
 
 import pytest
@@ -21,8 +22,8 @@ from itsdangerous import URLSafeTimedSerializer
 def test_request_password_reset(mock_send, client, app):
     """Solicita enlace de recuperación si el email existe (respuesta siempre 200)."""
     with app.app_context():
-        user = User(username="resetuser", email="reset@example.com")
-        user.set_password("resetpass")
+        user = User(username="María", last_name="Reset García", email="reset@example.com")
+        user.set_password("SecurePass123!")
         db.session.add(user)
         db.session.commit()
 
@@ -39,8 +40,8 @@ def test_reset_password_with_valid_token(client, app):
     """Restablece la contraseña usando un token válido."""
     with app.app_context():
         email = "validtoken@example.com"
-        user = User(username="validtoken", email=email)
-        user.set_password("oldpassword")
+        user = User(username="Antonio", last_name="Token Válido", email=email)
+        user.set_password("OldPassword123!")
         db.session.add(user)
         db.session.commit()
 
@@ -49,7 +50,7 @@ def test_reset_password_with_valid_token(client, app):
 
     response = client.post(
         "/api/account/reset-password",
-        json={"token": token, "new_password": "newsecurepassword"},
+        json={"token": token, "new_password": "NewSecurePass456!"},
     )
 
     assert response.status_code == 200
@@ -57,7 +58,7 @@ def test_reset_password_with_valid_token(client, app):
 
     with app.app_context():
         updated_user = User.query.filter_by(email=email).first()
-        assert updated_user.check_password("newsecurepassword") is True
+        assert updated_user.check_password("NewSecurePass456!") is True
 
 
 def test_reset_password_invalid_or_expired_token(client, app):
@@ -65,7 +66,7 @@ def test_reset_password_invalid_or_expired_token(client, app):
     # Token inválido
     response = client.post(
         "/api/account/reset-password",
-        json={"token": "invalidtoken", "new_password": "irrelevant"},
+        json={"token": "invalidtoken", "new_password": "SecurePass123!"},
     )
     assert response.status_code == 400
     assert "token" in response.json["msg"].lower()
@@ -75,15 +76,15 @@ def test_reset_password_invalid_or_expired_token(client, app):
 def test_request_email_change_and_confirm(mock_send, client, app):
     """Prueba completa de solicitud y confirmación de cambio de email."""
     with app.app_context():
-        user = User(username="change_email", email="old@example.com")
-        user.set_password("changepass")
+        user = User(username="Carmen", last_name="Change Email", email="old@example.com")
+        user.set_password("ChangePass123!")
         db.session.add(user)
         db.session.commit()
         user_id = user.id
 
     login = client.post(
         "/api/auth/login",
-        json={"email": "old@example.com", "password": "changepass"},
+        json={"email": "old@example.com", "password": "ChangePass123!"},
     )
     assert login.status_code == 200
     csrf_token = login.json["csrf_token"]
@@ -115,28 +116,28 @@ def test_request_email_change_and_confirm(mock_send, client, app):
 @patch("app.api.account.send_email_with_limit", return_value={"success": True})
 def test_update_profile_success(mock_send, client, app):
     with app.app_context():
-        user = User(username="update_me", email="me@example.com")
-        user.set_password("mypassword")
+        user = User(username="Roberto", last_name="Update Profile", email="me@example.com")
+        user.set_password("MyPassword123!")
         db.session.add(user)
         db.session.commit()
         user_id = user.id
 
-    login = client.post("/api/auth/login", json={"email": "me@example.com", "password": "mypassword"})
+    login = client.post("/api/auth/login", json={"email": "me@example.com", "password": "MyPassword123!"})
     csrf_token = login.json["csrf_token"]
 
     res = client.put("/api/account/update-profile", json={
-        "name": "NuevoNombre",
-        "last_name": "ApellidoActualizado",
+        "name": "Roberto Carlos",
+        "last_name": "Update Actualizado",
         "email": "me@example.com",
-        "current_password": "mypassword"
+        "current_password": "MyPassword123!"
     }, headers={"X-CSRF-TOKEN": csrf_token})
     assert res.status_code == 200
     assert "actualizado" in res.json["msg"].lower()
 
     with app.app_context():
         updated_user = db.session.get(User, user_id)
-        assert updated_user.last_name == "ApellidoActualizado"
-        assert updated_user.username == "NuevoNombre"
+        assert updated_user.last_name == "Update Actualizado"
+        assert updated_user.username == "Roberto Carlos"
 
 
 def test_update_profile_options(client):
@@ -166,10 +167,9 @@ def test_contact_usuario_autenticado(mock_send, client, test_user):
     email = test_user["email"]
     username = test_user["username"]
 
-
     login = client.post("/api/auth/login", json={
         "email": email,
-        "password": "password123"
+        "password": "SecurePass123!"
     })
     csrf_token = login.json["csrf_token"]
 

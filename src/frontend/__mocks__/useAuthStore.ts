@@ -23,7 +23,8 @@ export const mockClearError = jest.fn();
 // Usuario mock por defecto
 export const mockDefaultUser: User = {
     id: "mock-user-123",
-    name: "Usuario Mock",
+    username: "UsuarioMock",
+    last_name: "ApellidoMock",
     email: "mock@example.com",
     is_admin: false,
 };
@@ -31,7 +32,8 @@ export const mockDefaultUser: User = {
 // Usuario admin mock
 export const mockAdminUser: User = {
     id: "mock-admin-456",
-    name: "Admin Mock",
+    username: "AdminMock",
+    last_name: "AdminApellido",
     email: "admin@example.com",
     is_admin: true,
 };

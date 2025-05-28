@@ -21,7 +21,8 @@ export const userService = {
      * Requiere contraseña actual como confirmación.
      */
     updateNameAndEmail: async (data: {
-        name: string;
+        username: string;
+        last_name: string;
         email?: string;
         current_password: string;
     }) => {
