@@ -3,14 +3,7 @@
  *
  * Formulario de registro de usuario para la aplicación Boost A Project.
  * Permite crear una cuenta nueva con validación visual profesional de todos los campos.
- * Aplica validación estricta en frontend coherente con los requisitos del backend:
- * 
- * Características profesionales:
- * - Validación básica en frontend, backend maneja validaciones complejas
- * - Mensajes de error del backend
- * - Compatible con Zustand (useAuthStore)
- * - Diseño responsive y accesible
- * - Componente Spinner reutilizable
+ * Aplica validación estricta en frontend coherente con los requisitos del backend.
  */
 
 "use client";
@@ -22,10 +15,8 @@ import Input from "@/components/ui/Input";
 import Spinner from "@/components/ui/Spinner";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { Eye, EyeOff } from "lucide-react";
+import { validateUserField, USER_VALIDATION } from "@/constants/validation";
 
-// Regex actualizada para coincidir exactamente con el backend
-const strongPasswordRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).+$/;
 
 const SignupForm = () => {
   const [username, setUsername] = useState("");
@@ -35,7 +26,6 @@ const SignupForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const { signup, loading, error, clearError } = useAuthStore();
@@ -45,27 +35,24 @@ const SignupForm = () => {
     clearError();
   }, [clearError]);
 
-  const validateField = (field: string, value: string) => {
+  const validateField = (
+    field: "username" | "lastName" | "email" | "password" | "confirmPassword",
+    value: string) => {
     const newErrors = { ...errors };
 
-    switch (field) {
-      case 'password':
-        if (value.length < 8) {
-          newErrors.password = "La contraseña debe tener al menos 8 caracteres";
-        } else if (!strongPasswordRegex.test(value)) {
-          newErrors.password = "Debe incluir mayúscula, minúscula, número y carácter especial";
-        } else {
-          delete newErrors.password;
-        }
-        break;
-
-      case 'confirmPassword':
-        if (value !== password) {
-          newErrors.confirmPassword = "Las contraseñas no coinciden";
-        } else {
-          delete newErrors.confirmPassword;
-        }
-        break;
+    if (field === "confirmPassword") {
+      if (value !== password) {
+        newErrors.confirmPassword = "Las contraseñas no coinciden";
+      } else {
+        delete newErrors.confirmPassword;
+      }
+    } else {
+      const validationError = validateUserField(field as keyof typeof USER_VALIDATION, value);
+      if (validationError) {
+        newErrors[field] = validationError;
+      } else {
+        delete newErrors[field];
+      }
     }
 
     setErrors(newErrors);
@@ -74,20 +61,30 @@ const SignupForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Validación básica de contraseñas
-    if (password !== confirmPassword) {
-      setErrors({ confirmPassword: "Las contraseñas no coinciden" });
+    const newErrors: { [key: string]: string } = {};
+
+    const usernameError = validateUserField("username", username);
+    const lastNameError = validateUserField("lastName", lastName);
+    const emailError =
+      email.length > 100 ? "El email no puede superar los 100 caracteres." : null;
+    const passwordError = validateUserField("password", password);
+    const confirmError =
+      password !== confirmPassword ? "Las contraseñas no coinciden" : null;
+
+    if (usernameError) newErrors.username = usernameError;
+    if (lastNameError) newErrors.lastName = lastNameError;
+    if (emailError) newErrors.email = emailError;
+    if (passwordError) newErrors.password = passwordError;
+    if (confirmError) newErrors.confirmPassword = confirmError;
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
 
     try {
       const user = await signup({ username, last_name: lastName, email, password });
-
-      if (user?.is_admin) {
-        router.push("/admin");
-      } else {
-        router.push("/dashboard");
-      }
+      router.push(user?.is_admin ? "/admin" : "/dashboard");
     } catch {
       // error gestionado en el store
     }
@@ -114,35 +111,48 @@ const SignupForm = () => {
           id="username"
           type="text"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => {
+            setUsername(e.target.value);
+            validateField("username", e.target.value);
+          }}
           placeholder="Tu nombre"
           required
-          minLength={2}
-          maxLength={30}
         />
+        {errors.username && (
+          <p className="text-xs text-red-600 mt-1">{errors.username}</p>
+        )}
 
         <Input
           label="Apellidos"
           id="lastName"
           type="text"
           value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+          onChange={(e) => {
+            setLastName(e.target.value);
+            validateField("lastName", e.target.value);
+          }}
           placeholder="Tus apellidos"
           required
-          minLength={2}
-          maxLength={50}
         />
+        {errors.lastName && (
+          <p className="text-xs text-red-600 mt-1">{errors.lastName}</p>
+        )}
 
         <Input
           label="Email"
           id="email"
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            validateField("email", e.target.value);
+          }}
           placeholder="tu@email.com"
           required
-          maxLength={100}
         />
+        {errors.email && (
+          <p className="text-xs text-red-600 mt-1">{errors.email}</p>
+        )}
 
         <div className="mb-4">
           <div className="relative">
@@ -153,11 +163,10 @@ const SignupForm = () => {
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
-                validateField('password', e.target.value);
+                validateField("password", e.target.value);
               }}
               placeholder="Crea tu contraseña segura"
               required
-              minLength={8}
             />
             <button
               type="button"
@@ -184,11 +193,10 @@ const SignupForm = () => {
               value={confirmPassword}
               onChange={(e) => {
                 setConfirmPassword(e.target.value);
-                validateField('confirmPassword', e.target.value);
+                validateField("confirmPassword", e.target.value);
               }}
               placeholder="Confirma tu contraseña"
               required
-              minLength={8}
             />
             <button
               type="button"
