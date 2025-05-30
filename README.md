@@ -1,8 +1,9 @@
 # Boost A Project
 
-![Backend Tests](https://github.com/Nelvb/Plataforma-inversion/actions/workflows/backend-tests.yml/badge.svg)
-
-![Coverage](https://img.shields.io/badge/Coverage-92%25-brightgreen)
+![Backend Tests](https://img.shields.io/badge/Backend_Tests-83_passed-brightgreen)
+![Frontend Tests](https://img.shields.io/badge/Frontend_Tests-175_passed-brightgreen)
+![Coverage](https://img.shields.io/badge/Coverage-93%25-brightgreen)
+![Total Tests](https://img.shields.io/badge/Total_Tests-258-blue)
 
 Plataforma web de inversión inmobiliaria diseñada para ofrecer transparencia, documentación clara y acompañamiento personalizado en cada etapa del proceso. Facilita el acceso a oportunidades seleccionadas, enfocándose en la confianza, la seguridad y una experiencia de usuario cuidada.
 
@@ -13,7 +14,8 @@ Plataforma web de inversión inmobiliaria diseñada para ofrecer transparencia, 
 * Next.js 15.2 con App Router
 * TypeScript para desarrollo sostenible
 * Tailwind CSS + componentes personalizados
-* React Testing Library + Jest
+* React Testing Library + Jest (175 tests)
+* Zustand para gestión de estado global
 * JWT para autenticación segura
 
 ### Backend
@@ -23,6 +25,7 @@ Plataforma web de inversión inmobiliaria diseñada para ofrecer transparencia, 
 * PostgreSQL como base de datos
 * JWT en cookies HttpOnly + protección CSRF
 * Flask-Mail para recuperación de contraseñas y notificaciones
+* Pytest con 93% de cobertura (83 tests)
 
 ### DevOps
 
@@ -42,41 +45,78 @@ Plataforma-inversion/
 │   ├── frontend/
 │   │   ├── app/                        # App Router de Next.js
 │   │   │   ├── (auth)/                 # Rutas de login y signup
+│   │   │   ├── (public)/               # Rutas públicas (reset-password)
 │   │   │   ├── admin/                  # Panel de administración
 │   │   │   ├── blog/                   # Blog público
 │   │   │   ├── dashboard/              # Área privada de usuario
 │   │   │   └── ...
 │   │   ├── components/                 # Componentes React
 │   │   │   ├── admin/                  # Componentes del panel admin
-│   │   │   ├── articles/               # Componentes de blog
 │   │   │   ├── auth/                   # Formularios de autenticación
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   ├── SignupForm.tsx
+│   │   │   │   ├── ForgotPasswordForm.tsx
+│   │   │   │   └── ResetPasswordForm.tsx
 │   │   │   ├── Home/                   # Secciones de landing
 │   │   │   ├── layout/                 # Navbar, Footer, etc.
-│   │   │   └── ui/                     # Componentes básicos (Button, Input)
-│   │   ├── contexts/                   # Context Providers
-│   │   ├── hooks/                      # Hooks personalizados
+│   │   │   ├── shared/                 # Componentes compartidos
+│   │   │   ├── ui/                     # Componentes básicos (Button, Input)
+│   │   │   └── user/                   # Componentes del área de usuario
+│   │   ├── stores/                     # Zustand stores
+│   │   │   ├── useAuthStore.ts         # Estado de autenticación
+│   │   │   └── useUiStore.ts           # Estado de UI
 │   │   ├── lib/
 │   │   │   ├── api/                    # Servicios de API
+│   │   │   │   ├── authService.ts
+│   │   │   │   ├── userService.ts
+│   │   │   │   ├── blogService.ts
+│   │   │   │   └── contactService.ts
 │   │   │   └── utils/                  # Utilidades (fetchWithAuth)
-│   │   ├── styles/                     # CSS global
 │   │   ├── types/                      # TypeScript interfaces
-│   │   └── __tests__/                  # Tests organizados por categoría
+│   │   ├── constants/                  # Constantes y validaciones
+│   │   ├── styles/                     # CSS global
+│   │   ├── __mocks__/                  # Mocks reutilizables para tests
+│   │   │   ├── useAuthStore.ts
+│   │   │   ├── userService.ts
+│   │   │   ├── blogService.ts
+│   │   │   └── fetchMock.ts
+│   │   └── __tests__/                  # Tests organizados por categoría (175 tests)
+│   │       ├── auth/                   # Tests de formularios de autenticación
+│   │       ├── admin/                  # Tests del panel de administración
+│   │       ├── lib/                    # Tests de servicios y utilidades
+│   │       ├── ui/                     # Tests de componentes UI
+│   │       ├── shared/                 # Tests de componentes compartidos
+│   │       └── utils/                  # Utilidades de testing
 │   └── backend/
 │       ├── admin/                      # Comandos CLI como create_admin
 │       │   ├── __init__.py
 │       │   └── manage.py
 │       ├── app/
 │       │   ├── api/                    # Endpoints REST
+│       │   │   ├── auth.py
+│       │   │   ├── account.py
+│       │   │   ├── articles.py
+│       │   │   ├── images.py
+│       │   │   └── users.py
 │       │   ├── config.py              # Config por entorno
 │       │   ├── data/                   # JSON estáticos (articles.json)
 │       │   ├── extensions.py           # Inicialización de extensiones Flask
 │       │   ├── models/                 # Modelos SQLAlchemy
+│       │   │   ├── user.py
+│       │   │   └── article.py
 │       │   ├── schemas/                # Validación y serialización
+│       │   │   ├── user.py
+│       │   │   ├── article_schema.py
+│       │   │   └── contact_schema.py
 │       │   ├── scripts/                # Scripts como import_static_articles.py
-│       │   ├── services/               # Lógica de negocio: artículos, email...
+│       │   ├── services/               # Lógica de negocio
+│       │   │   ├── article_service.py
+│       │   │   ├── email_service.py
+│       │   │   ├── image_service.py
+│       │   │   └── import_service.py
 │       │   └── utils/                  # Funciones auxiliares
 │       ├── migrations/                 # Alembic
-│       └── tests/
+│       └── tests/                      # Tests del backend (83 tests, 93% coverage)
 │           ├── api/                    # Test de endpoints
 │           ├── config/                 # Test de configuración y extensiones
 │           ├── models/                 # Test unitarios de modelos
@@ -135,14 +175,23 @@ python run.py
 
 ## Testing
 
-### Frontend
+El proyecto cuenta con una arquitectura de testing robusta y profesional:
+
+### Frontend (175 tests)
 
 ```bash
 cd src/frontend
 npm run test
 ```
 
-### Backend
+**Características del testing frontend:**
+- Tests organizados por funcionalidad
+- Mocks reutilizables centralizados
+- Cobertura completa de componentes UI
+- Tests de integración para formularios
+- Helper functions para reducir duplicación
+
+### Backend (83 tests, 93% coverage)
 
 ```bash
 cd src/backend
@@ -181,11 +230,30 @@ Esto crea el usuario Alberto con rol de administrador para usar el panel de cont
 ## Funcionalidades destacadas
 
 * ✅ Login con JWT en cookies + CSRF
-* ✅ Recuperación de contraseña por email
+* ✅ Recuperación de contraseña por email con ResetPasswordForm
 * ✅ CRUD completo de artículos desde el panel admin
 * ✅ Editor HTML manual con slug automático y SEO
 * ✅ Sistema de imágenes con Cloudinary y drag & drop
 * ✅ Dashboard privado para usuarios registrados
+* ✅ Gestión de estado global con Zustand
+* ✅ Arquitectura de testing robusta (258 tests totales)
+* ✅ Mocks reutilizables para testing eficiente
+* ✅ Formularios unificados con validación profesional
+
+## Arquitectura de Testing
+
+### Frontend
+- **React Testing Library** + Jest
+- **Mocks centralizados** en `__mocks__/`
+- **Helper functions** para reducir duplicación
+- **Cobertura por categorías**: auth, admin, UI, shared
+- **175 tests** organizados profesionalmente
+
+### Backend
+- **Pytest** con fixtures robustas
+- **93% de cobertura** de código
+- **83 tests** organizados por dominio
+- **Tests de API, modelos, servicios y schemas**
 
 ## Referencias cruzadas
 
@@ -194,11 +262,13 @@ Esto crea el usuario Alberto con rol de administrador para usar el panel de cont
 ## Arquitectura y Decisiones Técnicas
 
 * **JWT en cookies HttpOnly**: Mayor seguridad contra XSS
+* **Zustand para estado global**: Reemplazó Context API por mejor performance
 * **Editor HTML manual**: Reemplaza TipTap/Quill por solución más estable
 * **fetchWithAuth**: Wrapper para renovación automática de tokens expirados
 * **AdminLayout**: Separación completa de interfaces admin/usuario
 * **Arquitectura de componentes**: Modular y reutilizable
 * **Sistema SEO**: Metadata dinámica con Next.js App Router
+* **Mocks reutilizables**: Arquitectura profesional de testing
 
 ## Despliegue
 
