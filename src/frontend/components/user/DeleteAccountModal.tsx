@@ -6,6 +6,7 @@
  * 
  * - Migrado a Zustand (`useAuthStore` y `useUiStore`) para control global.
  * - Mantiene diseño accesible, modular y desacoplado del SideMenu.
+ * - Usa componentes Button reutilizables para consistencia visual.
  */
 
 "use client";
@@ -15,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useUiStore } from "@/stores/useUiStore";
 import { userService } from "@/lib/api/userService";
+import Button from "@/components/ui/Button";
 
 const DeleteAccountModal: React.FC = () => {
     const { logout } = useAuthStore();
@@ -52,18 +54,18 @@ const DeleteAccountModal: React.FC = () => {
                     </p>
 
                     <div className="flex justify-end gap-3 pt-4">
-                        <button
+                        <Button
+                            variant="secondary"
                             onClick={closeDeleteModal}
-                            className="px-4 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
                         >
                             Cancelar
-                        </button>
-                        <button
+                        </Button>
+                        <Button
+                            variant="danger"
                             onClick={handleDelete}
-                            className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 transition"
                         >
                             Eliminar cuenta
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>
