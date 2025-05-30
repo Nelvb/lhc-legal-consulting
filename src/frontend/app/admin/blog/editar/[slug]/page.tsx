@@ -56,9 +56,9 @@ export default function EditArticlePage() {
     }
 
     return (
-        <div className="container mx-auto py-8">
-            <div className="flex justify-between items-center mb-6">
-                <p className="text-3xl font-bold text-[#1A1341]">Editor Artículo</p>
+        <div className="container mx-auto py-12 px-4">
+            <div className="flex justify-between items-center mb-8">
+                <p className="text-3xl font-bold text-[#1A1341]">Editor de artículo</p>
                 <Button variant="outline" size="sm" onClick={() => router.push('/admin/blog')}>
                     ← Volver al listado
                 </Button>

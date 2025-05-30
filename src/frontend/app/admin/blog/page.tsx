@@ -53,13 +53,13 @@ const BlogAdminPage: React.FC = () => {
 
         <div className="flex flex-wrap gap-4">
           <Link href="/admin">
-            <Button variant="outline" size="md">
+            <Button variant="outline" size="sm">
               ← Volver al panel
             </Button>
           </Link>
 
           <Link href="/admin/blog/new-article">
-            <Button variant="primary" size="md">
+            <Button variant="primary" size="sm">
               Crear Nuevo Artículo
             </Button>
           </Link>

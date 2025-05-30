@@ -33,9 +33,9 @@ const NewArticle = () => {
   }
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-12 px-4">
       {/* Título y Botón de Volver */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <h1 className="text-3xl font-bold text-[#1A1341]">Editor de artículo</h1>
         <Link href="/admin/blog">
           <Button variant="outline" size="sm">← Volver al listado</Button>

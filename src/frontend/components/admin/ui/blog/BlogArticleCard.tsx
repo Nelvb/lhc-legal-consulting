@@ -19,7 +19,7 @@ const BlogArticleCard: React.FC<BlogArticleCardProps> = ({ title, slug, image, e
     })
 
   return (
-    <div className="bg-[#F1FFEF] border border-[#6290C3] rounded-lg shadow-md p-4 flex flex-col space-y-3">
+    <div className="bg-[#F1FFEF] border border-[#6290C3]/30 rounded-lg shadow-md p-4 flex flex-col space-y-3">
       <div className="relative w-full h-48 rounded overflow-hidden">
         <Image
           src={image}
@@ -36,15 +36,15 @@ const BlogArticleCard: React.FC<BlogArticleCardProps> = ({ title, slug, image, e
       <p className="text-[#1A1341] text-sm line-clamp-2">{excerpt}</p>
 
       <div className="flex flex-wrap gap-2 pt-2">
-        <Link href={`/blog/${slug}`} target="_blank">
+        <Link href={`/blog/${slug}`}>
           <Button variant="primary" size="sm">Ver</Button>
         </Link>
-        
+
         {/* Botón Editar */}
         <Link href={`/admin/blog/editar/${slug}`}>
           <Button variant="secondary" size="sm">Editar</Button>
         </Link>
-        
+
         <Button
           variant="danger"
           size="sm"
