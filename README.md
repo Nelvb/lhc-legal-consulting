@@ -1,9 +1,9 @@
 # Boost A Project
 
 ![Backend Tests](https://img.shields.io/badge/Backend_Tests-83_passed-brightgreen)
-![Frontend Tests](https://img.shields.io/badge/Frontend_Tests-175_passed-brightgreen)
+![Frontend Tests](https://img.shields.io/badge/Frontend_Tests-187_passed-brightgreen)
 ![Coverage](https://img.shields.io/badge/Coverage-93%25-brightgreen)
-![Total Tests](https://img.shields.io/badge/Total_Tests-258-blue)
+![Total Tests](https://img.shields.io/badge/Total_Tests-270-blue)
 
 Plataforma web de inversión inmobiliaria diseñada para ofrecer transparencia, documentación clara y acompañamiento personalizado en cada etapa del proceso. Facilita el acceso a oportunidades seleccionadas, enfocándose en la confianza, la seguridad y una experiencia de usuario cuidada.
 
