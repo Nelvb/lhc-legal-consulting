@@ -30,19 +30,19 @@ export default function ContactPage() {
             {/* Fondo híbrido: dividido arriba + decorativo abajo */}
             <div className="absolute inset-0">
                 {/* Fondo dividido clásico desde arriba hasta 30% */}
-                <div className="absolute top-0 left-0 w-full h-[30%] flex">
+                <div className="absolute top-0 left-0 w-full h-[450px] mobile-sm:h-[420px] mobile-lg:h-[380px] lg:h-[30%] flex">
                     <div className="w-[30%] bg-[#C2E7DA]" />
                     <div className="w-[70%] bg-[#1A1341]" />
                 </div>
-                
+
                 {/* Gradiente base para la parte inferior */}
                 <div className="absolute top-[30%] left-0 right-0 bottom-0 bg-gradient-to-br from-[#F1FFEF] via-[#C2E7DA] to-[#6290C3] opacity-40"></div>
-                
+
                 {/* Formas decorativas (solo en la parte inferior) */}
                 <div className="absolute top-1/3 right-0 w-80 h-80 bg-[#6290C3] opacity-10 rounded-full blur-3xl translate-x-1/2"></div>
                 <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-[#C2E7DA] opacity-15 rounded-full blur-2xl translate-y-1/2"></div>
                 <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#1A1341] opacity-5 rounded-full blur-2xl"></div>
-                
+
                 {/* Línea decorativa de separación */}
                 <div className="absolute top-[30%] left-0 w-full h-px bg-gradient-to-r from-transparent via-[#6290C3] to-transparent opacity-20"></div>
                 {/* Línea decorativa inferior */}
@@ -57,12 +57,12 @@ export default function ContactPage() {
                         <div className="inline-block bg-[#C2E7DA] text-[#1A1341] px-6 py-2 rounded-full text-sm font-medium mb-6">
                             Estamos aquí para ayudarte
                         </div>
-                        <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 leading-tight">
-                            Hablemos sobre tu próxima{" "}
-                            <span className="text-[#6290C3]">inversión</span>
-                        </h1>
-                        <p className="text-lg lg:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-                            Nuestro equipo de especialistas está listo para resolver tus dudas 
+                        <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white drop-shadow-lg mb-4 leading-tight">
+    Hablemos sobre tu próxima{" "}
+    <span className="text-[#6290C3]">inversión</span>
+</h1>
+                        <p className="text-lg lg:text-xl text-white drop-shadow-lg max-w-3xl mx-auto leading-relaxed">
+                            Nuestro equipo de especialistas está listo para resolver tus dudas
                             y guiarte en el mundo de las inversiones inmobiliarias.
                         </p>
                     </div>

@@ -71,7 +71,11 @@ module.exports = {
 					'4': 'hsl(var(--chart-4))',
 					'5': 'hsl(var(--chart-5))'
 				}
-			}
+			},
+			screens: {
+				'mobile-sm': '515px',
+				'mobile-lg': '561px',
+			},
 		}
 	},
 

@@ -82,7 +82,7 @@ const BlogArticleCard: React.FC<BlogArticleCardProps> = ({ article }) => {
 
           {/* Extracto */}
           <p
-            className="text-gray-600 mb-4 line-clamp-4"
+            className="text-gray-600 mb-4 line-clamp-4 min-h-[6rem]"
             itemProp="description"
           >
             {article.excerpt || 'No hay descripción disponible.'}

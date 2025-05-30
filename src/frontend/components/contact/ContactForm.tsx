@@ -79,7 +79,7 @@ const ContactForm = () => {
                             <span className="text-[#6290C3]">inversión</span>?
                         </h1>
                         <p className="text-lg text-gray-700 leading-relaxed">
-                            Nuestro equipo de expertos está aquí para resolver todas tus preguntas 
+                            Nuestro equipo de expertos está aquí para resolver todas tus preguntas
                             sobre inversiones inmobiliarias. Sin compromiso, sin presión.
                         </p>
                     </div>
@@ -130,13 +130,17 @@ const ContactForm = () => {
                                 rel="noopener noreferrer"
                                 className="flex items-center space-x-3 bg-[#25D366] text-white px-4 py-3 rounded-lg hover:bg-[#1DA851] transition-colors duration-200"
                             >
-                                <MessageSquare className="w-5 h-5" />
-                                <span className="font-medium">WhatsApp: +34 685 565 977</span>
+                                <img
+                                    src="/whatsapp.svg"
+                                    alt="WhatsApp"
+                                    className="w-5 h-5 brightness-0 invert"
+                                />
+                                <span className="font-medium">Escríbenos por WhatsApp</span>
                             </a>
-                            <div className="flex items-center space-x-3 text-[#1A1341]">
+                            <a href="tel:+34685565977" className="flex items-center space-x-3 text-[#1A1341]">
                                 <Phone className="w-5 h-5" />
                                 <span>Llámanos: +34 685 565 977</span>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -146,7 +150,7 @@ const ContactForm = () => {
                     {/* Elementos decorativos de fondo */}
                     <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#6290C3] opacity-10 rounded-full blur-xl"></div>
                     <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-[#C2E7DA] opacity-20 rounded-full blur-xl"></div>
-                    
+
                     <div className="relative bg-white border border-gray-200 p-8 lg:p-10 rounded-2xl shadow-2xl">
                         {/* Header del formulario - Diferente para usuarios registrados y no registrados */}
                         {isAuthenticated ? (
@@ -251,7 +255,7 @@ const ContactForm = () => {
                                         <CheckCircle className="w-5 h-5 text-[#6290C3] mt-0.5 flex-shrink-0" />
                                         <div>
                                             <p className="text-sm text-gray-700">
-                                                <span className="font-medium">Ventaja de usuario registrado:</span> Tu consulta 
+                                                <span className="font-medium">Ventaja de usuario registrado:</span> Tu consulta
                                                 tendrá prioridad y podremos ofrecerte información personalizada basada en tu perfil.
                                             </p>
                                         </div>
@@ -297,7 +301,7 @@ const ContactForm = () => {
 
                         {/* Nota de privacidad */}
                         <p className="text-xs text-gray-500 text-center mt-6 leading-relaxed">
-                            Al enviar este formulario, aceptas que procesemos tus datos para contactarte. 
+                            Al enviar este formulario, aceptas que procesemos tus datos para contactarte.
                             Consulta nuestra <span className="text-[#6290C3] hover:underline cursor-pointer">política de privacidad</span>.
                         </p>
                     </div>
