@@ -16,6 +16,9 @@ from app.api.account import account_bp
 from app.config import DevelopmentConfig
 from app.extensions import cors, db, init_app, jwt, ma, migrate
 from app.services.image_service import ImageService
+import os
+import json
+from sqlalchemy import inspect
 
 def create_app(config_object=DevelopmentConfig):
     """
@@ -24,7 +27,7 @@ def create_app(config_object=DevelopmentConfig):
     - Inicializa extensiones (DB, JWT, CORS, migraciones, etc.).
     - Inicializa Cloudinary para subir imágenes.
     - Registra todos los blueprints.
-    - Devuelve la app lista para ejecutarse.
+    - Importa artículos estáticos si la tabla existe y está vacía.
     """
 
     # Crear la instancia Flask
@@ -57,5 +60,27 @@ def create_app(config_object=DevelopmentConfig):
     app.register_blueprint(articles_bp, url_prefix="/api/articles")
     app.register_blueprint(images_bp, url_prefix="/api/images")
     app.register_blueprint(account_bp, url_prefix="/api/account")
+
+    # Importar artículos estáticos si tabla `articles` existe y está vacía
+    with app.app_context():
+        try:
+            inspector = inspect(db.engine)
+            if "articles" in inspector.get_table_names():
+                from app.models.article import Article
+                from app.scripts.import_service import importar_articulos_desde_json
+
+                if Article.query.count() == 0:
+                    json_path = os.path.join(os.path.dirname(__file__), 'data', 'articles.json')
+                    if os.path.exists(json_path):
+                        with open(json_path, 'r', encoding='utf-8') as f:
+                            articles_data = json.load(f)
+                        resultados = importar_articulos_desde_json(articles_data)
+                        for msg in resultados:
+                            app.logger.info(msg)
+                        app.logger.info("Artículos estáticos importados correctamente.")
+                    else:
+                        app.logger.warning(f"Archivo no encontrado: {json_path}")
+        except Exception as e:
+            app.logger.warning(f"No se pudo verificar ni importar artículos: {e}")
 
     return app

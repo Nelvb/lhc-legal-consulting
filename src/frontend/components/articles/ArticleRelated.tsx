@@ -7,7 +7,7 @@
  * - Muestra como máximo 3 artículos relacionados (ya filtrados desde el componente padre)
  * - Alinea automáticamente 1 o 2 artículos al centro del contenedor
  * - Aplica hover, efectos visuales y adaptación responsiva con Tailwind
- * - Se oculta si no hay artículos disponibles
+ * - Optimiza imágenes con Next <Image> para mejorar rendimiento y eliminar warnings
  */
 
 'use client';
@@ -41,13 +41,12 @@ const ArticleRelated: React.FC<ArticleRelatedProps> = ({ articles }) => {
         </h2>
 
         <div
-          className={`grid gap-8 ${
-            articles.length === 1
+          className={`grid gap-8 ${articles.length === 1
               ? 'grid-cols-1 justify-items-center'
               : articles.length === 2
-              ? 'grid-cols-1 sm:grid-cols-2 justify-items-center sm:justify-items-stretch'
-              : 'grid-cols-1 sm:grid-cols-3'
-          }`}
+                ? 'grid-cols-1 sm:grid-cols-2 sm:mx-auto sm:w-[80%] justify-items-center'
+                : 'grid-cols-1 sm:grid-cols-3'
+            }`}
         >
           {articles.map((article) => (
             <Link
@@ -61,6 +60,7 @@ const ArticleRelated: React.FC<ArticleRelatedProps> = ({ articles }) => {
                     src={article.image}
                     alt={article.image_alt || article.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1A1341] to-transparent opacity-60"></div>

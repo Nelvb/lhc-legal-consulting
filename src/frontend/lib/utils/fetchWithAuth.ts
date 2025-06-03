@@ -5,14 +5,13 @@
  * - Añade automáticamente CSRF Token para métodos sensibles (POST, PUT, PATCH, DELETE).
  * - Reintenta una vez si el token ha expirado (401), intentando renovar con /auth/refresh.
  * - Si la renovación falla, redirige a login y limpia localStorage.
+ * 
+ * Maneja correctamente peticiones con FormData (como subida de imágenes),
+ * sin forzar el Content-Type manualmente en esos casos.
  */
 
 import router from "next/router";
 
-/**
- * Extrae el CSRF token desde las cookies del navegador.
- * Usa el token adecuado según la ruta.
- */
 const getCSRFToken = (url: string): string => {
     const isRefresh = url.includes("/auth/refresh");
     const cookieName = isRefresh ? "csrf_refresh_token=" : "csrf_access_token=";
@@ -32,10 +31,6 @@ interface FetchWithAuthOptions extends RequestInit {
     retry?: boolean;
 }
 
-/**
- * fetchWithAuth
- * Intercepta errores 401 y reintenta con /auth/refresh una vez.
- */
 export const fetchWithAuth = async (
     input: RequestInfo | URL,
     init: FetchWithAuthOptions = {}
@@ -43,14 +38,18 @@ export const fetchWithAuth = async (
     const method = init.method?.toUpperCase() || "GET";
     const needsCSRF = ["POST", "PUT", "PATCH", "DELETE"].includes(method);
     const url = input.toString();
-
     const csrfToken = getCSRFToken(url);
 
-    const headers = {
-        ...(init.headers || {}),
-        ...(needsCSRF && { "X-CSRF-TOKEN": csrfToken }),
-        "Content-Type": "application/json",
+    const headers: Record<string, string> = {
+        ...(init.headers as Record<string, string> || {}),
+        ...(needsCSRF ? { "X-CSRF-TOKEN": csrfToken } : {})
     };
+
+    // 🚫 No forzar Content-Type si es FormData (lo establece el navegador con boundary)
+    const isFormData = init.body instanceof FormData;
+    if (!isFormData) {
+        headers["Content-Type"] = "application/json";
+    }
 
     const config: RequestInit = {
         ...init,
@@ -67,7 +66,6 @@ export const fetchWithAuth = async (
 
         console.warn("Token expirado. Intentando renovar...");
 
-        // Obtener CSRF del refresh token explícitamente
         const refreshCSRF = getCSRFToken("/auth/refresh");
 
         const refreshResponse = await fetch(
@@ -90,7 +88,6 @@ export const fetchWithAuth = async (
             return response;
         }
 
-        // Reintento una sola vez con retry=true
         return await fetchWithAuth(input, { ...init, retry: true });
     } catch (err) {
         console.error("Error en fetchWithAuth:", err);

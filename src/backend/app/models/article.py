@@ -1,28 +1,56 @@
+# app/models/article.py
+
 """
 Modelo de datos para artículos del blog.
 
 Define la estructura de la tabla de artículos en la base de datos y 
 proporciona métodos para interactuar con los registros.
+
+Convierte el valor almacenado a lista Python al recuperarlo de la base de datos.
+Soporta casos donde el valor ya viene como lista (por ejemplo, artículos creados desde frontend o SQLite).
+Incluye protección contra valores corruptos o cadenas vacías para evitar errores de decodificación JSON.
 """
 
 from app.extensions import db
 from sqlalchemy.sql import func
 from sqlalchemy.types import TypeDecorator, Text
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Tipo personalizado para almacenar listas como JSON en un campo de texto
 class JSONEncodedList(TypeDecorator):
+    """
+    Almacena listas como JSON en un campo de texto (VARCHAR).
+    Convierte string a list al leer desde la base de datos.
+    """
+
     impl = Text
+    cache_ok = True  # Mejora el rendimiento con SQLAlchemy 1.4+
 
     def process_bind_param(self, value, dialect):
         if value is None:
             return "[]"
-        return json.dumps(value)
+        if isinstance(value, list):
+            return json.dumps(value)
+        raise ValueError(f"El valor para JSONEncodedList debe ser una lista. Se recibió: {type(value)}")
 
     def process_result_value(self, value, dialect):
-        if value is None:
+        # Si el valor es None, cadena vacía o ya es lista, devolvemos directamente
+        if value is None or value == "":
             return []
-        return json.loads(value)
+        if isinstance(value, list):
+            return value
+        try:
+            result = json.loads(value)
+            if isinstance(result, list):
+                return result
+            logger.warning(f"El valor decodificado no es una lista: {result}")
+            return []
+        except (json.JSONDecodeError, TypeError) as e:
+            logger.error(f"Error al decodificar JSON desde base de datos: {e} - Valor original: {value}")
+            return []
 
 class Article(db.Model):
     __tablename__ = "articles"  # Nombre explícito de la tabla

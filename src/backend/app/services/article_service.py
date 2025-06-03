@@ -58,9 +58,7 @@ class ArticleService:
             clean_content = re.sub(r'<.*?>', '', content)
             article_data['excerpt'] = clean_content[:150] + '...' if len(clean_content) > 150 else clean_content
 
-        # Convertir related a texto plano si viene como lista (asegura compatibilidad con el modelo actual)
-        if 'related' in article_data and isinstance(article_data['related'], list):
-            article_data['related'] = ','.join(article_data['related'])
+        
 
         new_article = Article(**article_data)
         db.session.add(new_article)
@@ -73,8 +71,6 @@ class ArticleService:
         article = Article.query.get_or_404(article_id)
 
         for key, value in article_data.items():
-            if key == 'related' and isinstance(value, list):
-                value = ','.join(value)
             setattr(article, key, value)
 
         db.session.commit()
@@ -86,8 +82,6 @@ class ArticleService:
         article = Article.query.filter_by(slug=slug).first_or_404()
 
         for key, value in article_data.items():
-            if key == 'related' and isinstance(value, list):
-                value = ','.join(value)
             setattr(article, key, value)
 
         db.session.commit()
@@ -110,3 +104,18 @@ class ArticleService:
         db.session.commit()
         return True
 
+    @staticmethod
+    def get_articles_by_slugs(slugs: list):
+        """
+        Devuelve una lista de artículos que coincidan con los slugs proporcionados.
+
+        Parámetros:
+        - slugs: Lista de strings con los slugs de los artículos a buscar.
+
+        Retorna:
+        - Lista de instancias de Article.
+        """
+        if not slugs:
+            return []
+        
+        return Article.query.filter(Article.slug.in_(slugs)).all()

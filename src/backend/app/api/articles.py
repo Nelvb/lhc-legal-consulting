@@ -113,3 +113,27 @@ def update_article_by_slug(slug):
         return jsonify(article_schema.dump(updated_article)), 200
     except Exception as e:
         return jsonify({"message": str(e)}), 400
+
+@articles_bp.route("/by-slugs", methods=["POST"])
+def get_articles_by_slugs():
+    """
+    Obtiene una lista de artículos a partir de sus slugs.
+    
+    Recibe un JSON con una lista de slugs:
+    {
+        "slugs": ["slug1", "slug2", "slug3"]
+    }
+    
+    Devuelve una lista de artículos correspondientes.
+    """
+    data = request.get_json()
+    slugs = data.get("slugs", [])
+
+    if not isinstance(slugs, list):
+        return jsonify({"message": "El campo 'slugs' debe ser una lista"}), 400
+
+    try:
+        articles = ArticleService.get_articles_by_slugs(slugs)
+        return jsonify(articles_schema.dump(articles)), 200
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400

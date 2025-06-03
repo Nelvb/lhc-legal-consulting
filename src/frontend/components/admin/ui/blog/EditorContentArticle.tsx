@@ -1,12 +1,13 @@
+'use client'
+
 /**
  * EditorContentArticle.tsx
  *
  * Componente de edición de artículos para el panel de administración.
  * Convierte texto plano en HTML usando un textarea con instrucciones.
- * Incluye contador de palabras, instrucciones de formato y prompt para IA.
+ * Incluye validación inteligente de palabras mínimas, contador de palabras,
+ * instrucciones de formato y prompt para IA. Maneja errores visuales integrados.
  */
-
-'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
 import WordCounter from '@/components/admin/ui/blog/WordCounter'
@@ -15,12 +16,36 @@ import { formatToHtml } from '@/components/admin/blog/helpers/htmlFormatter'
 interface EditorContentArticleProps {
   content: string
   onChange: (value: string) => void
+  error?: string
+  onErrorChange?: (hasError: boolean) => void
 }
 
-const EditorContentArticle: React.FC<EditorContentArticleProps> = ({ content, onChange }) => {
+const EditorContentArticle: React.FC<EditorContentArticleProps> = ({
+  content,
+  onChange,
+  error,
+  onErrorChange
+}) => {
   const [rawText, setRawText] = useState('')
   const [html, setHtml] = useState('')
+  const [internalError, setInternalError] = useState<string | null>(null)
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
+
+  const validateContent = (htmlContent: string) => {
+    const plainText = htmlContent.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+    const wordCount = plainText.split(' ').length
+
+    if (wordCount < 1000) {
+      const newError = `El contenido debe tener al menos 1000 palabras (actualmente: ${wordCount})`
+      setInternalError(newError)
+      onErrorChange?.(true)
+      return false
+    } else {
+      setInternalError(null)
+      onErrorChange?.(false)
+      return true
+    }
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value
@@ -28,6 +53,9 @@ const EditorContentArticle: React.FC<EditorContentArticleProps> = ({ content, on
     const formatted = formatToHtml(value)
     setHtml(formatted)
     onChange(formatted)
+
+    // Validar contenido automáticamente
+    validateContent(formatted)
   }
 
   useEffect(() => {
@@ -36,21 +64,29 @@ const EditorContentArticle: React.FC<EditorContentArticleProps> = ({ content, on
       const formatted = formatToHtml(content)
       setHtml(formatted)
       onChange(formatted)
+      validateContent(formatted)
     }
-  }, [])
+  }, [content, rawText, onChange])
+
+  // Determinar si hay error (externo o interno)
+  const hasError = error || internalError
+  const displayError = error || internalError
 
   return (
     <div>
-      <div className="border border-gray-300 rounded-md overflow-hidden bg-white">
+      <label htmlFor="editor-content" className="block text-sm font-medium text-gray-700 mb-2">
+        Contenido del artículo
+      </label>
+
+      <div className={`border rounded-md overflow-hidden bg-white ${hasError ? 'border-red-500 bg-red-50' : 'border-gray-300'}`}>
         <textarea
           id="editor-content"
           ref={textAreaRef}
           value={rawText}
           onChange={handleChange}
           placeholder="Pega tu artículo aquí..."
-          className="w-full h-[600px] p-4 resize-none focus:outline-none"
+          className="w-full h-[600px] p-4 resize-none focus:outline-none bg-transparent"
         />
-
       </div>
 
       <div className="mt-4 bg-gray-50 p-4 rounded-md border border-gray-200">
@@ -87,7 +123,7 @@ const EditorContentArticle: React.FC<EditorContentArticleProps> = ({ content, on
         <details>
           <summary className="font-medium text-green-700 cursor-pointer">Ver prompt sugerido para IA</summary>
           <pre className="mt-2 whitespace-pre-wrap text-sm text-gray-700 bg-white p-3 rounded border border-gray-200 overflow-auto max-h-60">
-            {`Necesito un artículo para mi plataforma web de inversión inmobiliaria "Boost A Project" en TEXTO PLANO, siguiendo exactamente estas normas de formato:
+            {`Necesito un artículo para mi plataforma web de asesoría legal "LHC Legal & Consulting" en TEXTO PLANO, siguiendo exactamente estas normas de formato:
 
 1. Extensión: Mínimo 1000 palabras, ideal 1500 palabras. El sistema rechazará automáticamente contenido más corto.
 
@@ -105,13 +141,17 @@ const EditorContentArticle: React.FC<EditorContentArticleProps> = ({ content, on
 
 3. IMPORTANTE: No proceses el formato. Quiero ver los asteriscos (**) en el texto, NO quiero que conviertas las marcas en formato visual. Necesito el texto con los símbolos para que mi sistema los interprete.
 
-4. NO incluyas estas instrucciones en el resultado final.
+4. NO repitas el título dentro del artículo. Comienza directamente con el contenido.
 
-5. El contenido debe ser profesional, informativo y orientado a inversores inmobiliarios, con datos concretos y ejemplos prácticos.
+5. NO incluyas estas instrucciones en el resultado final.
 
-6. Si necesitas presentar datos comparativos, utiliza listas con guiones o listas numeradas en lugar de tablas. Las tablas no son compatibles con nuestro sistema y causarán errores.
+6. El contenido debe ser profesional, informativo y orientado a emprendedores y empresas, con datos concretos y ejemplos prácticos del ámbito legal y fiscal.
 
-7. Tema del artículo: [INSERTAR TEMA AQUÍ]
+7. Si necesitas presentar datos comparativos, utiliza listas con guiones o listas numeradas en lugar de tablas. Las tablas no son compatibles con nuestro sistema y causarán errores.
+
+8. LISTAS: Usa principalmente párrafos normales. Si necesitas listas, no mezcles tipos (numeradas y guiones) en la misma sección.
+
+9. Tema del artículo: [INSERTAR TEMA AQUÍ]
 
 Dame el resultado como texto plano dentro de un bloque de código (\\\`\\\`\\\`), para que pueda copiarlo exactamente como está, con todos los caracteres de formato visibles.`}
           </pre>
@@ -121,6 +161,11 @@ Dame el resultado como texto plano dentro de un bloque de código (\\\`\\\`\\\`)
       <div className="mt-3">
         <WordCounter htmlContent={html} />
       </div>
+
+      {/* Mensaje de error visible y consistente con resto del formulario */}
+      {displayError && (
+        <p className="text-sm text-red-600 mt-1">{displayError}</p>
+      )}
     </div>
   )
 }

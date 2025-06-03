@@ -1,3 +1,14 @@
+/**
+ * Vista de artículo del blog.
+ *
+ * Carga un artículo por su slug, muestra su contenido y los artículos relacionados
+ * seleccionados por el administrador en el formulario de creación/edición.
+ * 
+ * - Usa `getArticleBySlug` para obtener el artículo.
+ * - Filtra los relacionados desde todos los artículos disponibles según `related[]`.
+ * - Diseño responsive con fondo dividido.
+ */
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -28,21 +39,26 @@ const ArticlePage: React.FC = () => {
         if (!slug) {
           throw new Error('No se proporcionó un slug válido');
         }
-        
+
+        // Obtener el artículo principal
         const articleData = await getArticleBySlug(slug);
-        
         if (!articleData) {
           throw new Error('Artículo no encontrado');
         }
-        
+
         setArticle(articleData);
-        
-        // Obtener algunos artículos como "relacionados" (temporal)
-        const articlesResponse = await getArticles({ limit: 3 });
-        // Filtramos para no incluir el artículo actual
-        const filteredArticles = articlesResponse.articles.filter(a => a.slug !== slug);
-        setRelatedArticles(filteredArticles.slice(0, 3));
-        
+
+        // Obtener artículos relacionados seleccionados manualmente por slug
+        if (articleData.related && articleData.related.length > 0) {
+          const allArticles = await getArticles({ limit: 999 });
+          const related = allArticles.articles.filter(a =>
+            articleData.related.includes(a.slug)
+          );
+          setRelatedArticles(related);
+        } else {
+          setRelatedArticles([]);
+        }
+
       } catch (error) {
         console.error('Error al cargar el artículo:', error);
         setError(error instanceof Error ? error.message : 'Ocurrió un error al cargar el artículo');
@@ -50,7 +66,7 @@ const ArticlePage: React.FC = () => {
         setIsLoading(false);
       }
     };
-    
+
     fetchArticle();
   }, [slug]);
 

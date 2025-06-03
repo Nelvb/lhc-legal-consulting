@@ -246,6 +246,8 @@ export async function updateArticleBySlug(slug: string, articleData: any): Promi
  * @throws Error si la petición falla o el backend devuelve un mensaje de error
  */
 export async function createArticle(articleData: any): Promise<void> {
+  console.log('[createArticle] related:', articleData.related, typeof articleData.related, Array.isArray(articleData.related));
+
   const response = await fetchWithAuth(`${API_URL}/articles/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -255,5 +257,31 @@ export async function createArticle(articleData: any): Promise<void> {
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.message || 'Error al crear el artículo');
+  }
+}
+
+/**
+ * Obtiene una lista de artículos a partir de una lista de slugs
+ * Usado para mostrar los relacionados en la vista de vista previa
+ */
+export async function getArticlesBySlugs(slugs: string[]): Promise<Article[]> {
+  try {
+    const response = await fetch(`${API_URL}/articles/by-slugs`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ slugs })
+    });
+
+    if (!response.ok) {
+      throw new Error('Error obteniendo artículos por slugs');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error en getArticlesBySlugs:", error);
+    return [];
   }
 }
