@@ -9,6 +9,7 @@
  * - Sube la imagen al backend usando el servicio `uploadImage` con protección JWT/CSRF
  * - Permite reemplazar imagen una vez subida
  * - Incluye validación inteligente y manejo de errores visuales integrados
+ * - Mantiene los colores corporativos y efectos UX originales
  *
  * Compatible con valores iniciales (modo edición) y pensado para formularios del blog u otros contenidos multimedia.
  */
@@ -58,8 +59,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       setUploaded(true)
       setInternalError(null)
       onErrorChange?.(false)
-    } else {
-      validateImage()
     }
   }, [initialImage])
 
@@ -137,21 +136,22 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   return (
     <div className="space-y-4">
       <p className="block text-sm font-medium text-gray-700">Imagen destacada</p>
-
+      
       {!previewUrl && (
         <div
-          className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-all duration-200 ${hasError
-              ? 'border-red-500 bg-red-50'
-              : isDragOver
-                ? 'border-gray-400 bg-slate-100 scale-105'
-                : 'border-gray-300 bg-slate-50 hover:bg-slate-100'
-            }`}
+          className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-all duration-200 ${
+            hasError 
+              ? 'border-red-500 bg-red-50' 
+              : isDragOver 
+                ? 'scale-105 bg-[#D6F3FF] border-[#6290C3]' 
+                : 'border-[#C2E7DA] bg-[#F1FFEF] hover:bg-[#e0f5eb]'
+          }`}
           onClick={() => fileInputRef.current?.click()}
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
         >
-          <p className="text-sm text-gray-700 font-medium">
+          <p className="text-sm text-[#1A1341] font-medium">
             Arrastra una imagen aquí o haz clic para seleccionar
           </p>
           <p className="text-xs text-gray-500 mt-2">JPG, PNG o WEBP. Tamaño recomendado 1200x600px.</p>
@@ -196,7 +196,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       )}
 
       {successMessage && <p className="text-green-600 text-sm font-medium">{successMessage}</p>}
-
+      
       {/* Mensaje de error visible y consistente con resto del formulario */}
       {displayError && (
         <p className="text-sm text-red-600 mt-1">{displayError}</p>

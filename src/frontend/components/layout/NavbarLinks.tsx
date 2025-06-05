@@ -1,104 +1,37 @@
 /**
  * NavbarLinks.tsx
  *
- * Renderiza los enlaces superiores de navegación.
- * En modo público muestra Inicio, Iniciar sesión y Registro.
- * En modo autenticado solo muestra el saludo y botón de logout.
- * 
- * SOLUCIONADO: Loop infinito causado por useEffect con dependencias incorrectas
+ * Versión limpia y profesional para vista pública de LHC Legal.
+ * Muestra solo enlaces principales del sitio.
  */
 
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuthStore } from "@/stores/useAuthStore";
-import { isPublicRoute } from "@/constants/publicRoutes";
-import Button from "@/components/ui/Button";
 
 const NavbarLinks: React.FC = () => {
-  const { isAuthenticated, user, logout } = useAuthStore();
-
+  const { isAuthenticated } = useAuthStore();
   const pathname = usePathname();
-  const isPublicRouteValue = isPublicRoute(pathname);
 
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const [shouldRender, setShouldRender] = useState(false);
-
-  const isHomePage = pathname === "/" || pathname === "";
-  const isLoginPage = pathname === "/login";
-  const isSignupPage = pathname === "/signup";
-
-  // ARREGLO: useEffect solo se ejecuta una vez al montar
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsInitialLoad(false);
-      setShouldRender(true);
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []); // ← SIN DEPENDENCIAS - solo se ejecuta una vez
-
-  const renderNavigation = () => {
-    if (!isAuthenticated && isPublicRouteValue) {
-      return (
-        <>
-          {!isHomePage && (
-            <Link
-              href="/"
-              className="text-white text-lg font-medium transition-all duration-300 hover:scale-110 transform-gpu"
-            >
-              Inicio
-            </Link>
-          )}
-          {!isLoginPage && (
-            <Link
-              href="/login"
-              className="text-white text-lg font-medium transition-all duration-300 hover:scale-110 transform-gpu"
-            >
-              Iniciar Sesión
-            </Link>
-          )}
-          {!isSignupPage && (
-            <Link
-              href="/signup"
-              className="text-white text-lg font-medium transition-all duration-300 hover:scale-110 transform-gpu mr-6"
-            >
-              Registrarse
-            </Link>
-          )}
-        </>
-      );
-    }
-
-    if (!isAuthenticated) return null;
-
-    return (
-      <>
-        <span className="text-white font-medium transition-all duration-300">
-          Hola {user?.username}
-        </span>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={logout}
-          className="transition-all ease-smooth hover:scale-hover"
-        >
-          Cerrar Sesión
-        </Button>
-      </>
-    );
-  };
+  if (isAuthenticated) return null;
 
   return (
-    <div
-      className={`hidden md:flex items-center space-x-10 transition-all duration-300 ease-smooth
-        ${isInitialLoad ? "opacity-0" : "opacity-100"}
-        ${shouldRender ? "visible" : "invisible"}
-      `}
-    >
-      {renderNavigation()}
+    <div className="hidden md:flex items-center space-x-8">
+      <Link href="/areas-de-actuacion" className="text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all">
+        Áreas
+      </Link>
+      <Link href="/blog" className="text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all">
+        Blog
+      </Link>
+      <Link href="/nosotros" className="text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all">
+        Nosotros
+      </Link>
+      <Link href="/contacto" className="text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all">
+        Contacto
+      </Link>
     </div>
   );
 };

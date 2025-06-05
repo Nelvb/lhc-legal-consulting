@@ -6,8 +6,8 @@ import clsx from "clsx";
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "outline" | "danger";
-  size?: "sm" | "md" | "lg";
+  variant?: "primary" | "secondary" | "outline" | "danger" | "lhc";
+  size?: "sm" | "md" | "lg" | "xs";
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   type?: "button" | "submit" | "reset";
@@ -35,12 +35,15 @@ const Button = ({
       "border border-[#1A1341] text-[#1A1341] bg-white hover:bg-[#1A1341] hover:text-white focus:ring-[#1A1341] disabled:text-gray-300",
     danger:
       "bg-red-600 text-white border border-transparent hover:bg-white hover:text-red-600 hover:border-red-600 focus:ring-red-600 disabled:bg-red-300",
-  };
+      lhc:
+      "bg-[#1A1341] text-[#FDF6E3] border border-transparent hover:bg-[#FDF6E3] hover:text-[#1A1341] hover:border-[#1A1341] focus:ring-[#1A1341] disabled:bg-gray-300 disabled:text-gray-500",
+    };
 
   const sizeStyles = {
     sm: "py-1 px-3 text-sm",
     md: "py-2 px-4 text-base",
     lg: "py-3 px-6 text-lg",
+    xs: "py-[6px] px-4 text-sm",
   };
 
   return (

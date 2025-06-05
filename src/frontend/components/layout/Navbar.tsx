@@ -1,10 +1,8 @@
 /**
  * Navbar.tsx
  *
- * Componente de navegación global para todas las vistas.
- * Muestra el logo, enlaces condicionales y el botón hamburguesa.
- * Renderiza el menú lateral según el tipo de usuario: público, autenticado o administrador.
- * Mejora la UX ocultando título redundante ("Área Privada") y manteniendo consistencia visual.
+ * Navbar principal para LHC Legal & Consulting.
+ * Logo horizontal actualizado, fondo claro y sticky, con menú lateral condicional.
  */
 
 "use client";
@@ -26,84 +24,57 @@ const Navbar: React.FC = () => {
   const { isAuthenticated, user } = useAuthStore();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navbarClasses = `
-    fixed w-full top-0 left-0 z-20 h-36 flex items-center
-    transition-colors duration-300
-    ${scrolled ? "bg-[#1DA1F2] shadow-md" : "bg-transparent"}
+    sticky w-full top-0 left-0 z-20 h-20 flex items-center
+    transition-colors duration-300 bg-[#FDF6E3] shadow-sm
   `;
 
   return (
     <>
       <nav className={navbarClasses}>
         <div className="w-full px-4 flex justify-between items-center h-full relative">
-          {/* Logo principal */}
-          <Link href="/" className="flex items-center space-x-2">
+          {/* Logo horizontal */}
+          <Link href="/" className="flex items-center">
             <Image
-              src="https://res.cloudinary.com/dy1pkrd52/image/upload/v1742894677/Logo-sin-fondo-3_d4ch0a.webp"
-              alt="Boost A Project Logo"
-              width={50}
-              height={50}
+              src="https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749048011/Logo_horizontal-removebg-preview_pm2q1z.webp"
+              alt="LHC Legal & Consulting"
+              width={400}
+              height={96}
               priority
-              className="w-32 h-32 object-contain"
+              className="h-24 w-auto object-contain"
             />
-            <span className="sr-only">Boost A Project</span>
+
+            <span className="sr-only">LHC Legal & Consulting</span>
           </Link>
 
-          {/* Enlaces visibles y botón hamburguesa */}
+          {/* Enlaces + hamburguesa */}
           <div className="flex items-center space-x-8">
             <NavbarLinks key={`nav-links-${isAuthenticated}`} />
-
             <button
-              type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-white text-lg font-medium transition-all duration-300 hover:scale-110 transform-gpu"
+              className="p-2 text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all"
               aria-label="Abrir menú"
             >
-              {isOpen ? (
-                <svg
-                  className="h-10 w-10"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={3}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="h-8 w-8"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              )}
+              <svg
+                className="h-8 w-8"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Menú lateral condicional por tipo de usuario */}
+      {/* Menú lateral por tipo de usuario */}
       {user?.is_admin ? (
         <AdminSideMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
       ) : user ? (

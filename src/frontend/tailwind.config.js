@@ -9,7 +9,6 @@ module.exports = {
 		"./styles/**/*.css",
 	],
 
-
 	theme: {
 		extend: {
 			transitionTimingFunction: {
@@ -30,7 +29,16 @@ module.exports = {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			fontFamily: {
+				sans: ['var(--font-inter)', 'sans-serif'],
+			},
 			colors: {
+				// Colores base LHC Legal & Consulting
+				lhc: {
+					primary: '#1b2f4b',     // Azul oscuro corporativo del logo
+					secondary: '#f2eee7',   // Beige/crema suave del logo
+				},
+				// Colores del sistema shadcn/ui existentes
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {
@@ -79,8 +87,7 @@ module.exports = {
 		}
 	},
 
-	// Plugins adicionales de Tailwind (actualmente vacío)
-	// Plugins adicionales de Tailwind (actualmente vacío)
+	// Plugins adicionales de Tailwind
 	plugins: [
 		require("tailwindcss-animate"),
 		require("@tailwindcss/typography"),

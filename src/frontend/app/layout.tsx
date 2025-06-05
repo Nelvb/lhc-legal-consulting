@@ -1,38 +1,20 @@
-/**
- * RootLayout.tsx
- *
- * Layout raíz de la aplicación (App Router de Next.js).
- * Aplica estilos globales, fuentes personalizadas y estructura base.
- * Elimina el antiguo AuthProvider al migrar a Zustand (useAuthStore).
- * Este layout es común a todas las rutas, incluyendo públicas, privadas y admin.
- *
- * - Optimizado para SEO y accesibilidad.
- * - Tipado estricto con TypeScript.
- * - Integración con fuentes Google vía next/font.
- * - Carga de estilos globales con Tailwind CSS.
- */
-
+// Layout raíz de la app con fuentes personalizadas optimizadas
 import React from "react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import ClientLayout from "@/components/layout/ClientLayout";
 
-// Configuración de fuentes de Google usando Next.js Font Optimization
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Carga de fuentes optimizadas de Google
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Boost A Project | Plataforma de inversión inmobiliaria",
-  description:
-    "Invierte de forma clara y segura. Boost A Project te acompaña en cada paso para que tomes decisiones informadas con transparencia y confianza.",
+  title: "LHC Legal & Consulting | Asesoría Legal Profesional",
+  description: "Asesoría legal especializada en derecho laboral, herencias, divorcios y más. Primera consulta gratuita. Respuesta garantizada en 24h.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -47,9 +29,10 @@ export default function RootLayout({
     <html lang="es">
       <body
         className={`
-          ${geistSans.variable} ${geistMono.variable}
-          antialiased
-          text-[#1A1341]
+          ${inter.variable} 
+          font-sans 
+          antialiased 
+          text-[#1A1341] 
           bg-white
         `}
       >
