@@ -12,7 +12,7 @@ const HeroSection: React.FC = () => {
       <HeroCarousel 
         areas={legalAreas}
         autoPlay={true}
-        autoPlayInterval={6000}
+        autoPlayInterval={4000}
       />
     </>
   );
