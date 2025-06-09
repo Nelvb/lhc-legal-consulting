@@ -1,0 +1,204 @@
+/**
+ * AreasGrid.tsx
+ * 
+ * Grid responsive y optimizado de áreas legales para LHC Legal & Consulting.
+ * Componente modular con animaciones escalonadas, SEO optimizado y configuración
+ * flexible. Fondo profesional con gradientes corporativos y elementos decorativos.
+ */
+
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { useInView } from '@/hooks/useInView';
+import LegalServiceCard from '@/components/ui/LegalServiceCard';
+import Button from '@/components/ui/Button';
+import { LEGAL_SERVICES, DEFAULT_ANIMATION_CONFIG, SECTION_CONTENT } from '@/app/data/legalServices';
+import { ServicesGridProps } from '@/types/legalService';
+
+const AreasGrid: React.FC<ServicesGridProps> = ({
+  services = LEGAL_SERVICES,
+  title = SECTION_CONTENT.title,
+  subtitle = SECTION_CONTENT.subtitle,
+  animationConfig = DEFAULT_ANIMATION_CONFIG
+}) => {
+  const { ref, inView } = useInView({
+    threshold: animationConfig.threshold,
+    triggerOnce: animationConfig.triggerOnce,
+    rootMargin: animationConfig.rootMargin
+  });
+
+  const [animationDelays, setAnimationDelays] = useState<number[]>([]);
+
+  // Generar delays de animación una sola vez
+  useEffect(() => {
+    const delays = services.map((_, index) => index * animationConfig.staggerDelay);
+    setAnimationDelays(delays);
+  }, [services, animationConfig.staggerDelay]);
+
+  // Schema markup para SEO
+  const generateSchemaMarkup = () => ({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    provider: {
+      '@type': 'LegalService',
+      name: 'LHC Legal & Consulting',
+      url: 'https://lhclegal.es',
+      areaServed: 'Madrid, España'
+    },
+    serviceType: services.map(service => service.title),
+    description: 'Servicios de asesoría legal profesional en múltiples áreas del derecho',
+    offers: services.map(service => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: service.title,
+        description: service.description,
+        provider: {
+          '@type': 'LegalService',
+          name: 'LHC Legal & Consulting'
+        }
+      }
+    }))
+  });
+
+  return (
+    <section 
+      ref={ref}
+      className="w-full relative overflow-hidden"
+      aria-labelledby="areas-legales-heading"
+      style={{
+        background: `
+          linear-gradient(135deg, 
+            #1A1341 0%, 
+            #1b2f4b 25%, 
+            #1A1341 50%, 
+            #0f0a2e 75%, 
+            #1A1341 100%
+          )
+        `
+      }}
+    >
+      {/* Elementos decorativos de fondo */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Círculos decorativos grandes */}
+        <div 
+          className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-5"
+          style={{
+            background: 'radial-gradient(circle, #1DA1F2 0%, transparent 70%)'
+          }}
+        />
+        <div 
+          className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full opacity-5"
+          style={{
+            background: 'radial-gradient(circle, #60A5FA 0%, transparent 70%)'
+          }}
+        />
+        
+        {/* Líneas diagonales sutiles */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent transform rotate-45" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent transform -rotate-45" />
+        
+        {/* Patrones geométricos */}
+        <div className="absolute top-16 right-16 w-32 h-32 border border-white/5 transform rotate-45" />
+        <div className="absolute bottom-16 left-16 w-24 h-24 border border-[#1DA1F2]/10 transform rotate-12" />
+        
+        {/* Efecto de partículas */}
+        <div className="absolute top-1/3 left-1/3 w-2 h-2 bg-[#1DA1F2]/20 rounded-full" />
+        <div className="absolute bottom-1/3 right-1/3 w-3 h-3 bg-[#60A5FA]/20 rounded-full" />
+        <div className="absolute top-2/3 right-1/4 w-1 h-1 bg-white/30 rounded-full" />
+      </div>
+
+      {/* Contenedor principal con padding generoso */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32">
+        
+        {/* Encabezado de la sección */}
+        <header className="text-center mb-20 lg:mb-28">
+          <div className={`
+            transition-all duration-700 transform
+            ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+          `}>
+            <h2 
+              id="areas-legales-heading"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: '800',
+                letterSpacing: '-0.02em',
+                textShadow: '0 4px 20px rgba(0,0,0,0.3)'
+              }}
+            >
+              {title}
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#1DA1F2] via-[#60A5FA] to-[#1DA1F2] mt-4 animate-pulse">
+                {SECTION_CONTENT.titleHighlight}
+              </span>
+            </h2>
+            
+            <div className="w-24 h-1 bg-gradient-to-r from-[#1DA1F2] to-[#60A5FA] mx-auto mb-8 rounded-full" />
+            
+            <p className="text-xl sm:text-2xl lg:text-3xl text-gray-200 max-w-5xl mx-auto leading-relaxed font-light">
+              {subtitle}
+              <span className="block mt-4 font-semibold text-[#1DA1F2] text-lg sm:text-xl lg:text-2xl">
+                {SECTION_CONTENT.subtitleHighlight}
+              </span>
+            </p>
+          </div>
+        </header>
+
+        {/* Grid de áreas legales con padding extra */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10 mb-20 lg:mb-28">
+          {services.map((service, index) => (
+            <LegalServiceCard
+              key={service.id}
+              service={service}
+              index={index}
+              inView={inView}
+              animationDelay={animationDelays[index] || 0}
+            />
+          ))}
+        </div>
+
+        {/* CTA de consulta personalizada con diseño mejorado */}
+        <footer className={`
+          text-center
+          transition-all duration-700 transform
+          ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+        `}
+        style={{
+          transitionDelay: inView ? '800ms' : '0ms'
+        }}
+        >
+          <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-white/10 max-w-4xl mx-auto">
+            <p className="text-xl lg:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
+              {SECTION_CONTENT.ctaDescription}
+            </p>
+            
+            <Button
+              variant="cta"
+              size="lg"
+              className="px-12 py-5 rounded-2xl text-lg lg:text-xl font-bold shadow-2xl hover:shadow-[0_20px_40px_rgba(29,161,242,0.3)] transition-all duration-300"
+              icon={
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              }
+              iconPosition="right"
+              onClick={() => window.location.href = '/contacto'}
+            >
+              {SECTION_CONTENT.ctaText}
+            </Button>
+          </div>
+        </footer>
+      </div>
+
+      {/* Schema markup para SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateSchemaMarkup())
+        }}
+      />
+    </section>
+  );
+};
+
+export default AreasGrid;

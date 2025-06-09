@@ -37,7 +37,7 @@ export const legalAreas: LegalArea[] = [
     subtitle: 'Defiende tus derechos laborales. Consulta gratuita en 24h',
     gradientEnd: '#1A1341',
     backgroundImage: 'https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749207707/oficina-vacia_wjcddh.webp',
-    personImage: 'https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749206181/chico7-removebg-preview_hnbod6.webp',
+    personImage: 'https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749302017/chica-joven-despido_2_fnirga.webp',
     ctaText: 'Consulta Gratuita',
     link: '/situacion/despido-improcedente',
     order: 2,

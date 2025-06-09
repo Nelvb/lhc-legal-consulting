@@ -1,0 +1,153 @@
+/**
+ * ParallaxBackground.tsx
+ * 
+ * Componente de fondo parallax para LHC Legal & Consulting.
+ * Muestra una imagen suave con efecto parallax opcional,
+ * siempre en el fondo absoluto (z-[-10]) sin interferir con el layout.
+ * Compatible con blur, overlay y responsive completo.
+ */
+
+'use client';
+
+import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
+
+interface ParallaxBackgroundProps {
+  imageUrl?: string;
+  opacity?: number;
+  overlayColor?: string;
+  overlayOpacity?: number;
+  parallaxSpeed?: number;
+  minHeight?: string;
+  disableOnMobile?: boolean;
+  className?: string;
+  children?: React.ReactNode;
+}
+
+const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
+  imageUrl = 'https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749470257/Flux_Dev_statue_of_Lady_Justice_standing_proudly_against_a_ser_1_1_jpb0tn.webp',
+  opacity = 0.15,
+  overlayColor = '#1b2f4b',
+  overlayOpacity = 0.3,
+  parallaxSpeed = 0.5,
+  minHeight = '100vh',
+  disableOnMobile = true,
+  className = '',
+  children
+}) => {
+  const [offsetY, setOffsetY] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef.current || (disableOnMobile && isMobile)) return;
+
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (containerRef.current) {
+            const rect = containerRef.current.getBoundingClientRect();
+            const elementTop = rect.top;
+            const elementHeight = rect.height;
+            const windowHeight = window.innerHeight;
+
+            if (elementTop < windowHeight && elementTop + elementHeight > 0) {
+              const scrolled = window.pageYOffset;
+              const newOffsetY = scrolled * parallaxSpeed;
+              setOffsetY(newOffsetY);
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [parallaxSpeed, disableOnMobile, isMobile]);
+
+  const hexToRgba = (hex: string, alpha: number): string => {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className={`relative overflow-hidden z-[-10] ${className}`}
+      style={{ minHeight }}
+    >
+      {/* Imagen de fondo */}
+      <div
+        className="absolute inset-0 w-full h-full"
+        style={{
+          transform: (disableOnMobile && isMobile)
+            ? 'none'
+            : `translate3d(0, ${offsetY}px, 0)`,
+          willChange: 'transform'
+        }}
+      >
+        <div
+          className="relative w-full h-[140%]"
+          style={{
+            top: '-60%',
+            opacity: isLoaded ? opacity : 0,
+            transition: 'opacity 0.5s ease-in-out'
+          }}
+        >
+          <Image
+            src={imageUrl}
+            alt="Fondo - Dama de la Justicia"
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+            quality={85}
+            priority={false}
+            onLoad={() => setIsLoaded(true)}
+            style={{
+              filter: 'blur(0.5px)'
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Overlay suave */}
+      <div
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{
+          background: `linear-gradient(
+            135deg,
+            ${hexToRgba(overlayColor, overlayOpacity)} 0%,
+            ${hexToRgba(overlayColor, overlayOpacity * 0.7)} 50%,
+            ${hexToRgba(overlayColor, overlayOpacity * 0.5)} 100%
+          )`
+        }}
+      />
+
+      {/* Contenido opcional encima */}
+      {children && (
+        <div className="relative z-10 w-full">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ParallaxBackground;
