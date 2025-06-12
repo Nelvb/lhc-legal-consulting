@@ -1,10 +1,11 @@
 /**
  * ClientLayout.tsx
  *
- * Layout general para vistas públicas y de usuario.
+ * Layout general para vistas públicas y de usuario con ancho máximo global.
  * Muestra AnnouncementBar (solo en home), Navbar y Footer excepto en rutas profundas del admin.
  * En las rutas raíz del admin (/admin y /admin/perfil) la Navbar y Footer siguen visibles.
  * Si el usuario está autenticado, se monta la capa global de modales (UiGlobalLayer).
+ * Control global de ancho máximo para pantallas grandes.
  */
 
 "use client";
@@ -43,7 +44,11 @@ const ClientLayout: React.FC<ClientLayoutProps> = ({ children }) => {
         />
       )}
       {!hideLayout && <Navbar />}
-      {children}
+      
+      <div className="max-w-[1920px] mx-auto">
+        {children}
+      </div>
+      
       {!hideLayout && <Footer />}
       {isAuthenticated && <UiGlobalLayer />}
     </>

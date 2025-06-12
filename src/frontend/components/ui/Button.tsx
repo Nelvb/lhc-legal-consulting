@@ -55,7 +55,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   ...props
 }, ref) => {
   const baseStyles = `
-    inline-flex items-center justify-center font-medium rounded 
+    inline-flex items-center justify-center font-medium rounded-xl 
     transition-all duration-300 ease-out focus:outline-none focus:ring-2 
     focus:ring-offset-2 disabled:cursor-not-allowed relative
     transform hover:scale-105 active:scale-95
@@ -68,25 +68,25 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       hover:bg-white hover:text-[#1DA1F2] hover:border-[#1DA1F2] 
       focus:ring-[#1DA1F2] disabled:bg-[#A8DCFA]
     `,
-    
+
     secondary: `
       bg-[#C2E7DA] text-[#1A1341] border border-transparent 
       hover:bg-white hover:border-[#C2E7DA] hover:text-[#1A1341] 
       focus:ring-[#C2E7DA] disabled:bg-[#F1FFEF] disabled:text-gray-500
     `,
-    
+
     outline: `
       border border-[#1A1341] text-[#1A1341] bg-white 
       hover:bg-[#1A1341] hover:text-white 
       focus:ring-[#1A1341] disabled:text-gray-300
     `,
-    
+
     danger: `
       bg-red-600 text-white border border-transparent 
       hover:bg-white hover:text-red-600 hover:border-red-600 
       focus:ring-red-600 disabled:bg-red-300
     `,
-    
+
     lhc: `
       bg-[#1A1341] text-[#FDF6E3] border border-transparent 
       hover:bg-[#FDF6E3] hover:text-[#1A1341] hover:border-[#1A1341] 
@@ -102,7 +102,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       disabled:from-gray-400 disabled:to-gray-500
       shadow-lg hover:shadow-2xl
     `,
-    
+
     ghost: `
       text-[#1A1341] bg-transparent border border-transparent
       hover:bg-[#FDF6E3] hover:text-[#1DA1F2]
@@ -139,40 +139,40 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     >
       {/* Spinner de carga */}
       {loading && (
-        <svg 
-          className="animate-spin -ml-1 mr-2 h-4 w-4" 
-          fill="none" 
+        <svg
+          className="animate-spin -ml-1 mr-2 h-4 w-4"
+          fill="none"
           viewBox="0 0 24 24"
           aria-hidden="true"
         >
-          <circle 
-            className="opacity-25" 
-            cx="12" 
-            cy="12" 
-            r="10" 
-            stroke="currentColor" 
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
             strokeWidth="4"
           />
-          <path 
-            className="opacity-75" 
-            fill="currentColor" 
+          <path
+            className="opacity-75"
+            fill="currentColor"
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
           />
         </svg>
       )}
-      
+
       {/* Icono izquierdo */}
       {icon && iconPosition === 'left' && !loading && (
         <span className="flex-shrink-0">
           {icon}
         </span>
       )}
-      
+
       {/* Contenido del botón */}
       <span className={loading ? 'opacity-70' : ''}>
         {children}
       </span>
-      
+
       {/* Icono derecho */}
       {icon && iconPosition === 'right' && !loading && (
         <span className="flex-shrink-0">

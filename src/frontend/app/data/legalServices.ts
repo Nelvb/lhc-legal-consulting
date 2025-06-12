@@ -83,8 +83,8 @@ export const LEGAL_SERVICES: LegalService[] = [
     id: 'derecho-fiscal',
     title: 'Derecho Fiscal',
     description: 'Recursos ante Hacienda y planificación fiscal',
-    color: '#1DA1F2',
-    hoverColor: '#1a91da',
+    color: '#8B5CF6',
+    hoverColor: '#7C3AED',
     slug: '/areas/derecho-fiscal',
     metaTitle: 'Abogado Fiscal Madrid | Recursos Hacienda | LHC Legal',
     metaDescription: 'Especialistas en derecho fiscal. Recursos ante Hacienda, planificación fiscal y representación en inspecciones. Consulta inicial gratuita.'

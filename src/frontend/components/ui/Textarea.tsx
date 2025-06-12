@@ -1,14 +1,14 @@
-'use client';
-
 /**
- * Input.tsx
+ * Textarea.tsx
  *
- * Componente reutilizable para inputs con validación y estilo visual idéntico
- * al formulario de contacto de la home (fondo translúcido, texto blanco).
- * Conserva validaciones, accesibilidad y feedback visual profesional.
+ * Componente reutilizable para campos de texto largo con validación profesional.
+ * Estilo unificado con Input.tsx: fondo translúcido, bordes suaves y feedback claro.
+ * Adaptado para formularios con diseño blur, accesible y coherente con el sistema.
  */
 
-import React, { InputHTMLAttributes, useState, useEffect } from 'react';
+'use client';
+
+import React, { TextareaHTMLAttributes, useState, useEffect } from 'react';
 
 interface ValidationRules {
   minLength?: number;
@@ -18,7 +18,7 @@ interface ValidationRules {
   customValidator?: (value: string) => string | null;
 }
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   error?: string;
   validationRules?: ValidationRules;
@@ -29,7 +29,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const normalizeLabel = (label: string) =>
   label.toLowerCase().replace(/[^a-z0-9]/gi, '-');
 
-const Input: React.FC<InputProps> = ({
+const Textarea: React.FC<TextareaProps> = ({
   id,
   label,
   className,
@@ -42,8 +42,8 @@ const Input: React.FC<InputProps> = ({
   ...props
 }) => {
   const [internalError, setInternalError] = useState<string | null>(null);
-  const generatedId = label ? `input-${normalizeLabel(label)}` : undefined;
-  const inputId = id || generatedId || props.name;
+  const generatedId = label ? `textarea-${normalizeLabel(label)}` : undefined;
+  const textareaId = id || generatedId || props.name;
 
   const validateValue = (inputValue: string) => {
     if (!validationRules || !validateOnChange) return null;
@@ -58,7 +58,7 @@ const Input: React.FC<InputProps> = ({
     return null;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
 
     if (validateOnChange && validationRules) {
@@ -85,17 +85,17 @@ const Input: React.FC<InputProps> = ({
     <div className="mb-4">
       {label && (
         <label
-          htmlFor={inputId}
+          htmlFor={textareaId}
           className="block text-white text-sm font-semibold mb-2"
         >
           {label}
         </label>
       )}
-      <input
-        id={inputId}
-        className={`w-full bg-white/20 border border-white/30 rounded-xl px-4 py-3
+      <textarea
+        id={textareaId}
+        className={`w-full bg-white/20 border border-white/30 rounded-xl px-4 py-3 
           text-white placeholder-white/60 focus:bg-white/30 focus:border-white/50 
-          focus:outline-none transition-all duration-200 ${className || ''}
+          focus:outline-none transition-all duration-200 resize-none ${className || ''} 
           ${hasError ? 'border-red-400 bg-red-50 text-red-800 placeholder-red-400' : ''}
         `}
         value={value}
@@ -111,4 +111,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input;
+export default Textarea;

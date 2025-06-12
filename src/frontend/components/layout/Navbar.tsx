@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
 
   const navbarClasses = `
     sticky w-full top-0 left-0 z-20 h-20 flex items-center
-    transition-colors duration-300 bg-[#FDF6E3] shadow-sm
+    transition-colors duration-300 bg-[#F4F2ED] shadow-sm
   `;
 
   return (

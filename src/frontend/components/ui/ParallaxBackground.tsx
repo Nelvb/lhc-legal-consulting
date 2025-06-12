@@ -2,8 +2,8 @@
  * ParallaxBackground.tsx
  * 
  * Componente de fondo parallax para LHC Legal & Consulting.
- * Muestra una imagen suave con efecto parallax opcional,
- * siempre en el fondo absoluto (z-[-10]) sin interferir con el layout.
+ * Muestra una imagen suave con efecto parallax,
+ * siempre en el fondo absoluto sin interferir con el layout.
  * Compatible con blur, overlay y responsive completo.
  */
 
@@ -19,7 +19,6 @@ interface ParallaxBackgroundProps {
   overlayOpacity?: number;
   parallaxSpeed?: number;
   minHeight?: string;
-  disableOnMobile?: boolean;
   className?: string;
   children?: React.ReactNode;
 }
@@ -31,26 +30,15 @@ const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
   overlayOpacity = 0.3,
   parallaxSpeed = 0.5,
   minHeight = '100vh',
-  disableOnMobile = true,
   className = '',
   children
 }) => {
   const [offsetY, setOffsetY] = useState<number>(0);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-    return () => window.removeEventListener('resize', checkIsMobile);
-  }, []);
-
-  useEffect(() => {
-    if (!containerRef.current || (disableOnMobile && isMobile)) return;
+    if (!containerRef.current) return;
 
     let ticking = false;
     const handleScroll = () => {
@@ -78,7 +66,7 @@ const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [parallaxSpeed, disableOnMobile, isMobile]);
+  }, [parallaxSpeed]);
 
   const hexToRgba = (hex: string, alpha: number): string => {
     const r = parseInt(hex.slice(1, 3), 16);
@@ -97,16 +85,13 @@ const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
       <div
         className="absolute inset-0 w-full h-full"
         style={{
-          transform: (disableOnMobile && isMobile)
-            ? 'none'
-            : `translate3d(0, ${offsetY}px, 0)`,
+          transform: `translate3d(0, ${offsetY}px, 0)`,
           willChange: 'transform'
         }}
       >
         <div
-          className="relative w-full h-[140%]"
+          className="relative w-full h-[120%] sm:h-[180%] md:h-[130%] top-[-150%] sm:top-[-130%] md:top-[-70%]"
           style={{
-            top: '-60%',
             opacity: isLoaded ? opacity : 0,
             transition: 'opacity 0.5s ease-in-out'
           }}
@@ -116,12 +101,13 @@ const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
             alt="Fondo - Dama de la Justicia"
             fill
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-cover"
             quality={85}
             priority={false}
             onLoad={() => setIsLoaded(true)}
             style={{
-              filter: 'blur(0.5px)'
+              filter: 'blur(0.5px)',
+              objectPosition: 'center 20%'
             }}
           />
         </div>

@@ -1,11 +1,10 @@
 /**
  * ContactForm.tsx
  *
- * Formulario público de contacto para Boost A Project con diseño visual avanzado.
+ * Formulario público de contacto para LHC Legal & Consulting con diseño visual avanzado.
  * Layout de dos columnas: información/valor a la izquierda, formulario a la derecha.
  * Si el usuario está logueado, omite campos de nombre, apellidos y email pero añade
  * más contexto visual para equilibrar la altura del formulario.
- * Envía todos los emails desde el servidor corporativo (bapboostaproject@gmail.com).
  * Incluye validación visual, estados de carga y elementos de confianza.
  */
 
@@ -66,7 +65,7 @@ const ContactForm = () => {
     };
 
     const whatsappUrl =
-        "https://wa.me/34685565977?text=Hola%2C%20quiero%20más%20información%20sobre%20Boost%20A%20Project";
+        "https://wa.me/34691818071?text=Hola%2C%20necesito%20asesoramiento%20legal%20gratuito";
 
     return (
         <div className="w-full max-w-7xl mx-auto">
@@ -74,13 +73,13 @@ const ContactForm = () => {
                 {/* Columna izquierda - Información y valor */}
                 <div className="space-y-8">
                     <div className="space-y-6">
-                        <h1 className="text-4xl lg:text-5xl font-bold text-[#1A1341] leading-tight">
-                            ¿Tienes dudas sobre tu{" "}
-                            <span className="text-[#6290C3]">inversión</span>?
+                        <h1 className="text-4xl lg:text-5xl font-bold text-[#1b2f4b] leading-tight">
+                            ¿Necesitas{" "}
+                            <span className="text-[#1DA1F2]">asesoramiento legal</span>?
                         </h1>
                         <p className="text-lg text-gray-700 leading-relaxed">
-                            Nuestro equipo de expertos está aquí para resolver todas tus preguntas
-                            sobre inversiones inmobiliarias. Sin compromiso, sin presión.
+                            Nuestro equipo de abogados especialistas está aquí para resolver todas tus dudas
+                            sobre tu situación legal. Sin compromiso, sin presión.
                         </p>
                     </div>
 
@@ -88,38 +87,38 @@ const ContactForm = () => {
                     <div className="space-y-4">
                         <div className="flex items-center space-x-4">
                             <div className="bg-[#C2E7DA] p-3 rounded-full">
-                                <Clock className="w-6 h-6 text-[#1A1341]" />
+                                <Clock className="w-6 h-6 text-[#1b2f4b]" />
                             </div>
                             <div>
-                                <h3 className="font-semibold text-[#1A1341]">Respuesta en 24h</h3>
+                                <h3 className="font-semibold text-[#1b2f4b]">Respuesta en 24h</h3>
                                 <p className="text-gray-600 text-sm">Te contactamos en menos de un día laborable</p>
                             </div>
                         </div>
 
                         <div className="flex items-center space-x-4">
                             <div className="bg-[#C2E7DA] p-3 rounded-full">
-                                <Shield className="w-6 h-6 text-[#1A1341]" />
+                                <Shield className="w-6 h-6 text-[#1b2f4b]" />
                             </div>
                             <div>
-                                <h3 className="font-semibold text-[#1A1341]">Asesoramiento cercano</h3>
+                                <h3 className="font-semibold text-[#1b2f4b]">Asesoramiento cercano</h3>
                                 <p className="text-gray-600 text-sm">Un equipo que realmente te escucha</p>
                             </div>
                         </div>
 
                         <div className="flex items-center space-x-4">
                             <div className="bg-[#C2E7DA] p-3 rounded-full">
-                                <CheckCircle className="w-6 h-6 text-[#1A1341]" />
+                                <CheckCircle className="w-6 h-6 text-[#1b2f4b]" />
                             </div>
                             <div>
-                                <h3 className="font-semibold text-[#1A1341]">Sin compromisos</h3>
-                                <p className="text-gray-600 text-sm">Información transparente sin presión comercial</p>
+                                <h3 className="font-semibold text-[#1b2f4b]">Sin compromisos</h3>
+                                <p className="text-gray-600 text-sm">Consulta legal completamente gratuita</p>
                             </div>
                         </div>
                     </div>
 
                     {/* Contacto alternativo */}
                     <div className="bg-gradient-to-r from-[#F1FFEF] to-[#C2E7DA] p-6 rounded-xl border border-[#C2E7DA]">
-                        <h3 className="font-semibold text-[#1A1341] mb-4 flex items-center">
+                        <h3 className="font-semibold text-[#1b2f4b] mb-4 flex items-center">
                             <MessageSquare className="w-5 h-5 mr-2" />
                             ¿Prefieres hablar directamente?
                         </h3>
@@ -137,9 +136,9 @@ const ContactForm = () => {
                                 />
                                 <span className="font-medium">Escríbenos por WhatsApp</span>
                             </a>
-                            <a href="tel:+34685565977" className="flex items-center space-x-3 text-[#1A1341]">
+                            <a href="tel:+34691818071" className="flex items-center space-x-3 text-[#1b2f4b]">
                                 <Phone className="w-5 h-5" />
-                                <span>Llámanos: +34 685 565 977</span>
+                                <span>Llámanos: +34 691 81 80 71</span>
                             </a>
                         </div>
                     </div>
@@ -148,32 +147,32 @@ const ContactForm = () => {
                 {/* Columna derecha - Formulario */}
                 <div className="relative">
                     {/* Elementos decorativos de fondo */}
-                    <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#6290C3] opacity-10 rounded-full blur-xl"></div>
+                    <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#1DA1F2] opacity-10 rounded-full blur-xl"></div>
                     <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-[#C2E7DA] opacity-20 rounded-full blur-xl"></div>
 
                     <div className="relative bg-white border border-gray-200 p-8 lg:p-10 rounded-2xl shadow-2xl">
                         {/* Header del formulario - Diferente para usuarios registrados y no registrados */}
                         {isAuthenticated ? (
                             <div className="text-center mb-8 space-y-4">
-                                <h2 className="text-3xl lg:text-4xl font-bold text-[#1A1341]">
+                                <h2 className="text-3xl lg:text-4xl font-bold text-[#1b2f4b]">
                                     Hola {user.username}
                                 </h2>
-                                <p className="text-xl text-[#6290C3] font-medium">
+                                <p className="text-xl text-[#1DA1F2] font-medium">
                                     ¿En qué podemos ayudarte?
                                 </p>
                                 <div className="bg-[#F1FFEF] border border-[#C2E7DA] rounded-xl p-4">
-                                    <h3 className="text-lg font-semibold text-[#1A1341] mb-2">
-                                        Envíanos tu consulta
+                                    <h3 className="text-lg font-semibold text-[#1b2f4b] mb-2">
+                                        Envíanos tu consulta legal
                                     </h3>
                                     <p className="text-gray-600 text-sm">
-                                        Cuéntanos en qué proyecto estás interesado o cualquier duda que tengas
+                                        Cuéntanos tu situación legal o cualquier duda jurídica que tengas
                                     </p>
                                 </div>
                             </div>
                         ) : (
                             <div className="text-center mb-8">
-                                <h2 className="text-2xl lg:text-3xl font-bold text-[#1A1341] mb-2">
-                                    Envíanos tu consulta
+                                <h2 className="text-2xl lg:text-3xl font-bold text-[#1b2f4b] mb-2">
+                                    Envíanos tu consulta legal
                                 </h2>
                                 <p className="text-gray-600">
                                     Completa el formulario y te contactaremos pronto
@@ -228,11 +227,11 @@ const ContactForm = () => {
                                 onChange={handleChange}
                                 required
                                 minLength={4}
-                                placeholder="¿De qué quieres hablarnos?"
+                                placeholder="Tipo de consulta: despido, herencia, multa, divorcio..."
                             />
 
                             <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-[#1A1341] mb-2">
+                                <label htmlFor="message" className="block text-sm font-medium text-[#1b2f4b] mb-2">
                                     Mensaje
                                 </label>
                                 <textarea
@@ -243,8 +242,8 @@ const ContactForm = () => {
                                     minLength={10}
                                     value={formData.message}
                                     onChange={handleChange}
-                                    placeholder="Cuéntanos tu consulta con el máximo detalle posible..."
-                                    className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm shadow-sm focus:border-[#6290C3] focus:ring-2 focus:ring-[#6290C3] focus:ring-opacity-50 resize-none transition-all duration-200"
+                                    placeholder="Describe tu situación legal con el máximo detalle posible..."
+                                    className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm shadow-sm focus:border-[#1DA1F2] focus:ring-2 focus:ring-[#1DA1F2] focus:ring-opacity-50 resize-none transition-all duration-200"
                                 ></textarea>
                             </div>
 
@@ -252,11 +251,11 @@ const ContactForm = () => {
                             {isAuthenticated && (
                                 <div className="bg-[#F1FFEF] border border-[#C2E7DA] rounded-xl p-4">
                                     <div className="flex items-start space-x-3">
-                                        <CheckCircle className="w-5 h-5 text-[#6290C3] mt-0.5 flex-shrink-0" />
+                                        <CheckCircle className="w-5 h-5 text-[#1DA1F2] mt-0.5 flex-shrink-0" />
                                         <div>
                                             <p className="text-sm text-gray-700">
-                                                <span className="font-medium">Ventaja de usuario registrado:</span> Tu consulta
-                                                tendrá prioridad y podremos ofrecerte información personalizada basada en tu perfil.
+                                                <span className="font-medium">Ventaja de usuario registrado:</span> Tu consulta legal
+                                                tendrá prioridad y podremos ofrecerte asesoramiento personalizado basado en tu perfil.
                                             </p>
                                         </div>
                                     </div>
@@ -294,7 +293,7 @@ const ContactForm = () => {
                                         <span>Enviando mensaje...</span>
                                     </div>
                                 ) : (
-                                    "Enviar mensaje"
+                                    "Enviar consulta legal"
                                 )}
                             </Button>
                         </form>
@@ -302,7 +301,7 @@ const ContactForm = () => {
                         {/* Nota de privacidad */}
                         <p className="text-xs text-gray-500 text-center mt-6 leading-relaxed">
                             Al enviar este formulario, aceptas que procesemos tus datos para contactarte.
-                            Consulta nuestra <span className="text-[#6290C3] hover:underline cursor-pointer">política de privacidad</span>.
+                            Consulta nuestra <span className="text-[#1DA1F2] hover:underline cursor-pointer">política de privacidad</span>.
                         </p>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
  * 
  * Página principal de LHC Legal & Consulting.
  * Home con estructura limpia, secciones optimizadas para SEO y conversión.
- * Layout profesional con separación clara entre secciones.
+ * Arquitectura profesional con título sobre parallax y separación clara de secciones.
  */
 
 import React from "react";
@@ -11,7 +11,9 @@ import type { Metadata } from "next";
 import HeroSection from "@/components/Home/HeroSection";
 import PostHeroLayout from "@/components/Home/PostHeroLayout";
 import AreasGrid from "@/components/Home/AreasGrid";
+import ParallaxTitleSection from "@/components/Home/ParallaxTitleSection";
 import WhyChooseUs from "@/components/Home/WhyChooseUs";
+import ContactHomeCTA from "@/components/Home/ContactHomeCta";
 // import BasicContact from "@/components/Home/BasicContact";
 // import CTASection from "@/components/Home/CTASection";
 
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
 
 /**
  * Componente principal de la página home
- * Estructura optimizada para conversión y SEO con layout profesional
+ * Estructura optimizada para conversión y SEO con arquitectura profesional
  */
 export default function Home() {
   return (
@@ -63,10 +65,22 @@ export default function Home() {
       {/* Grid de las 8 áreas legales principales - Sección independiente */}
       <AreasGrid />
 
-      {/* Secciones con parallax - Layout separado */}
-      <PostHeroLayout>
-        {/* Por qué elegir LHC - 4 diferenciadores */}
+      {/* Layout con parallax y título profesional */}
+      <PostHeroLayout
+        titleSection={
+          <ParallaxTitleSection
+            title="¿Por qué elegir"
+            highlightTitle="LHC Legal & Consulting?"
+            subtitle="Somos una asesoría legal moderna que combina profesionalidad con cercanía."
+            highlightText="Nos comprometemos contigo."
+            paddingY="py-20 lg:py-32"
+          />
+        }
+      >
+        {/* WhyChooseUs - Solo las 4 cards (sin header) */}
         <WhyChooseUs />
+
+        
 
         {/* Contacto básico con CTAs principales */}
         {/* Comentado hasta crear el componente */}
@@ -77,6 +91,8 @@ export default function Home() {
         {/* <CTASection /> */}
 
       </PostHeroLayout>
+
+      <ContactHomeCTA />
 
       {/* Datos estructurados REALES para SEO */}
       <script

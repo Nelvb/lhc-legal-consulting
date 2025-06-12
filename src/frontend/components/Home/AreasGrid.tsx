@@ -69,48 +69,18 @@ const AreasGrid: React.FC<ServicesGridProps> = ({
       style={{
         background: `
           linear-gradient(135deg, 
-            #1A1341 0%, 
-            #1b2f4b 25%, 
-            #1A1341 50%, 
-            #0f0a2e 75%, 
-            #1A1341 100%
+  #0f172a 0%, 
+  #1b2f4b 30%, 
+  #1DA1F2 65%, 
+  #1b2f4b 100%
           )
         `
       }}
     >
-      {/* Elementos decorativos de fondo */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Círculos decorativos grandes */}
-        <div 
-          className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-5"
-          style={{
-            background: 'radial-gradient(circle, #1DA1F2 0%, transparent 70%)'
-          }}
-        />
-        <div 
-          className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full opacity-5"
-          style={{
-            background: 'radial-gradient(circle, #60A5FA 0%, transparent 70%)'
-          }}
-        />
-        
-        {/* Líneas diagonales sutiles */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent transform rotate-45" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent transform -rotate-45" />
-        
-        {/* Patrones geométricos */}
-        <div className="absolute top-16 right-16 w-32 h-32 border border-white/5 transform rotate-45" />
-        <div className="absolute bottom-16 left-16 w-24 h-24 border border-[#1DA1F2]/10 transform rotate-12" />
-        
-        {/* Efecto de partículas */}
-        <div className="absolute top-1/3 left-1/3 w-2 h-2 bg-[#1DA1F2]/20 rounded-full" />
-        <div className="absolute bottom-1/3 right-1/3 w-3 h-3 bg-[#60A5FA]/20 rounded-full" />
-        <div className="absolute top-2/3 right-1/4 w-1 h-1 bg-white/30 rounded-full" />
-      </div>
+     
 
       {/* Contenedor principal con padding generoso */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32">
-        
+      <div className="relative z-10 max-w-none mx-auto px-6 lg:px-8 py-20 lg:py-32">        
         {/* Encabezado de la sección */}
         <header className="text-center mb-20 lg:mb-28">
           <div className={`
@@ -173,19 +143,19 @@ const AreasGrid: React.FC<ServicesGridProps> = ({
             </p>
             
             <Button
-              variant="cta"
-              size="lg"
-              className="px-12 py-5 rounded-2xl text-lg lg:text-xl font-bold shadow-2xl hover:shadow-[0_20px_40px_rgba(29,161,242,0.3)] transition-all duration-300"
-              icon={
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              }
-              iconPosition="right"
-              onClick={() => window.location.href = '/contacto'}
-            >
-              {SECTION_CONTENT.ctaText}
-            </Button>
+  variant="outline"
+  size="lg"
+  className="shadow-2xl hover:shadow-[0_20px_40px_rgba(29,161,242,0.3)] transition-all duration-300"
+  icon={
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
+  }
+  iconPosition="right"
+  onClick={() => window.location.href = '/contacto'}
+>
+  {SECTION_CONTENT.ctaText}
+</Button>
           </div>
         </footer>
       </div>

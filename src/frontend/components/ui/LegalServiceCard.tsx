@@ -2,7 +2,7 @@
  * LegalServiceCard.tsx
  * 
  * Componente de tarjeta individual para servicios legales de LHC Legal & Consulting.
- * Diseño moderno con animaciones, efectos hover y optimización SEO.
+ * Diseño moderno más bajo y ancho con animaciones, efectos hover y optimización SEO.
  * Reutilizable y responsive con TypeScript estricto.
  */
 
@@ -38,7 +38,7 @@ const LegalServiceCard: React.FC<LegalServiceCardProps> = ({
             >
                 <article
                     className="
-            relative h-72 rounded-2xl p-8 
+            relative h-48 rounded-2xl p-6 
             transform transition-all duration-500 ease-out
             hover:scale-105 hover:-translate-y-3
             shadow-2xl hover:shadow-3xl
@@ -67,7 +67,7 @@ const LegalServiceCard: React.FC<LegalServiceCardProps> = ({
                             {/* Título del servicio legal */}
                             <h3
                                 className="
-                  text-2xl font-bold mb-4 leading-tight
+                  text-xl font-bold mb-3 leading-tight
                   group-hover:text-white transition-colors duration-300
                   filter drop-shadow-sm
                 "
@@ -85,18 +85,19 @@ const LegalServiceCard: React.FC<LegalServiceCardProps> = ({
                 transition-colors duration-300 
                 leading-relaxed text-sm font-medium
                 filter drop-shadow-sm
+                line-clamp-2
               ">
                                 {service.description}
                             </p>
 
                             {/* Indicador de acción */}
                             <div className="
-                mt-6 flex items-center justify-center text-white/80 group-hover:text-white
+                mt-4 flex items-center justify-center text-white/80 group-hover:text-white
                 transition-all duration-300
               ">
-                                <span className="text-sm font-semibold mr-2">Más información</span>
+                                <span className="text-xs font-semibold mr-2">Más información</span>
                                 <svg
-                                    className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+                                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -124,7 +125,7 @@ const LegalServiceCard: React.FC<LegalServiceCardProps> = ({
 
                     {/* Elementos decorativos */}
                     <div className="
-            absolute -top-4 -right-4 w-20 h-20 
+            absolute -top-4 -right-4 w-16 h-16 
             bg-white/10 rounded-full blur-xl
             group-hover:scale-150 group-hover:bg-white/20
             transition-all duration-700
