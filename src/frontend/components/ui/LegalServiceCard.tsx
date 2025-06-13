@@ -2,8 +2,9 @@
  * LegalServiceCard.tsx
  * 
  * Componente de tarjeta individual para servicios legales de LHC Legal & Consulting.
- * Diseño moderno más bajo y ancho con animaciones, efectos hover y optimización SEO.
- * Reutilizable y responsive con TypeScript estricto.
+ * Diseño limpio y profesional inspirado en cards rectangulares sin elementos decorativos.
+ * Efectos hover sutiles con paleta suave de salmón, rosa empolvado y verde agua.
+ * Optimizado para SEO, accesibilidad y experiencia de usuario premium.
  */
 
 'use client';
@@ -21,12 +22,12 @@ const LegalServiceCard: React.FC<LegalServiceCardProps> = ({
     return (
         <div
             className={`
-        transition-all duration-700 transform
-        ${inView
+                transition-all duration-700 transform
+                ${inView
                     ? 'translate-y-0 opacity-100'
                     : 'translate-y-12 opacity-0'
                 }
-      `}
+            `}
             style={{
                 transitionDelay: inView ? `${animationDelay}ms` : '0ms'
             }}
@@ -38,27 +39,33 @@ const LegalServiceCard: React.FC<LegalServiceCardProps> = ({
             >
                 <article
                     className="
-            relative h-48 rounded-2xl p-6 
-            transform transition-all duration-500 ease-out
-            hover:scale-105 hover:-translate-y-3
-            shadow-2xl hover:shadow-3xl
-            group overflow-hidden
-            border border-white/10 hover:border-white/20
-          "
+                        relative h-48 p-6 
+                        transform transition-all duration-300 ease-out
+                        hover:-translate-y-1 hover:shadow-xl
+                        shadow-lg
+                        group overflow-hidden
+                        backdrop-blur-sm
+                    "
                     style={{
                         backgroundColor: service.color,
-                        boxShadow: `0 25px 50px -12px ${service.color}40`
+                        boxShadow: `0 10px 25px -5px ${service.color}25`
                     }}
                 >
-                    {/* Gradiente overlay para hover */}
+                    {/* Overlay sutil para hover */}
                     <div
                         className="
-              absolute inset-0 opacity-0 group-hover:opacity-100
-              transition-opacity duration-500
-            "
-                        style={{
-                            background: `linear-gradient(135deg, ${service.hoverColor} 0%, ${service.color} 100%)`
-                        }}
+                            absolute inset-0 opacity-0 group-hover:opacity-10
+                            transition-opacity duration-300
+                            bg-white
+                        "
+                    />
+
+                    {/* Gradiente sutil para profundidad */}
+                    <div
+                        className="
+                            absolute inset-0
+                            bg-gradient-to-br from-white/5 to-transparent
+                        "
                     />
 
                     {/* Contenido principal */}
@@ -67,10 +74,10 @@ const LegalServiceCard: React.FC<LegalServiceCardProps> = ({
                             {/* Título del servicio legal */}
                             <h3
                                 className="
-                  text-xl font-bold mb-3 leading-tight
-                  group-hover:text-white transition-colors duration-300
-                  filter drop-shadow-sm
-                "
+                                    text-xl font-bold mb-3 leading-tight
+                                    group-hover:text-white transition-colors duration-300
+                                    filter drop-shadow-sm
+                                "
                                 style={{
                                     fontFamily: "'Inter', sans-serif",
                                     fontWeight: '700'
@@ -81,20 +88,20 @@ const LegalServiceCard: React.FC<LegalServiceCardProps> = ({
 
                             {/* Descripción del servicio */}
                             <p className="
-                text-white/90 group-hover:text-white 
-                transition-colors duration-300 
-                leading-relaxed text-sm font-medium
-                filter drop-shadow-sm
-                line-clamp-2
-              ">
+                                text-white/90 group-hover:text-white/95
+                                transition-colors duration-300 
+                                leading-relaxed text-sm font-medium
+                                filter drop-shadow-sm
+                                line-clamp-2
+                            ">
                                 {service.description}
                             </p>
 
-                            {/* Indicador de acción */}
+                            {/* Indicador de acción profesional */}
                             <div className="
-                mt-4 flex items-center justify-center text-white/80 group-hover:text-white
-                transition-all duration-300
-              ">
+                                mt-4 flex items-center justify-center text-white/80 group-hover:text-white
+                                transition-all duration-300
+                            ">
                                 <span className="text-xs font-semibold mr-2">Más información</span>
                                 <svg
                                     className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
@@ -114,23 +121,28 @@ const LegalServiceCard: React.FC<LegalServiceCardProps> = ({
                         </div>
                     </div>
 
-                    {/* Efecto de brillo */}
-                    <div className="
-            absolute top-0 -left-6 w-6 h-full
-            bg-gradient-to-r from-transparent via-white/30 to-transparent
-            transform -skew-x-12 -translate-x-full
-            group-hover:translate-x-[300px]
-            transition-transform duration-1000 ease-out
-          " />
-
-                    {/* Elementos decorativos */}
-                    <div className="
-            absolute -top-4 -right-4 w-16 h-16 
-            bg-white/10 rounded-full blur-xl
-            group-hover:scale-150 group-hover:bg-white/20
-            transition-all duration-700
-            pointer-events-none
-          " />
+                    {/* Schema markup para SEO por tarjeta */}
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify({
+                                "@context": "https://schema.org",
+                                "@type": "Service",
+                                "name": service.title,
+                                "description": service.description,
+                                "provider": {
+                                    "@type": "LegalService",
+                                    "name": "LHC Legal & Consulting"
+                                },
+                                "areaServed": {
+                                    "@type": "Country",
+                                    "name": "España"
+                                },
+                                "serviceType": service.title,
+                                "url": `https://lhclegal.es${service.slug}`
+                            })
+                        }}
+                    />
                 </article>
             </Link>
         </div>

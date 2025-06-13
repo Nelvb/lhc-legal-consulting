@@ -104,7 +104,7 @@ const AreasGrid: React.FC<ServicesGridProps> = ({
         </header>
 
         {/* Grid de áreas legales con padding extra */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10 mb-20 lg:mb-28">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10 mb-12 lg:mb-16">
           {services.map((service, index) => (
             <LegalServiceCard
               key={service.id}
@@ -126,26 +126,21 @@ const AreasGrid: React.FC<ServicesGridProps> = ({
             transitionDelay: inView ? '800ms' : '0ms'
           }}
         >
-          <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-white/10 max-w-4xl mx-auto">
-            <p className="text-xl lg:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
-              {SECTION_CONTENT.ctaDescription}
-            </p>
-
-            <Button
-              variant="outline"
-              size="lg"
-              className="shadow-2xl hover:shadow-[0_20px_40px_rgba(29,161,242,0.3)] transition-all duration-300"
-              icon={
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              }
-              iconPosition="right"
-              onClick={() => window.location.href = '/contacto'}
-            >
-              {SECTION_CONTENT.ctaText}
-            </Button>
-          </div>
+<div className="text-center py-6 lg:py-8">
+<h3 className="text-white text-3xl lg:text-4xl font-bold mb-4">
+  {SECTION_CONTENT.ctaTitle}
+</h3>
+<p className="font-semibold text-blue-200 text-lg sm:text-xl lg:text-2xl mb-8 max-w-2xl mx-auto">
+  {SECTION_CONTENT.ctaSubtitle}
+</p>
+<Button 
+  variant="outline" 
+  size="md"
+  onClick={() => window.location.href = '/contact'}
+>
+  {SECTION_CONTENT.ctaButtonText}
+</Button>
+</div>
         </footer>
       </div>
 

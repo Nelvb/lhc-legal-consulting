@@ -26,10 +26,10 @@ const NavbarLinks: React.FC = () => {
       <Link href="/blog" className="text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all">
         Blog
       </Link>
-      <Link href="/nosotros" className="text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all">
+      <Link href="/about-us" className="text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all">
         Nosotros
       </Link>
-      <Link href="/contacto" className="text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all">
+      <Link href="/contact" className="text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all">
         Contacto
       </Link>
     </div>
