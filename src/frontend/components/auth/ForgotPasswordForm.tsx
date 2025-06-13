@@ -1,8 +1,10 @@
 /**
- * Formulario de recuperación de contraseña.
- * Permite al usuario solicitar un email con enlace para restablecer su contraseña.
- * Utiliza el método centralizado en userService y mantiene coherencia con el sistema de diseño.
- * Esta vista se muestra públicamente en /recuperar-contrasena.
+ * ForgotPasswordForm.tsx
+ *
+ * Formulario de recuperación de contraseña para LHC Legal & Consulting.
+ * Mantiene toda la lógica original de userService intacta.
+ * Optimizado con espacios compactos para caber en pantalla sin scroll.
+ * Utiliza el método centralizado en userService y componente Icon unificado.
  */
 
 "use client";
@@ -10,8 +12,9 @@
 import { useState, FormEvent } from "react";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
-import Spinner from "@/components/ui/Spinner";
+import Icon from "@/components/ui/Icon";
 import { userService } from "@/lib/api/userService";
+import { Mail, CheckCircle } from "lucide-react";
 
 const ForgotPasswordForm = () => {
     const [email, setEmail] = useState("");
@@ -31,58 +34,78 @@ const ForgotPasswordForm = () => {
 
     return (
         <div className="w-full max-w-md">
-            <form
-                onSubmit={handleSubmit}
-                className="bg-[#F1FFEF] border border-[#C2E7DA] p-8 rounded-xl shadow-md"
+            <div
+                className="relative bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-2xl"
             >
-                <h2 className="text-2xl font-bold mb-6 text-center text-[#1A1341]">
-                    Recuperar contraseña
-                </h2>
+                {/* Header del formulario compacto */}
+                <div className="text-center mb-5">
+                    <Icon size="small" blur="md" centered className="mb-3">
+                        <Mail />
+                    </Icon>
 
-                <p className="text-sm text-gray-700 mb-4 text-center">
-                    Introduce el correo asociado a tu cuenta. Si existe, te enviaremos un enlace para restablecer tu contraseña.
-                </p>
+                    <h2 className="text-xl font-bold text-white mb-1">
+                        Recuperar contraseña
+                    </h2>
+                    <p className="text-sm text-white/70">
+                        Introduce tu correo y te enviaremos un enlace de recuperación
+                    </p>
+                </div>
 
-                {status === "error" && (
-                    <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-                        Hubo un error. Inténtalo de nuevo más tarde.
-                    </div>
-                )}
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    {status === "error" && (
+                        <div className="p-3 bg-red-500/20 border border-red-400/50 text-red-200 rounded-lg text-sm flex items-start space-x-2">
+                            <div className="bg-red-400 rounded-full p-0.5 mt-0.5">
+                                <div className="w-1.5 h-1.5 bg-red-200 rounded-full"></div>
+                            </div>
+                            <span>Hubo un error. Inténtalo de nuevo más tarde.</span>
+                        </div>
+                    )}
 
-                <Input
-                    label="Correo electrónico"
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="tu@email.com"
-                    required
-                />
+                    {status === "sent" && (
+                        <div className="p-3 bg-green-500/20 border border-green-400/50 text-green-200 rounded-lg text-sm flex items-start space-x-2">
+                            <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                            <div>
+                                <p className="font-medium">¡Enlace enviado!</p>
+                                <p className="text-green-300 text-xs mt-1">Si existe una cuenta con ese correo, recibirás un enlace de recuperación.</p>
+                            </div>
+                        </div>
+                    )}
 
-                <div className="mt-4">
+                    <Input
+                        label="Correo electrónico"
+                        id="email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="example@lhclegal.es"
+                        compact={true}
+                        required
+                    />
+
                     <Button
                         type="submit"
-                        variant="primary"
-                        className="w-full"
+                        variant="outline"
+                        size="sm"
                         disabled={status === "sending"}
+                        fullWidth
+                        className="mt-4"
                     >
                         {status === "sending" ? (
                             <div className="flex items-center justify-center space-x-2">
-                                <Spinner />
+                                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                                 <span>Enviando...</span>
                             </div>
                         ) : (
                             "Enviar enlace de recuperación"
                         )}
                     </Button>
-                </div>
+                </form>
 
-                {status === "sent" && (
-                    <p className="text-green-600 text-sm text-center mt-4">
-                        Si existe una cuenta con ese correo, recibirás un enlace.
-                    </p>
-                )}
-            </form>
+                {/* Nota de seguridad compacta */}
+                <p className="text-xs text-white/50 text-center mt-4">
+                    Por seguridad, siempre mostramos este mensaje aunque el email no exista
+                </p>
+            </div>
         </div>
     );
 };

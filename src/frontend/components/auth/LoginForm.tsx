@@ -1,15 +1,10 @@
 /**
  * LoginForm.tsx
  *
- * Formulario de inicio de sesión para la aplicación Boost A Project.
- * Permite al usuario autenticarse con email y contraseña usando cookies seguras + CSRF.
- * Incluye redirección automática según el rol (admin → /admin, usuario → /dashboard).
- * 
- * Características profesionales:
- * - Placeholders profesionales, manejo de errores del backend
- * - Compatible con Zustand (useAuthStore)
- * - Diseño responsive y accesible
- * - Componente Spinner reutilizable
+ * Formulario de inicio de sesión para LHC Legal & Consulting.
+ * Mantiene toda la lógica original de autenticación intacta.
+ * Optimizado con espacios compactos para caber en pantalla sin scroll.
+ * Compatible con Zustand y redirección automática por roles.
  */
 
 "use client";
@@ -18,15 +13,15 @@ import { useState, FormEvent, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import Spinner from "@/components/ui/Spinner";
+import Icon from "@/components/ui/Icon";
 import { useAuthStore } from "@/stores/useAuthStore";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Shield } from "lucide-react";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  
+     
   const { login, loading, error, clearError } = useAuthStore();
   const router = useRouter();
 
@@ -51,67 +46,83 @@ const LoginForm = () => {
 
   return (
     <div className="w-full max-w-md">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-[#F1FFEF] border border-[#C2E7DA] p-8 rounded-xl shadow-md"
+      <div 
+        className="relative bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-2xl"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-[#1A1341]">
-          Iniciar Sesión
-        </h2>
-
-        {error && (
-          <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-            {error}
-          </div>
-        )}
-
-        <Input
-          label="Email"
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="tu@email.com"
-          required
-        />
-
-        <div className="relative">
-          <Input
-            label="Contraseña"
-            id="password"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Tu contraseña"
-            required
-          />
-          <button
-            type="button"
-            className="absolute right-3 top-[38px] cursor-pointer text-[#1A1341]"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-          </button>
+        {/* Header del formulario compacto */}
+        <div className="text-center mb-5">
+          <Icon size="small" blur="md" centered className="mb-3">
+            <Shield />
+          </Icon>
+          
+          <h2 className="text-xl font-bold text-white mb-1">
+            Iniciar Sesión
+          </h2>
+          <p className="text-sm text-white/70">
+            Accede al panel de administración
+          </p>
         </div>
 
-        <div className="mt-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {error && (
+            <div className="p-3 bg-red-500/20 border border-red-400/50 text-red-200 rounded-lg text-sm flex items-start space-x-2">
+              <div className="bg-red-400 rounded-full p-0.5 mt-0.5">
+                <div className="w-1.5 h-1.5 bg-red-200 rounded-full"></div>
+              </div>
+              <span>{error}</span>
+            </div>
+          )}
+
+          <Input
+            label="Email"
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="example@lhclegal.es"
+            compact={true}
+            required
+          />
+
+          <div className="relative">
+            <Input
+              label="Contraseña"
+              id="password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Tu contraseña de administrador"
+              compact={true}
+              required
+            />
+            <button
+              type="button"
+              className="absolute right-3 top-[34px] cursor-pointer text-white/60 hover:text-white transition-colors"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+
           <Button
             type="submit"
-            variant="primary"
-            className="w-full"
+            variant="outline"
+            size="sm"
             disabled={loading}
+            fullWidth
+            className="mt-4"
           >
             {loading ? (
               <div className="flex items-center justify-center space-x-2">
-                <Spinner />
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 <span>Iniciando sesión...</span>
               </div>
             ) : (
-              "Iniciar Sesión"
+              "Acceder al Panel"
             )}
           </Button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

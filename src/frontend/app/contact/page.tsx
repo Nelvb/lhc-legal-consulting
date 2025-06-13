@@ -1,8 +1,8 @@
 /**
  * ContactPage.tsx
  *
- * Página pública de contacto para Boost A Project.
- * Incluye fondo híbrido: dividido clásico arriba (30%) + decorativo abajo.
+ * Página pública de contacto para LHC Legal & Consulting.
+ * Incluye fondo gradiente LHC + decorativo abajo.
  * Layout responsive que aloja el ContactForm con diseño de dos columnas.
  * Optimizada para SEO con metadata apropiada y textos claros sobre fondo oscuro.
  * Utiliza iconos de Lucide React para consistencia profesional.
@@ -10,16 +10,17 @@
 
 import type { Metadata } from "next";
 import ContactForm from "@/components/contact/ContactForm";
+import Icon from "@/components/ui/Icon";
 import { Handshake, Shield, Phone } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Contacto | Boost A Project",
+    title: "Contacto | LHC Legal & Consulting",
     description:
-        "Contacta con nuestro equipo de expertos en inversiones inmobiliarias. Respuesta garantizada en 24h. Asesoramiento gratuito y sin compromisos.",
-    keywords: "contacto, inversiones inmobiliarias, asesoramiento, consulta gratuita, Boost A Project",
+        "Contacta con nuestro equipo de abogados especialistas. Respuesta garantizada en 24h. Asesoramiento legal gratuito y sin compromisos.",
+    keywords: "contacto, abogados madrid, asesoramiento legal, consulta gratuita, LHC Legal",
     openGraph: {
-        title: "Contacto | Boost A Project",
-        description: "¿Tienes dudas sobre inversiones inmobiliarias? Nuestro equipo te ayuda. Respuesta en 24h.",
+        title: "Contacto | LHC Legal & Consulting",
+        description: "¿Necesitas asesoramiento legal? Nuestro equipo te ayuda. Respuesta en 24h.",
         type: "website",
     },
 };
@@ -27,13 +28,12 @@ export const metadata: Metadata = {
 export default function ContactPage() {
     return (
         <main className="w-full relative min-h-screen overflow-hidden">
-            {/* Fondo híbrido: dividido arriba + decorativo abajo */}
+            {/* Fondo híbrido: gradiente LHC arriba + decorativo abajo */}
             <div className="absolute inset-0">
-                {/* Fondo dividido clásico desde arriba hasta 30% */}
-                <div className="absolute top-0 left-0 w-full h-[450px] mobile-sm:h-[420px] mobile-lg:h-[380px] lg:h-[30%] flex">
-                    <div className="w-[30%] bg-[#C2E7DA]" />
-                    <div className="w-[70%] bg-[#1A1341]" />
-                </div>
+                {/* Gradiente LHC desde arriba hasta 30% */}
+                <div
+                    className="absolute top-0 left-0 w-full h-[450px] mobile-sm:h-[420px] mobile-lg:h-[380px] lg:h-[30%] bg-lhc-gradient"
+                />
 
                 {/* Gradiente base para la parte inferior */}
                 <div className="absolute top-[30%] left-0 right-0 bottom-0 bg-gradient-to-br from-[#F1FFEF] via-[#C2E7DA] to-[#6290C3] opacity-40"></div>
@@ -54,16 +54,16 @@ export default function ContactPage() {
                 <div className="container mx-auto">
                     {/* Header de la página */}
                     <div className="text-center mb-16 lg:mb-20">
-                        <div className="inline-block bg-[#C2E7DA] text-[#1A1341] px-6 py-2 rounded-full text-sm font-medium mb-6">
-                            Estamos aquí para ayudarte
+                        <div className="inline-block bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-medium mb-6">
+                            Primera consulta gratuita
                         </div>
                         <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white drop-shadow-lg mb-4 leading-tight">
-    Hablemos sobre tu próxima{" "}
-    <span className="text-[#6290C3]">inversión</span>
-</h1>
+                            Hablemos sobre tu próxima{" "}
+                            <span className="text-[#6290C3]">consulta legal</span>
+                        </h1>
                         <p className="text-lg lg:text-xl text-white drop-shadow-lg max-w-3xl mx-auto leading-relaxed">
-                            Nuestro equipo de especialistas está listo para resolver tus dudas
-                            y guiarte en el mundo de las inversiones inmobiliarias.
+                            Nuestro equipo de abogados especialistas está listo para resolver tus dudas
+                            y ofrecerte el mejor asesoramiento jurídico.
                         </p>
                     </div>
 
@@ -78,25 +78,25 @@ export default function ContactPage() {
                             </h2>
                             <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
                                 <div className="text-center space-y-3">
-                                    <div className="bg-[#C2E7DA] w-16 h-16 rounded-full flex items-center justify-center mx-auto">
-                                        <Handshake className="w-8 h-8 text-[#1A1341]" />
-                                    </div>
+                                <Icon size="large" centered blur="md">
+                                        <Handshake />
+                                    </Icon>
                                     <h3 className="font-semibold text-[#1A1341]">Compromiso personal</h3>
-                                    <p className="text-gray-600 text-sm">Tratamos tu inversión como si fuera nuestra</p>
+                                    <p className="text-gray-600 text-sm">Tratamos tu caso como si fuera nuestro</p>
                                 </div>
                                 <div className="text-center space-y-3">
-                                    <div className="bg-[#C2E7DA] w-16 h-16 rounded-full flex items-center justify-center mx-auto">
-                                        <Shield className="w-8 h-8 text-[#1A1341]" />
-                                    </div>
+                                <Icon size="large" centered blur="md">
+                                        <Shield />
+                                    </Icon>
                                     <h3 className="font-semibold text-[#1A1341]">Transparencia total</h3>
-                                    <p className="text-gray-600 text-sm">Información clara y honesta en cada paso del proceso</p>
+                                    <p className="text-gray-600 text-sm">Información clara y honesta en cada momento</p>
                                 </div>
                                 <div className="text-center space-y-3">
-                                    <div className="bg-[#C2E7DA] w-16 h-16 rounded-full flex items-center justify-center mx-auto">
-                                        <Phone className="w-8 h-8 text-[#1A1341]" />
-                                    </div>
+                                <Icon size="large" centered blur="md">
+                                        <Phone />
+                                    </Icon>
                                     <h3 className="font-semibold text-[#1A1341]">Acompañamiento continuo</h3>
-                                    <p className="text-gray-600 text-sm">Te informamos en cada fase del proyecto</p>
+                                    <p className="text-gray-600 text-sm">Te acompañamos en cada fase de tu proceso</p>
                                 </div>
                             </div>
                         </div>

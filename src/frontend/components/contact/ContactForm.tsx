@@ -14,6 +14,7 @@ import { useState, FormEvent } from "react";
 import { contactService } from "@/lib/api/contactService";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
+import Icon from "@/components/ui/Icon";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { Shield, Clock, MessageSquare, Phone, CheckCircle } from "lucide-react";
 
@@ -84,40 +85,40 @@ const ContactForm = () => {
                     </div>
 
                     {/* Características de valor */}
-                    <div className="space-y-4">
-                        <div className="flex items-center space-x-4">
-                            <div className="bg-[#C2E7DA] p-3 rounded-full">
-                                <Clock className="w-6 h-6 text-[#1b2f4b]" />
-                            </div>
-                            <div>
-                                <h3 className="font-semibold text-[#1b2f4b]">Respuesta en 24h</h3>
-                                <p className="text-gray-600 text-sm">Te contactamos en menos de un día laborable</p>
-                            </div>
-                        </div>
+<div className="space-y-4">
+    <div className="flex items-center space-x-4">
+        <Icon size="small" blur="md">
+            <Clock />
+        </Icon>
+        <div>
+            <h3 className="font-semibold text-[#1b2f4b]">Respuesta en 24h</h3>
+            <p className="text-gray-600 text-sm">Te contactamos en menos de un día laborable</p>
+        </div>
+    </div>
 
-                        <div className="flex items-center space-x-4">
-                            <div className="bg-[#C2E7DA] p-3 rounded-full">
-                                <Shield className="w-6 h-6 text-[#1b2f4b]" />
-                            </div>
-                            <div>
-                                <h3 className="font-semibold text-[#1b2f4b]">Asesoramiento cercano</h3>
-                                <p className="text-gray-600 text-sm">Un equipo que realmente te escucha</p>
-                            </div>
-                        </div>
+    <div className="flex items-center space-x-4">
+        <Icon size="small" blur="md">
+            <Shield />
+        </Icon>
+        <div>
+            <h3 className="font-semibold text-[#1b2f4b]">Asesoramiento cercano</h3>
+            <p className="text-gray-600 text-sm">Un equipo que realmente te escucha</p>
+        </div>
+    </div>
 
-                        <div className="flex items-center space-x-4">
-                            <div className="bg-[#C2E7DA] p-3 rounded-full">
-                                <CheckCircle className="w-6 h-6 text-[#1b2f4b]" />
-                            </div>
-                            <div>
-                                <h3 className="font-semibold text-[#1b2f4b]">Sin compromisos</h3>
-                                <p className="text-gray-600 text-sm">Consulta legal completamente gratuita</p>
-                            </div>
-                        </div>
-                    </div>
+    <div className="flex items-center space-x-4">
+        <Icon size="small" blur="md">
+            <CheckCircle />
+        </Icon>
+        <div>
+            <h3 className="font-semibold text-[#1b2f4b]">Sin compromisos</h3>
+            <p className="text-gray-600 text-sm">Consulta legal completamente gratuita</p>
+        </div>
+    </div>
+</div>
 
                     {/* Contacto alternativo */}
-                    <div className="bg-gradient-to-r from-[#F1FFEF] to-[#C2E7DA] p-6 rounded-xl border border-[#C2E7DA]">
+                    <div className="bg-gradient-to-r from-[#e6f3ff] to-[#f0f8ff] p-6 rounded-xl border border-[#1DA1F2]/20">
                         <h3 className="font-semibold text-[#1b2f4b] mb-4 flex items-center">
                             <MessageSquare className="w-5 h-5 mr-2" />
                             ¿Prefieres hablar directamente?
@@ -150,7 +151,19 @@ const ContactForm = () => {
                     <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#1DA1F2] opacity-10 rounded-full blur-xl"></div>
                     <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-[#C2E7DA] opacity-20 rounded-full blur-xl"></div>
 
-                    <div className="relative bg-white border border-gray-200 p-8 lg:p-10 rounded-2xl shadow-2xl">
+                    <div
+                        className="relative bg-white/10 backdrop-blur-lg border border-white/20 p-8 lg:p-10 rounded-2xl"
+                        style={{
+                            background: `
+            linear-gradient(135deg, 
+                #1b2f4b 0%, 
+                #1DA1F2 35%, 
+                #1b2f4b 70%, 
+                #0f172a 100%
+            )
+        `
+                        }}
+                    >
                         {/* Header del formulario - Diferente para usuarios registrados y no registrados */}
                         {isAuthenticated ? (
                             <div className="text-center mb-8 space-y-4">
@@ -161,7 +174,7 @@ const ContactForm = () => {
                                     ¿En qué podemos ayudarte?
                                 </p>
                                 <div className="bg-[#F1FFEF] border border-[#C2E7DA] rounded-xl p-4">
-                                    <h3 className="text-lg font-semibold text-[#1b2f4b] mb-2">
+                                    <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3">
                                         Envíanos tu consulta legal
                                     </h3>
                                     <p className="text-gray-600 text-sm">
@@ -171,10 +184,10 @@ const ContactForm = () => {
                             </div>
                         ) : (
                             <div className="text-center mb-8">
-                                <h2 className="text-2xl lg:text-3xl font-bold text-[#1b2f4b] mb-2">
+                                <h2 className="text-2xl lg:text-3xl font-bold text-white mb-3">
                                     Envíanos tu consulta legal
                                 </h2>
-                                <p className="text-gray-600">
+                                <p className="text-white">
                                     Completa el formulario y te contactaremos pronto
                                 </p>
                             </div>
@@ -231,7 +244,7 @@ const ContactForm = () => {
                             />
 
                             <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-[#1b2f4b] mb-2">
+                                <label htmlFor="message" className="block text-sm font-medium text-white mb-2">
                                     Mensaje
                                 </label>
                                 <textarea
@@ -243,7 +256,7 @@ const ContactForm = () => {
                                     value={formData.message}
                                     onChange={handleChange}
                                     placeholder="Describe tu situación legal con el máximo detalle posible..."
-                                    className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm shadow-sm focus:border-[#1DA1F2] focus:ring-2 focus:ring-[#1DA1F2] focus:ring-opacity-50 resize-none transition-all duration-200"
+                                    className="w-full bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white placeholder-white/60 focus:bg-white/30 focus:border-white/50 focus:outline-none transition-all duration-200 resize-none"
                                 ></textarea>
                             </div>
 
@@ -283,9 +296,12 @@ const ContactForm = () => {
 
                             <Button
                                 type="submit"
-                                variant="primary"
-                                className="w-full py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
-                                disabled={status === "sending"}
+                                variant="outline"
+                                size="md"
+                                disabled={status === 'sending'}
+                                loading={status === 'sending'}
+                                fullWidth
+                                className="mt-6"
                             >
                                 {status === "sending" ? (
                                     <div className="flex items-center justify-center space-x-2">
@@ -293,13 +309,13 @@ const ContactForm = () => {
                                         <span>Enviando mensaje...</span>
                                     </div>
                                 ) : (
-                                    "Enviar consulta legal"
+                                    "Enviar consulta"
                                 )}
                             </Button>
                         </form>
 
                         {/* Nota de privacidad */}
-                        <p className="text-xs text-gray-500 text-center mt-6 leading-relaxed">
+                        <p className="text-xs text-gray-300 text-center mt-6 leading-relaxed">
                             Al enviar este formulario, aceptas que procesemos tus datos para contactarte.
                             Consulta nuestra <span className="text-[#1DA1F2] hover:underline cursor-pointer">política de privacidad</span>.
                         </p>

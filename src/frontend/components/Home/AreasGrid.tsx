@@ -62,32 +62,21 @@ const AreasGrid: React.FC<ServicesGridProps> = ({
   });
 
   return (
-    <section 
+    <section
       ref={ref}
-      className="w-full relative overflow-hidden"
+      className="w-full relative overflow-hidden bg-lhc-gradient-inverted"
       aria-labelledby="areas-legales-heading"
-      style={{
-        background: `
-          linear-gradient(135deg, 
-  #0f172a 0%, 
-  #1b2f4b 30%, 
-  #1DA1F2 65%, 
-  #1b2f4b 100%
-          )
-        `
-      }}
     >
-     
 
       {/* Contenedor principal con padding generoso */}
-      <div className="relative z-10 max-w-none mx-auto px-6 lg:px-8 py-20 lg:py-32">        
+      <div className="relative z-10 max-w-none mx-auto px-6 lg:px-8 py-20 lg:py-32">
         {/* Encabezado de la sección */}
         <header className="text-center mb-20 lg:mb-28">
           <div className={`
             transition-all duration-700 transform
             ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
           `}>
-            <h2 
+            <h2
               id="areas-legales-heading"
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8"
               style={{
@@ -102,12 +91,12 @@ const AreasGrid: React.FC<ServicesGridProps> = ({
                 {SECTION_CONTENT.titleHighlight}
               </span>
             </h2>
-            
+
             <div className="w-24 h-1 bg-gradient-to-r from-[#1DA1F2] to-[#60A5FA] mx-auto mb-8 rounded-full" />
-            
+
             <p className="text-xl sm:text-2xl lg:text-3xl text-gray-200 max-w-5xl mx-auto leading-relaxed font-light">
               {subtitle}
-              <span className="block mt-4 font-semibold text-[#1DA1F2] text-lg sm:text-xl lg:text-2xl">
+              <span className="block mt-4 font-semibold text-blue-200 text-lg sm:text-xl lg:text-2xl">
                 {SECTION_CONTENT.subtitleHighlight}
               </span>
             </p>
@@ -133,29 +122,29 @@ const AreasGrid: React.FC<ServicesGridProps> = ({
           transition-all duration-700 transform
           ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
         `}
-        style={{
-          transitionDelay: inView ? '800ms' : '0ms'
-        }}
+          style={{
+            transitionDelay: inView ? '800ms' : '0ms'
+          }}
         >
           <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-white/10 max-w-4xl mx-auto">
             <p className="text-xl lg:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
               {SECTION_CONTENT.ctaDescription}
             </p>
-            
+
             <Button
-  variant="outline"
-  size="lg"
-  className="shadow-2xl hover:shadow-[0_20px_40px_rgba(29,161,242,0.3)] transition-all duration-300"
-  icon={
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-    </svg>
-  }
-  iconPosition="right"
-  onClick={() => window.location.href = '/contacto'}
->
-  {SECTION_CONTENT.ctaText}
-</Button>
+              variant="outline"
+              size="lg"
+              className="shadow-2xl hover:shadow-[0_20px_40px_rgba(29,161,242,0.3)] transition-all duration-300"
+              icon={
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              }
+              iconPosition="right"
+              onClick={() => window.location.href = '/contacto'}
+            >
+              {SECTION_CONTENT.ctaText}
+            </Button>
           </div>
         </footer>
       </div>

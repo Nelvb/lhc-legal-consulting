@@ -1,9 +1,10 @@
 /**
  * SignupForm.tsx
  *
- * Formulario de registro de usuario para la aplicación Boost A Project.
- * Permite crear una cuenta nueva con validación visual profesional de todos los campos.
- * Aplica validación estricta en frontend coherente con los requisitos del backend.
+ * Formulario de registro de usuario para LHC Legal & Consulting.
+ * Mantiene TODA la lógica original: validaciones, useAuthStore, redirecciones, etc.
+ * Versión más ancha con iconos de ojo correctamente alineados.
+ * Usa Input con prop compact={true} para reducir espaciado vertical.
  */
 
 "use client";
@@ -12,11 +13,10 @@ import { useState, FormEvent, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import Spinner from "@/components/ui/Spinner";
+import Icon from "@/components/ui/Icon";
 import { useAuthStore } from "@/stores/useAuthStore";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, UserPlus } from "lucide-react";
 import { validateUserField, USER_VALIDATION } from "@/constants/validation";
-
 
 const SignupForm = () => {
   const [username, setUsername] = useState("");
@@ -91,144 +91,180 @@ const SignupForm = () => {
   };
 
   return (
-    <div className="w-full max-w-md">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-[#F1FFEF] border border-[#C2E7DA] p-8 rounded-xl shadow-md"
+    <div className="w-full max-w-xl">
+      <div 
+        className="relative bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-2xl"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-[#1A1341]">
-          Crear cuenta
-        </h2>
+        {/* Header del formulario compacto */}
+        <div className="text-center mb-5">
+          <Icon size="small" blur="md" centered className="mb-3">
+            <UserPlus />
+          </Icon>
+          
+          <h2 className="text-xl font-bold text-white mb-1">
+            Formulario de Registro
+          </h2>
+        </div>
 
-        {error && (
-          <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-            {error}
+        <form onSubmit={handleSubmit} className="space-y-3">
+          {error && (
+            <div className="p-3 bg-red-500/20 border border-red-400/50 text-red-200 rounded-lg text-sm flex items-start space-x-2">
+              <div className="bg-red-400 rounded-full p-0.5 mt-0.5">
+                <div className="w-1.5 h-1.5 bg-red-200 rounded-full"></div>
+              </div>
+              <span>{error}</span>
+            </div>
+          )}
+
+          {/* Fila de nombre y apellidos con más espacio */}
+          <div className="grid grid-cols-2 gap-5">
+            <div>
+              <Input
+                label="Nombre"
+                id="username"
+                type="text"
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  validateField("username", e.target.value);
+                }}
+                placeholder="Tu nombre"
+                compact={true}
+                required
+              />
+              {errors.username && (
+                <p className="text-xs text-red-200 mt-1">{errors.username}</p>
+              )}
+            </div>
+
+            <div>
+              <Input
+                label="Apellidos"
+                id="lastName"
+                type="text"
+                value={lastName}
+                onChange={(e) => {
+                  setLastName(e.target.value);
+                  validateField("lastName", e.target.value);
+                }}
+                placeholder="Tus apellidos"
+                compact={true}
+                required
+              />
+              {errors.lastName && (
+                <p className="text-xs text-red-200 mt-1">{errors.lastName}</p>
+              )}
+            </div>
           </div>
-        )}
 
-        <Input
-          label="Nombre"
-          id="username"
-          type="text"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-            validateField("username", e.target.value);
-          }}
-          placeholder="Tu nombre"
-          required
-        />
-        {errors.username && (
-          <p className="text-xs text-red-600 mt-1">{errors.username}</p>
-        )}
-
-        <Input
-          label="Apellidos"
-          id="lastName"
-          type="text"
-          value={lastName}
-          onChange={(e) => {
-            setLastName(e.target.value);
-            validateField("lastName", e.target.value);
-          }}
-          placeholder="Tus apellidos"
-          required
-        />
-        {errors.lastName && (
-          <p className="text-xs text-red-600 mt-1">{errors.lastName}</p>
-        )}
-
-        <Input
-          label="Email"
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            validateField("email", e.target.value);
-          }}
-          placeholder="tu@email.com"
-          required
-        />
-        {errors.email && (
-          <p className="text-xs text-red-600 mt-1">{errors.email}</p>
-        )}
-
-        <div className="mb-4">
-          <div className="relative">
+          {/* Email */}
+          <div>
             <Input
-              label="Contraseña"
-              id="password"
-              type={showPassword ? "text" : "password"}
-              value={password}
+              label="Email"
+              id="email"
+              type="email"
+              value={email}
               onChange={(e) => {
-                setPassword(e.target.value);
-                validateField("password", e.target.value);
+                setEmail(e.target.value);
+                validateField("email", e.target.value);
               }}
-              placeholder="Crea tu contraseña segura"
+              placeholder="tu@email.com"
+              compact={true}
               required
             />
-            <button
-              type="button"
-              className="absolute right-3 top-[38px] cursor-pointer text-[#1A1341]"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
+            {errors.email && (
+              <p className="text-xs text-red-200 mt-1">{errors.email}</p>
+            )}
           </div>
-          <p className="text-xs text-gray-500 mt-1">
-            Mínimo 8 caracteres con mayúscula, minúscula, número y carácter especial
+
+          {/* Contraseñas en fila con más espacio */}
+          <div className="grid grid-cols-2 gap-5">
+            <div>
+              <div className="relative">
+                <Input
+                  label="Contraseña"
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    validateField("password", e.target.value);
+                  }}
+                  placeholder="Contraseña segura"
+                  compact={true}
+                  required
+                />
+                <button
+                  type="button"
+                  className="absolute right-3 top-[34px] cursor-pointer text-white/60 hover:text-white transition-colors flex items-center justify-center"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              </div>
+              {errors.password && (
+                <p className="text-xs text-red-200 mt-1">{errors.password}</p>
+              )}
+            </div>
+
+            <div>
+              <div className="relative">
+                <Input
+                  label="Confirmar"
+                  id="confirmPassword"
+                  type={showConfirm ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                    validateField("confirmPassword", e.target.value);
+                  }}
+                  placeholder="Confirma contraseña"
+                  compact={true}
+                  required
+                />
+                <button
+                  type="button"
+                  className="absolute right-3 top-[36px] cursor-pointer text-white/60 hover:text-white transition-colors flex items-center justify-center"
+                  onClick={() => setShowConfirm(!showConfirm)}
+                >
+                  {showConfirm ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              </div>
+              {errors.confirmPassword && (
+                <p className="text-xs text-red-200 mt-1">{errors.confirmPassword}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Nota de seguridad compacta */}
+          <p className="text-xs text-white/50 text-center">
+            Mínimo 8 caracteres con mayúscula, número y carácter especial
           </p>
-          {errors.password && (
-            <p className="text-xs text-red-600 mt-1">{errors.password}</p>
-          )}
-        </div>
 
-        <div className="mb-4">
-          <div className="relative">
-            <Input
-              label="Confirmar Contraseña"
-              id="confirmPassword"
-              type={showConfirm ? "text" : "password"}
-              value={confirmPassword}
-              onChange={(e) => {
-                setConfirmPassword(e.target.value);
-                validateField("confirmPassword", e.target.value);
-              }}
-              placeholder="Confirma tu contraseña"
-              required
-            />
-            <button
-              type="button"
-              className="absolute right-3 top-[38px] cursor-pointer text-[#1A1341]"
-              onClick={() => setShowConfirm(!showConfirm)}
-            >
-              {showConfirm ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
-          </div>
-          {errors.confirmPassword && (
-            <p className="text-xs text-red-600 mt-1">{errors.confirmPassword}</p>
-          )}
-        </div>
-
-        <div className="mt-4">
           <Button
             type="submit"
-            variant="primary"
-            className="w-full"
+            variant="outline"
+            size="sm"
             disabled={loading}
+            fullWidth
+            className="mt-4"
           >
             {loading ? (
               <div className="flex items-center justify-center space-x-2">
-                <Spinner />
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 <span>Creando cuenta...</span>
               </div>
             ) : (
-              "Crear cuenta"
+              "Registrarse"
             )}
           </Button>
-        </div>
-      </form>
+        </form>
+
+        {/* Nota final compacta */}
+        <p className="text-xs text-white/50 text-center mt-4">
+          Al registrarte aceptas nuestros términos y condiciones
+        </p>
+      </div>
     </div>
   );
 };

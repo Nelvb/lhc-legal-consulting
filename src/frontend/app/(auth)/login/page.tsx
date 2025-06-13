@@ -1,8 +1,8 @@
 /**
- * Página de inicio de sesión de la plataforma Boost A Project.
- * Renderiza el formulario de login, fondo visual dividido, mensaje de bienvenida
- * y enlaces secundarios para registro y recuperación de contraseña.
- * Esta ruta es pública y forma parte del layout de autenticación.
+ * Página de inicio de sesión de LHC Legal & Consulting.
+ * Renderiza el formulario de login con diseño visual corporativo LHC.
+ * Mantiene toda la lógica original de autenticación intacta.
+ * Fondo con gradiente LHC y formulario con estilo glassmorphism.
  */
 
 import type { Metadata } from "next";
@@ -10,57 +10,55 @@ import Link from "next/link";
 import LoginForm from "@/components/auth/LoginForm";
 
 export const metadata: Metadata = {
-  title: "Iniciar Sesión | Boost a Project",
-  description: "Inicia sesión en tu cuenta en la plataforma de inversión Boost a Project",
+  title: "Iniciar Sesión | LHC Legal & Consulting",
+  description: "Accede al panel de administración de LHC Legal & Consulting",
 };
 
 export default function LoginPage() {
   return (
-    <section className="w-full relative min-h-screen overflow-hidden px-4 py-20 flex items-center justify-center pt-40">
-      {/* Fondo dividido */}
-      <div className="absolute inset-0 flex">
-        <div className="w-[30%] bg-[#C2E7DA]" />
-        <div className="w-[70%] bg-[#1A1341]" />
-      </div>
-
+    <section 
+      className="w-full relative min-h-screen overflow-hidden px-4 py-20 flex items-center justify-center pt-20"
+      style={{
+        background: `
+          linear-gradient(135deg, 
+            #1b2f4b 0%, 
+            #1DA1F2 35%, 
+            #1b2f4b 70%, 
+            #0f172a 100%
+          )
+        `
+      }}
+    >
       {/* Contenido principal */}
-      <div className="relative w-full max-w-5xl bg-white rounded-xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2 z-10">
-        {/* Columna izquierda */}
-        <div className="hidden md:flex flex-col justify-center items-center bg-[#6290C3] p-10">
-          <h2 className="text-3xl font-bold text-white text-center mb-4">
-            Bienvenido de nuevo
-          </h2>
-          <p className="text-md text-white text-center">
-            Inicia sesión para acceder a tus proyectos, ver tus inversiones y gestionar tu cuenta
+      <div className="relative w-full max-w-4xl z-10">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            Acceso Administrativo
+          </h1>
+          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+            Panel de gestión de LHC Legal & Consulting
           </p>
         </div>
 
-        {/* Columna derecha */}
-        <div className="flex flex-col justify-center items-center p-8">
+        <div className="flex justify-center">
           <LoginForm />
+        </div>
 
-          {/* Enlace para recuperación de contraseña */}
-          <div className="text-center mt-4">
-            <Link
-              href="/recuperar-contrasena"
-              className="text-sm text-[#1DA1F2] hover:underline"
-            >
-              ¿Has olvidado tu contraseña?
-            </Link>
-          </div>
-
-          {/* Enlace para registro */}
-          <div className="text-center mt-6">
-            <p className="text-sm text-gray-700">
-              ¿No tienes cuenta?{" "}
-              <Link
-                href="/signup"
-                className="font-medium text-[#1DA1F2] hover:underline"
-              >
-                Regístrate aquí
-              </Link>
-            </p>
-          </div>
+        {/* Enlaces adicionales */}
+        <div className="text-center mt-8 space-y-4">
+          <Link
+            href="/recuperar-contrasena"
+            className="block text-sm text-white/80 hover:text-white transition-colors"
+          >
+            ¿Has olvidado tu contraseña?
+          </Link>
+          
+          <Link
+            href="/"
+            className="block text-sm text-[#1DA1F2] hover:text-white transition-colors"
+          >
+            ← Volver al inicio
+          </Link>
         </div>
       </div>
     </section>
