@@ -1,0 +1,190 @@
+{
+    "id": "derecho-mercantil",
+    "title": "Derecho Mercantil",
+    "subtitle": "Reclamación de impagos y asesoría empresarial",
+    "heroDescription": "Recuperamos tu dinero de clientes morosos. Especialistas en reclamación de impagos para autónomos y empresas. Procedimiento monitorio, gestión de deudas y asesoría mercantil integral.",
+    "introduction": "El derecho mercantil regula las relaciones comerciales entre empresas y autónomos. En LHC Legal & Consulting, nos especializamos en la recuperación de impagos y en el asesoramiento jurídico integral para el desarrollo de tu actividad empresarial.",
+    "contentSections": [
+      {
+        "title": "¿Qué es el Derecho Mercantil?",
+        "content": "<p>El derecho mercantil es la rama jurídica que regula las actividades comerciales, empresariales y las relaciones entre comerciantes. Abarca desde la constitución de sociedades hasta la resolución de conflictos comerciales, pasando por contratos mercantiles y reclamación de deudas.</p><p>Nuestro equipo especializado en derecho mercantil cuenta con amplia experiencia ayudando a autónomos, pymes y grandes empresas en la gestión jurídica de su actividad comercial, con especial énfasis en la recuperación efectiva de impagos.</p>",
+        "order": 1,
+        "type": "text"
+      },
+      {
+        "title": "Nuestros Servicios Mercantiles",
+        "content": "<p>Ofrecemos un servicio integral que cubre todas las necesidades jurídicas de tu actividad empresarial:</p><ul><li><strong>Reclamación de impagos:</strong> Recuperación efectiva de facturas pendientes mediante procedimiento monitorio y ejecutivo</li><li><strong>Asesoría contractual:</strong> Redacción y negociación de contratos mercantiles que protejan tus intereses</li><li><strong>Constitución de sociedades:</strong> Creación de SL, SA y otras formas societarias con asesoramiento fiscal</li><li><strong>Resolución de conflictos:</strong> Mediación y litigación en disputas comerciales entre empresas</li></ul>",
+        "order": 2,
+        "type": "list"
+      },
+      {
+        "title": "Especialización en Recuperación de Impagos",
+        "content": "<p>Con más de 1.200 procedimientos monitorios tramitados, hemos recuperado más de 2.3 millones de euros para nuestros clientes. Nuestra tasa de éxito en recuperación de impagos supera el 80%, utilizando las herramientas legales más eficaces del ordenamiento jurídico.</p>",
+        "order": 3,
+        "type": "text"
+      }
+    ],
+    "subtopics": [
+      {
+        "title": "Reclamación de Impagos",
+        "description": "Recuperación de facturas pendientes mediante procedimiento monitorio y ejecutivo",
+        "hasPage": false,
+        "content": "Especializados en recuperar facturas impagadas de clientes morosos. Utilizamos procedimiento monitorio, ejecutivo y embargo de bienes para conseguir el cobro efectivo de tus deudas.",
+        "icon": "banknote"
+      },
+      {
+        "title": "Procedimiento Monitorio",
+        "description": "Vía judicial rápida y eficaz para reclamar deudas dinerarias de hasta 600.000€",
+        "hasPage": false,
+        "content": "El procedimiento monitorio es la vía más rápida para reclamar deudas. Si el deudor no paga ni se opone en 20 días, obtienes título ejecutivo para embargar directamente sus bienes.",
+        "icon": "gavel"
+      },
+      {
+        "title": "Contratos Mercantiles",
+        "description": "Redacción, revisión y negociación de contratos comerciales y empresariales",
+        "hasPage": false,
+        "content": "Redactamos contratos de compraventa, suministro, distribución, franquicia, joint venture y todo tipo de acuerdos comerciales que protejan tu actividad empresarial.",
+        "icon": "file-text"
+      },
+      {
+        "title": "Constitución de Sociedades",
+        "description": "Creación de SL, SA, cooperativas y otras formas jurídicas empresariales",
+        "hasPage": false,
+        "content": "Asesoramos en la elección de la forma societaria más adecuada y gestionamos todo el proceso de constitución con asesoramiento fiscal y laboral complementario.",
+        "icon": "building"
+      },
+      {
+        "title": "Conflictos Societarios",
+        "description": "Resolución de disputas entre socios, administradores y juntas de accionistas",
+        "hasPage": false,
+        "content": "Mediamos y litigamos en conflictos societarios: disputas entre socios, impugnación de acuerdos sociales, responsabilidad de administradores y disolución de sociedades.",
+        "icon": "users-round"
+      },
+      {
+        "title": "Concurso de Acreedores",
+        "description": "Asesoramiento en situaciones de insolvencia empresarial y concursos",
+        "hasPage": false,
+        "content": "Asesoramos tanto a empresas en dificultades como a acreedores en procedimientos concursales, convenios de acreedores y acuerdos extrajudiciales de pagos.",
+        "icon": "scale"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Cuánto tiempo se tarda en recuperar un impago mediante procedimiento monitorio?",
+        "answer": "Si el deudor no se opone, puedes obtener título ejecutivo en 20-30 días. Si se opone, se convierte en juicio ordinario que puede durar 6-12 meses. En caso de embargo, la recuperación efectiva puede tardar 2-6 meses adicionales.",
+        "category": "impagos"
+      },
+      {
+        "question": "¿Qué porcentaje de impagos conseguís recuperar?",
+        "answer": "Nuestra tasa de éxito supera el 80% en procedimientos monitorios. El porcentaje de recuperación efectiva depende de la solvencia del deudor, pero conseguimos algún tipo de cobro en más del 70% de los casos.",
+        "category": "impagos"
+      },
+      {
+        "question": "¿Cuánto cuesta reclamar una factura impagada?",
+        "answer": "El procedimiento monitorio tiene tasas judiciales mínimas (entre 25-400€ según la cuantía). Nuestros honorarios pueden ser con pacto de cuota litis (solo cobramos si recuperamos) o tarifa fija según prefieras.",
+        "category": "honorarios"
+      },
+      {
+        "question": "¿Puedo reclamar intereses de demora por el impago?",
+        "answer": "Sí, puedes reclamar intereses de demora desde el vencimiento de la factura. Para operaciones comerciales, el interés legal es del 8% anual más 8 puntos adicionales (16% total en 2024).",
+        "category": "intereses"
+      },
+      {
+        "question": "¿Qué hago si mi cliente se declara en concurso de acreedores?",
+        "answer": "Debes comunicar tu crédito en el concurso dentro del plazo establecido. Te asesoramos para maximizar las posibilidades de cobro y defender tus derechos como acreedor en el procedimiento concursal.",
+        "category": "concurso"
+      },
+      {
+        "question": "¿Necesito tener una sociedad constituida para ser autónomo?",
+        "answer": "No, puedes trabajar como autónomo persona física. Sin embargo, constituir una SL puede tener ventajas fiscales y de responsabilidad. Analizamos tu caso para recomendarte la mejor opción.",
+        "category": "sociedades"
+      }
+    ],
+    "cta": {
+      "title": "¿Tienes facturas sin cobrar?",
+      "description": "No permitas que los impagos arruinen tu negocio. Recuperamos tu dinero de forma rápida y eficaz. Más de 2.3M€ ya recuperados para nuestros clientes.",
+      "primaryButton": {
+        "text": "Recuperar Impagos",
+        "action": "contact"
+      },
+      "secondaryButton": {
+        "text": "WhatsApp Directo",
+        "action": "whatsapp",
+        "value": "+34691818071"
+      }
+    },
+    "seo": {
+      "metaTitle": "Abogado Mercantil Madrid | Reclamación Impagos | LHC Legal",
+      "metaDescription": "Especialistas en derecho mercantil Madrid. Recuperamos impagos, procedimiento monitorio, contratos mercantiles. 2.3M€ recuperados. 80% éxito. Consulta gratuita.",
+      "keywords": [
+        "abogado mercantil madrid",
+        "reclamacion impagos",
+        "procedimiento monitorio",
+        "recuperar facturas impagadas",
+        "contratos mercantiles",
+        "constituir sociedad",
+        "conflictos societarios",
+        "concurso acreedores",
+        "asesoría empresarial",
+        "LHC Legal Madrid"
+      ],
+      "canonicalUrl": "https://lhclegal.es/areas/derecho-mercantil",
+      "ogImage": "https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749825385/derecho-mercantil-og_stu901.webp",
+      "structuredData": {
+        "serviceType": "Derecho Mercantil",
+        "description": "Servicios especializados en derecho mercantil, reclamación de impagos y asesoría empresarial",
+        "offers": [
+          {
+            "name": "Procedimiento Monitorio",
+            "description": "Reclamación rápida de deudas mediante vía judicial",
+            "price": "200",
+            "priceCurrency": "EUR"
+          },
+          {
+            "name": "Constitución de SL",
+            "description": "Creación completa de Sociedad Limitada",
+            "price": "400",
+            "priceCurrency": "EUR"
+          },
+          {
+            "name": "Consulta Legal Gratuita",
+            "description": "Primera consulta completamente gratuita",
+            "price": "0",
+            "priceCurrency": "EUR"
+          }
+        ]
+      }
+    },
+    "stats": [
+      {
+        "title": "Recuperado",
+        "value": "2.3M€",
+        "description": "Cantidad total recuperada en impagos",
+        "icon": "euro"
+      },
+      {
+        "title": "Éxito",
+        "value": "80%",
+        "description": "Tasa de éxito en reclamaciones",
+        "icon": "trophy"
+      },
+      {
+        "title": "Procedimientos",
+        "value": "1200+",
+        "description": "Monitorios tramitados exitosamente",
+        "icon": "file-check"
+      }
+    ],
+    "relatedAreas": [
+      "derecho-laboral",
+      "derecho-fiscal",
+      "derecho-civil"
+    ],
+    "lastUpdated": "2025-01-16",
+    "displayConfig": {
+      "showStats": true,
+      "showRelatedAreas": true,
+      "subtopicsLayout": "grid",
+      "faqsLayout": "accordion"
+    }
+  }

@@ -11,7 +11,7 @@ import { Users, Award, BookOpen, Heart } from "lucide-react";
 
 const AboutTeam = () => {
     return (
-        <section className="py-20 lg:py-32 bg-white">
+        <section className="py-16 lg:py-24 bg-white">
             <div className="container mx-auto px-6 lg:px-8">
                 <div className="text-center mb-20">
                     <h2 

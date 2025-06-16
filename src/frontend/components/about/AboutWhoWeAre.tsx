@@ -8,7 +8,7 @@
 
 const AboutWhoWeAre = () => {
     return (
-        <section className="py-20 lg:py-32 relative overflow-hidden">
+        <section className="py-16 lg:py-24 relative overflow-hidden">
             <div className="absolute inset-0 bg-lhc-gradient" />
             
             <div className="relative z-10">

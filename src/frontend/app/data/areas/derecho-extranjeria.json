@@ -1,0 +1,190 @@
+{
+    "id": "derecho-extranjeria",
+    "title": "Derecho de Extranjería",
+    "subtitle": "NIE, residencia y nacionalidad española",
+    "heroDescription": "Tu futuro en España comienza aquí. Especialistas en extranjería con más de 1000 casos de éxito. NIE, permisos de residencia, nacionalidad española y reagrupación familiar.",
+    "introduction": "El derecho de extranjería regula la situación jurídica de las personas extranjeras en España. En LHC Legal & Consulting, ayudamos a personas de todo el mundo a legalizar su situación y construir su futuro en nuestro país.",
+    "contentSections": [
+      {
+        "title": "¿Qué es el Derecho de Extranjería?",
+        "content": "<p>El derecho de extranjería es la rama jurídica que regula la entrada, permanencia, trabajo y derechos de las personas extranjeras en España. Incluye desde la obtención del NIE hasta la adquisición de la nacionalidad española.</p><p>Nuestro equipo está especializado en todos los procedimientos de extranjería, con amplio conocimiento de la normativa nacional y europea, así como de los acuerdos bilaterales con países de origen de nuestros clientes.</p>",
+        "order": 1,
+        "type": "text"
+      },
+      {
+        "title": "Nuestros Servicios Especializados",
+        "content": "<p>Ofrecemos un servicio integral que cubre todas las necesidades legales de las personas extranjeras en España:</p><ul><li><strong>Asesoramiento inicial completo:</strong> Análisis de tu situación y planificación de la mejor estrategia legal</li><li><strong>Gestión de expedientes:</strong> Tramitación completa ante todas las administraciones competentes</li><li><strong>Recursos y apelaciones:</strong> Defensa ante denegaciones y resoluciones desfavorables</li><li><strong>Seguimiento personalizado:</strong> Acompañamiento durante todo el proceso hasta la resolución favorable</li></ul>",
+        "order": 2,
+        "type": "list"
+      },
+      {
+        "title": "Experiencia y Compromiso",
+        "content": "<p>Con más de 1000 expedientes de extranjería tramitados exitosamente, conocemos todos los procedimientos y requisitos. Trabajamos con personas de más de 50 nacionalidades diferentes, adaptando nuestro servicio a las particularidades de cada país.</p>",
+        "order": 3,
+        "type": "text"
+      }
+    ],
+    "subtopics": [
+      {
+        "title": "NIE y Certificados",
+        "description": "Obtención de NIE, certificados de concordancia y documentación para extranjeros",
+        "hasPage": false,
+        "content": "Tramitamos NIE definitivo y provisional, certificados de concordancia para documentos extranjeros, apostillas y toda la documentación necesaria para residir en España.",
+        "icon": "id-card"
+      },
+      {
+        "title": "Permisos de Residencia",
+        "description": "Residencia temporal, permanente, comunitaria y todas las autorizaciones de estancia",
+        "hasPage": false,
+        "content": "Gestionamos todos los tipos de residencia: temporal por trabajo, reagrupación familiar, estudios, residencia de larga duración y tarjeta comunitaria para familiares de ciudadanos UE.",
+        "icon": "home"
+      },
+      {
+        "title": "Arraigo Social y Familiar",
+        "description": "Arraigo social, laboral y familiar para personas en situación irregular",
+        "hasPage": false,
+        "content": "Especializados en arraigo social (3 años de permanencia), arraigo laboral (2 años trabajando) y arraigo familiar para regularizar tu situación en España.",
+        "icon": "users-round"
+      },
+      {
+        "title": "Nacionalidad Española",
+        "description": "Adquisición de nacionalidad española por residencia, origen y naturalización",
+        "hasPage": false,
+        "content": "Tramitamos nacionalidad española por residencia (10 años general, 2 años iberoamericanos), por origen, por opción y recuperación de nacionalidad española.",
+        "icon": "flag"
+      },
+      {
+        "title": "Reagrupación Familiar",
+        "description": "Reagrupación de cónyuge, hijos menores, ascendientes y parejas de hecho",
+        "hasPage": false,
+        "content": "Gestionamos reagrupación familiar para traer a España a tu cónyuge, hijos menores de edad, ascendientes dependientes y parejas de hecho registradas.",
+        "icon": "heart-handshake"
+      },
+      {
+        "title": "Recursos y Apelaciones",
+        "description": "Defensa ante denegaciones, recursos de alzada y contencioso-administrativos",
+        "hasPage": false,
+        "content": "Recurrimos denegaciones de permisos, residencias y nacionalidad. Recursos de alzada ante Madrid y recursos contencioso-administrativos ante los tribunales.",
+        "icon": "scale"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Cuánto tiempo se tarda en obtener la residencia por arraigo social?",
+        "answer": "El procedimiento de arraigo social suele resolverse en 3-6 meses desde la presentación de la solicitud. Es importante cumplir todos los requisitos: 3 años de permanencia, ausencia de antecedentes y vínculos con España.",
+        "category": "arraigo"
+      },
+      {
+        "question": "¿Qué requisitos necesito para obtener la nacionalidad española?",
+        "answer": "Necesitas 10 años de residencia legal continuada (2 años para iberoamericanos), aprobar los exámenes DELE A2 y CCSE, no tener antecedentes penales y demostrar integración en España.",
+        "category": "nacionalidad"
+      },
+      {
+        "question": "¿Puedo trabajar mientras tramito mi permiso de residencia?",
+        "answer": "Depende del tipo de expediente. En arraigo laboral puedes obtener autorización de trabajo inmediata. En otros casos, deberás esperar a tener la resolución favorable para poder trabajar legalmente.",
+        "category": "trabajo"
+      },
+      {
+        "question": "¿Qué pasa si me deniegan el permiso de residencia?",
+        "answer": "Puedes recurrir la denegación en un plazo de 2 meses mediante recurso de alzada. Si este también es denegado, puedes acudir a la vía contencioso-administrativa en un plazo de 2 meses adicionales.",
+        "category": "recursos"
+      },
+      {
+        "question": "¿Cuánto cuesta tramitar un permiso de residencia?",
+        "answer": "Las tasas oficiales varían según el tipo de permiso (15-70€). Nuestros honorarios profesionales dependen del tipo de expediente. Ofrecemos presupuestos personalizados tras analizar tu caso específico.",
+        "category": "honorarios"
+      },
+      {
+        "question": "¿Puedo reagrupar a mis padres siendo residente temporal?",
+        "answer": "Para reagrupar ascendientes necesitas residencia de larga duración (5 años) o nacionalidad española, además de demostrar que están a tu cargo y tienes ingresos suficientes para su manutención.",
+        "category": "reagrupacion"
+      }
+    ],
+    "cta": {
+      "title": "¿Quieres legalizar tu situación en España?",
+      "description": "No esperes más para construir tu futuro legalmente en España. Nuestros especialistas en extranjería te ayudarán a encontrar la mejor vía para tu caso específico.",
+      "primaryButton": {
+        "text": "Consulta Gratuita",
+        "action": "contact"
+      },
+      "secondaryButton": {
+        "text": "WhatsApp Directo",
+        "action": "whatsapp",
+        "value": "+34691818071"
+      }
+    },
+    "seo": {
+      "metaTitle": "Abogado Extranjería Madrid | NIE, Residencia, Nacionalidad | LHC Legal",
+      "metaDescription": "Especialistas en extranjería Madrid. Tramitamos NIE, permisos de residencia, nacionalidad española y arraigo. Más de 1000 casos de éxito. Consulta gratuita.",
+      "keywords": [
+        "abogado extranjeria madrid",
+        "tramitar nie madrid",
+        "permiso residencia españa",
+        "nacionalidad española",
+        "arraigo social madrid",
+        "reagrupacion familiar",
+        "abogado inmigracion madrid",
+        "residencia temporal españa",
+        "tarjeta comunitaria",
+        "LHC Legal Madrid"
+      ],
+      "canonicalUrl": "https://lhclegal.es/areas/derecho-extranjeria",
+      "ogImage": "https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749825385/derecho-extranjeria-og_jkl012.webp",
+      "structuredData": {
+        "serviceType": "Derecho de Extranjería",
+        "description": "Servicios especializados en extranjería, permisos de residencia y nacionalidad",
+        "offers": [
+          {
+            "name": "Tramitación NIE",
+            "description": "Obtención de NIE definitivo y provisional",
+            "price": "150",
+            "priceCurrency": "EUR"
+          },
+          {
+            "name": "Permiso de Residencia",
+            "description": "Gestión completa de permisos de residencia",
+            "price": "400",
+            "priceCurrency": "EUR"
+          },
+          {
+            "name": "Consulta Legal Gratuita",
+            "description": "Primera consulta completamente gratuita",
+            "price": "0",
+            "priceCurrency": "EUR"
+          }
+        ]
+      }
+    },
+    "stats": [
+      {
+        "title": "Casos de Éxito",
+        "value": "1000+",
+        "description": "Expedientes de extranjería resueltos",
+        "icon": "trophy"
+      },
+      {
+        "title": "Nacionalidades",
+        "value": "50+",
+        "description": "Países de origen de nuestros clientes",
+        "icon": "globe"
+      },
+      {
+        "title": "Éxito",
+        "value": "92%",
+        "description": "Porcentaje de resoluciones favorables",
+        "icon": "star"
+      }
+    ],
+    "relatedAreas": [
+      "derecho-civil",
+      "derecho-laboral",
+      "derecho-administrativo"
+    ],
+    "lastUpdated": "2025-01-16",
+    "displayConfig": {
+      "showStats": true,
+      "showRelatedAreas": true,
+      "subtopicsLayout": "grid",
+      "faqsLayout": "accordion"
+    }
+  }

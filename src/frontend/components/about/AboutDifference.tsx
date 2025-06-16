@@ -8,7 +8,7 @@
 
 const AboutDifference = () => {
     return (
-        <section className="py-20 lg:py-32 bg-white relative overflow-hidden">
+        <section className="py-16 lg:py-24 bg-white relative overflow-hidden">
             {/* Elementos decorativos de fondo */}
             <div className="absolute top-20 right-10 w-32 h-32 bg-[#1DA1F2] opacity-5 rounded-full blur-3xl"></div>
             <div className="absolute bottom-20 left-10 w-40 h-40 bg-[#1b2f4b] opacity-5 rounded-full blur-3xl"></div>

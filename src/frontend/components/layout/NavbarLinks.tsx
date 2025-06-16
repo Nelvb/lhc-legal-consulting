@@ -20,7 +20,7 @@ const NavbarLinks: React.FC = () => {
 
   return (
     <div className="hidden md:flex items-center space-x-8">
-      <Link href="/areas-de-actuacion" className="text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all">
+      <Link href="/areas" className="text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all">
         Áreas
       </Link>
       <Link href="/blog" className="text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all">

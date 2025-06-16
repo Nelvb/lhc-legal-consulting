@@ -92,7 +92,7 @@ const AboutCTA = () => {
                             con tu situación específica. Primera consulta completamente gratuita.
                         </p>
 
-                        <Link href="/contacto">
+                        <Link href="/contact">
                             <Button variant="outline" size="lg" className="shadow-2xl">
                                 Contactar ahora
                             </Button>
