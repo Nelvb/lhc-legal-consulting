@@ -2,12 +2,15 @@
  * /areas/page.tsx
  *
  * Página principal de áreas legales con layout sidebar + contenido.
- * Sidebar: Cards en columna sin márgenes (pegadas) de todas las áreas.
- * Contenido: Descripción profesional, cercana y joven de LHC Legal.
+ * Botones actualizados usando el componente Button con diseño responsive.
+ * CTA diferenciado y professional para evitar redundancia con "consulta gratuita".
  */
 
 import type { Metadata } from "next";
+import Link from "next/link";
+import AreasHero from "@/components/areas/AreasHero";
 import LegalAreasSidebar from "@/components/areas/LegalAreasSidebar";
+import Button from "@/components/ui/Button";
 
 export const metadata: Metadata = {
     title: "Todas las Áreas Legales | LHC Legal & Consulting - Abogados Especialistas",
@@ -28,50 +31,13 @@ export default function AreasPage() {
     return (
         <main className="min-h-screen bg-white">
             {/* Hero Section */}
-            <section className="relative overflow-hidden">
-                {/* Fondo gradiente */}
-                <div
-                    className="absolute inset-0"
-                    style={{
-                        background: `linear-gradient(135deg, #1b2f4b 0%, #1DA1F2 50%, #1b2f4b 100%)`
-                    }}
-                />
-
-                <div className="relative z-10 py-20 lg:py-32">
-                    <div className="container mx-auto px-6 lg:px-8 text-center">
-                        <div className="max-w-4xl mx-auto">
-                            <h1
-                                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8"
-                                style={{
-                                    fontFamily: "'Inter', sans-serif",
-                                    fontWeight: '800',
-                                    letterSpacing: '-0.02em',
-                                    textShadow: '0 4px 20px rgba(0,0,0,0.3)'
-                                }}
-                            >
-                                Nuestras Áreas{" "}
-                                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#1DA1F2] via-[#60A5FA] to-[#1DA1F2] mt-4 animate-pulse pb-2">
-                                    Legales
-                                </span>
-                            </h1>
-
-                            <div className="w-24 h-1 bg-gradient-to-r from-[#1DA1F2] to-[#60A5FA] mx-auto mb-8 rounded-full" />
-
-                            <p className="text-xl sm:text-2xl lg:text-3xl text-white/95 leading-relaxed font-light">
-                                Especialistas en todas las ramas del derecho con enfoque cercano y profesional
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <AreasHero />
 
             {/* Layout Principal: Sidebar + Contenido */}
             <div className="flex flex-col lg:flex-row">
                 {/* Sidebar - Áreas legales en columna */}
                 <div className="lg:w-1/4 bg-white shadow-lg">
-                    <div className="sticky top-0">
-                        <LegalAreasSidebar />
-                    </div>
+                    <LegalAreasSidebar />
                 </div>
 
                 {/* Contenido Principal */}
@@ -105,7 +71,7 @@ export default function AreasPage() {
                                 </p>
 
                                 <p className="text-lg text-gray-600 leading-relaxed">
-                                    Nuestro enfoque combina <strong>juventud y experiencia</strong>, ofreciendo un trato cercano y personalizado
+                                    Nuestro enfoque combina <strong>dinamismo y experiencia</strong>, ofreciendo un trato cercano y personalizado
                                     sin renunciar al máximo rigor profesional que exige cada caso.
                                 </p>
                             </div>
@@ -178,7 +144,7 @@ export default function AreasPage() {
                                             <div className="w-8 h-8 bg-[#1DA1F2] rounded-full flex items-center justify-center">
                                                 <span className="text-white font-bold text-sm">✓</span>
                                             </div>
-                                            <span className="font-semibold text-[#1b2f4b]">Equipo joven y especializado</span>
+                                            <span className="font-semibold text-[#1b2f4b]">Equipo dinámico y especializado</span>
                                         </div>
 
                                         <div className="flex items-center space-x-3">
@@ -197,28 +163,31 @@ export default function AreasPage() {
                                     className="text-2xl lg:text-3xl font-bold text-[#1b2f4b] mb-4"
                                     style={{ fontFamily: "'Inter', sans-serif" }}
                                 >
-                                    ¿Necesitas asesoramiento legal?
+                                    ¿Necesitas asesoramiento especializado?
                                 </h3>
 
                                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                                    Selecciona tu área legal en el menú de la izquierda o contáctanos directamente
-                                    para una consulta personalizada.
+                                    Explora nuestras áreas de práctica o solicita una consulta personalizada para casos específicos.
                                 </p>
 
-                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                    <a
-                                        href="/contacto"
-                                        className="bg-[#1DA1F2] text-white font-semibold px-8 py-4 rounded-lg hover:bg-[#1b8fd1] transition-colors duration-300 shadow-lg inline-block"
-                                    >
-                                        Consulta Gratuita
+                                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                                    <Link href="/contact">
+                                        <Button variant="lhc" size="md">
+                                            Realizar Consulta
+                                        </Button>
+                                    </Link>
+
+                                    {/* Móvil: Botón clickeable */}
+                                    <a href="tel:+34691818071" className="md:hidden">
+                                        <Button variant="outline" size="md">
+                                            Llamar Ahora
+                                        </Button>
                                     </a>
 
-                                    <a
-                                        href="tel:+34691818071"
-                                        className="border-2 border-[#1DA1F2] text-[#1DA1F2] font-semibold px-8 py-4 rounded-lg hover:bg-[#1DA1F2] hover:text-white transition-all duration-300 inline-block"
-                                    >
-                                        Llamar Ahora
-                                    </a>
+                                    {/* Desktop/Tablet: Solo texto con número destacado */}
+                                    <div className="hidden md:flex items-center text-[#1b2f4b] font-semibold text-lg">
+                                        O llama al <span className="text-[#1DA1F2] ml-1">691 81 80 71</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

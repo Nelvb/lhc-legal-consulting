@@ -154,37 +154,6 @@
           }
         ]
       }
-    },
-    "stats": [
-      {
-        "title": "Casos Ganados",
-        "value": "75%",
-        "description": "Porcentaje de éxito en recursos administrativos",
-        "icon": "trophy"
-      },
-      {
-        "title": "Respuesta",
-        "value": "24h",
-        "description": "Tiempo máximo de respuesta a consultas",
-        "icon": "clock"
-      },
-      {
-        "title": "Experiencia",
-        "value": "15+",
-        "description": "Años especializados en derecho administrativo",
-        "icon": "star"
-      }
-    ],
-    "relatedAreas": [
-      "derecho-penal",
-      "derecho-fiscal",
-      "derecho-laboral"
-    ],
-    "lastUpdated": "2025-01-16",
-    "displayConfig": {
-      "showStats": true,
-      "showRelatedAreas": true,
-      "subtopicsLayout": "grid",
-      "faqsLayout": "accordion"
     }
+    
   }
