@@ -1,0 +1,109 @@
+{
+  "category": "Consultas Generales",
+  "title": "Preguntas Frecuentes - Consultas Legales Generales",
+  "description": "Preguntas generales sobre servicios legales, honorarios, procedimientos y derechos fundamentales",
+  "questions": [
+    {
+      "question": "¿Cómo puedo saber si necesito un abogado?",
+      "answer": "Necesitas abogado cuando enfrentas procedimientos judiciales, administrativos complejos, contratos importantes, situaciones que pueden generar responsabilidad legal, o cuando tus derechos fundamentales están en riesgo."
+    },
+    {
+      "question": "¿Tengo derecho a asistencia jurídica gratuita?",
+      "answer": "Sí, si tus ingresos no superan 2 veces el IPREM (indicador público de renta de efectos múltiples). También en casos de violencia de género, menores, y otros supuestos específicos independientemente de tus ingresos."
+    },
+    {
+      "question": "¿Qué diferencia hay entre abogado y procurador?",
+      "answer": "El abogado dirige la defensa técnica y representa tus intereses jurídicos. El procurador es el representante procesal que realiza actos de comunicación con tribunales. En muchos casos solo necesitas abogado."
+    },
+    {
+      "question": "¿Puedo cambiar de abogado durante un procedimiento?",
+      "answer": "Sí, puedes cambiar de abogado en cualquier momento. Debes comunicarlo al tribunal y al anterior letrado. Es recomendable coordinarlo bien para evitar indefensión o pérdida de plazos procesales."
+    },
+    {
+      "question": "¿Qué es el secreto profesional del abogado?",
+      "answer": "Obligación del abogado de no revelar información confidencial del cliente. Es absoluto y permanente, incluso después de finalizar la relación profesional. Solo se puede romper con autorización expresa del cliente."
+    },
+    {
+      "question": "¿Cuánto tiempo se conservan los expedientes judiciales?",
+      "answer": "Los expedientes civiles y contencioso-administrativos se conservan 25 años, los penales 30 años, y los laborales 10 años. Después pueden destruirse salvo resolución en contrario del tribunal."
+    },
+    {
+      "question": "¿Puedo representarme a mí mismo en un juicio?",
+      "answer": "En algunos procedimientos sí (juicios verbales hasta 2.000€, violencia de género si eres víctima). En la mayoría de casos es obligatorio tener abogado, especialmente en procedimientos penales y civiles complejos."
+    },
+    {
+      "question": "¿Qué es la justicia gratuita y cómo se solicita?",
+      "answer": "Sistema que permite acceder a la justicia sin pagar tasas judiciales ni honorarios de abogado y procurador. Se solicita mediante impreso oficial acreditando insuficiencia de recursos económicos."
+    },
+    {
+      "question": "¿Puedo grabar una conversación legal para usarla como prueba?",
+      "answer": "Puedes grabar conversaciones en las que participas para defender tus derechos. No puedes grabar conversaciones ajenas sin consentimiento. Las grabaciones propias pueden ser prueba válida en juicio."
+    },
+    {
+      "question": "¿Qué diferencia hay entre mediación y arbitraje?",
+      "answer": "En mediación, un tercero neutral ayuda a las partes a llegar a un acuerdo voluntario. En arbitraje, el árbitro dicta una resolución vinculante que equivale a una sentencia judicial."
+    },
+    {
+      "question": "¿Cuándo caduca el derecho a reclamar?",
+      "answer": "Depende del tipo de reclamación: deudas civiles (5 años), laborales (1 año), responsabilidad civil extracontractual (1 año), responsabilidad contractual (15 años). Algunos derechos son imprescriptibles."
+    },
+    {
+      "question": "¿Puedo renunciar a un derecho fundamental?",
+      "answer": "Algunos derechos fundamentales pueden renunciarse temporalmente (derecho de huelga, intimidad), pero otros son irrenunciables (vida, integridad física). La renuncia debe ser expresa, libre y no puede afectar al orden público."
+    },
+    {
+      "question": "¿Qué es el derecho al honor y cuándo se vulnera?",
+      "answer": "Derecho a la buena reputación. Se vulnera por injurias, calumnias, difusión de información que lesione la dignidad personal, o intromisiones ilegítimas que afecten al concepto que otros tienen de ti."
+    },
+    {
+      "question": "¿Puedo reclamar daños por estrés o sufrimiento moral?",
+      "answer": "Sí, el daño moral es indemnizable cuando causa sufrimiento psíquico acreditado. Incluye dolor, ansiedad, humillación, etc. Debe probarse mediante informes médicos o psicológicos."
+    },
+    {
+      "question": "¿Qué es la prescripción y la caducidad?",
+      "answer": "La prescripción extingue la acción por el transcurso del tiempo y puede interrumpirse. La caducidad extingue el derecho mismo y no se interrumpe. Ambas deben ser alegadas por la parte interesada."
+    },
+    {
+      "question": "¿Puedo demandar por acoso telefónico o por internet?",
+      "answer": "Sí, el acoso telefónico, por redes sociales o email puede constituir delito de coacciones, amenazas o acoso. También puedes reclamar civilmente por daños morales y solicitar medidas de protección."
+    },
+    {
+      "question": "¿Qué es la tutela judicial efectiva?",
+      "answer": "Derecho fundamental a acceder a los tribunales, obtener una resolución motivada en plazo razonable, y que se ejecute lo resuelto. Incluye el derecho a la defensa y asistencia letrada."
+    },
+    {
+      "question": "¿Puedo reclamar aunque haya firmado un documento de renuncia?",
+      "answer": "Depende del contenido y circunstancias. No puedes renunciar a derechos irrenunciables, ni son válidas las renuncias obtenidas con vicio en el consentimiento. Cada caso requiere análisis específico."
+    },
+    {
+      "question": "¿Qué es la cosa juzgada?",
+      "answer": "Principio que impide volver a juzgar asuntos ya resueltos por sentencia firme entre las mismas partes. Garantiza seguridad jurídica y evita resoluciones contradictorias sobre el mismo objeto."
+    },
+    {
+      "question": "¿Puedo solicitar medidas cautelares antes de demandar?",
+      "answer": "Sí, puedes solicitar medidas cautelares urgentes antes del proceso (ante causam) cuando hay riesgo de que la situación se altere irreversiblemente. Requiere justificar urgencia y prestar caución."
+    },
+    {
+      "question": "¿Qué es el derecho a la protección de datos?",
+      "answer": "Derecho a controlar tus datos personales: conocer qué datos tienen sobre ti, rectificarlos, cancelarlos, oponerte al tratamiento, y que solo se usen para finalidades legítimas con tu consentimiento."
+    },
+    {
+      "question": "¿Puedo reclamar una indemnización aunque no haya dinero de por medio?",
+      "answer": "Sí, puedes reclamar daños morales, restitución de situaciones, cumplimiento de obligaciones no dinerarias, rectificaciones, disculpas públicas, etc. No toda reparación es económica."
+    },
+    {
+      "question": "¿Qué diferencia hay entre dolo, culpa y caso fortuito?",
+      "answer": "Dolo es intención de causar daño. Culpa es negligencia o imprudencia sin intención de dañar. Caso fortuito es evento imprevisible e inevitable que causa daño sin culpa de nadie."
+    },
+    {
+      "question": "¿Puedo demandar por daños causados por menores de edad?",
+      "answer": "Sí, los padres o tutores responden civilmente por los daños causados por menores bajo su guarda. La responsabilidad es objetiva salvo que prueben que emplearon toda la diligencia exigible."
+    },
+    {
+      "question": "¿Qué es la inversión de la carga de la prueba?",
+      "answer": "Situaciones donde quien normalmente debe probar queda exonerado, y la prueba corresponde a la otra parte. Ocurre en discriminación, defensa del consumidor, responsabilidad por productos defectuosos, etc."
+    }
+  ],
+  "lastUpdated": "2025-01-16",
+  "totalQuestions": 25
+}

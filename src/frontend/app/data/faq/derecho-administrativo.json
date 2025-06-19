@@ -1,0 +1,97 @@
+{
+  "category": "Derecho Administrativo",
+  "title": "Preguntas Frecuentes - Derecho Administrativo",
+  "description": "Resuelve todas tus dudas sobre multas, sanciones administrativas, recursos y procedimientos ante la administración pública",
+  "questions": [
+    {
+      "question": "¿Qué diferencia hay entre una multa administrativa y una sanción penal?",
+      "answer": "Las multas administrativas las impone la administración por infracciones administrativas (tráfico, tributarias, etc.) y se recurren en vía administrativa. Las sanciones penales las imponen los tribunales por delitos y solo se recurren en vía judicial penal."
+    },
+    {
+      "question": "¿Puedo recurrir una multa aunque haya pagado el 50% de descuento?",
+      "answer": "No, el pago voluntario con descuento implica conformidad con la sanción y renuncia al derecho de recurso. Una vez pagado, no puedes impugnar la multa administrativa."
+    },
+    {
+      "question": "¿Qué es el silencio administrativo y cuándo opera?",
+      "answer": "El silencio administrativo es la falta de respuesta de la administración en el plazo máximo para resolver. Puede ser positivo (se entiende estimado) o negativo (se entiende desestimado), según el tipo de procedimiento."
+    },
+    {
+      "question": "¿Cuándo prescribe una sanción administrativa?",
+      "answer": "Las sanciones administrativas prescriben generalmente a los 4 años desde que la resolución sea firme. Durante este plazo, la administración puede ejecutar la sanción y embargar bienes."
+    },
+    {
+      "question": "¿Qué es un recurso potestativo de reposición?",
+      "answer": "Es un recurso opcional que se presenta ante el mismo órgano que dictó el acto, antes de acudir a la vía contencioso-administrativa. Su plazo es de 1 mes y suspende el plazo para el contencioso-administrativo."
+    },
+    {
+      "question": "¿Puedo solicitar medidas cautelares en un recurso administrativo?",
+      "answer": "Sí, puedes solicitar la suspensión de la ejecución del acto recurrido prestando garantía o acreditando que la ejecución causaría perjuicios de difícil reparación."
+    },
+    {
+      "question": "¿Qué diferencia hay entre recurso de alzada y recurso de reposición?",
+      "answer": "El recurso de reposición se presenta ante el mismo órgano que dictó el acto. El recurso de alzada se presenta ante el órgano superior jerárquico cuando el acto no agota la vía administrativa."
+    },
+    {
+      "question": "¿Cuándo puedo reclamar responsabilidad patrimonial al Estado?",
+      "answer": "Cuando sufras daños causados por el funcionamiento normal o anormal de los servicios públicos, siempre que el daño sea real, evaluable económicamente e individualizable."
+    },
+    {
+      "question": "¿Qué documentos necesito para recurrir una resolución administrativa?",
+      "answer": "Necesitas la resolución original notificada, cualquier documentación relacionada con el expediente, y en su caso, justificantes de pago, informes técnicos o testificales que apoyen tu recurso."
+    },
+    {
+      "question": "¿Puedo revisar el expediente administrativo?",
+      "answer": "Sí, tienes derecho a acceder al expediente administrativo en cualquier momento del procedimiento, salvo los documentos clasificados o que afecten a terceros."
+    },
+    {
+      "question": "¿Qué pasa si no me notifican correctamente una resolución?",
+      "answer": "Si la notificación es defectuosa, los plazos no empiezan a correr hasta que tengas conocimiento efectivo del contenido y los recursos procedentes. Puedes alegar nulidad por defecto de notificación."
+    },
+    {
+      "question": "¿Cuál es el plazo máximo para resolver un expediente sancionador?",
+      "answer": "El plazo máximo general es de 6 meses, aunque puede variar según el tipo de procedimiento. Si no se resuelve en plazo, puedes entender caducado el procedimiento."
+    },
+    {
+      "question": "¿Qué es el principio de proporcionalidad en sanciones administrativas?",
+      "answer": "Las sanciones deben ser proporcionadas a la gravedad de la infracción. Si consideras la sanción desproporcionada, puedes alegarla como motivo de recurso."
+    },
+    {
+      "question": "¿Puedo recurrir ante Europa una resolución administrativa española?",
+      "answer": "Solo en casos muy específicos donde se vulneren derechos fundamentales reconocidos en el Convenio Europeo de Derechos Humanos, y después de agotar todas las vías nacionales."
+    },
+    {
+      "question": "¿Qué diferencia hay entre anulación y revocación de un acto administrativo?",
+      "answer": "La anulación elimina un acto ilegal con efectos retroactivos. La revocación elimina un acto legal por razones de oportunidad, normalmente sin efectos retroactivos."
+    },
+    {
+      "question": "¿Cuándo opera la caducidad en un procedimiento administrativo?",
+      "answer": "La caducidad opera cuando la administración no resuelve en el plazo máximo establecido por paralización imputable a ella. Debe ser alegada por el interesado."
+    },
+    {
+      "question": "¿Qué es una resolución provisional y una definitiva?",
+      "answer": "La resolución provisional puede ser modificada durante el procedimiento. La definitiva pone fin al procedimiento administrativo y solo puede modificarse por los recursos correspondientes."
+    },
+    {
+      "question": "¿Puedo presentar alegaciones aunque no me hayan notificado el expediente?",
+      "answer": "Tienes derecho a conocer el expediente antes de presentar alegaciones. Si no te lo facilitan, puedes solicitar su remisión y se ampliará el plazo para alegar."
+    },
+    {
+      "question": "¿Qué es el trámite de audiencia en un expediente administrativo?",
+      "answer": "Es el derecho a conocer y comentar todos los documentos del expediente antes de que se dicte resolución. Es un trámite esencial cuya omisión puede causar nulidad."
+    },
+    {
+      "question": "¿Cuándo puedo solicitar la ejecución forzosa de una resolución favorable?",
+      "answer": "Cuando la administración no cumple voluntariamente una resolución firme que te sea favorable, puedes solicitar su ejecución forzosa ante los tribunales contencioso-administrativos."
+    },
+    {
+      "question": "¿Qué es el principio de confianza legítima en derecho administrativo?",
+      "answer": "Protege las expectativas razonables que los ciudadanos pueden tener sobre la actuación administrativa. Si la administración cambia de criterio, debe respetar las situaciones consolidadas."
+    },
+    {
+      "question": "¿Puedo reclamar daños y perjuicios por un procedimiento administrativo abusivo?",
+      "answer": "Sí, puedes reclamar responsabilidad patrimonial si el procedimiento administrativo te ha causado daños por funcionamiento anormal de la administración, como dilaciones indebidas o actuaciones arbitrarias."
+    }
+  ],
+  "lastUpdated": "2025-01-16",
+  "totalQuestions": 22
+}

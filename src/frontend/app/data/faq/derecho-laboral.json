@@ -1,0 +1,97 @@
+{
+  "category": "Derecho Laboral",
+  "title": "Preguntas Frecuentes - Derecho Laboral",
+  "description": "Todo sobre derechos laborales, contratos de trabajo, despidos, prestaciones de desempleo y relaciones laborales",
+  "questions": [
+    {
+      "question": "¿Cuántas horas extras puedo hacer al año?",
+      "answer": "Máximo 80 horas extraordinarias anuales, salvo que se compensen con descanso en los 4 meses siguientes. Las horas por fuerza mayor no cuentan en este límite."
+    },
+    {
+      "question": "¿Puedo rechazar un cambio de turno impuesto por la empresa?",
+      "answer": "Si el cambio es sustancial (afecta horario, lugar de trabajo, funciones), puedes impugnarlo si perjudica tu formación profesional o dignidad. Tienes 20 días para recurrir."
+    },
+    {
+      "question": "¿Qué derechos tengo durante una baja por enfermedad?",
+      "answer": "Derecho a conservar el puesto de trabajo, percibir prestación (60% base reguladora primeros 20 días, 75% desde el día 21), y protección frente al despido durante la baja."
+    },
+    {
+      "question": "¿Cuándo tengo derecho a vacaciones pagadas?",
+      "answer": "Tras 1 año trabajado tienes derecho a 30 días naturales de vacaciones. Si trabajas menos tiempo, corresponde la parte proporcional. Las vacaciones no se pueden sustituir por dinero."
+    },
+    {
+      "question": "¿Puede la empresa leer mis emails del trabajo?",
+      "answer": "Solo si te han informado previamente por escrito de que monitorizan las comunicaciones y el uso es proporcional. Debe respetar tu derecho a la intimidad y dignidad."
+    },
+    {
+      "question": "¿Qué pasa si trabajo sin contrato?",
+      "answer": "La relación laboral existe aunque no haya contrato escrito. Tienes los mismos derechos que cualquier trabajador y puedes reclamar la regularización de tu situación."
+    },
+    {
+      "question": "¿Cuándo puedo solicitar una reducción de jornada?",
+      "answer": "Por cuidado de menores de 12 años, familiares dependientes, formación, o conciliación. La reducción puede ser de 1/8 a 1/2 de la jornada, con reducción proporcional de salario."
+    },
+    {
+      "question": "¿Puede la empresa obligarme a hacer teletrabajo?",
+      "answer": "Solo si está previsto en el contrato o se acuerda posteriormente. El teletrabajo debe ser voluntario y reversible, salvo circunstancias excepcionales como estados de alarma."
+    },
+    {
+      "question": "¿Qué es el período de prueba y cuánto puede durar?",
+      "answer": "Es un tiempo inicial donde cualquiera puede rescindir sin preaviso ni indemnización. Duración máxima: 6 meses para técnicos titulados, 2 meses para otros trabajadores, 3 meses en empresas de menos de 25 trabajadores."
+    },
+    {
+      "question": "¿Puedo solicitar excedencia y cuándo?",
+      "answer": "Excedencia voluntaria tras 1 año en la empresa (mínimo 4 meses, máximo 5 años). Excedencia por cuidado de familiares (hasta 3 años por hijo, 2 años por otros familiares)."
+    },
+    {
+      "question": "¿Qué derechos tengo como representante de los trabajadores?",
+      "answer": "Derecho a información sobre la empresa, consulta en decisiones importantes, vigilancia del cumplimiento de normas laborales, y protección especial frente al despido."
+    },
+    {
+      "question": "¿Cuándo puedo cobrar la prestación por desempleo?",
+      "answer": "Si has cotizado al menos 360 días, tienes capacidad para trabajar, estás desempleado involuntariamente, y te inscribes como demandante de empleo en los 15 días siguientes al cese."
+    },
+    {
+      "question": "¿Puede la empresa sancionarme sin seguir un procedimiento?",
+      "answer": "No, debe seguir el procedimiento disciplinario: comunicarte los hechos, darte audiencia para que alegues lo que consideres, y notificar la sanción por escrito."
+    },
+    {
+      "question": "¿Qué es la prestación por riesgo durante el embarazo?",
+      "answer": "Prestación cuando el puesto de trabajo puede perjudicar el embarazo y no es posible cambiar de puesto. Cubre el 100% de la base reguladora hasta que sea posible reincorporarse."
+    },
+    {
+      "question": "¿Puedo trabajar para la competencia después de dejar la empresa?",
+      "answer": "Solo si firmaste una cláusula de no competencia con compensación económica. Sin cláusula específica, puedes trabajar libremente, salvo que uses secretos empresariales."
+    },
+    {
+      "question": "¿Qué derechos tengo si soy trabajador temporal?",
+      "answer": "Los mismos derechos que los indefinidos: salario igual, vacaciones, formación, promoción profesional. Solo difieren en la duración del contrato y condiciones de extinción."
+    },
+    {
+      "question": "¿Cuándo se considera que hay cesión ilegal de trabajadores?",
+      "answer": "Cuando una empresa cede trabajadores a otra sin ser empresa de trabajo temporal autorizada, o cuando la cesión no cumple los requisitos legales para las ETT."
+    },
+    {
+      "question": "¿Puedo grabar conversaciones con mi jefe?",
+      "answer": "Solo si participas en la conversación y es para defender tus derechos. Grabar conversaciones ajenas sin consentimiento es delito. Las grabaciones propias pueden ser prueba en juicio."
+    },
+    {
+      "question": "¿Qué es el complemento de maternidad en las pensiones?",
+      "answer": "Complemento del 5%, 10%, 15% o 20% en la pensión de jubilación o incapacidad permanente para mujeres con 1, 2, 3 o 4 hijos respectivamente, nacidos antes del 31 de diciembre de 2015."
+    },
+    {
+      "question": "¿Puedo solicitar un anticipo de mi nómina?",
+      "answer": "Puedes solicitar un anticipo del trabajo ya realizado. La empresa no está obligada a concederlo, pero es una práctica habitual. No puede descontarte intereses por el anticipo."
+    },
+    {
+      "question": "¿Qué es la sucesión de empresa y cómo me afecta?",
+      "answer": "Cuando una empresa se vende o traspasa, el nuevo empresario debe respetar todos los contratos laborales existentes en las mismas condiciones. No puedes ser despedido por este motivo."
+    },
+    {
+      "question": "¿Cuándo prescriben las infracciones laborales de la empresa?",
+      "answer": "Las infracciones leves prescriben al año, las graves a los 3 años, y las muy graves a los 5 años. La prescripción se interrumpe por el inicio del procedimiento sancionador."
+    }
+  ],
+  "lastUpdated": "2025-01-16",
+  "totalQuestions": 22
+}

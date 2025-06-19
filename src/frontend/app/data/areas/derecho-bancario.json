@@ -1,190 +1,153 @@
 {
-    "id": "derecho-bancario",
-    "title": "Derecho Bancario",
-    "subtitle": "Cláusulas abusivas y reclamaciones bancarias",
-    "heroDescription": "Recupera tu dinero de los bancos. Especialistas en cláusulas abusivas, hipotecas, tarjetas revolving y productos financieros. Más de 1.8M€ recuperados para nuestros clientes.",
-    "introduction": "El derecho bancario protege a los consumidores frente a las prácticas abusivas de las entidades financieras. En LHC Legal & Consulting, luchamos para que recuperes el dinero que los bancos te han cobrado indebidamente.",
-    "contentSections": [
-      {
-        "title": "¿Qué son las Cláusulas Bancarias Abusivas?",
-        "content": "<p>Las cláusulas abusivas son aquellas que, contraviniendo la buena fe, causan un desequilibrio importante entre los derechos y obligaciones de las partes. En los contratos bancarios, estas cláusulas son frecuentes y los tribunales las declaran nulas sistemáticamente.</p><p>Nuestro equipo de especialistas en derecho bancario ha conseguido la devolución de más de 1.8 millones de euros para nuestros clientes en concepto de cláusulas abusivas, gastos hipotecarios, tarjetas revolving y productos financieros complejos.</p>",
-        "order": 1,
-        "type": "text"
-      },
-      {
-        "title": "Nuestra Metodología de Trabajo",
-        "content": "<p>En LHC Legal & Consulting aplicamos un método de trabajo especializado en reclamaciones bancarias:</p><ul><li><strong>Análisis pericial:</strong> Revisión exhaustiva de toda la documentación contractual y financiera</li><li><strong>Cálculo de perjuicios:</strong> Cuantificación precisa de las cantidades a reclamar con informes técnicos</li><li><strong>Negociación previa:</strong> Intentamos llegar a acuerdos extrajudiciales antes de ir a juicio</li><li><strong>Litigación especializada:</strong> Demandas judiciales con argumentación técnica y jurisprudencial sólida</li></ul>",
-        "order": 2,
-        "type": "list"
-      },
-      {
-        "title": "Resultados y Casos de Éxito",
-        "content": "<p>Hemos conseguido sentencias favorables en el 90% de nuestros casos bancarios, recuperando cantidades que van desde 3.000€ hasta más de 150.000€ por cliente, dependiendo del tipo de producto financiero y las cláusulas aplicadas.</p>",
-        "order": 3,
-        "type": "text"
-      }
-    ],
-    "subtopics": [
-      {
-        "title": "Cláusula Suelo",
-        "description": "Reclamación de cantidades cobradas indebidamente por cláusulas suelo en hipotecas",
-        "hasPage": false,
-        "content": "Reclamamos las cantidades cobradas por cláusulas suelo desde el inicio del contrato. La jurisprudencia del Tribunal Supremo nos permite reclamar desde 2013 hacia atrás en la mayoría de casos.",
-        "icon": "home"
-      },
-      {
-        "title": "Gastos de Hipoteca",
-        "description": "Devolución de gastos de notaría, registro, tasación y comisión de apertura",
-        "hasPage": false,
-        "content": "Reclamamos la devolución de gastos hipotecarios que el banco te hizo pagar indebidamente: notaría, registro, tasación, gestoría y comisión de apertura.",
-        "icon": "receipt"
-      },
-      {
-        "title": "Tarjetas Revolving",
-        "description": "Nulidad de contratos de tarjetas revolving por interés usurario",
-        "hasPage": false,
-        "content": "Las tarjetas revolving con intereses superiores al 20% anual son usurarias. Conseguimos la nulidad del contrato y la devolución de todo lo pagado en exceso.",
-        "icon": "credit-card"
-      },
-      {
-        "title": "IRPH (Índice de Referencia)",
-        "description": "Reclamación por aplicación indebida del IRPH en préstamos hipotecarios",
-        "hasPage": false,
-        "content": "El IRPH aplicado sin transparencia es abusivo. Reclamamos la diferencia entre lo pagado con IRPH y lo que hubieras pagado con Euríbor desde el inicio del préstamo.",
-        "icon": "trending-up"
-      },
-      {
-        "title": "Productos Financieros Complejos",
-        "description": "Reclamaciones por venta de preferentes, swaps y productos de inversión inadecuados",
-        "hasPage": false,
-        "content": "Reclamamos por venta de productos financieros complejos sin información adecuada: participaciones preferentes, swaps, fondos estructurados y depósitos estructurados.",
-        "icon": "bar-chart"
-      },
-      {
-        "title": "Hipotecas Multidivisa",
-        "description": "Nulidad de hipotecas en francos suizos, yenes y otras divisas",
-        "hasPage": false,
-        "content": "Las hipotecas multidivisa vendidas sin información sobre riesgos de cambio son nulas. Conseguimos la conversión a euros desde el inicio y devolución de sobrepagos.",
-        "icon": "globe"
-      }
-    ],
-    "faqs": [
-      {
-        "question": "¿Puedo reclamar la cláusula suelo aunque haya vendido la vivienda?",
-        "answer": "Sí, puedes reclamar aunque hayas vendido la vivienda o cancelado la hipoteca. El derecho a reclamar las cantidades pagadas indebidamente se mantiene durante 15 años.",
-        "category": "clausula-suelo"
-      },
-      {
-        "question": "¿Cuánto tiempo se tarda en recuperar el dinero de una reclamación bancaria?",
-        "answer": "Los procedimientos judiciales duran entre 12-18 meses de media. Sin embargo, en muchos casos conseguimos acuerdos extrajudiciales en 3-6 meses, lo que acelera considerablemente la recuperación.",
-        "category": "tiempos"
-      },
-      {
-        "question": "¿Qué porcentaje cobráis por ganar el caso?",
-        "answer": "Trabajamos con pacto de cuota litis (solo cobramos si ganamos). Nuestros honorarios oscilan entre el 20-30% de lo recuperado, según la complejidad del caso. Sin recuperación, no hay honorarios.",
-        "category": "honorarios"
-      },
-      {
-        "question": "¿Cómo sé si mi tarjeta revolving es usuraria?",
-        "answer": "Si tu tarjeta tiene un TAE superior al 20% anual, muy probablemente sea usuraria. También analizamos las condiciones de comercialización y transparencia del contrato.",
-        "category": "tarjetas-revolving"
-      },
-      {
-        "question": "¿Puedo reclamar aunque haya firmado el contrato voluntariamente?",
-        "answer": "Sí, la voluntariedad en la firma no elimina el carácter abusivo de las cláusulas. Los bancos tienen obligación de informar adecuadamente sobre las condiciones del contrato.",
-        "category": "validez-contratos"
-      },
-      {
-        "question": "¿Qué documentación necesito para hacer una reclamación bancaria?",
-        "answer": "Necesitamos el contrato original, extractos bancarios del período a reclamar, cuadro de amortización y cualquier comunicación con el banco. Nosotros te ayudamos a reunir toda la documentación necesaria.",
-        "category": "documentacion"
-      }
-    ],
-    "cta": {
-      "title": "¿Tu banco te ha cobrado de más?",
-      "description": "No dejes que los bancos se queden con tu dinero. Analizamos tu caso sin coste y solo cobramos si recuperamos dinero para ti. Miles de clientes ya han recuperado lo que era suyo.",
-      "primaryButton": {
-        "text": "Análisis Gratuito",
-        "action": "contact"
-      },
-      "secondaryButton": {
-        "text": "WhatsApp Inmediato",
-        "action": "whatsapp",
-        "value": "+34691818071"
-      }
+  "id": "derecho-bancario",
+  "title": "Derecho Bancario",
+  "subtitle": "Cláusulas abusivas y reclamaciones bancarias",
+  "heroDescription": "Recupera tu dinero de los bancos. Especialistas en cláusulas abusivas, hipotecas, tarjetas revolving y productos financieros. Defendemos tus derechos como consumidor financiero.",
+  "introduction": "El derecho bancario protege a los consumidores frente a las prácticas abusivas de las entidades financieras. En LHC Legal & Consulting, luchamos para que recuperes el dinero que los bancos te han cobrado indebidamente a través de cláusulas abusivas y productos financieros inadecuados.",
+  "contentSections": [
+    {
+      "title": "¿Qué son las Cláusulas Bancarias Abusivas?",
+      "content": "<p>Las cláusulas abusivas son aquellas que, contraviniendo la buena fe, causan un desequilibrio importante entre los derechos y obligaciones de las partes. En los contratos bancarios, estas cláusulas son frecuentes y los tribunales las declaran nulas sistemáticamente.</p><p>Nuestro equipo de especialistas en derecho bancario ha desarrollado estrategias específicas para identificar y combatir todo tipo de cláusulas abusivas, especialmente en productos hipotecarios, tarjetas de crédito y productos de inversión.</p>",
+      "order": 1
     },
-    "seo": {
-      "metaTitle": "Abogado Bancario Madrid | Cláusulas Abusivas | LHC Legal",
-      "metaDescription": "Especialistas en reclamaciones bancarias Madrid. Cláusulas suelo, gastos hipoteca, tarjetas revolving. 1.8M€ recuperados. Solo cobramos si ganamos. Análisis gratuito.",
-      "keywords": [
-        "abogado bancario madrid",
-        "clausulas abusivas",
-        "clausula suelo reclamar",
-        "gastos hipoteca devolucion",
-        "tarjetas revolving usura",
-        "irph reclamacion",
-        "productos financieros complejos",
-        "hipoteca multidivisa",
-        "reclamacion banco",
-        "LHC Legal Madrid"
-      ],
-      "canonicalUrl": "https://lhclegal.es/areas/derecho-bancario",
-      "ogImage": "https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749825385/derecho-bancario-og_pqr678.webp",
-      "structuredData": {
-        "serviceType": "Derecho Bancario",
-        "description": "Servicios especializados en reclamaciones bancarias y cláusulas abusivas",
-        "offers": [
-          {
-            "name": "Reclamación Cláusula Suelo",
-            "description": "Recuperación de cantidades pagadas por cláusula suelo",
-            "price": "0",
-            "priceCurrency": "EUR"
-          },
-          {
-            "name": "Tarjetas Revolving",
-            "description": "Nulidad de contratos de tarjetas revolving usurarias",
-            "price": "0",
-            "priceCurrency": "EUR"
-          },
-          {
-            "name": "Análisis Gratuito",
-            "description": "Análisis completo de tu caso sin coste alguno",
-            "price": "0",
-            "priceCurrency": "EUR"
-          }
-        ]
-      }
+    {
+      "title": "Nuestra Metodología de Trabajo",
+      "content": "<p>En LHC Legal & Consulting aplicamos un método de trabajo especializado en reclamaciones bancarias:</p><ul><li><strong>Análisis pericial:</strong> Revisión exhaustiva de toda la documentación contractual y financiera</li><li><strong>Cálculo de perjuicios:</strong> Cuantificación precisa de las cantidades a reclamar con informes técnicos</li><li><strong>Negociación previa:</strong> Intentamos llegar a acuerdos extrajudiciales antes de ir a juicio</li><li><strong>Litigación especializada:</strong> Demandas judiciales con argumentación técnica y jurisprudencial sólida</li></ul>",
+      "order": 2
+    }
+  ],
+  "subtopics": [
+    {
+      "title": "Cláusula Suelo",
+      "description": "Reclamación de cantidades cobradas indebidamente por cláusulas suelo en hipotecas",
+      "content": "Reclamamos las cantidades cobradas por cláusulas suelo desde el inicio del contrato. La jurisprudencia del Tribunal Supremo nos permite reclamar desde 2013 hacia atrás en la mayoría de casos.",
+      "icon": "home"
     },
-    "stats": [
-      {
-        "title": "Recuperado",
-        "value": "1.8M€",
-        "description": "Cantidad total recuperada para clientes",
-        "icon": "euro"
-      },
-      {
-        "title": "Casos Ganados",
-        "value": "90%",
-        "description": "Porcentaje de éxito en reclamaciones",
-        "icon": "trophy"
-      },
-      {
-        "title": "Clientes",
-        "value": "800+",
-        "description": "Personas que han recuperado su dinero",
-        "icon": "users"
+    {
+      "title": "Gastos de Hipoteca",
+      "description": "Devolución de gastos de notaría, registro, tasación y comisión de apertura",
+      "content": "Reclamamos la devolución de gastos hipotecarios que el banco te hizo pagar indebidamente: notaría, registro, tasación, gestoría y comisión de apertura.",
+      "icon": "receipt"
+    },
+    {
+      "title": "Tarjetas Revolving",
+      "description": "Nulidad de contratos de tarjetas revolving por interés usurario",
+      "content": "Las tarjetas revolving con intereses superiores al 20% anual son usurarias. Conseguimos la nulidad del contrato y la devolución de todo lo pagado en exceso.",
+      "icon": "credit-card"
+    },
+    {
+      "title": "IRPH (Índice de Referencia)",
+      "description": "Reclamación por aplicación indebida del IRPH en préstamos hipotecarios",
+      "content": "El IRPH aplicado sin transparencia es abusivo. Reclamamos la diferencia entre lo pagado con IRPH y lo que hubieras pagado con Euríbor desde el inicio del préstamo.",
+      "icon": "trending-up"
+    },
+    {
+      "title": "Productos Financieros Complejos",
+      "description": "Reclamaciones por venta de preferentes, swaps y productos de inversión inadecuados",
+      "content": "Reclamamos por venta de productos financieros complejos sin información adecuada: participaciones preferentes, swaps, fondos estructurados y depósitos estructurados.",
+      "icon": "bar-chart"
+    },
+    {
+      "title": "Hipotecas Multidivisa",
+      "description": "Nulidad de hipotecas en francos suizos, yenes y otras divisas",
+      "content": "Las hipotecas multidivisa vendidas sin información sobre riesgos de cambio son nulas. Conseguimos la conversión a euros desde el inicio y devolución de sobrepagos.",
+      "icon": "globe"
+    }
+  ],
+  "otherServices": [
+    {
+      "title": "Comisiones bancarias abusivas",
+      "content": "Reclamación de comisiones por descubiertos, mantenimiento de cuenta, devoluciones de recibos y otras comisiones desproporcionadas."
+    },
+    {
+      "title": "Seguros vinculados a hipotecas",
+      "content": "Impugnación de seguros de vida, hogar y protección de pagos vinculados abusivamente a préstamos hipotecarios."
+    },
+    {
+      "title": "Préstamos personales usurarios",
+      "content": "Nulidad de préstamos personales con intereses desproporcionados y reclamación de cantidades pagadas en exceso."
+    },
+    {
+      "title": "Embargos bancarios improcedentes",
+      "content": "Defensa ante embargos de cuentas bancarias realizados sin cumplir los requisitos legales o por cantidades incorrectas."
+    },
+    {
+      "title": "Inclusión indebida en ficheros de solvencia",
+      "content": "Reclamación por inclusión en ASNEF, RAI u otros ficheros de morosos sin cumplir los requisitos legales de información previa."
+    },
+    {
+      "title": "Vencimiento anticipado de préstamos",
+      "content": "Impugnación de vencimientos anticipados de préstamos hipotecarios y personales por causas no justificadas o desproporcionadas."
+    },
+    {
+      "title": "Comercialización negligente de productos",
+      "content": "Reclamaciones por venta de productos financieros inadecuados para el perfil de riesgo del cliente."
+    },
+    {
+      "title": "Cláusulas de redondeo al alza",
+      "content": "Impugnación de cláusulas que redondean al alza los tipos de interés aplicados a hipotecas y préstamos."
+    },
+    {
+      "title": "Avales desproporcionados",
+      "content": "Reclamación por ejecución de avales personales desproporcionados o con vicios en su constitución."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Puedo reclamar la cláusula suelo aunque haya vendido la vivienda?",
+      "answer": "Sí, puedes reclamar aunque hayas vendido la vivienda o cancelado la hipoteca. El derecho a reclamar las cantidades pagadas indebidamente se mantiene durante 15 años."
+    },
+    {
+      "question": "¿Cuánto tiempo se tarda en recuperar el dinero de una reclamación bancaria?",
+      "answer": "Los procedimientos judiciales duran entre 12-18 meses de media. Sin embargo, en muchos casos conseguimos acuerdos extrajudiciales en 3-6 meses, lo que acelera considerablemente la recuperación."
+    },
+    {
+      "question": "¿Cómo sé si mi tarjeta revolving es usuraria?",
+      "answer": "Si tu tarjeta tiene un TAE superior al 20% anual, muy probablemente sea usuraria. También analizamos las condiciones de comercialización y transparencia del contrato."
+    },
+    {
+      "question": "¿Puedo reclamar aunque haya firmado el contrato voluntariamente?",
+      "answer": "Sí, la voluntariedad en la firma no elimina el carácter abusivo de las cláusulas. Los bancos tienen obligación de informar adecuadamente sobre las condiciones del contrato."
+    },
+    {
+      "question": "¿Qué documentación necesito para hacer una reclamación bancaria?",
+      "answer": "Necesitamos el contrato original, extractos bancarios del período a reclamar, cuadro de amortización y cualquier comunicación con el banco. Nosotros te ayudamos a reunir toda la documentación necesaria."
+    },
+    {
+      "question": "¿Hay riesgo de que el banco me cierre la cuenta si reclamo?",
+      "answer": "Los bancos no pueden cerrar tu cuenta como represalia por ejercer tus derechos legítimos. Si lo hacen, constituiría una práctica abusiva adicional que también podríamos reclamar."
+    }
+  ],
+  "cta": {
+    "title": "¿Tu banco te ha cobrado de más?",
+    "description": "No dejes que los bancos se queden con tu dinero. Analizamos tu caso sin coste y trabajamos con cuota de éxito. Miles de clientes ya han recuperado lo que era suyo."
+  },
+  "seo": {
+    "metaTitle": "Abogado Bancario Madrid | Cláusulas Abusivas | LHC Legal",
+    "metaDescription": "Especialistas en reclamaciones bancarias Madrid. Cláusulas suelo, gastos hipoteca, tarjetas revolving. Trabajamos con cuota de éxito. Análisis gratuito.",
+    "keywords": [
+      "abogado bancario madrid",
+      "clausulas abusivas",
+      "clausula suelo reclamar",
+      "gastos hipoteca devolucion",
+      "tarjetas revolving usura",
+      "irph reclamacion",
+      "productos financieros complejos",
+      "hipoteca multidivisa",
+      "reclamacion banco",
+      "LHC Legal Madrid"
+    ],
+    "canonicalUrl": "https://lhclegal.es/areas/derecho-bancario",
+    "ogImage": "https://res.cloudinary.com/lhclegal/image/upload/v1/og-images/derecho-bancario.webp",
+    "structuredData": {
+      "serviceType": "Derecho Bancario",
+      "description": "Servicios especializados en reclamaciones bancarias y cláusulas abusivas",
+      "areaServed": "Madrid, España",
+      "provider": {
+        "name": "LHC Legal & Consulting",
+        "url": "https://lhclegal.es",
+        "telephone": "+34691818071"
       }
-    ],
-    "relatedAreas": [
-      "derecho-civil",
-      "derecho-administrativo",
-      "derecho-mercantil"
-    ],
-    "lastUpdated": "2025-01-16",
-    "displayConfig": {
-      "showStats": true,
-      "showRelatedAreas": true,
-      "subtopicsLayout": "grid",
-      "faqsLayout": "accordion"
     }
   }
+}

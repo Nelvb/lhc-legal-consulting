@@ -1,0 +1,105 @@
+{
+  "category": "Derecho Penal",
+  "title": "Preguntas Frecuentes - Derecho Penal",
+  "description": "Resuelve tus dudas sobre delitos, procedimientos penales, derechos del acusado, penas y medidas de seguridad",
+  "questions": [
+    {
+      "question": "¿Cuándo prescriben los delitos?",
+      "answer": "Los delitos leves prescriben al año, los delitos graves a los 5 años, y los delitos muy graves (más de 5 años de prisión) a los 10 años. Los delitos de terrorismo y algunos contra menores tienen plazos especiales."
+    },
+    {
+      "question": "¿Puedo retirar una denuncia una vez presentada?",
+      "answer": "Puedes retirar la denuncia, pero si hay indicios de delito público, el procedimiento continúa de oficio. Solo en delitos privados (injurias, calumnias) o semipúblicos el perdón paraliza el procedimiento."
+    },
+    {
+      "question": "¿Qué diferencia hay entre detención y prisión provisional?",
+      "answer": "La detención es temporal (máximo 72 horas) para investigación inicial. La prisión provisional es una medida cautelar acordada por el juez que puede durar hasta el juicio si hay riesgo de fuga o reiteración delictiva."
+    },
+    {
+      "question": "¿Puedo ser condenado sin pruebas directas?",
+      "answer": "Sí, si las pruebas indiciarias son suficientes y forman un conjunto sólido que acredite la culpabilidad más allá de toda duda razonable. La presunción de inocencia requiere pruebas suficientes, no necesariamente directas."
+    },
+    {
+      "question": "¿Qué es la conformidad premiada en el procedimiento penal?",
+      "answer": "Reconocimiento de culpabilidad que permite reducir la pena en un tercio. Se puede hacer hasta el inicio del juicio oral, y debe ser aceptada por todas las partes incluido el Ministerio Fiscal."
+    },
+    {
+      "question": "¿Cuándo procede la suspensión de la ejecución de la pena?",
+      "answer": "Para penas de hasta 2 años si eres delincuente primario, o hasta 5 años si la suspendes bajo condiciones (trabajos comunitarios, programas formativos, etc.). Requiere informe favorable y compromiso de no delinquir."
+    },
+    {
+      "question": "¿Puedo ser juzgado dos veces por el mismo delito?",
+      "answer": "No, el principio 'non bis in idem' prohíbe la doble sanción. Sin embargo, puedes ser juzgado por delitos diferentes aunque surjan de los mismos hechos, o si el primer procedimiento fue sobreseído."
+    },
+    {
+      "question": "¿Qué derechos tengo durante el juicio oral?",
+      "answer": "Derecho a estar presente, ser asistido por abogado, guardar silencio, declarar en último lugar, no ser obligado a confesarte culpable, y que se presuma tu inocencia hasta que se demuestre lo contrario."
+    },
+    {
+      "question": "¿Cuándo se aplica la circunstancia de legítima defensa?",
+      "answer": "Cuando hay agresión ilegítima, necesidad racional del medio empleado para impedirla o repelerla, y falta de provocación suficiente por tu parte. Debe ser proporcional y necesaria."
+    },
+    {
+      "question": "¿Qué es el error de tipo y cómo afecta a la responsabilidad?",
+      "answer": "Es el desconocimiento o error sobre algún elemento del tipo penal. Si es invencible, excluye la responsabilidad penal. Si es vencible, excluye el dolo pero puede dar lugar a responsabilidad por imprudencia si está tipificada."
+    },
+    {
+      "question": "¿Puedo ser extraditado siendo ciudadano español?",
+      "answer": "No, la Constitución prohíbe la extradición de ciudadanos españoles. Sin embargo, sí procede la entrega mediante orden europea de detención a otros países de la UE para ciertos delitos graves."
+    },
+    {
+      "question": "¿Qué es la responsabilidad civil derivada del delito?",
+      "answer": "Obligación de reparar el daño causado por el delito: restitución, reparación del daño e indemnización de perjuicios. Se puede reclamar aunque seas absuelto penalmente si causaste daños por imprudencia."
+    },
+    {
+      "question": "¿Cuándo se considera que hay violencia de género?",
+      "answer": "Cuando la ejerce un hombre sobre su pareja o expareja mujer, o sobre mujeres especialmente vulnerables que convivan con él. Incluye violencia física, psicológica, sexual y económica en relaciones afectivas."
+    },
+    {
+      "question": "¿Qué es la atenuante de dilaciones indebidas?",
+      "answer": "Circunstancia que reduce la pena cuando el proceso se ha prolongado más de lo razonable por causas no imputables al acusado. Se valora la complejidad del caso, el comportamiento procesal y la actuación de los órganos judiciales."
+    },
+    {
+      "question": "¿Puedo acceder al sumario si soy parte del procedimiento?",
+      "answer": "Sí, tienes derecho a conocer las actuaciones una vez que sean puestas de manifiesto por el juez. Durante la fase de secreto del sumario, solo tu abogado puede acceder con limitaciones."
+    },
+    {
+      "question": "¿Qué diferencia hay entre cómplice y cooperador necesario?",
+      "answer": "El cooperador necesario realiza actos sin los cuales el delito no se habría cometido (pena del autor). El cómplice coopera de manera no esencial (pena inferior en grado)."
+    },
+    {
+      "question": "¿Cuándo opera la prescripción del delito?",
+      "answer": "El cómputo se inicia desde que se cometió el delito y se interrumpe por actuaciones del procedimiento dirigidas al esclarecimiento del delito o a la identificación del culpable."
+    },
+    {
+      "question": "¿Puedo ser condenado por un delito más grave del que me acusan?",
+      "answer": "No, rige el principio acusatorio: solo puedes ser condenado por los hechos incluidos en la acusación. El tribunal puede modificar la calificación jurídica pero no los hechos objeto de acusación."
+    },
+    {
+      "question": "¿Qué es la prisión permanente revisable?",
+      "answer": "Pena para delitos muy graves (asesinatos múltiples, terrorismo con resultado de muerte, etc.). Permite revisión de la condena después de cumplir entre 25-35 años según el delito, valorando pronóstico de reinserción."
+    },
+    {
+      "question": "¿Cuándo procede el archivo de una denuncia?",
+      "answer": "Cuando los hechos no constituyen delito, no hay indicios suficientes de criminalidad, o concurren causas de extinción de responsabilidad penal como prescripción o muerte del imputado."
+    },
+    {
+      "question": "¿Qué es la querella y cuándo debo presentarla?",
+      "answer": "Escrito de acusación más formal que la denuncia, obligatoria para delitos privados y semipúblicos. Debe ir firmada por abogado y procurador, e incluir relato de hechos y fundamentos jurídicos."
+    },
+    {
+      "question": "¿Puedo solicitar medidas de protección siendo víctima?",
+      "answer": "Sí, puedes solicitar orden de alejamiento, prohibición de comunicación, salida del domicilio del agresor, y otras medidas cautelares para garantizar tu seguridad durante el procedimiento."
+    },
+    {
+      "question": "¿Qué es el procedimiento de jurado?",
+      "answer": "Juzgamiento por ciudadanos legos en delitos graves como homicidio, allanamiento de morada con violencia, cohecho, tráfico de drogas, etc. El jurado decide sobre culpabilidad y el juez dicta la pena."
+    },
+    {
+      "question": "¿Cuándo se aplica la eximente de trastorno mental?",
+      "answer": "Cuando en el momento de cometer el delito no puedas comprender la ilicitud del hecho o actuar conforme a esa comprensión, por sufrir anomalía o alteración psíquica. Requiere informe psiquiátrico forense."
+    }
+  ],
+  "lastUpdated": "2025-01-16",
+  "totalQuestions": 25
+}

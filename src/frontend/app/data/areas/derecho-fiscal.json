@@ -1,190 +1,165 @@
 {
-    "id": "derecho-fiscal",
-    "title": "Derecho Fiscal",
-    "subtitle": "Recursos ante Hacienda y planificación fiscal",
-    "heroDescription": "Defendemos tus derechos frente a Hacienda. Especialistas en recursos fiscales, inspecciones, sanciones tributarias y planificación fiscal. Tu escudo legal contra la administración tributaria.",
-    "introduction": "El derecho fiscal regula las relaciones entre los contribuyentes y la administración tributaria. En LHC Legal & Consulting, protegemos tus intereses económicos frente a Hacienda con estrategias jurídicas especializadas y conocimiento profundo de la normativa tributaria.",
-    "contentSections": [
-      {
-        "title": "¿Qué es el Derecho Fiscal?",
-        "content": "<p>El derecho fiscal o tributario es la rama jurídica que regula el ejercicio del poder tributario del Estado, estableciendo los tributos, su aplicación y los procedimientos para su gestión, liquidación, recaudación e inspección.</p><p>Nuestro equipo de especialistas en derecho fiscal cuenta con más de 12 años de experiencia defendiendo contribuyentes ante la Agencia Tributaria, tanto en procedimientos de gestión como de inspección y recaudación.</p>",
-        "order": 1,
-        "type": "text"
-      },
-      {
-        "title": "Nuestra Estrategia Fiscal",
-        "content": "<p>En LHC Legal & Consulting aplicamos una defensa fiscal integral que combina conocimiento jurídico y planificación estratégica:</p><ul><li><strong>Análisis preventivo:</strong> Revisión de situaciones fiscales para evitar problemas futuros con Hacienda</li><li><strong>Defensa especializada:</strong> Recursos contra liquidaciones, sanciones e inspecciones con argumentación técnica sólida</li><li><strong>Planificación fiscal:</strong> Optimización de la carga tributaria dentro del marco legal vigente</li><li><strong>Representación integral:</strong> Acompañamiento completo en todos los procedimientos ante la administración tributaria</li></ul>",
-        "order": 2,
-        "type": "list"
-      },
-      {
-        "title": "Resultados y Experiencia",
-        "content": "<p>Hemos conseguido anular o reducir significativamente más del 75% de las sanciones tributarias recurridas y hemos obtenido ahorros fiscales superiores a 800.000€ para nuestros clientes mediante planificación fiscal legal.</p>",
-        "order": 3,
-        "type": "text"
-      }
-    ],
-    "subtopics": [
-      {
-        "title": "Recursos ante Hacienda",
-        "description": "Recursos contra liquidaciones, sanciones y resoluciones de la Agencia Tributaria",
-        "hasPage": false,
-        "content": "Recurrimos todo tipo de actos administrativos de Hacienda: liquidaciones paralelas, sanciones tributarias, denegaciones de devoluciones y resoluciones de comprobación limitada.",
-        "icon": "scale"
-      },
-      {
-        "title": "Inspecciones Fiscales",
-        "description": "Defensa y representación en procedimientos de inspección de Hacienda",
-        "hasPage": false,
-        "content": "Te representamos durante todo el procedimiento inspector, desde la notificación inicial hasta la firma del acta, protegiendo tus derechos y minimizando las consecuencias económicas.",
-        "icon": "search"
-      },
-      {
-        "title": "Sanciones Tributarias",
-        "description": "Recursos contra multas y sanciones por infracciones tributarias",
-        "hasPage": false,
-        "content": "Defendemos contra sanciones por presentación extemporánea, inexactitudes, resistencia a la actuación inspectora y cualquier tipo de infracción tributaria.",
-        "icon": "alert-triangle"
-      },
-      {
-        "title": "Planificación Fiscal",
-        "description": "Optimización legal de la carga tributaria para particulares y empresas",
-        "hasPage": false,
-        "content": "Diseñamos estrategias fiscales legales para minimizar el impacto tributario en operaciones empresariales, transmisiones patrimoniales y planificación sucesoria.",
-        "icon": "calculator"
-      },
-      {
-        "title": "IRPF y Patrimonio",
-        "description": "Asesoramiento en IRPF, Impuesto de Patrimonio y planificación de rentas",
-        "hasPage": false,
-        "content": "Optimizamos la tributación de personas físicas: IRPF, Patrimonio, Sucesiones y Donaciones, con especial atención a rentas inmobiliarias y ganancias patrimoniales.",
-        "icon": "home"
-      },
-      {
-        "title": "IVA e Impuesto de Sociedades",
-        "description": "Gestión fiscal empresarial, IVA, Sociedades y otros tributos empresariales",
-        "hasPage": false,
-        "content": "Asesoramiento integral en tributación empresarial: Impuesto de Sociedades, IVA, retenciones, obligaciones formales y beneficios fiscales para empresas.",
-        "icon": "building"
-      }
-    ],
-    "faqs": [
-      {
-        "question": "¿Cuánto tiempo tengo para recurrir una liquidación de Hacienda?",
-        "answer": "Tienes 1 mes para presentar recurso de reposición contra liquidaciones tributarias. Si es denegado o no se resuelve en 1 mes, puedes presentar reclamación económico-administrativa en 15 días adicionales.",
-        "category": "recursos"
-      },
-      {
-        "question": "¿Puedo suspender el pago mientras recurro una sanción de Hacienda?",
-        "answer": "Sí, puedes solicitar la suspensión del ingreso prestando garantía (aval bancario, depósito o hipoteca) por el 100% de la deuda más un 25% adicional por intereses y recargos.",
-        "category": "suspension"
-      },
-      {
-        "question": "¿Qué pasa si Hacienda me inspecciona?",
-        "answer": "La inspección es un procedimiento complejo donde tus derechos deben ser respetados. Es fundamental tener representación letrada desde el inicio para evitar errores que pueden costarte miles de euros.",
-        "category": "inspecciones"
-      },
-      {
-        "question": "¿Puedo reducir legalmente mis impuestos?",
-        "answer": "Sí, mediante planificación fiscal legal puedes optimizar tu carga tributaria. Analizamos tu situación para aplicar deducciones, exenciones y estructuras fiscales que reduzcan el impacto tributario.",
-        "category": "planificacion"
-      },
-      {
-        "question": "¿Cuánto cuesta recurrir ante Hacienda?",
-        "answer": "Los recursos ante Hacienda no tienen tasas. Nuestros honorarios varían según la complejidad: recursos sencillos desde 300€, inspecciones desde 1.500€. Ofrecemos presupuestos personalizados tras analizar el caso.",
-        "category": "honorarios"
-      },
-      {
-        "question": "¿Pueden embargarme si debo dinero a Hacienda?",
-        "answer": "Sí, Hacienda puede embargar cuentas, nóminas, inmuebles y otros bienes. Pero existen mínimos inembargables y procedimientos para suspender embargos si presentas garantías o recursos en plazo.",
-        "category": "embargos"
-      }
-    ],
-    "cta": {
-      "title": "¿Tienes problemas con Hacienda?",
-      "description": "No te enfrentes solo a la administración tributaria. Nuestros especialistas fiscales analizarán tu situación y diseñarán la mejor estrategia de defensa para proteger tu patrimonio.",
-      "primaryButton": {
-        "text": "Consulta Urgente",
-        "action": "contact"
-      },
-      "secondaryButton": {
-        "text": "Llamar Ahora",
-        "action": "phone",
-        "value": "+34691818071"
-      }
+  "id": "derecho-fiscal",
+  "title": "Derecho Fiscal",
+  "subtitle": "Recursos ante Hacienda y planificación fiscal",
+  "heroDescription": "Defendemos tus derechos frente a Hacienda. Especialistas en recursos fiscales, inspecciones, sanciones tributarias y planificación fiscal. Tu escudo legal contra la administración tributaria.",
+  "introduction": "El derecho fiscal regula las relaciones entre los contribuyentes y la administración tributaria. En LHC Legal & Consulting, protegemos tus intereses económicos frente a Hacienda con estrategias jurídicas especializadas y conocimiento profundo de la normativa tributaria.",
+  "contentSections": [
+    {
+      "title": "¿Qué es el Derecho Fiscal?",
+      "content": "<p>El derecho fiscal o tributario es la rama jurídica que regula el ejercicio del poder tributario del Estado, estableciendo los tributos, su aplicación y los procedimientos para su gestión, liquidación, recaudación e inspección.</p><p>Nuestro equipo de especialistas en derecho fiscal cuenta con formación especializada defendiendo contribuyentes ante la Agencia Tributaria, tanto en procedimientos de gestión como de inspección y recaudación.</p>",
+      "order": 1
     },
-    "seo": {
-      "metaTitle": "Abogado Fiscal Madrid | Recursos Hacienda | LHC Legal",
-      "metaDescription": "Especialistas en derecho fiscal Madrid. Recursos ante Hacienda, inspecciones fiscales, sanciones tributarias. 75% casos ganados. Planificación fiscal legal. Consulta gratuita.",
-      "keywords": [
-        "abogado fiscal madrid",
-        "recursos hacienda",
-        "inspeccion fiscal",
-        "sanciones tributarias",
-        "planificacion fiscal",
-        "abogado tributario madrid",
-        "recurso liquidacion hacienda",
-        "defensa fiscal",
-        "optimizacion fiscal",
-        "LHC Legal Madrid"
-      ],
-      "canonicalUrl": "https://lhclegal.es/areas/derecho-fiscal",
-      "ogImage": "https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749825385/derecho-fiscal-og_vwx234.webp",
-      "structuredData": {
-        "serviceType": "Derecho Fiscal",
-        "description": "Servicios especializados en derecho fiscal, recursos ante Hacienda y planificación tributaria",
-        "offers": [
-          {
-            "name": "Recurso ante Hacienda",
-            "description": "Recursos contra liquidaciones y sanciones tributarias",
-            "price": "300",
-            "priceCurrency": "EUR"
-          },
-          {
-            "name": "Defensa en Inspección",
-            "description": "Representación completa en inspecciones fiscales",
-            "price": "1500",
-            "priceCurrency": "EUR"
-          },
-          {
-            "name": "Consulta Legal Gratuita",
-            "description": "Primera consulta completamente gratuita",
-            "price": "0",
-            "priceCurrency": "EUR"
-          }
-        ]
-      }
+    {
+      "title": "Nuestra Estrategia Fiscal",
+      "content": "<p>En LHC Legal & Consulting aplicamos una defensa fiscal integral que combina conocimiento jurídico y planificación estratégica:</p><ul><li><strong>Análisis preventivo:</strong> Revisión de situaciones fiscales para evitar problemas futuros con Hacienda</li><li><strong>Defensa especializada:</strong> Recursos contra liquidaciones, sanciones e inspecciones con argumentación técnica sólida</li><li><strong>Planificación fiscal:</strong> Optimización de la carga tributaria dentro del marco legal vigente</li><li><strong>Representación integral:</strong> Acompañamiento completo en todos los procedimientos ante la administración tributaria</li></ul>",
+      "order": 2
+    }
+  ],
+  "subtopics": [
+    {
+      "title": "Recursos ante Hacienda",
+      "description": "Recursos contra liquidaciones, sanciones y resoluciones de la Agencia Tributaria",
+      "content": "Recurrimos todo tipo de actos administrativos de Hacienda: liquidaciones paralelas, sanciones tributarias, denegaciones de devoluciones y resoluciones de comprobación limitada.",
+      "icon": "scale"
     },
-    "stats": [
-      {
-        "title": "Casos Ganados",
-        "value": "75%",
-        "description": "Sanciones anuladas o reducidas",
-        "icon": "trophy"
-      },
-      {
-        "title": "Ahorrado",
-        "value": "800k€",
-        "description": "Ahorro fiscal conseguido para clientes",
-        "icon": "euro"
-      },
-      {
-        "title": "Experiencia",
-        "value": "12+",
-        "description": "Años especializados en derecho fiscal",
-        "icon": "star"
+    {
+      "title": "Inspecciones Fiscales",
+      "description": "Defensa y representación en procedimientos de inspección de Hacienda",
+      "content": "Te representamos durante todo el procedimiento inspector, desde la notificación inicial hasta la firma del acta, protegiendo tus derechos y minimizando las consecuencias económicas.",
+      "icon": "search"
+    },
+    {
+      "title": "Sanciones Tributarias",
+      "description": "Recursos contra multas y sanciones por infracciones tributarias",
+      "content": "Defendemos contra sanciones por presentación extemporánea, inexactitudes, resistencia a la actuación inspectora y cualquier tipo de infracción tributaria.",
+      "icon": "alert-triangle"
+    },
+    {
+      "title": "Planificación Fiscal",
+      "description": "Optimización legal de la carga tributaria para particulares y empresas",
+      "content": "Diseñamos estrategias fiscales legales para minimizar el impacto tributario en operaciones empresariales, transmisiones patrimoniales y planificación sucesoria.",
+      "icon": "calculator"
+    },
+    {
+      "title": "IRPF y Patrimonio",
+      "description": "Asesoramiento en IRPF, Impuesto de Patrimonio y planificación de rentas",
+      "content": "Optimizamos la tributación de personas físicas: IRPF, Patrimonio, Sucesiones y Donaciones, con especial atención a rentas inmobiliarias y ganancias patrimoniales.",
+      "icon": "home"
+    },
+    {
+      "title": "IVA e Impuesto de Sociedades",
+      "description": "Gestión fiscal empresarial, IVA, Sociedades y otros tributos empresariales",
+      "content": "Asesoramiento integral en tributación empresarial: Impuesto de Sociedades, IVA, retenciones, obligaciones formales y beneficios fiscales para empresas.",
+      "icon": "building"
+    }
+  ],
+  "otherServices": [
+    {
+      "title": "Procedimientos de comprobación limitada",
+      "content": "Defensa ante requerimientos de información y comprobaciones parciales de Hacienda en IRPF e IVA."
+    },
+    {
+      "title": "Aplazamientos y fraccionamientos",
+      "content": "Solicitud de aplazamientos y fraccionamientos de deudas tributarias con garantías adecuadas."
+    },
+    {
+      "title": "Suspensión de actos administrativos",
+      "content": "Solicitud de suspensión cautelar de liquidaciones y sanciones mediante prestación de garantías."
+    },
+    {
+      "title": "Reclamaciones económico-administrativas",
+      "content": "Recursos ante tribunales económico-administrativos regionales y central contra resoluciones de Hacienda."
+    },
+    {
+      "title": "Impuesto de Sucesiones y Donaciones",
+      "content": "Planificación sucesoria, aplicación de beneficios fiscales y recursos contra valoraciones excesivas."
+    },
+    {
+      "title": "Impuesto de Transmisiones Patrimoniales",
+      "content": "Gestión fiscal de transmisiones inmobiliarias, operaciones societarias y actos jurídicos documentados."
+    },
+    {
+      "title": "Procedimientos de recaudación",
+      "content": "Defensa ante embargos, subastas públicas y procedimientos ejecutivos de recaudación."
+    },
+    {
+      "title": "Delitos contra la Hacienda Pública",
+      "content": "Coordinación con defensa penal en casos de presunto delito fiscal y regularización voluntaria."
+    },
+    {
+      "title": "Fiscalidad internacional",
+      "content": "Asesoramiento en obligaciones tributarias de residentes fiscales con rentas en el extranjero."
+    },
+    {
+      "title": "Beneficios fiscales",
+      "content": "Aplicación de deducciones, exenciones y beneficios fiscales en actividades económicas y inversiones."
+    },
+    {
+      "title": "Auditoría fiscal preventiva",
+      "content": "Revisión integral de la situación fiscal para detectar riesgos y oportunidades de mejora."
+    },
+    {
+      "title": "Reestructuraciones empresariales",
+      "content": "Planificación fiscal de fusiones, escisiones, transformaciones y otras operaciones societarias."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Cuánto tiempo tengo para recurrir una liquidación de Hacienda?",
+      "answer": "Tienes 1 mes para presentar recurso de reposición contra liquidaciones tributarias. Si es denegado o no se resuelve en 1 mes, puedes presentar reclamación económico-administrativa en 15 días adicionales."
+    },
+    {
+      "question": "¿Puedo suspender el pago mientras recurro una sanción de Hacienda?",
+      "answer": "Sí, puedes solicitar la suspensión del ingreso prestando garantía (aval bancario, depósito o hipoteca) por el 100% de la deuda más un 25% adicional por intereses y recargos."
+    },
+    {
+      "question": "¿Qué pasa si Hacienda me inspecciona?",
+      "answer": "La inspección es un procedimiento complejo donde tus derechos deben ser respetados. Es fundamental tener representación letrada desde el inicio para evitar errores que pueden costarte miles de euros."
+    },
+    {
+      "question": "¿Puedo reducir legalmente mis impuestos?",
+      "answer": "Sí, mediante planificación fiscal legal puedes optimizar tu carga tributaria. Analizamos tu situación para aplicar deducciones, exenciones y estructuras fiscales que reduzcan el impacto tributario."
+    },
+    {
+      "question": "¿Pueden embargarme si debo dinero a Hacienda?",
+      "answer": "Sí, Hacienda puede embargar cuentas, nóminas, inmuebles y otros bienes. Pero existen mínimos inembargables y procedimientos para suspender embargos si presentas garantías o recursos en plazo."
+    },
+    {
+      "question": "¿Qué hacer si recibo un requerimiento de Hacienda?",
+      "answer": "No ignores nunca un requerimiento de Hacienda. Tienes plazos muy estrictos para responder. Contacta inmediatamente con nosotros para analizar el requerimiento y preparar la respuesta adecuada."
+    }
+  ],
+  "cta": {
+    "title": "¿Tienes problemas con Hacienda?",
+    "description": "No te enfrentes solo a la administración tributaria. Nuestros especialistas fiscales analizarán tu situación y diseñarán la mejor estrategia de defensa para proteger tu patrimonio."
+  },
+  "seo": {
+    "metaTitle": "Abogado Fiscal Madrid | Recursos Hacienda | LHC Legal",
+    "metaDescription": "Especialistas en derecho fiscal Madrid. Recursos ante Hacienda, inspecciones fiscales, sanciones tributarias. Planificación fiscal legal. Consulta gratuita.",
+    "keywords": [
+      "abogado fiscal madrid",
+      "recursos hacienda",
+      "inspeccion fiscal",
+      "sanciones tributarias",
+      "planificacion fiscal",
+      "abogado tributario madrid",
+      "recurso liquidacion hacienda",
+      "defensa fiscal",
+      "optimizacion fiscal",
+      "LHC Legal Madrid"
+    ],
+    "canonicalUrl": "https://lhclegal.es/areas/derecho-fiscal",
+    "ogImage": "https://res.cloudinary.com/lhclegal/image/upload/v1/og-images/derecho-fiscal.webp",
+    "structuredData": {
+      "serviceType": "Derecho Fiscal",
+      "description": "Servicios especializados en derecho fiscal, recursos ante Hacienda y planificación tributaria",
+      "areaServed": "Madrid, España",
+      "provider": {
+        "name": "LHC Legal & Consulting",
+        "url": "https://lhclegal.es",
+        "telephone": "+34691818071"
       }
-    ],
-    "relatedAreas": [
-      "derecho-administrativo",
-      "derecho-mercantil",
-      "derecho-civil"
-    ],
-    "lastUpdated": "2025-01-16",
-    "displayConfig": {
-      "showStats": true,
-      "showRelatedAreas": true,
-      "subtopicsLayout": "grid",
-      "faqsLayout": "accordion"
     }
   }
+}

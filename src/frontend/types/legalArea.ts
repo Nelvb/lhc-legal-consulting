@@ -2,8 +2,8 @@
  * types/legalArea.ts
  *
  * Tipado TypeScript para la estructura de datos de áreas legales.
+ * ACTUALIZADO: Añadida interfaz OtherService y propiedad otherServices
  * Define la interface unificada para todos los JSON de áreas legales.
- * Incluye campos obligatorios, opcionales y estructura para SEO.
  */
 
 // Subtema dentro de un área legal
@@ -14,6 +14,12 @@ export interface LegalSubtopic {
     slug?: string; // Solo requerido si hasPage es true
     content?: string; // Contenido adicional si no tiene página propia
     icon?: string; // Icono opcional para el subtema
+}
+
+// ✅ NUEVA INTERFAZ: Servicios complementarios
+export interface OtherService {
+    title: string;
+    content: string;
 }
 
 // FAQ específica de un área legal
@@ -44,11 +50,17 @@ export interface LegalAreaSEO {
     metaTitle: string;
     metaDescription: string;
     keywords: string[];
-    canonicalUrl: string;
+    canonicalUrl?: string; // ✅ CAMBIADO: Opcional porque puede ser placeholder
     ogImage?: string;
     structuredData?: {
         serviceType: string;
         description: string;
+        areaServed?: string; // ✅ AÑADIDO
+        provider?: { // ✅ AÑADIDO
+            name: string;
+            url: string;
+            telephone?: string;
+        };
         offers?: Array<{
             name: string;
             description: string;
@@ -84,32 +96,25 @@ export interface LegalAreaData {
 
     // Contenido principal
     introduction: string; // Texto introductorio después del hero
-    contentSections: ContentSection[]; // Secciones de contenido organizadas
-
+    contentSections?: ContentSection[]; // ✅ CAMBIADO: Opcional
+    
     // Subtemas y servicios
-    subtopics: LegalSubtopic[];
+    subtopics?: LegalSubtopic[]; // ✅ CAMBIADO: Opcional
+    
+    // ✅ NUEVA PROPIEDAD: Servicios complementarios
+    otherServices?: OtherService[];
 
     // Preguntas frecuentes
-    faqs: LegalFAQ[];
+    faqs?: LegalFAQ[]; // ✅ CAMBIADO: Opcional
 
     // Call to Action específica
-    cta: LegalAreaCTA;
+    cta?: LegalAreaCTA; // ✅ CAMBIADO: Opcional
 
     // SEO y metadata
     seo: LegalAreaSEO;
 
-    // Campos opcionales
-    stats?: LegalAreaStats[]; // Estadísticas del área
-    relatedAreas?: string[]; // IDs de áreas relacionadas
-    lastUpdated: string; // Fecha de última actualización
-
-    // Configuración de visualización
-    displayConfig?: {
-        showStats: boolean;
-        showRelatedAreas: boolean;
-        subtopicsLayout: 'grid' | 'list';
-        faqsLayout: 'accordion' | 'cards';
-    };
+    // ✅ CAMPOS ELIMINADOS (no se usan):
+    // stats, relatedAreas, lastUpdated, displayConfig
 }
 
 // Props para componentes que usan datos de área legal
@@ -141,4 +146,22 @@ export interface LegalAreaValidation {
     isValid: boolean;
     errors: string[];
     warnings: string[];
+}
+
+// Props del componente LegalCTA
+export interface LegalCTAProps {
+    title: string;
+    description: string;
+    primaryButton: {
+        text: string;
+        action: 'contact' | 'phone' | 'whatsapp' | 'form';
+        value?: string;
+    };
+    secondaryButton?: {
+        text: string;
+        action: 'contact' | 'phone' | 'whatsapp' | 'form';
+        value?: string;
+    };
+    accentColor: string;
+    hoverColor: string;
 }

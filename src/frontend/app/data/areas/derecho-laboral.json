@@ -1,190 +1,165 @@
 {
-    "id": "derecho-laboral",
-    "title": "Derecho Laboral",
-    "subtitle": "Despidos, reclamaciones salariales y contratos de trabajo",
-    "heroDescription": "Defendemos tus derechos como trabajador. Especialistas en despidos improcedentes, reclamaciones salariales, ERTEs y modificaciones sustanciales. Tu trabajo merece la mejor defensa legal.",
-    "introduction": "El derecho laboral protege los derechos fundamentales de trabajadores y autónomos. En LHC Legal & Consulting, contamos con amplia experiencia defendiendo a trabajadores en toda España frente a situaciones laborales injustas.",
-    "contentSections": [
-      {
-        "title": "¿Qué es el Derecho Laboral?",
-        "content": "<p>El derecho laboral regula las relaciones entre empleadores y trabajadores, estableciendo los derechos y obligaciones de ambas partes. Abarca desde la contratación hasta la extinción del contrato, pasando por condiciones de trabajo, salarios y medidas disciplinarias.</p><p>Nuestro despacho se especializa en la defensa de trabajadores por cuenta ajena y autónomos, con especial experiencia en despidos improcedentes, reclamaciones de cantidad y modificaciones sustanciales de condiciones de trabajo.</p>",
-        "order": 1,
-        "type": "text"
-      },
-      {
-        "title": "Nuestros Servicios Laborales",
-        "content": "<p>Ofrecemos una defensa integral que cubre todas las fases del conflicto laboral, desde la negociación previa hasta la ejecución de sentencias favorables:</p><ul><li><strong>Asesoramiento preventivo:</strong> Análisis de contratos y situaciones laborales antes de que se conviertan en conflictos</li><li><strong>Defensa especializada:</strong> Representación en juicios laborales con estrategias probatorias efectivas</li><li><strong>Negociación avanzada:</strong> Mediación y conciliación para lograr acuerdos beneficiosos sin llegar a juicio</li><li><strong>Ejecución de sentencias:</strong> Seguimiento completo hasta el cobro efectivo de las indemnizaciones</li></ul>",
-        "order": 2,
-        "type": "list"
-      },
-      {
-        "title": "Casos de Éxito y Especialización",
-        "content": "<p>Con más de 15 años de experiencia, hemos conseguido recuperar para nuestros clientes millones de euros en indemnizaciones y salarios impagados. Nos especializamos especialmente en casos complejos de despidos colectivos, ERTEs fraudulentos y discriminación laboral.</p>",
-        "order": 3,
-        "type": "text"
-      }
-    ],
-    "subtopics": [
-      {
-        "title": "Despidos Improcedentes",
-        "description": "Defensa integral en despidos objetivos, disciplinarios y colectivos con máxima indemnización",
-        "hasPage": false,
-        "content": "Analizamos la procedencia del despido, vicios en el procedimiento y calculamos la indemnización máxima que te corresponde. Experiencia en despidos por causas económicas, técnicas y organizativas.",
-        "icon": "user-x"
-      },
-      {
-        "title": "Reclamaciones de Cantidad",
-        "description": "Recuperación de salarios impagados, horas extras, pagas extraordinarias y finiquitos",
-        "hasPage": false,
-        "content": "Reclamamos todo tipo de conceptos salariales: salarios base, complementos, horas extraordinarias, pagas extras, vacaciones no disfrutadas y conceptos del finiquito.",
-        "icon": "euro"
-      },
-      {
-        "title": "Modificaciones Sustanciales",
-        "description": "Defensa ante cambios unilaterales de horario, funciones, salario o lugar de trabajo",
-        "hasPage": false,
-        "content": "Impugnamos modificaciones sustanciales que perjudiquen tus condiciones laborales, incluyendo cambios de turno, reducción salarial y traslados no consentidos.",
-        "icon": "settings"
-      },
-      {
-        "title": "Acoso Laboral y Mobbing",
-        "description": "Especialistas en casos de acoso psicológico, discriminación y ambiente laboral tóxico",
-        "hasPage": false,
-        "content": "Defendemos víctimas de acoso laboral, mobbing, discriminación por género, edad o cualquier otra causa. Estrategias probatorias específicas para estos casos tan delicados.",
-        "icon": "shield-alert"
-      },
-      {
-        "title": "Bajas Médicas y Incapacidades",
-        "description": "Gestión de bajas laborales, incapacidades temporales y permanentes",
-        "hasPage": false,
-        "content": "Asesoramiento integral en bajas médicas, conflictos con mutuas, incapacidades permanentes y recursos ante la Seguridad Social por prestaciones denegadas.",
-        "icon": "heart-pulse"
-      },
-      {
-        "title": "Contratos y Convenios",
-        "description": "Revisión de contratos laborales, convenios colectivos y condiciones de trabajo",
-        "hasPage": false,
-        "content": "Análisis y negociación de contratos de trabajo, aplicación de convenios colectivos, clasificación profesional y condiciones salariales.",
-        "icon": "file-text"
-      }
-    ],
-    "faqs": [
-      {
-        "question": "¿Cuánto tiempo tengo para reclamar un despido improcedente?",
-        "answer": "Tienes 20 días hábiles desde la fecha de despido para interponer demanda por despido. Pasado este plazo, solo podrás reclamar cantidades adeudadas pero no la improcedencia del despido.",
-        "category": "despidos"
-      },
-      {
-        "question": "¿Qué indemnización me corresponde por despido improcedente?",
-        "answer": "En despido improcedente, la indemnización es de 33 días de salario por año trabajado, con un máximo de 24 mensualidades. Si el contrato es anterior a 2012, pueden aplicarse condiciones más favorables.",
-        "category": "despidos"
-      },
-      {
-        "question": "¿Puedo reclamar si llevo menos de un año en la empresa?",
-        "answer": "Sí, puedes reclamar independientemente del tiempo trabajado. Incluso con contratos de menos de un año puedes reclamar despido improcedente, cantidades adeudadas y otros conceptos laborales.",
-        "category": "reclamaciones"
-      },
-      {
-        "question": "¿Qué hacer si mi empresa no me paga las nóminas?",
-        "answer": "Puedes reclamar inmediatamente los salarios adeudados y, si la situación se prolonga, solicitar la extinción del contrato con derecho a indemnización por incumplimiento empresarial.",
-        "category": "reclamaciones"
-      },
-      {
-        "question": "¿Cuánto cuesta un abogado laboralista?",
-        "answer": "Trabajamos principalmente con pacto de cuota litis (solo cobramos si ganamos). En caso de victoria, nuestros honorarios oscilan entre el 15-25% de lo recuperado, según la complejidad del caso.",
-        "category": "honorarios"
-      },
-      {
-        "question": "¿Puedo reclamar si firmé la baja voluntaria?",
-        "answer": "Depende de las circunstancias. Si firmaste bajo presión, engaño o coacción, podemos impugnar esa baja voluntaria y convertirla en despido improcedente con derecho a indemnización.",
-        "category": "despidos"
-      }
-    ],
-    "cta": {
-      "title": "¿Tu empresa vulnera tus derechos laborales?",
-      "description": "No permitas que pisotean tus derechos. Nuestros especialistas laborales analizarán tu caso sin coste y te ofrecerán la mejor estrategia de defensa.",
-      "primaryButton": {
-        "text": "Consulta Gratuita",
-        "action": "contact"
-      },
-      "secondaryButton": {
-        "text": "WhatsApp Directo",
-        "action": "whatsapp",
-        "value": "+34691818071"
-      }
+  "id": "derecho-laboral",
+  "title": "Derecho Laboral",
+  "subtitle": "Despidos, reclamaciones salariales y contratos de trabajo",
+  "heroDescription": "Defendemos tus derechos como trabajador. Especialistas en despidos improcedentes, reclamaciones salariales, ERTEs y modificaciones sustanciales. Tu trabajo merece la mejor defensa legal.",
+  "introduction": "El derecho laboral protege los derechos fundamentales de trabajadores y autónomos. En LHC Legal & Consulting, contamos con amplia experiencia defendiendo a trabajadores en toda España frente a situaciones laborales injustas.",
+  "contentSections": [
+    {
+      "title": "¿Qué es el Derecho Laboral?",
+      "content": "<p>El derecho laboral regula las relaciones entre empleadores y trabajadores, estableciendo los derechos y obligaciones de ambas partes. Abarca desde la contratación hasta la extinción del contrato, pasando por condiciones de trabajo, salarios y medidas disciplinarias.</p><p>Nuestro despacho se especializa en la defensa de trabajadores por cuenta ajena y autónomos, con especial experiencia en despidos improcedentes, reclamaciones de cantidad y modificaciones sustanciales de condiciones de trabajo.</p>",
+      "order": 1
     },
-    "seo": {
-      "metaTitle": "Abogado Laboralista Madrid | Despidos Improcedentes | LHC Legal",
-      "metaDescription": "Especialistas en derecho laboral Madrid. Defendemos despidos improcedentes, reclamaciones salariales y contratos. 85% casos ganados. Consulta gratuita.",
-      "keywords": [
-        "abogado laboralista madrid",
-        "despido improcedente",
-        "reclamación cantidad laboral",
-        "abogado laboral madrid",
-        "demanda laboral",
-        "indemnización despido",
-        "acoso laboral mobbing",
-        "modificación sustancial",
-        "reclamar finiquito",
-        "LHC Legal Madrid"
-      ],
-      "canonicalUrl": "https://lhclegal.es/areas/derecho-laboral",
-      "ogImage": "https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749825385/derecho-laboral-og_def456.webp",
-      "structuredData": {
-        "serviceType": "Derecho Laboral",
-        "description": "Servicios especializados en derecho laboral, despidos y reclamaciones salariales",
-        "offers": [
-          {
-            "name": "Despido Improcedente",
-            "description": "Defensa completa en casos de despido improcedente",
-            "price": "0",
-            "priceCurrency": "EUR"
-          },
-          {
-            "name": "Reclamación de Cantidad",
-            "description": "Recuperación de salarios y conceptos adeudados",
-            "price": "0",
-            "priceCurrency": "EUR"
-          },
-          {
-            "name": "Consulta Legal Gratuita",
-            "description": "Primera consulta completamente gratuita",
-            "price": "0",
-            "priceCurrency": "EUR"
-          }
-        ]
-      }
+    {
+      "title": "Nuestros Servicios Laborales",
+      "content": "<p>Ofrecemos una defensa integral que cubre todas las fases del conflicto laboral, desde la negociación previa hasta la ejecución de sentencias favorables:</p><ul><li><strong>Asesoramiento preventivo:</strong> Análisis de contratos y situaciones laborales antes de que se conviertan en conflictos</li><li><strong>Defensa especializada:</strong> Representación en juicios laborales con estrategias probatorias efectivas</li><li><strong>Negociación avanzada:</strong> Mediación y conciliación para lograr acuerdos beneficiosos sin llegar a juicio</li><li><strong>Ejecución de sentencias:</strong> Seguimiento completo hasta el cobro efectivo de las indemnizaciones</li></ul>",
+      "order": 2
+    }
+  ],
+  "subtopics": [
+    {
+      "title": "Despidos Improcedentes",
+      "description": "Defensa integral en despidos objetivos, disciplinarios y colectivos con máxima indemnización",
+      "content": "Analizamos la procedencia del despido, vicios en el procedimiento y calculamos la indemnización máxima que te corresponde. Experiencia en despidos por causas económicas, técnicas y organizativas.",
+      "icon": "user-x"
     },
-    "stats": [
-      {
-        "title": "Casos Ganados",
-        "value": "85%",
-        "description": "Porcentaje de éxito en demandas laborales",
-        "icon": "trophy"
-      },
-      {
-        "title": "Recuperado",
-        "value": "2.5M€",
-        "description": "Cantidad recuperada para clientes en 2024",
-        "icon": "euro"
-      },
-      {
-        "title": "Experiencia",
-        "value": "15+",
-        "description": "Años especializados en derecho laboral",
-        "icon": "star"
+    {
+      "title": "Reclamaciones de Cantidad",
+      "description": "Recuperación de salarios impagados, horas extras, pagas extraordinarias y finiquitos",
+      "content": "Reclamamos todo tipo de conceptos salariales: salarios base, complementos, horas extraordinarias, pagas extras, vacaciones no disfrutadas y conceptos del finiquito.",
+      "icon": "euro"
+    },
+    {
+      "title": "Modificaciones Sustanciales",
+      "description": "Defensa ante cambios unilaterales de horario, funciones, salario o lugar de trabajo",
+      "content": "Impugnamos modificaciones sustanciales que perjudiquen tus condiciones laborales, incluyendo cambios de turno, reducción salarial y traslados no consentidos.",
+      "icon": "settings"
+    },
+    {
+      "title": "Acoso Laboral y Mobbing",
+      "description": "Especialistas en casos de acoso psicológico, discriminación y ambiente laboral tóxico",
+      "content": "Defendemos víctimas de acoso laboral, mobbing, discriminación por género, edad o cualquier otra causa. Estrategias probatorias específicas para estos casos tan delicados.",
+      "icon": "shield-alert"
+    },
+    {
+      "title": "Bajas Médicas y Incapacidades",
+      "description": "Gestión de bajas laborales, incapacidades temporales y permanentes",
+      "content": "Asesoramiento integral en bajas médicas, conflictos con mutuas, incapacidades permanentes y recursos ante la Seguridad Social por prestaciones denegadas.",
+      "icon": "heart-pulse"
+    },
+    {
+      "title": "Contratos y Convenios",
+      "description": "Revisión de contratos laborales, convenios colectivos y condiciones de trabajo",
+      "content": "Análisis y negociación de contratos de trabajo, aplicación de convenios colectivos, clasificación profesional y condiciones salariales.",
+      "icon": "file-text"
+    }
+  ],
+  "otherServices": [
+    {
+      "title": "ERTEs y suspensiones de empleo",
+      "content": "Impugnación de ERTEs improcedentes, defensa de trabajadores afectados y reclamación de prestaciones."
+    },
+    {
+      "title": "Despidos colectivos",
+      "content": "Representación en expedientes de regulación de empleo, negociación de condiciones y recursos judiciales."
+    },
+    {
+      "title": "Extinción del contrato por incumplimiento empresarial",
+      "content": "Resolución del contrato con derecho a indemnización por incumplimientos graves de la empresa."
+    },
+    {
+      "title": "Clasificación profesional",
+      "content": "Reclamación de categoría profesional superior, reclasificación y diferencias salariales correspondientes."
+    },
+    {
+      "title": "Tiempo de trabajo",
+      "content": "Reclamación por exceso de jornada, descansos no respetados, vacaciones y permisos denegados."
+    },
+    {
+      "title": "Seguridad y salud laboral",
+      "content": "Reclamaciones por accidentes laborales, enfermedades profesionales y incumplimiento de medidas preventivas."
+    },
+    {
+      "title": "Prestaciones de la Seguridad Social",
+      "content": "Recursos ante denegaciones de pensiones, subsidios por desempleo y otras prestaciones sociales."
+    },
+    {
+      "title": "Conciliación de la vida familiar",
+      "content": "Defensa del derecho a reducciones de jornada, excedencias y permisos por motivos familiares."
+    },
+    {
+      "title": "Trabajadores temporales",
+      "content": "Reclamación de derechos de trabajadores con contratos temporales, fraude de ley y conversión en indefinidos."
+    },
+    {
+      "title": "Representación sindical",
+      "content": "Asesoramiento a delegados de personal, comités de empresa y representantes sindicales."
+    },
+    {
+      "title": "Conflictos colectivos",
+      "content": "Participación en conflictos colectivos, huelgas y negociación de convenios colectivos."
+    },
+    {
+      "title": "Tribunales laborales",
+      "content": "Representación completa en Juzgados de lo Social, Tribunales Superiores de Justicia y Tribunal Supremo."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Cuánto tiempo tengo para reclamar un despido improcedente?",
+      "answer": "Tienes 20 días hábiles desde la fecha de despido para interponer demanda por despido. Pasado este plazo, solo podrás reclamar cantidades adeudadas pero no la improcedencia del despido."
+    },
+    {
+      "question": "¿Qué indemnización me corresponde por despido improcedente?",
+      "answer": "En despido improcedente, la indemnización es de 33 días de salario por año trabajado, con un máximo de 24 mensualidades. Si el contrato es anterior a 2012, pueden aplicarse condiciones más favorables."
+    },
+    {
+      "question": "¿Puedo reclamar si llevo menos de un año en la empresa?",
+      "answer": "Sí, puedes reclamar independientemente del tiempo trabajado. Incluso con contratos de menos de un año puedes reclamar despido improcedente, cantidades adeudadas y otros conceptos laborales."
+    },
+    {
+      "question": "¿Qué hacer si mi empresa no me paga las nóminas?",
+      "answer": "Puedes reclamar inmediatamente los salarios adeudados y, si la situación se prolonga, solicitar la extinción del contrato con derecho a indemnización por incumplimiento empresarial."
+    },
+    {
+      "question": "¿Puedo reclamar si firmé la baja voluntaria?",
+      "answer": "Depende de las circunstancias. Si firmaste bajo presión, engaño o coacción, podemos impugnar esa baja voluntaria y convertirla en despido improcedente con derecho a indemnización."
+    },
+    {
+      "question": "¿Qué hacer si sufro acoso laboral?",
+      "answer": "Es fundamental documentar todas las situaciones de acoso, buscar testigos y comunicarlo por escrito a la empresa. Te ayudamos a recopilar pruebas y a reclamar tanto la cesación del acoso como una indemnización."
+    }
+  ],
+  "cta": {
+    "title": "¿Tu empresa vulnera tus derechos laborales?",
+    "description": "No permitas que pisotean tus derechos. Nuestros especialistas laborales analizarán tu caso sin coste y te ofrecerán la mejor estrategia de defensa."
+  },
+  "seo": {
+    "metaTitle": "Abogado Laboralista Madrid | Despidos Improcedentes | LHC Legal",
+    "metaDescription": "Especialistas en derecho laboral Madrid. Defendemos despidos improcedentes, reclamaciones salariales y contratos. Defensa integral de trabajadores. Consulta gratuita.",
+    "keywords": [
+      "abogado laboralista madrid",
+      "despido improcedente",
+      "reclamación cantidad laboral",
+      "abogado laboral madrid",
+      "demanda laboral",
+      "indemnización despido",
+      "acoso laboral mobbing",
+      "modificación sustancial",
+      "reclamar finiquito",
+      "LHC Legal Madrid"
+    ],
+    "canonicalUrl": "https://lhclegal.es/areas/derecho-laboral",
+    "ogImage": "https://res.cloudinary.com/lhclegal/image/upload/v1/og-images/derecho-laboral.webp",
+    "structuredData": {
+      "serviceType": "Derecho Laboral",
+      "description": "Servicios especializados en derecho laboral, despidos y reclamaciones salariales",
+      "areaServed": "Madrid, España",
+      "provider": {
+        "name": "LHC Legal & Consulting",
+        "url": "https://lhclegal.es",
+        "telephone": "+34691818071"
       }
-    ],
-    "relatedAreas": [
-      "derecho-civil",
-      "derecho-administrativo",
-      "derecho-penal"
-    ],
-    "lastUpdated": "2025-01-16",
-    "displayConfig": {
-      "showStats": true,
-      "showRelatedAreas": true,
-      "subtopicsLayout": "grid",
-      "faqsLayout": "accordion"
     }
   }
+}

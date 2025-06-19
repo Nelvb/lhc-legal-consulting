@@ -1,0 +1,97 @@
+{
+  "category": "Derecho Bancario",
+  "title": "Preguntas Frecuentes - Derecho Bancario",
+  "description": "Todo lo que necesitas saber sobre reclamaciones bancarias, cláusulas abusivas, productos financieros y tus derechos como cliente bancario",
+  "questions": [
+    {
+      "question": "¿Cómo sé si mi préstamo tiene cláusulas abusivas?",
+      "answer": "Las cláusulas abusivas suelen estar en letra pequeña, no han sido negociadas individualmente, causan desequilibrio entre derechos y obligaciones, o no están explicadas de forma clara y comprensible."
+    },
+    {
+      "question": "¿Qué diferencia hay entre TAE y TIN en un préstamo?",
+      "answer": "El TIN es el tipo de interés nominal que cobra el banco. El TAE incluye el TIN más todas las comisiones y gastos, reflejando el coste real total del préstamo."
+    },
+    {
+      "question": "¿Puedo cancelar un seguro vinculado a mi hipoteca?",
+      "answer": "Los seguros de vida e incendios son obligatorios para la hipoteca, pero puedes cambiar de aseguradora. Otros seguros adicionales pueden cancelarse si no son obligatorios por ley."
+    },
+    {
+      "question": "¿Qué es el derecho de desistimiento en productos financieros?",
+      "answer": "Tienes 14 días naturales para desistir de contratos de productos financieros sin penalización. Este derecho no aplica a créditos garantizados con hipoteca sobre inmuebles."
+    },
+    {
+      "question": "¿Cuándo puede un banco embargar mi cuenta?",
+      "answer": "Solo con una orden judicial o administrativa firme. El banco debe respetar el mínimo inembargable (SMI) y notificarte antes de proceder al embargo."
+    },
+    {
+      "question": "¿Qué es la subrogación hipotecaria?",
+      "answer": "Es el cambio de banco manteniendo las mismas condiciones de la hipoteca. Tienes derecho a subrogar tu hipoteca a otra entidad que ofrezca mejores condiciones."
+    },
+    {
+      "question": "¿Puedo reclamar comisiones bancarias ya pagadas?",
+      "answer": "Sí, puedes reclamar comisiones abusivas pagadas en los últimos 15 años, como comisiones por descubiertos desproporcionadas, mantenimiento de cuenta excesivos o devoluciones injustificadas."
+    },
+    {
+      "question": "¿Qué hacer si el banco me incluye en un fichero de morosos?",
+      "answer": "Puedes reclamar la exclusión si la deuda no es cierta, está pagada, prescrita o el banco no cumplió los requisitos de información previa establecidos por ley."
+    },
+    {
+      "question": "¿Cuándo prescribe una deuda bancaria?",
+      "answer": "Las deudas de préstamos personales prescriben a los 5 años, las hipotecarias a los 20 años, y las de tarjetas de crédito a los 5 años desde el último reconocimiento de deuda."
+    },
+    {
+      "question": "¿Qué es la novación modificativa de una hipoteca?",
+      "answer": "Es la modificación de condiciones de la hipoteca (plazo, tipo de interés, etc.) por acuerdo entre banco y cliente. Puede conllevar gastos que deben repartirse según la ley."
+    },
+    {
+      "question": "¿Puedo reclamar si mi banco vendió mis datos?",
+      "answer": "Sí, tienes derecho a la protección de datos. Si el banco cedió tus datos sin consentimiento o para fines distintos a los autorizados, puedes reclamar indemnización."
+    },
+    {
+      "question": "¿Qué es el coeficiente de caja en las hipotecas multidivisa?",
+      "answer": "Era un multiplicador que aplicaban algunos bancos en hipotecas multidivisa para calcular el capital. Su aplicación sin transparencia puede ser motivo de nulidad del contrato."
+    },
+    {
+      "question": "¿Cuándo puede considerarse usurario un préstamo?",
+      "answer": "Cuando el interés sea notablemente superior al normal del dinero y desproporcionado con las circunstancias del caso. No hay un porcentaje fijo, se analiza cada caso."
+    },
+    {
+      "question": "¿Qué es la comercialización cruzada de productos bancarios?",
+      "answer": "Es la venta conjunta de varios productos financieros. Es abusiva cuando se obliga a contratar productos no deseados para acceder al producto principal."
+    },
+    {
+      "question": "¿Puedo cambiar de banco manteniendo el número de cuenta?",
+      "answer": "No, cada banco tiene sus propios números de cuenta. Pero existe el servicio de movilidad bancaria que facilita el traslado de domiciliaciones a la nueva cuenta."
+    },
+    {
+      "question": "¿Qué derechos tengo como avalista de un préstamo?",
+      "answer": "Derecho a ser informado de impagos del deudor principal, a que se ejecute primero al deudor principal (beneficio de excusión), y a repetir contra el deudor lo que pagues."
+    },
+    {
+      "question": "¿Cuándo puede el banco rescindir unilateralmente un contrato?",
+      "answer": "Solo en los casos previstos en el contrato o por ley: incumplimiento grave del cliente, uso fraudulento, deterioro patrimonial significativo o decisión comercial justificada."
+    },
+    {
+      "question": "¿Qué es el testing bancario y cómo puede ayudarme?",
+      "answer": "Es el análisis pericial de contratos bancarios para detectar irregularidades. Incluye revisión de cálculos, identificación de cláusulas abusivas y cuantificación de perjuicios."
+    },
+    {
+      "question": "¿Puedo reclamar al banco por asesoramiento inadecuado?",
+      "answer": "Sí, los bancos tienen deber de asesoramiento e información. Si te vendieron productos inadecuados para tu perfil o sin informarte correctamente de riesgos, puedes reclamar."
+    },
+    {
+      "question": "¿Qué es la dación en pago y cuándo procede?",
+      "answer": "Es entregar la vivienda al banco para cancelar la deuda hipotecaria. No existe derecho legal, pero puede negociarse especialmente en situaciones de dificultad económica grave."
+    },
+    {
+      "question": "¿Cómo afecta el Brexit a mis productos bancarios en Reino Unido?",
+      "answer": "Los productos contratados antes del Brexit mantienen sus condiciones. Para nuevos productos, pueden aplicarse condiciones diferentes según las regulaciones post-Brexit de cada entidad."
+    },
+    {
+      "question": "¿Qué hacer si mi banco se fusiona con otro?",
+      "answer": "Tus contratos se mantienen con las mismas condiciones. Tienes derecho a información sobre cambios, y en algunos casos, derecho de desistimiento sin penalización."
+    }
+  ],
+  "lastUpdated": "2025-01-16",
+  "totalQuestions": 22
+}

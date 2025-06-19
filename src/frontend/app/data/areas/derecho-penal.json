@@ -1,190 +1,173 @@
 {
-    "id": "derecho-penal",
-    "title": "Derecho Penal",
-    "subtitle": "Defensa penal y juicios rápidos",
-    "heroDescription": "Si te acusan, tu defensa es nuestra prioridad. Especialistas en defensa penal con más de 500 casos defendidos. Asistencia al detenido 24h, juicios rápidos y procedimientos penales.",
-    "introduction": "El derecho penal protege tus derechos fundamentales cuando te enfrentas al poder punitivo del Estado. En LHC Legal & Consulting, defendemos con máximo rigor y profesionalidad a personas acusadas de cualquier tipo de delito.",
-    "contentSections": [
-      {
-        "title": "¿Qué es el Derecho Penal?",
-        "content": "<p>El derecho penal es la rama jurídica que establece los delitos, las penas y las medidas de seguridad aplicables a quienes los cometen. Su función principal es proteger los bienes jurídicos más importantes para la sociedad: la vida, la libertad, el patrimonio y la seguridad.</p><p>Nuestro equipo de penalistas cuenta con amplia experiencia en la defensa de todo tipo de procedimientos penales, desde delitos leves hasta causas complejas en Audiencia Provincial y Tribunal Superior de Justicia.</p>",
-        "order": 1,
-        "type": "text"
-      },
-      {
-        "title": "Nuestra Estrategia de Defensa",
-        "content": "<p>En LHC Legal & Consulting aplicamos una defensa técnica rigurosa y estratégica desde el primer momento:</p><ul><li><strong>Asistencia inmediata:</strong> Presencia en comisaría durante la detención para proteger tus derechos</li><li><strong>Análisis exhaustivo:</strong> Estudio detallado de la causa y búsqueda de todas las vías de defensa posibles</li><li><strong>Estrategia procesal:</strong> Planificación de la defensa según el tipo de procedimiento y tribunal competente</li><li><strong>Defensa integral:</strong> Acompañamiento completo hasta la resolución definitiva del caso</li></ul>",
-        "order": 2,
-        "type": "list"
-      },
-      {
-        "title": "Experiencia y Resultados",
-        "content": "<p>Con más de 500 casos penales defendidos, hemos conseguido absoluciones, sobreseimientos y reducciones significativas de pena en la mayoría de nuestros casos. Nuestra experiencia abarca desde delitos menores hasta casos complejos de delincuencia económica.</p>",
-        "order": 3,
-        "type": "text"
-      }
-    ],
-    "subtopics": [
-      {
-        "title": "Asistencia al Detenido",
-        "description": "Defensa inmediata 24h en comisaría, Guardia Civil y juzgados de guardia",
-        "hasPage": false,
-        "content": "Servicio de asistencia al detenido las 24 horas del día, todos los días del año. Presencia inmediata en comisaría para garantizar el cumplimiento de tus derechos constitucionales.",
-        "icon": "shield"
-      },
-      {
-        "title": "Violencia de Género",
-        "description": "Defensa especializada en procedimientos de violencia doméstica y de género",
-        "hasPage": false,
-        "content": "Defendemos tanto a víctimas como a investigados en procedimientos de violencia de género, con especial sensibilidad y conocimiento de la normativa específica.",
-        "icon": "heart-crack"
-      },
-      {
-        "title": "Delitos contra el Patrimonio",
-        "description": "Robos, hurtos, estafas, apropiación indebida y delitos económicos",
-        "hasPage": false,
-        "content": "Amplia experiencia en defensa de delitos patrimoniales: robos con fuerza, hurtos, estafas, apropiación indebida, alzamiento de bienes y delitos societarios.",
-        "icon": "banknote"
-      },
-      {
-        "title": "Delitos de Tráfico",
-        "description": "Conducción bajo influencia del alcohol, sin carnet y delitos contra la seguridad vial",
-        "hasPage": false,
-        "content": "Especialistas en delitos de tráfico: alcoholemias, conducción sin permiso, velocidad excesiva y negativa a las pruebas de detección de alcohol.",
-        "icon": "car"
-      },
-      {
-        "title": "Lesiones y Amenazas",
-        "description": "Defensa en delitos de lesiones, amenazas, coacciones y contra la integridad moral",
-        "hasPage": false,
-        "content": "Defendemos casos de lesiones leves y graves, amenazas, coacciones, injurias, calumnias y delitos contra la integridad moral.",
-        "icon": "user-x"
-      },
-      {
-        "title": "Recursos y Apelaciones",
-        "description": "Recursos de apelación, casación y revisión ante tribunales superiores",
-        "hasPage": false,
-        "content": "Tramitamos recursos contra sentencias penales ante Audiencias Provinciales, Tribunal Supremo y Tribunal Constitucional cuando proceda.",
-        "icon": "scale"
-      }
-    ],
-    "faqs": [
-      {
-        "question": "¿Qué debo hacer si me detienen?",
-        "answer": "Ejercita tu derecho a permanecer en silencio hasta que llegue tu abogado. No declares sin asistencia letrada. Contacta inmediatamente con nosotros para asistencia al detenido las 24 horas.",
-        "category": "detencion"
-      },
-      {
-        "question": "¿Cuándo es obligatorio tener abogado en un proceso penal?",
-        "answer": "Es obligatorio tener abogado en todos los procedimientos penales desde el momento de la imputación. También es recomendable tener defensa técnica desde la fase de investigación policial.",
-        "category": "defensa"
-      },
-      {
-        "question": "¿Qué diferencia hay entre delito y falta?",
-        "answer": "Desde 2015 no existen las faltas. Ahora tenemos delitos leves (antes faltas) y delitos graves. Los delitos leves se juzgan en Juzgado de Instrucción y los graves en Juzgado de lo Penal o Audiencia Provincial.",
-        "category": "tipos-delito"
-      },
-      {
-        "question": "¿Puedo conseguir una sentencia absolutoria?",
-        "answer": "Sí, la absolución es posible cuando no se acredita la culpabilidad o existen dudas razonables. Nuestro objetivo es siempre la absolución, y si no es posible, conseguir la pena mínima.",
-        "category": "sentencias"
-      },
-      {
-        "question": "¿Cuánto cuesta un abogado penalista?",
-        "answer": "Nuestros honorarios varían según la complejidad del caso. La asistencia al detenido tiene una tarifa fija. Para procedimientos completos ofrecemos presupuestos personalizados tras analizar el caso.",
-        "category": "honorarios"
-      },
-      {
-        "question": "¿Qué es la conformidad en un juicio penal?",
-        "answer": "La conformidad es un acuerdo con la acusación para evitar el juicio oral. Puede suponer reducción de pena, pero debe ser analizada cuidadosamente con tu abogado para valorar si conviene.",
-        "category": "conformidad"
-      }
-    ],
-    "cta": {
-      "title": "¿Te enfrentas a un procedimiento penal?",
-      "description": "Tu libertad y futuro están en juego. No arriesgues con una defensa inadecuada. Nuestros penalistas te ofrecerán la mejor estrategia de defensa desde el primer momento.",
-      "primaryButton": {
-        "text": "Emergencia 24h",
-        "action": "phone",
-        "value": "+34691818071"
-      },
-      "secondaryButton": {
-        "text": "Consulta Gratuita",
-        "action": "contact"
-      }
+  "id": "derecho-penal",
+  "title": "Derecho Penal",
+  "subtitle": "Defensa penal y juicios rápidos",
+  "heroDescription": "Si te acusan, tu defensa es nuestra prioridad. Especialistas en defensa penal con amplia experiencia en todo tipo de procedimientos. Asistencia al detenido 24h, juicios rápidos y procedimientos penales.",
+  "introduction": "El derecho penal protege tus derechos fundamentales cuando te enfrentas al poder punitivo del Estado. En LHC Legal & Consulting, defendemos con máximo rigor y profesionalidad a personas acusadas de cualquier tipo de delito.",
+  "contentSections": [
+    {
+      "title": "¿Qué es el Derecho Penal?",
+      "content": "<p>El derecho penal es la rama jurídica que establece los delitos, las penas y las medidas de seguridad aplicables a quienes los cometen. Su función principal es proteger los bienes jurídicos más importantes para la sociedad: la vida, la libertad, el patrimonio y la seguridad.</p><p>Nuestro equipo de penalistas cuenta con amplia experiencia en la defensa de todo tipo de procedimientos penales, desde delitos leves hasta causas complejas en Audiencia Provincial y Tribunal Superior de Justicia.</p>",
+      "order": 1
     },
-    "seo": {
-      "metaTitle": "Abogado Penalista Madrid | Defensa Penal 24h | LHC Legal",
-      "metaDescription": "Especialistas en defensa penal Madrid. Asistencia al detenido 24h, juicios rápidos, violencia de género. Más de 500 casos defendidos. Llamada inmediata.",
-      "keywords": [
-        "abogado penalista madrid",
-        "asistencia detenido 24h",
-        "defensa penal madrid",
-        "abogado juicio rapido",
-        "violencia genero defensa",
-        "delitos trafico madrid",
-        "lesiones amenazas abogado",
-        "estafa robo defensa",
-        "recurso sentencia penal",
-        "LHC Legal Madrid"
-      ],
-      "canonicalUrl": "https://lhclegal.es/areas/derecho-penal",
-      "ogImage": "https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749825385/derecho-penal-og_mno345.webp",
-      "structuredData": {
-        "serviceType": "Derecho Penal",
-        "description": "Servicios especializados en defensa penal y asistencia al detenido",
-        "offers": [
-          {
-            "name": "Asistencia al Detenido",
-            "description": "Defensa inmediata 24 horas en comisaría",
-            "price": "200",
-            "priceCurrency": "EUR"
-          },
-          {
-            "name": "Defensa en Juicio Rápido",
-            "description": "Defensa completa en procedimientos de juicio rápido",
-            "price": "400",
-            "priceCurrency": "EUR"
-          },
-          {
-            "name": "Consulta Legal Gratuita",
-            "description": "Primera consulta completamente gratuita",
-            "price": "0",
-            "priceCurrency": "EUR"
-          }
-        ]
-      }
+    {
+      "title": "Nuestra Estrategia de Defensa",
+      "content": "<p>En LHC Legal & Consulting aplicamos una defensa técnica rigurosa y estratégica desde el primer momento:</p><ul><li><strong>Asistencia inmediata:</strong> Presencia en comisaría durante la detención para proteger tus derechos</li><li><strong>Análisis exhaustivo:</strong> Estudio detallado de la causa y búsqueda de todas las vías de defensa posibles</li><li><strong>Estrategia procesal:</strong> Planificación de la defensa según el tipo de procedimiento y tribunal competente</li><li><strong>Defensa integral:</strong> Acompañamiento completo hasta la resolución definitiva del caso</li></ul>",
+      "order": 2
+    }
+  ],
+  "subtopics": [
+    {
+      "title": "Asistencia al Detenido",
+      "description": "Defensa inmediata 24h en comisaría, Guardia Civil y juzgados de guardia",
+      "content": "Servicio de asistencia al detenido las 24 horas del día, todos los días del año. Presencia inmediata en comisaría para garantizar el cumplimiento de tus derechos constitucionales.",
+      "icon": "shield"
     },
-    "stats": [
-      {
-        "title": "Casos Defendidos",
-        "value": "500+",
-        "description": "Procedimientos penales defendidos",
-        "icon": "shield"
-      },
-      {
-        "title": "Disponibilidad",
-        "value": "24/7",
-        "description": "Asistencia al detenido todos los días",
-        "icon": "clock"
-      },
-      {
-        "title": "Absoluciones",
-        "value": "65%",
-        "description": "Porcentaje de absoluciones conseguidas",
-        "icon": "trophy"
+    {
+      "title": "Violencia de Género",
+      "description": "Defensa especializada en procedimientos de violencia doméstica y de género",
+      "content": "Defendemos tanto a víctimas como a investigados en procedimientos de violencia de género, con especial sensibilidad y conocimiento de la normativa específica.",
+      "icon": "heart-crack"
+    },
+    {
+      "title": "Delitos contra el Patrimonio",
+      "description": "Robos, hurtos, estafas, apropiación indebida y delitos económicos",
+      "content": "Amplia experiencia en defensa de delitos patrimoniales: robos con fuerza, hurtos, estafas, apropiación indebida, alzamiento de bienes y delitos societarios.",
+      "icon": "banknote"
+    },
+    {
+      "title": "Delitos de Tráfico",
+      "description": "Conducción bajo influencia del alcohol, sin carnet y delitos contra la seguridad vial",
+      "content": "Especialistas en delitos de tráfico: alcoholemias, conducción sin permiso, velocidad excesiva y negativa a las pruebas de detección de alcohol.",
+      "icon": "car"
+    },
+    {
+      "title": "Lesiones y Amenazas",
+      "description": "Defensa en delitos de lesiones, amenazas, coacciones y contra la integridad moral",
+      "content": "Defendemos casos de lesiones leves y graves, amenazas, coacciones, injurias, calumnias y delitos contra la integridad moral.",
+      "icon": "user-x"
+    },
+    {
+      "title": "Recursos y Apelaciones",
+      "description": "Recursos de apelación, casación y revisión ante tribunales superiores",
+      "content": "Tramitamos recursos contra sentencias penales ante Audiencias Provinciales, Tribunal Supremo y Tribunal Constitucional cuando proceda.",
+      "icon": "scale"
+    }
+  ],
+  "otherServices": [
+    {
+      "title": "Delitos contra la salud pública",
+      "content": "Defensa en casos de tráfico de drogas, tanto en pequeñas cantidades como en organizaciones criminales."
+    },
+    {
+      "title": "Delitos económicos",
+      "content": "Especialización en delitos fiscales, blanqueo de capitales, estafa procesal y delitos societarios."
+    },
+    {
+      "title": "Delitos informáticos",
+      "content": "Defensa en casos de ciberdelincuencia, fraude informático, acceso ilícito a sistemas y pornografía infantil."
+    },
+    {
+      "title": "Delitos contra la libertad sexual",
+      "content": "Defensa técnica especializada en delitos de agresión y abuso sexual con máxima sensibilidad."
+    },
+    {
+      "title": "Delitos contra la Administración de Justicia",
+      "content": "Defensa en casos de falso testimonio, acusación y denuncia falsas, quebrantamiento de condena."
+    },
+    {
+      "title": "Delitos contra la Administración Pública",
+      "content": "Especialización en delitos de corrupción, prevaricación, malversación y tráfico de influencias."
+    },
+    {
+      "title": "Delitos contra el orden público",
+      "content": "Defensa en casos de desórdenes públicos, atentado contra la autoridad y tenencia ilícita de armas."
+    },
+    {
+      "title": "Delitos contra el honor",
+      "content": "Defensa y acusación en casos de injurias, calumnias y revelación de secretos."
+    },
+    {
+      "title": "Medidas cautelares",
+      "content": "Solicitud y oposición a medidas cautelares: prisión provisional, libertad condicional, alejamiento."
+    },
+    {
+      "title": "Responsabilidad civil derivada del delito",
+      "content": "Reclamación y defensa de responsabilidad civil por daños derivados de hechos delictivos."
+    },
+    {
+      "title": "Extradición y euroórdenes",
+      "content": "Defensa en procedimientos de extradición pasiva y activa, órdenes europeas de detención."
+    },
+    {
+      "title": "Menores infractores",
+      "content": "Defensa especializada en la jurisdicción de menores con conocimiento específico de la normativa aplicable."
+    },
+    {
+      "title": "Ejecución penal",
+      "content": "Asesoramiento en fase de ejecución: clasificación penitenciaria, permisos, libertad condicional."
+    },
+    {
+      "title": "Indultos y amnistías",
+      "content": "Tramitación de solicitudes de indulto parcial y total ante el Ministerio de Justicia."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Qué debo hacer si me detienen?",
+      "answer": "Ejercita tu derecho a permanecer en silencio hasta que llegue tu abogado. No declares sin asistencia letrada. Contacta inmediatamente con nosotros para asistencia al detenido las 24 horas."
+    },
+    {
+      "question": "¿Cuándo es obligatorio tener abogado en un proceso penal?",
+      "answer": "Es obligatorio tener abogado en todos los procedimientos penales desde el momento de la imputación. También es recomendable tener defensa técnica desde la fase de investigación policial."
+    },
+    {
+      "question": "¿Qué diferencia hay entre delito leve y delito grave?",
+      "answer": "Los delitos leves son infracciones menores que se castigan con penas leves (multa o localización permanente). Los delitos graves conllevan penas de prisión y se juzgan en Juzgado de lo Penal o Audiencia Provincial."
+    },
+    {
+      "question": "¿Puedo conseguir una sentencia absolutoria?",
+      "answer": "Sí, la absolución es posible cuando no se acredita la culpabilidad o existen dudas razonables. Nuestro objetivo es siempre la absolución, y si no es posible, conseguir la pena mínima."
+    },
+    {
+      "question": "¿Qué es la conformidad en un juicio penal?",
+      "answer": "La conformidad es un acuerdo con la acusación para evitar el juicio oral. Puede suponer reducción de pena, pero debe ser analizada cuidadosamente con tu abogado para valorar si conviene."
+    },
+    {
+      "question": "¿Puedo apelar una sentencia penal?",
+      "answer": "Sí, las sentencias de Juzgado de Instrucción y Juzgado de lo Penal pueden apelarse ante la Audiencia Provincial. Las de Audiencia Provincial pueden recurrirse en casación ante el Tribunal Supremo en casos específicos."
+    }
+  ],
+  "cta": {
+    "title": "¿Te enfrentas a un procedimiento penal?",
+    "description": "Tu libertad y futuro están en juego. No arriesgues con una defensa inadecuada. Nuestros penalistas te ofrecerán la mejor estrategia de defensa desde el primer momento."
+  },
+  "seo": {
+    "metaTitle": "Abogado Penalista Madrid | Defensa Penal 24h | LHC Legal",
+    "metaDescription": "Especialistas en defensa penal Madrid. Asistencia al detenido 24h, juicios rápidos, violencia de género. Defensa técnica rigurosa. Llamada inmediata.",
+    "keywords": [
+      "abogado penalista madrid",
+      "asistencia detenido 24h",
+      "defensa penal madrid",
+      "abogado juicio rapido",
+      "violencia genero defensa",
+      "delitos trafico madrid",
+      "lesiones amenazas abogado",
+      "estafa robo defensa",
+      "recurso sentencia penal",
+      "LHC Legal Madrid"
+    ],
+    "canonicalUrl": "https://lhclegal.es/areas/derecho-penal",
+    "ogImage": "https://res.cloudinary.com/lhclegal/image/upload/v1/og-images/derecho-penal.webp",
+    "structuredData": {
+      "serviceType": "Derecho Penal",
+      "description": "Servicios especializados en defensa penal y asistencia al detenido",
+      "areaServed": "Madrid, España",
+      "provider": {
+        "name": "LHC Legal & Consulting",
+        "url": "https://lhclegal.es",
+        "telephone": "+34691818071"
       }
-    ],
-    "relatedAreas": [
-      "derecho-administrativo",
-      "derecho-civil",
-      "derecho-laboral"
-    ],
-    "lastUpdated": "2025-01-16",
-    "displayConfig": {
-      "showStats": true,
-      "showRelatedAreas": true,
-      "subtopicsLayout": "grid",
-      "faqsLayout": "accordion"
     }
   }
+}

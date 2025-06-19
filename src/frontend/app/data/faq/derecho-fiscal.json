@@ -1,0 +1,97 @@
+{
+  "category": "Derecho Fiscal",
+  "title": "Preguntas Frecuentes - Derecho Fiscal",
+  "description": "Resuelve tus dudas sobre impuestos, Hacienda, obligaciones tributarias, deducciones y planificación fiscal",
+  "questions": [
+    {
+      "question": "¿Cuándo estoy obligado a hacer la declaración de IRPF?",
+      "answer": "Cuando tus rendimientos del trabajo superen 22.000€ anuales (14.000€ si proceden de más de un pagador), tengas rendimientos de capital superior a 1.600€, o ganancias patrimoniales superiores a 500€."
+    },
+    {
+      "question": "¿Qué gastos puedo deducir como autónomo?",
+      "answer": "Todos los gastos necesarios para la actividad: suministros del local, material de oficina, combustible, seguros, formación, dietas, amortizaciones, etc. Deben estar justificados y relacionados con la actividad."
+    },
+    {
+      "question": "¿Cuándo prescribe una deuda con Hacienda?",
+      "answer": "Las deudas tributarias prescriben a los 4 años desde que pudieron exigirse. Las sanciones prescriben a los 4 años desde que la resolución sancionadora fue firme."
+    },
+    {
+      "question": "¿Puedo deducir los gastos de mi vivienda habitual?",
+      "answer": "Solo en casos muy específicos: si trabajas desde casa habitualmente (gastos proporcionales), obras de mejora de eficiencia energética, o si la compraste antes de 2013 (deducción transitoria)."
+    },
+    {
+      "question": "¿Qué es una liquidación paralela de Hacienda?",
+      "answer": "Es una liquidación que modifica la declaración que presentaste, aumentando la cuota a pagar o reduciendo la devolución. Surge de comprobaciones cruzadas de datos o inspecciones."
+    },
+    {
+      "question": "¿Cuándo debo tributar por una herencia?",
+      "answer": "El Impuesto de Sucesiones se paga en la comunidad autónoma donde residía el fallecido. El plazo es de 6 meses desde el fallecimiento, prorrogable otros 6 meses."
+    },
+    {
+      "question": "¿Puedo compensar pérdidas de años anteriores?",
+      "answer": "En actividades económicas, las pérdidas pueden compensarse con ganancias de los 4 años siguientes. En bolsa, las pérdidas se compensan solo con ganancias del mismo tipo."
+    },
+    {
+      "question": "¿Qué es la residencia fiscal y cuándo cambia?",
+      "answer": "Eres residente fiscal si permaneces en España más de 183 días al año, tu base de actividades económicas está aquí, o residen aquí tu cónyuge e hijos menores."
+    },
+    {
+      "question": "¿Cuándo puedo aplicar el régimen de estimación objetiva (módulos)?",
+      "answer": "Si cumples los límites de volumen de negocio, personal empleado y consumo eléctrico establecidos para tu actividad. Es un régimen simplificado que determina la base imponible por signos externos."
+    },
+    {
+      "question": "¿Qué pasa si no presento la declaración de IRPF en plazo?",
+      "answer": "Hacienda puede imponer una sanción entre 100€ y 600€ si no resulta cantidad a ingresar, o del 50% al 150% de la cuota si hay cantidad a pagar, más intereses de demora."
+    },
+    {
+      "question": "¿Puedo deducir las donaciones que hago a ONGs?",
+      "answer": "Sí, las donaciones a entidades sin ánimo de lucro tienen deducción del 80% los primeros 150€ y 35% el resto (40% si donas a la misma entidad 3 años consecutivos)."
+    },
+    {
+      "question": "¿Cómo tributa la venta de mi vivienda habitual?",
+      "answer": "Si es tu vivienda habitual y tienes más de 65 años, está exenta. Si eres menor de 65 años, tributa como ganancia patrimonial, pero puedes reinvertir en nueva vivienda habitual."
+    },
+    {
+      "question": "¿Qué es el régimen especial de trabajadores desplazados?",
+      "answer": "Permite tributar como no residente durante 6 años (prorrogables) si vienes a España por trabajo, con un tipo fijo del 24% hasta 600.000€ anuales."
+    },
+    {
+      "question": "¿Puedo deducir los intereses de mi hipoteca?",
+      "answer": "Solo si compraste la vivienda antes de 2013. La deducción es del 15% de los intereses y amortización, hasta un máximo de 9.040€ anuales."
+    },
+    {
+      "question": "¿Cómo funciona el IVA en operaciones intracomunitarias?",
+      "answer": "Las ventas a otros países UE están exentas si el comprador tiene número de IVA válido. Las compras tributan en España mediante autoliquidación del IVA devengado."
+    },
+    {
+      "question": "¿Qué es el criterio de caja en el IVA?",
+      "answer": "Permite aplazar el pago del IVA hasta que cobres efectivamente la factura. Solo para empresas con volumen de negocio inferior a 2 millones de euros."
+    },
+    {
+      "question": "¿Cuándo puedo solicitar la devolución mensual de IVA?",
+      "answer": "Si realizas principalmente operaciones exentas o con derecho a devolución (exportaciones), o si el saldo a favor supera 1.000€ durante 3 meses consecutivos."
+    },
+    {
+      "question": "¿Cómo tributan las criptomonedas?",
+      "answer": "Las ganancias por venta de criptomonedas tributan como ganancias patrimoniales en IRPF. El intercambio entre criptomonedas también es hecho imponible."
+    },
+    {
+      "question": "¿Qué es la tributación consolidada en el Impuesto de Sociedades?",
+      "answer": "Permite que un grupo de sociedades tribute conjuntamente como si fueran una sola empresa, compensando beneficios y pérdidas entre todas las sociedades del grupo."
+    },
+    {
+      "question": "¿Puedo deducir los gastos de mi coche como autónomo?",
+      "answer": "Sí, puedes deducir gastos proporcionales al uso profesional: combustible, seguros, reparaciones, amortización. Debes justificar el porcentaje de uso profesional."
+    },
+    {
+      "question": "¿Qué es el recargo de equivalencia en el IVA?",
+      "answer": "Es un régimen especial para comerciantes minoristas que compran a mayoristas. No liquidan IVA, pero pagan un recargo sobre sus compras que incluye la carga fiscal del IVA."
+    },
+    {
+      "question": "¿Cómo afecta la inflación a mis obligaciones fiscales?",
+      "answer": "Hacienda actualiza anualmente las tarifas del IRPF, límites de deducciones y otros importes según el IPC. Esto evita que la inflación suponga una subida real de impuestos."
+    }
+  ],
+  "lastUpdated": "2025-01-16",
+  "totalQuestions": 22
+}

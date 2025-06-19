@@ -1,0 +1,97 @@
+{
+  "category": "Derecho Civil",
+  "title": "Preguntas Frecuentes - Derecho Civil",
+  "description": "Resuelve tus dudas sobre herencias, divorcios, contratos entre particulares, responsabilidad civil y derecho de familia",
+  "questions": [
+    {
+      "question": "¿Puedo desheredar a un hijo?",
+      "answer": "Solo en casos muy específicos previstos en el Código Civil: maltrato físico o psíquico, negación de alimentos, condena por atentar contra la vida del testador o delito contra la libertad sexual."
+    },
+    {
+      "question": "¿Qué parte de la herencia puedo disponer libremente?",
+      "answer": "Depende del número de herederos forzosos. Con descendientes: 1/3 de libre disposición. Sin descendientes pero con ascendientes: 1/2. Sin herederos forzosos: toda la herencia."
+    },
+    {
+      "question": "¿Cuándo caduca la acción de nulidad matrimonial?",
+      "answer": "La nulidad matrimonial no caduca, puede ejercitarse en cualquier momento. Sin embargo, algunos vicios (como error, coacción) pueden convalidarse con la convivencia posterior."
+    },
+    {
+      "question": "¿Qué diferencia hay entre separación de bienes y gananciales?",
+      "answer": "En gananciales, los bienes adquiridos durante el matrimonio pertenecen a ambos cónyuges. En separación de bienes, cada uno mantiene la propiedad de lo que adquiera."
+    },
+    {
+      "question": "¿Puedo vender una vivienda heredada sin el consentimiento de otros herederos?",
+      "answer": "No, si la vivienda pertenece a varios herederos en pro indiviso, necesitas el consentimiento de todos para venderla. Alternativamente, puedes pedir la división de la cosa común."
+    },
+    {
+      "question": "¿Cuándo prescribe una deuda entre particulares?",
+      "answer": "Las deudas entre particulares prescriben generalmente a los 5 años desde que pudo exigirse el cumplimiento. Algunas deudas específicas tienen plazos diferentes."
+    },
+    {
+      "question": "¿Qué es la usucapión y cómo funciona?",
+      "answer": "Es la adquisición de la propiedad por posesión continuada durante el tiempo que marca la ley: 30 años para inmuebles en general, 10 años con justo título y buena fe."
+    },
+    {
+      "question": "¿Puedo reclamar daños por ruptura de noviazgo?",
+      "answer": "Solo en casos excepcionales donde se demuestre que la ruptura fue de mala fe y causó perjuicios patrimoniales concretos, como gastos de boda ya realizados."
+    },
+    {
+      "question": "¿Qué derechos tiene el cónyuge sobreviviente sobre la vivienda familiar?",
+      "answer": "Tiene derecho de habitación vitalicio y gratuito sobre la vivienda habitual y de uso sobre el mobiliario, aunque no sea propietario de los mismos."
+    },
+    {
+      "question": "¿Cuándo se puede impugnar una donación?",
+      "answer": "Por incapacidad del donante, vicio en el consentimiento, inoficiosidad (perjudica la legítima), ingratitud del donatario o incumplimiento de cargas impuestas."
+    },
+    {
+      "question": "¿Qué es el derecho de tanteo y retracto?",
+      "answer": "El tanteo es el derecho preferente a comprar antes que terceros. El retracto es el derecho a subrogarse en la compra realizada por un tercero, pagando el mismo precio."
+    },
+    {
+      "question": "¿Puedo cambiar mi nombre después de mayor de edad?",
+      "answer": "Sí, puedes cambiar tu nombre por expediente de jurisdicción voluntaria si hay justa causa: nombre que presta a confusión, ridiculo, inadecuación cultural o social."
+    },
+    {
+      "question": "¿Qué efectos tiene la declaración de ausencia?",
+      "answer": "Permite nombrar un defensor de los bienes del ausente y, transcurridos ciertos plazos, la declaración de fallecimiento y apertura de la sucesión."
+    },
+    {
+      "question": "¿Cuándo puede anularse un contrato entre particulares?",
+      "answer": "Por vicios en el consentimiento (error, dolo, coacción), incapacidad de las partes, objeto ilícito, causa ilícita o defectos de forma en contratos que requieren forma específica."
+    },
+    {
+      "question": "¿Qué es la acción pauliana?",
+      "answer": "Es la acción que permite a los acreedores impugnar actos del deudor realizados en perjuicio de sus derechos de cobro, cuando se hace insolvente o agrava su insolvencia."
+    },
+    {
+      "question": "¿Puedo reclamar alimentos a familiares lejanos?",
+      "answer": "La obligación de alimentos existe entre cónyuges, ascendientes y descendientes, y entre hermanos. No se extiende a familiares más lejanos salvo casos muy excepcionales."
+    },
+    {
+      "question": "¿Qué diferencia hay entre promesa de venta y arras?",
+      "answer": "La promesa de venta es un precontrato que obliga a realizar la compraventa. Las arras son una garantía: confirmatorias (parte del precio), penitenciales (permiten desistir) o penales (multa)."
+    },
+    {
+      "question": "¿Cuándo prescribe la acción de reclamación de filiación?",
+      "answer": "La acción de reclamación de filiación es imprescriptible para el hijo. Los herederos pueden ejercitarla si el hijo murió menor de edad o en los 3 años siguientes al alcanzar la mayoría."
+    },
+    {
+      "question": "¿Qué es la subrogación real en el régimen de gananciales?",
+      "answer": "Cuando se vende un bien privativo y con el precio se compra otro bien, este último mantiene el carácter privativo del primero, no se convierte en ganancial."
+    },
+    {
+      "question": "¿Puedo exigir el cumplimiento específico de un contrato?",
+      "answer": "Sí, puedes exigir el cumplimiento exacto de lo pactado. Si no es posible, puedes pedir resolución del contrato más daños y perjuicios."
+    },
+    {
+      "question": "¿Qué derechos tiene el usufructuario?",
+      "answer": "Derecho a usar y disfrutar la cosa, percibir frutos, pero debe conservar la sustancia del bien. No puede vender, donar o hipotecar sin autorización del nudo propietario."
+    },
+    {
+      "question": "¿Cuándo opera la compensación de deudas entre particulares?",
+      "answer": "Cuando dos personas sean recíprocamente deudoras, las deudas se extinguen hasta la cantidad menor, siempre que sean líquidas, vencidas y de plazo cumplido."
+    }
+  ],
+  "lastUpdated": "2025-01-16",
+  "totalQuestions": 22
+}

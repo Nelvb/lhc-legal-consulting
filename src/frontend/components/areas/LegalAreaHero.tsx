@@ -87,25 +87,6 @@ const LegalAreaHero: React.FC<LegalAreaHeroProps> = ({
                         <p className="text-xl sm:text-2xl lg:text-3xl text-white/95 leading-relaxed font-light mb-8">
                             {areaDescription}
                         </p>
-
-                        {/* Botones CTA desde datos JSON */}
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button
-                                className="bg-white text-[#1b2f4b] font-semibold px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg"
-                                onClick={() => handleButtonClick(cta.primaryButton)}
-                            >
-                                {cta.primaryButton.text}
-                            </button>
-
-                            {cta.secondaryButton && (
-                                <button
-                                    className="border-2 border-white text-white font-semibold px-8 py-4 rounded-lg hover:bg-white hover:text-[#1b2f4b] transition-all duration-300"
-                                    onClick={() => handleButtonClick(cta.secondaryButton!)}
-                                >
-                                    {cta.secondaryButton.text}
-                                </button>
-                            )}
-                        </div>
                     </div>
                 </div>
             </div>

@@ -88,8 +88,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     `,
 
     lhc: `
-      bg-[#1A1341] text-[#FDF6E3] border border-transparent 
-      hover:bg-[#FDF6E3] hover:text-[#1A1341] hover:border-[#1A1341] 
+      bg-[#1A1341] text-[#F4F2ED] border border-transparent 
+      hover:bg-[#F4F2ED] hover:text-[#1A1341] hover:border-[#1A1341]
       focus:ring-[#1A1341] disabled:bg-gray-300 disabled:text-gray-500
     `,
 

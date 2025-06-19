@@ -1,159 +1,133 @@
 {
-    "id": "derecho-administrativo",
-    "title": "Derecho Administrativo",
-    "subtitle": "Recursos contra multas y sanciones administrativas",
-    "heroDescription": "Defendemos tus derechos frente a la administración pública. Recursos contra multas de tráfico, sanciones administrativas y reclamaciones patrimoniales con alto porcentaje de éxito.",
-    "introduction": "El derecho administrativo regula las relaciones entre los ciudadanos y las administraciones públicas. En LHC Legal & Consulting, somos especialistas en la defensa de tus derechos frente a actuaciones administrativas injustas o desproporcionadas.",
-    "contentSections": [
-      {
-        "title": "¿Qué es el Derecho Administrativo?",
-        "content": "<p>El derecho administrativo es la rama del derecho público que regula la organización y funcionamiento de las administraciones públicas, así como sus relaciones con los particulares. Incluye desde procedimientos sancionadores hasta recursos contra actos administrativos.</p><p>Nuestro equipo de especialistas en derecho administrativo cuenta con amplia experiencia en la defensa ante todo tipo de procedimientos administrativos, especialmente en el ámbito sancionador y de responsabilidad patrimonial.</p>",
-        "order": 1,
-        "type": "text"
-      },
-      {
-        "title": "Nuestros Servicios Especializados",
-        "content": "<p>Ofrecemos un servicio integral que abarca desde la fase previa al procedimiento sancionador hasta la ejecución de resoluciones favorables. Nuestro enfoque se centra en:</p><ul><li><strong>Análisis preventivo:</strong> Revisión de expedientes antes de que se conviertan en sanciones firmes</li><li><strong>Defensa especializada:</strong> Recursos de alzada y contencioso-administrativos con estrategias específicas</li><li><strong>Seguimiento completo:</strong> Acompañamiento durante todo el procedimiento hasta su resolución definitiva</li></ul>",
-        "order": 2,
-        "type": "list"
-      },
-      {
-        "title": "Áreas de Actuación Principal",
-        "content": "<p>Nuestro despacho se especializa en las siguientes materias del derecho administrativo sancionador y patrimonial:</p>",
-        "order": 3,
-        "type": "text"
-      }
-    ],
-    "subtopics": [
-      {
-        "title": "Multas de Tráfico",
-        "description": "Recursos contra multas por alcoholemia, velocidad, estacionamiento y otras infracciones de tráfico",
-        "hasPage": false,
-        "content": "Defendemos todo tipo de infracciones de tráfico con especial atención a las alcoholemias, excesos de velocidad captados por radar y multas por estacionamiento en zona azul o reservada.",
-        "icon": "car"
-      },
-      {
-        "title": "Sanciones Tributarias",
-        "description": "Recursos contra sanciones de Hacienda, recargos e intereses de demora",
-        "hasPage": false,
-        "content": "Especialistas en recursos contra sanciones tributarias, liquidaciones paralelas y procedimientos de comprobación de Hacienda.",
-        "icon": "receipt"
-      },
-      {
-        "title": "Sanciones Laborales",
-        "description": "Recursos contra sanciones de la Inspección de Trabajo y Seguridad Social",
-        "hasPage": false,
-        "content": "Defensa ante la Inspección de Trabajo en materia de Seguridad Social, prevención de riesgos laborales y relaciones laborales.",
-        "icon": "briefcase"
-      },
-      {
-        "title": "Responsabilidad Patrimonial",
-        "description": "Reclamaciones por daños causados por el funcionamiento de servicios públicos",
-        "hasPage": false,
-        "content": "Reclamaciones de responsabilidad patrimonial contra administraciones públicas por daños en el mobiliario urbano, caídas en vía pública o deficiencias en servicios públicos.",
-        "icon": "shield"
-      },
-      {
-        "title": "Recursos Contencioso-Administrativos",
-        "description": "Impugnación judicial de actos y resoluciones administrativas",
-        "hasPage": false,
-        "content": "Tramitación completa de recursos contencioso-administrativos ante juzgados y tribunales superiores de justicia.",
-        "icon": "scale"
-      },
-      {
-        "title": "Procedimientos Disciplinarios",
-        "description": "Defensa en expedientes disciplinarios de funcionarios y empleados públicos",
-        "hasPage": false,
-        "content": "Asesoramiento y defensa en procedimientos disciplinarios de personal al servicio de las administraciones públicas.",
-        "icon": "user-check"
-      }
-    ],
-    "faqs": [
-      {
-        "question": "¿Cuánto tiempo tengo para recurrir una multa de tráfico?",
-        "answer": "Tienes 20 días hábiles desde la notificación para presentar alegaciones. Si no alegas en plazo, la multa se convierte en firme y solo podrás recurrir en vía contencioso-administrativa en casos muy específicos.",
-        "category": "multas-trafico"
-      },
-      {
-        "question": "¿Qué porcentaje de éxito tienen los recursos contra multas?",
-        "answer": "Nuestro despacho tiene un porcentaje de éxito superior al 70% en recursos contra multas de tráfico, especialmente en casos de alcoholemias con vicios procedimentales y multas por radar mal calibrado.",
-        "category": "multas-trafico"
-      },
-      {
-        "question": "¿Puedo reclamar daños causados por baches en la carretera?",
-        "answer": "Sí, puedes reclamar responsabilidad patrimonial al organismo competente (ayuntamiento, diputación o Estado) si demuestras que el daño se debe a deficiencias en el mantenimiento de la vía pública.",
-        "category": "responsabilidad-patrimonial"
-      },
-      {
-        "question": "¿Cuánto cuesta recurrir una sanción administrativa?",
-        "answer": "Nuestros honorarios varían según la complejidad del caso. Ofrecemos presupuestos personalizados tras analizar el expediente. En muchos casos, trabajamos con pacto de cuota litis (solo cobramos si ganamos).",
-        "category": "honorarios"
-      },
-      {
-        "question": "¿Qué documentación necesito para recurrir?",
-        "answer": "Necesitamos la notificación original de la sanción, cualquier documentación que tengas del expediente y, en caso de multas de tráfico, los datos del conductor y del vehículo en el momento de la infracción.",
-        "category": "documentacion"
-      },
-      {
-        "question": "¿Puedo suspender el pago mientras se resuelve el recurso?",
-        "answer": "En la mayoría de casos, la presentación del recurso no suspende la obligación de pago. Sin embargo, puedes solicitar la suspensión cautelar prestando garantía o en casos de urgencia especial.",
-        "category": "suspension-pago"
-      }
-    ],
-    "cta": {
-      "title": "¿Tienes una sanción administrativa pendiente?",
-      "description": "No dejes pasar los plazos. Nuestros especialistas analizarán tu caso y te ofrecerán la mejor estrategia de defensa.",
-      "primaryButton": {
-        "text": "Consulta Gratuita",
-        "action": "contact"
-      },
-      "secondaryButton": {
-        "text": "Llamar Ahora",
-        "action": "phone",
-        "value": "+34691818071"
-      }
+  "id": "derecho-administrativo",
+  "title": "Derecho Administrativo",
+  "subtitle": "Recursos contra multas y sanciones administrativas",
+  "heroDescription": "Defendemos tus derechos frente a la administración pública. Recursos contra multas de tráfico, sanciones administrativas y reclamaciones patrimoniales con garantía de respuesta en 24h.",
+  "introduction": "El derecho administrativo regula las relaciones entre los ciudadanos y las administraciones públicas. En LHC Legal & Consulting, somos especialistas en la defensa de tus derechos frente a actuaciones administrativas injustas o desproporcionadas.",
+  "contentSections": [
+    {
+      "title": "¿Qué es el Derecho Administrativo?",
+      "content": "<p>El derecho administrativo es la rama del derecho público que regula la organización y funcionamiento de las administraciones públicas, así como sus relaciones con los particulares. Incluye desde procedimientos sancionadores hasta recursos contra actos administrativos.</p><p>Nuestro equipo de especialistas en derecho administrativo cuenta con formación actualizada y enfoque moderno en la defensa ante todo tipo de procedimientos administrativos, especialmente en el ámbito sancionador y de responsabilidad patrimonial.</p>",
+      "order": 1
     },
-    "seo": {
-      "metaTitle": "Abogado Derecho Administrativo Madrid | Recursos Multas Tráfico | LHC Legal",
-      "metaDescription": "Especialistas en derecho administrativo en Madrid. Recurrimos multas de tráfico, sanciones administrativas y reclamaciones patrimoniales. Alto porcentaje de éxito. Consulta gratuita.",
-      "keywords": [
-        "abogado derecho administrativo madrid",
-        "recurrir multa trafico",
-        "sanciones administrativas",
-        "responsabilidad patrimonial",
-        "recursos contencioso administrativo",
-        "multas alcoholemia",
-        "abogado multas madrid",
-        "recurso alzada",
-        "sanciones hacienda",
-        "LHC Legal Madrid"
-      ],
-      "canonicalUrl": "https://lhclegal.es/areas/derecho-administrativo",
-      "ogImage": "https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749825385/derecho-administrativo-og_abc123.webp",
-      "structuredData": {
-        "serviceType": "Derecho Administrativo",
-        "description": "Servicios especializados en derecho administrativo, recursos contra multas y sanciones",
-        "offers": [
-          {
-            "name": "Recurso contra Multa de Tráfico",
-            "description": "Recursos especializados contra todo tipo de multas de tráfico",
-            "price": "150",
-            "priceCurrency": "EUR"
-          },
-          {
-            "name": "Recurso Contencioso-Administrativo",
-            "description": "Impugnación judicial de resoluciones administrativas",
-            "price": "350",
-            "priceCurrency": "EUR"
-          },
-          {
-            "name": "Consulta Legal Gratuita",
-            "description": "Primera consulta completamente gratuita",
-            "price": "0",
-            "priceCurrency": "EUR"
-          }
-        ]
+    {
+      "title": "Defensa Legal en Procedimientos Administrativos",
+      "content": "<p>Ofrecemos un servicio integral que abarca desde la fase previa al procedimiento sancionador hasta la ejecución de resoluciones favorables. Nuestro enfoque se centra en:</p><ul><li><strong>Análisis preventivo:</strong> Revisión de expedientes antes de que se conviertan en sanciones firmes</li><li><strong>Defensa especializada:</strong> Recursos de alzada y contencioso-administrativos con estrategias específicas</li><li><strong>Seguimiento completo:</strong> Acompañamiento durante todo el procedimiento hasta su resolución definitiva</li></ul>",
+      "order": 2
+    }
+  ],
+  "subtopics": [
+    {
+      "title": "Multas de Tráfico",
+      "description": "Recursos contra multas por alcoholemia, velocidad, estacionamiento y otras infracciones de tráfico",
+      "content": "Defendemos todo tipo de infracciones de tráfico con especial atención a las alcoholemias, excesos de velocidad captados por radar y multas por estacionamiento en zona azul o reservada.",
+      "icon": "car"
+    },
+    {
+      "title": "Sanciones Tributarias",
+      "description": "Recursos contra sanciones de Hacienda, recargos e intereses de demora",
+      "content": "Especialistas en recursos contra sanciones tributarias, liquidaciones paralelas y procedimientos de comprobación de Hacienda.",
+      "icon": "receipt"
+    },
+    {
+      "title": "Sanciones Laborales",
+      "description": "Recursos contra sanciones de la Inspección de Trabajo y Seguridad Social",
+      "content": "Defensa ante la Inspección de Trabajo en materia de Seguridad Social, prevención de riesgos laborales y relaciones laborales.",
+      "icon": "briefcase"
+    },
+    {
+      "title": "Responsabilidad Patrimonial",
+      "description": "Reclamaciones por daños causados por el funcionamiento de servicios públicos",
+      "content": "Reclamaciones de responsabilidad patrimonial contra administraciones públicas por daños en el mobiliario urbano, caídas en vía pública o deficiencias en servicios públicos.",
+      "icon": "shield"
+    },
+    {
+      "title": "Recursos Contencioso-Administrativos",
+      "description": "Impugnación judicial de actos y resoluciones administrativas",
+      "content": "Tramitación completa de recursos contencioso-administrativos ante juzgados y tribunales superiores de justicia.",
+      "icon": "scale"
+    },
+    {
+      "title": "Procedimientos Disciplinarios",
+      "description": "Defensa en expedientes disciplinarios de funcionarios y empleados públicos",
+      "content": "Asesoramiento y defensa en procedimientos disciplinarios de personal al servicio de las administraciones públicas.",
+      "icon": "user-check"
+    }
+  ],
+  "otherServices": [
+    {
+      "title": "Reclamaciones por expropiaciones",
+      "content": "Asistencia legal en casos de expropiaciones forzosas por parte de administraciones públicas, defendiendo tus derechos patrimoniales."
+    },
+    {
+      "title": "Urbanismo y licencias",
+      "content": "Impugnación de licencias, permisos urbanísticos y resolución de conflictos con normativas locales o autonómicas."
+    },
+    {
+      "title": "Autorizaciones administrativas",
+      "content": "Solicitud, renovación o recurso de autorizaciones administrativas en transporte, sanidad, hostelería o telecomunicaciones."
+    },
+    {
+      "title": "Procedimientos con Ayuntamientos",
+      "content": "Asesoramiento ante sanciones o requerimientos municipales por obras, ruido, terrazas, licencias, etc."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Cuánto tiempo tengo para recurrir una multa de tráfico?",
+      "answer": "Tienes 20 días hábiles desde la notificación para presentar alegaciones. Si no alegas en plazo, la multa se convierte en firme y solo podrás recurrir en vía contencioso-administrativa en casos muy específicos."
+    },
+    {
+      "question": "¿Puedo reclamar daños causados por baches en la carretera?",
+      "answer": "Sí, puedes reclamar responsabilidad patrimonial al organismo competente (ayuntamiento, diputación o Estado) si demuestras que el daño se debe a deficiencias en el mantenimiento de la vía pública."
+    },
+    {
+      "question": "¿Qué documentación necesito para recurrir una sanción?",
+      "answer": "Necesitamos la notificación original de la sanción, cualquier documentación que tengas del expediente y, en caso de multas de tráfico, los datos del conductor y del vehículo en el momento de la infracción."
+    },
+    {
+      "question": "¿Puedo suspender el pago mientras se resuelve el recurso?",
+      "answer": "En la mayoría de casos, la presentación del recurso no suspende la obligación de pago. Sin embargo, puedes solicitar la suspensión cautelar prestando garantía o en casos de urgencia especial."
+    },
+    {
+      "question": "¿Qué sucede si la administración no responde a mi recurso?",
+      "answer": "Si transcurre el plazo máximo de resolución sin respuesta expresa, el recurso se entiende desestimado por silencio administrativo, lo que te permite acudir a la vía contencioso-administrativa."
+    },
+    {
+      "question": "¿Cuánto cuesta recurrir una sanción administrativa?",
+      "answer": "Ofrecemos presupuesto personalizado tras analizar cada caso. Trabajamos con honorarios transparentes y, en casos apropiados, modalidad de cuota de éxito donde solo cobramos si obtenemos resultado favorable."
+    }
+  ],
+  "cta": {
+    "title": "¿Tienes una sanción administrativa pendiente?",
+    "description": "No dejes pasar los plazos. Nuestros especialistas analizarán tu caso y te ofrecerán la mejor estrategia de defensa."
+  },
+  "seo": {
+    "metaTitle": "Abogado Derecho Administrativo Madrid | Recursos Multas Tráfico | LHC Legal",
+    "metaDescription": "Especialistas en derecho administrativo en Madrid. Recurrimos multas de tráfico, sanciones administrativas y reclamaciones patrimoniales. Respuesta garantizada en 24h. Consulta gratuita.",
+    "keywords": [
+      "abogado derecho administrativo madrid",
+      "recurrir multa trafico",
+      "sanciones administrativas",
+      "responsabilidad patrimonial",
+      "recursos contencioso administrativo",
+      "multas alcoholemia",
+      "abogado multas madrid",
+      "recurso alzada",
+      "sanciones hacienda",
+      "LHC Legal Madrid"
+    ],
+    "canonicalUrl": "https://lhclegal.es/areas/derecho-administrativo",
+    "ogImage": "https://res.cloudinary.com/lhclegal/image/upload/v1/og-images/derecho-administrativo.webp",
+    "structuredData": {
+      "serviceType": "Derecho Administrativo",
+      "description": "Servicios especializados en derecho administrativo, recursos contra multas y sanciones administrativas",
+      "areaServed": "Madrid, España",
+      "provider": {
+        "name": "LHC Legal & Consulting",
+        "url": "https://lhclegal.es",
+        "telephone": "+34691818071"
       }
     }
-    
   }
+}

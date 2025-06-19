@@ -1,0 +1,97 @@
+{
+  "category": "Derecho Mercantil",
+  "title": "Preguntas Frecuentes - Derecho Mercantil",
+  "description": "Resuelve tus dudas sobre empresas, sociedades, contratos comerciales, reclamación de deudas y derecho societario",
+  "questions": [
+    {
+      "question": "¿Cuál es la diferencia entre sociedad limitada y anónima?",
+      "answer": "La SL tiene capital mínimo de 3.006€, las participaciones no son libremente transmisibles y hay límite de socios. La SA requiere 60.101€ de capital, las acciones son libremente transmisibles y no hay límite de socios."
+    },
+    {
+      "question": "¿Puedo ser administrador de varias sociedades a la vez?",
+      "answer": "Sí, salvo prohibición legal o contractual. Debes evitar conflictos de interés y cumplir el deber de lealtad hacia cada sociedad. Algunas actividades profesionales tienen restricciones específicas."
+    },
+    {
+      "question": "¿Qué responsabilidad tengo como socio de una SL?",
+      "answer": "Tu responsabilidad se limita al capital aportado, salvo casos excepcionales: levantamiento del velo corporativo por abuso de la personalidad jurídica o responsabilidad por deudas sociales no satisfechas."
+    },
+    {
+      "question": "¿Cuándo es obligatorio nombrar auditor en una sociedad?",
+      "answer": "Cuando durante dos ejercicios consecutivos se superen dos de estos límites: 4 millones de euros de activo, 8 millones de cifra de negocio, o 50 trabajadores de media."
+    },
+    {
+      "question": "¿Puedo expulsar a un socio de la sociedad?",
+      "answer": "Solo si los estatutos lo prevén expresamente y por causas justificadas: incumplimiento grave de obligaciones, competencia desleal, o actos perjudiciales para la sociedad."
+    },
+    {
+      "question": "¿Qué es el derecho de separación de un socio?",
+      "answer": "Derecho a separarse de la sociedad en casos específicos: falta de distribución de dividendos durante 5 años teniendo beneficios repartibles, transformación de la sociedad, o traslado del domicilio al extranjero."
+    },
+    {
+      "question": "¿Cuándo prescribe una deuda comercial?",
+      "answer": "Las deudas mercantiles prescriben generalmente a los 5 años. Las acciones derivadas de contratos específicos pueden tener plazos diferentes: 3 años para transportes, 1 año para seguros."
+    },
+    {
+      "question": "¿Qué es la cuenta de pérdidas y ganancias?",
+      "answer": "Documento contable que refleja los ingresos y gastos de la empresa durante un ejercicio, determinando el resultado (beneficio o pérdida). Es obligatoria para todas las sociedades mercantiles."
+    },
+    {
+      "question": "¿Puedo constituir una sociedad unipersonal?",
+      "answer": "Sí, tanto SL como SA pueden tener un único socio. Debe hacerse constar en el Registro Mercantil y en toda la documentación. El socio único asume todas las competencias de la junta general."
+    },
+    {
+      "question": "¿Qué es el concurso de acreedores express?",
+      "answer": "Procedimiento simplificado cuando no hay bienes suficientes para cubrir los créditos contra la masa. Se liquida inmediatamente la sociedad y se declara la conclusión del concurso."
+    },
+    {
+      "question": "¿Cuándo debe disolverse obligatoriamente una sociedad?",
+      "answer": "Por pérdidas que dejen reducido el patrimonio neto a menos de la mitad del capital social, salvo que se reduzca el capital o se restablezca el patrimonio en el plazo de un año."
+    },
+    {
+      "question": "¿Qué es el libro registro de socios?",
+      "answer": "Documento obligatorio que refleja la titularidad de participaciones sociales y su transmisión. Debe llevarse por el administrador y los asientos tienen valor constitutivo."
+    },
+    {
+      "question": "¿Puedo impugnar acuerdos de la junta general?",
+      "answer": "Sí, puedes impugnar acuerdos nulos (contrarios a la ley) en cualquier momento, y acuerdos anulables (contrarios a estatutos o lesivos) en el plazo de 40 días desde adopción."
+    },
+    {
+      "question": "¿Qué es el derecho de tanteo en la transmisión de participaciones?",
+      "answer": "Derecho preferente de adquisición que tienen los socios cuando otro socio quiere transmitir sus participaciones a terceros. El procedimiento y condiciones deben estar en los estatutos."
+    },
+    {
+      "question": "¿Cuándo es nulo un contrato mercantil?",
+      "answer": "Por falta de elementos esenciales (consentimiento, objeto, causa), incapacidad de las partes, objeto o causa ilícitos, o vicios en el consentimiento (error, dolo, coacción)."
+    },
+    {
+      "question": "¿Qué obligaciones contables tiene una sociedad mercantil?",
+      "answer": "Llevar libro diario, libro de inventarios y cuentas anuales, libro registro de socios (SL), y conservar la documentación durante 6 años. Las cuentas anuales deben depositarse en el Registro Mercantil."
+    },
+    {
+      "question": "¿Puedo recuperar las aportaciones realizadas a una sociedad en pérdidas?",
+      "answer": "Solo mediante reducción de capital por pérdidas o disolución de la sociedad. No puedes retirar libremente tu aportación salvo casos específicos previstos en la ley o estatutos."
+    },
+    {
+      "question": "¿Qué es la transformación de sociedades?",
+      "answer": "Cambio de forma jurídica manteniendo la misma personalidad jurídica. Por ejemplo, transformar una SL en SA. Requiere acuerdo de junta general y modificación de estatutos."
+    },
+    {
+      "question": "¿Cuándo responde el administrador con su patrimonio personal?",
+      "answer": "Por daños causados por actos contrarios a la ley o estatutos, realizados sin diligencia debida, o por no promover la disolución cuando es obligatoria y hay insolvencia posterior."
+    },
+    {
+      "question": "¿Qué es el aumento de capital por compensación de créditos?",
+      "answer": "Los acreedores de la sociedad pueden convertir sus créditos en participaciones sociales. El crédito debe ser líquido, vencido y exigible, y valorarse por experto independiente."
+    },
+    {
+      "question": "¿Puedo consultar las cuentas anuales de cualquier empresa?",
+      "answer": "Sí, las cuentas anuales depositadas en el Registro Mercantil son públicas. Puedes consultarlas online o solicitando certificaciones. Algunas sociedades pueden aprobar cuentas abreviadas."
+    },
+    {
+      "question": "¿Qué es la junta universal de socios?",
+      "answer": "Junta que se constituye sin convocatoria previa cuando están presentes todos los socios y aceptan por unanimidad la celebración de la junta y los asuntos a tratar."
+    }
+  ],
+  "lastUpdated": "2025-01-16",
+  "totalQuestions": 22
+}

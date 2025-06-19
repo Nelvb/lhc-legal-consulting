@@ -1,190 +1,165 @@
 {
-    "id": "derecho-civil",
-    "title": "Derecho Civil",
-    "subtitle": "Herencias, divorcios y responsabilidad civil",
-    "heroDescription": "Te acompañamos en los momentos más importantes de tu vida. Especialistas en herencias, divorcios, custodia compartida y responsabilidad civil. Soluciones legales humanas y eficaces.",
-    "introduction": "El derecho civil regula las relaciones jurídicas entre particulares, desde el nacimiento hasta la muerte. En LHC Legal & Consulting, entendemos que detrás de cada expediente hay personas y familias que necesitan soluciones cercanas y profesionales.",
-    "contentSections": [
-      {
-        "title": "¿Qué abarca el Derecho Civil?",
-        "content": "<p>El derecho civil es la rama jurídica que regula las relaciones entre personas físicas y jurídicas privadas. Incluye materias tan importantes como sucesiones hereditarias, derecho de familia, contratos privados, responsabilidad civil y derechos reales.</p><p>Nuestro equipo de civilistas cuenta con más de 20 años de experiencia combinada en la resolución de conflictos familiares y patrimoniales, siempre con un enfoque humano y sensible a las circunstancias personales de cada cliente.</p>",
-        "order": 1,
-        "type": "text"
-      },
-      {
-        "title": "Nuestro Enfoque Profesional",
-        "content": "<p>En LHC Legal & Consulting, aplicamos un método de trabajo que combina rigor jurídico con sensibilidad humana:</p><ul><li><strong>Asesoramiento preventivo:</strong> Planificación sucesoria y patrimonial para evitar conflictos futuros</li><li><strong>Mediación familiar:</strong> Buscamos acuerdos amistosos que preserven las relaciones familiares</li><li><strong>Litigación especializada:</strong> Cuando la vía judicial es inevitable, defendemos con máxima eficacia</li><li><strong>Acompañamiento integral:</strong> Apoyo emocional y legal durante todo el proceso</li></ul>",
-        "order": 2,
-        "type": "list"
-      },
-      {
-        "title": "Experiencia y Resultados",
-        "content": "<p>Hemos tramitado más de 500 herencias y gestionado más de 300 divorcios, siempre con el objetivo de minimizar el conflicto y maximizar la protección de los intereses de nuestros clientes y sus familias.</p>",
-        "order": 3,
-        "type": "text"
-      }
-    ],
-    "subtopics": [
-      {
-        "title": "Herencias y Testamentos",
-        "description": "Tramitación completa de herencias, testamentos, particiones y planificación sucesoria",
-        "hasPage": false,
-        "content": "Gestionamos todo tipo de herencias: con testamento, abintestato, con conflictos entre herederos y con bienes en el extranjero. Incluye aceptación, repudio, partición y adjudicación de bienes.",
-        "icon": "scroll"
-      },
-      {
-        "title": "Divorcios y Separaciones",
-        "description": "Divorcios contenciosos y de mutuo acuerdo, separaciones y nulidades matrimoniales",
-        "hasPage": false,
-        "content": "Tramitamos divorcios con y sin hijos menores, separaciones matrimoniales y nulidades. Especializados en custodia compartida, pensiones alimenticias y compensatorias.",
-        "icon": "heart-crack"
-      },
-      {
-        "title": "Custodia y Régimen de Visitas",
-        "description": "Custodia compartida, exclusiva, modificación de medidas y régimen de visitas",
-        "hasPage": false,
-        "content": "Defendemos el interés superior del menor en procedimientos de custodia. Gestionamos custodias compartidas, exclusivas, modificaciones de medidas y conflictos de visitas.",
-        "icon": "users"
-      },
-      {
-        "title": "Pensiones Alimenticias",
-        "description": "Establecimiento, modificación y ejecución de pensiones de alimentos y compensatorias",
-        "hasPage": false,
-        "content": "Calculamos y reclamamos pensiones alimenticias justas. Gestionamos modificaciones por cambio de circunstancias y ejecutamos impagos de pensiones.",
-        "icon": "banknote"
-      },
-      {
-        "title": "Responsabilidad Civil",
-        "description": "Reclamaciones por daños y perjuicios, accidentes y responsabilidad extracontractual",
-        "hasPage": false,
-        "content": "Reclamamos indemnizaciones por accidentes de tráfico, responsabilidad médica, daños a terceros y cualquier tipo de responsabilidad civil extracontractual.",
-        "icon": "shield-check"
-      },
-      {
-        "title": "Contratos Privados",
-        "description": "Redacción, revisión y litigios sobre contratos entre particulares",
-        "hasPage": false,
-        "content": "Asesoramos en compraventas, arrendamientos, préstamos entre particulares, contratos de obra y cualquier tipo de negocio jurídico entre privados.",
-        "icon": "file-signature"
-      }
-    ],
-    "faqs": [
-      {
-        "question": "¿Cuánto tiempo se tarda en tramitar una herencia?",
-        "answer": "Una herencia sencilla sin conflictos puede resolverse en 3-6 meses. Si hay disputas entre herederos o bienes complejos, puede extenderse hasta 12-18 meses o más, dependiendo de la complejidad.",
-        "category": "herencias"
-      },
-      {
-        "question": "¿Cuánto cuesta un divorcio de mutuo acuerdo?",
-        "answer": "Un divorcio de mutuo acuerdo sin hijos menores tiene un coste aproximado de 600-800€ en honorarios. Si hay menores o patrimonio complejo, el coste puede aumentar según las circunstancias.",
-        "category": "divorcios"
-      },
-      {
-        "question": "¿Puedo renunciar a una herencia con deudas?",
-        "answer": "Sí, puedes renunciar a la herencia si las deudas superan el valor de los bienes. También existe la opción de aceptar a beneficio de inventario, limitando tu responsabilidad al valor de los bienes heredados.",
-        "category": "herencias"
-      },
-      {
-        "question": "¿Qué es la custodia compartida y cuándo se concede?",
-        "answer": "La custodia compartida implica que ambos progenitores ejercen la custodia por períodos alternos. Se concede cuando favorece el interés del menor y existe comunicación fluida entre los padres.",
-        "category": "custodia"
-      },
-      {
-        "question": "¿Puedo modificar la pensión alimenticia si cambian las circunstancias?",
-        "answer": "Sí, las pensiones pueden modificarse cuando hay cambios sustanciales en las circunstancias económicas de cualquiera de las partes, como pérdida de empleo, aumento de ingresos o nuevas necesidades de los hijos.",
-        "category": "pensiones"
-      },
-      {
-        "question": "¿Qué documentación necesito para iniciar un divorcio?",
-        "answer": "Necesitas el certificado de matrimonio, libro de familia, certificados de nacimiento de los hijos menores, últimas declaraciones de renta de ambos cónyuges y documentación del patrimonio ganancial.",
-        "category": "divorcios"
-      }
-    ],
-    "cta": {
-      "title": "¿Necesitas resolver un asunto familiar o sucesorio?",
-      "description": "En los momentos más delicados, necesitas un equipo que te entienda. Te acompañamos con profesionalidad y cercanía en cada paso del proceso.",
-      "primaryButton": {
-        "text": "Consulta Gratuita",
-        "action": "contact"
-      },
-      "secondaryButton": {
-        "text": "Llamar Ahora",
-        "action": "phone",
-        "value": "+34691818071"
-      }
+  "id": "derecho-civil",
+  "title": "Derecho Civil",
+  "subtitle": "Herencias, divorcios y responsabilidad civil",
+  "heroDescription": "Te acompañamos en los momentos más importantes de tu vida. Especialistas en herencias, divorcios, custodia compartida y responsabilidad civil. Soluciones legales humanas y eficaces.",
+  "introduction": "El derecho civil regula las relaciones jurídicas entre particulares, desde el nacimiento hasta la muerte. En LHC Legal & Consulting, entendemos que detrás de cada expediente hay personas y familias que necesitan soluciones cercanas y profesionales.",
+  "contentSections": [
+    {
+      "title": "¿Qué abarca el Derecho Civil?",
+      "content": "<p>El derecho civil es la rama jurídica que regula las relaciones entre personas físicas y jurídicas privadas. Incluye materias tan importantes como sucesiones hereditarias, derecho de familia, contratos privados, responsabilidad civil y derechos reales.</p><p>Nuestro equipo de civilistas cuenta con formación especializada en la resolución de conflictos familiares y patrimoniales, siempre con un enfoque humano y sensible a las circunstancias personales de cada cliente.</p>",
+      "order": 1
     },
-    "seo": {
-      "metaTitle": "Abogado Derecho Civil Madrid | Herencias y Divorcios | LHC Legal",
-      "metaDescription": "Especialistas en derecho civil Madrid. Tramitamos herencias, divorcios, custodia compartida y responsabilidad civil. Más de 500 herencias gestionadas. Consulta gratuita.",
-      "keywords": [
-        "abogado civil madrid",
-        "tramitar herencia madrid",
-        "divorcio mutuo acuerdo",
-        "custodia compartida",
-        "pensión alimenticia",
-        "responsabilidad civil",
-        "abogado herencias madrid",
-        "divorcio contencioso",
-        "partición herencia",
-        "LHC Legal Madrid"
-      ],
-      "canonicalUrl": "https://lhclegal.es/areas/derecho-civil",
-      "ogImage": "https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749825385/derecho-civil-og_ghi789.webp",
-      "structuredData": {
-        "serviceType": "Derecho Civil",
-        "description": "Servicios especializados en derecho civil, herencias, divorcios y responsabilidad civil",
-        "offers": [
-          {
-            "name": "Tramitación de Herencia",
-            "description": "Gestión completa de herencias y sucesiones",
-            "price": "800",
-            "priceCurrency": "EUR"
-          },
-          {
-            "name": "Divorcio Mutuo Acuerdo",
-            "description": "Divorcio de mutuo acuerdo sin complicaciones",
-            "price": "600",
-            "priceCurrency": "EUR"
-          },
-          {
-            "name": "Consulta Legal Gratuita",
-            "description": "Primera consulta completamente gratuita",
-            "price": "0",
-            "priceCurrency": "EUR"
-          }
-        ]
-      }
+    {
+      "title": "Nuestro Enfoque Profesional",
+      "content": "<p>En LHC Legal & Consulting, aplicamos un método de trabajo que combina rigor jurídico con sensibilidad humana:</p><ul><li><strong>Asesoramiento preventivo:</strong> Planificación sucesoria y patrimonial para evitar conflictos futuros</li><li><strong>Mediación familiar:</strong> Buscamos acuerdos amistosos que preserven las relaciones familiares</li><li><strong>Litigación especializada:</strong> Cuando la vía judicial es inevitable, defendemos con máxima eficacia</li><li><strong>Acompañamiento integral:</strong> Apoyo emocional y legal durante todo el proceso</li></ul>",
+      "order": 2
+    }
+  ],
+  "subtopics": [
+    {
+      "title": "Herencias y Testamentos",
+      "description": "Tramitación completa de herencias, testamentos, particiones y planificación sucesoria",
+      "content": "Gestionamos todo tipo de herencias: con testamento, abintestato, con conflictos entre herederos y con bienes en el extranjero. Incluye aceptación, repudio, partición y adjudicación de bienes.",
+      "icon": "scroll"
     },
-    "stats": [
-      {
-        "title": "Herencias Tramitadas",
-        "value": "500+",
-        "description": "Herencias gestionadas con éxito",
-        "icon": "scroll"
-      },
-      {
-        "title": "Divorcios Resueltos",
-        "value": "300+",
-        "description": "Procedimientos de familia tramitados",
-        "icon": "heart"
-      },
-      {
-        "title": "Satisfacción",
-        "value": "95%",
-        "description": "Clientes satisfechos con nuestro servicio",
-        "icon": "star"
+    {
+      "title": "Divorcios y Separaciones",
+      "description": "Divorcios contenciosos y de mutuo acuerdo, separaciones y nulidades matrimoniales",
+      "content": "Tramitamos divorcios con y sin hijos menores, separaciones matrimoniales y nulidades. Especializados en custodia compartida, pensiones alimenticias y compensatorias.",
+      "icon": "heart-crack"
+    },
+    {
+      "title": "Custodia y Régimen de Visitas",
+      "description": "Custodia compartida, exclusiva, modificación de medidas y régimen de visitas",
+      "content": "Defendemos el interés superior del menor en procedimientos de custodia. Gestionamos custodias compartidas, exclusivas, modificaciones de medidas y conflictos de visitas.",
+      "icon": "users"
+    },
+    {
+      "title": "Pensiones Alimenticias",
+      "description": "Establecimiento, modificación y ejecución de pensiones de alimentos y compensatorias",
+      "content": "Calculamos y reclamamos pensiones alimenticias justas. Gestionamos modificaciones por cambio de circunstancias y ejecutamos impagos de pensiones.",
+      "icon": "banknote"
+    },
+    {
+      "title": "Responsabilidad Civil",
+      "description": "Reclamaciones por daños y perjuicios, accidentes y responsabilidad extracontractual",
+      "content": "Reclamamos indemnizaciones por accidentes de tráfico, responsabilidad médica, daños a terceros y cualquier tipo de responsabilidad civil extracontractual.",
+      "icon": "shield-check"
+    },
+    {
+      "title": "Contratos Privados",
+      "description": "Redacción, revisión y litigios sobre contratos entre particulares",
+      "content": "Asesoramos en compraventas, arrendamientos, préstamos entre particulares, contratos de obra y cualquier tipo de negocio jurídico entre privados.",
+      "icon": "file-signature"
+    }
+  ],
+  "otherServices": [
+    {
+      "title": "Declaración de herederos abintestato",
+      "content": "Tramitación completa del expediente de declaración de herederos cuando no existe testamento válido."
+    },
+    {
+      "title": "Liquidación de gananciales",
+      "content": "Inventario, valoración y reparto de bienes gananciales tras divorcio o fallecimiento de uno de los cónyuges."
+    },
+    {
+      "title": "Impugnación de testamentos",
+      "content": "Recursos contra testamentos por vicios en el consentimiento, falta de capacidad o incumplimiento de formas legales."
+    },
+    {
+      "title": "Tutelas e incapacitaciones",
+      "content": "Procedimientos de incapacitación judicial, nombramiento de tutores y curadores para personas con discapacidad."
+    },
+    {
+      "title": "Adopciones",
+      "content": "Asesoramiento integral en procedimientos de adopción nacional e internacional, acogimiento y guarda."
+    },
+    {
+      "title": "Filiación y paternidad",
+      "content": "Reclamación e impugnación de filiación, reconocimiento de paternidad y procedimientos de determinación de parentesco."
+    },
+    {
+      "title": "Sucesiones internacionales",
+      "content": "Herencias con elementos internacionales, aplicación del Reglamento Europeo de Sucesiones y coordinación con otros países."
+    },
+    {
+      "title": "Capitulaciones matrimoniales",
+      "content": "Redacción y modificación de capitulaciones matrimoniales, régimen de separación de bienes y pactos sucesorios."
+    },
+    {
+      "title": "Derecho inmobiliario",
+      "content": "Compraventa de inmuebles, servidumbres, usufructos, nuda propiedad y conflictos entre propietarios."
+    },
+    {
+      "title": "Reclamación de alimentos entre familiares",
+      "content": "Obligación de alimentos entre ascendientes y descendientes, hermanos y otros parientes según el Código Civil."
+    },
+    {
+      "title": "Parejas de hecho",
+      "content": "Constitución, disolución y efectos patrimoniales de parejas de hecho registradas y no registradas."
+    },
+    {
+      "title": "Mediación familiar",
+      "content": "Servicio de mediación para resolver conflictos familiares de forma consensuada y preservando las relaciones."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "¿Cuánto tiempo se tarda en tramitar una herencia?",
+      "answer": "Una herencia sencilla sin conflictos puede resolverse en 3-6 meses. Si hay disputas entre herederos o bienes complejos, puede extenderse hasta 12-18 meses o más, dependiendo de la complejidad."
+    },
+    {
+      "question": "¿Puedo renunciar a una herencia con deudas?",
+      "answer": "Sí, puedes renunciar a la herencia si las deudas superan el valor de los bienes. También existe la opción de aceptar a beneficio de inventario, limitando tu responsabilidad al valor de los bienes heredados."
+    },
+    {
+      "question": "¿Qué es la custodia compartida y cuándo se concede?",
+      "answer": "La custodia compartida implica que ambos progenitores ejercen la custodia por períodos alternos. Se concede cuando favorece el interés del menor y existe comunicación fluida entre los padres."
+    },
+    {
+      "question": "¿Puedo modificar la pensión alimenticia si cambian las circunstancias?",
+      "answer": "Sí, las pensiones pueden modificarse cuando hay cambios sustanciales en las circunstancias económicas de cualquiera de las partes, como pérdida de empleo, aumento de ingresos o nuevas necesidades de los hijos."
+    },
+    {
+      "question": "¿Qué documentación necesito para iniciar un divorcio?",
+      "answer": "Necesitas el certificado de matrimonio, libro de familia, certificados de nacimiento de los hijos menores, últimas declaraciones de renta de ambos cónyuges y documentación del patrimonio ganancial."
+    },
+    {
+      "question": "¿Es obligatorio hacer testamento?",
+      "answer": "No es obligatorio, pero es muy recomendable. Sin testamento, la herencia se reparte según la ley, lo que puede no coincidir con tus deseos y generar conflictos familiares."
+    }
+  ],
+  "cta": {
+    "title": "¿Necesitas resolver un asunto familiar o sucesorio?",
+    "description": "En los momentos más delicados, necesitas un equipo que te entienda. Te acompañamos con profesionalidad y cercanía en cada paso del proceso."
+  },
+  "seo": {
+    "metaTitle": "Abogado Derecho Civil Madrid | Herencias y Divorcios | LHC Legal",
+    "metaDescription": "Especialistas en derecho civil Madrid. Tramitamos herencias, divorcios, custodia compartida y responsabilidad civil. Asesoramiento cercano y profesional. Consulta gratuita.",
+    "keywords": [
+      "abogado civil madrid",
+      "tramitar herencia madrid",
+      "divorcio mutuo acuerdo",
+      "custodia compartida",
+      "pensión alimenticia",
+      "responsabilidad civil",
+      "abogado herencias madrid",
+      "divorcio contencioso",
+      "partición herencia",
+      "LHC Legal Madrid"
+    ],
+    "canonicalUrl": "https://lhclegal.es/areas/derecho-civil",
+    "ogImage": "https://res.cloudinary.com/lhclegal/image/upload/v1/og-images/derecho-civil.webp",
+    "structuredData": {
+      "serviceType": "Derecho Civil",
+      "description": "Servicios especializados en derecho civil, herencias, divorcios y responsabilidad civil",
+      "areaServed": "Madrid, España",
+      "provider": {
+        "name": "LHC Legal & Consulting",
+        "url": "https://lhclegal.es",
+        "telephone": "+34691818071"
       }
-    ],
-    "relatedAreas": [
-      "derecho-laboral",
-      "derecho-penal",
-      "derecho-fiscal"
-    ],
-    "lastUpdated": "2025-01-16",
-    "displayConfig": {
-      "showStats": true,
-      "showRelatedAreas": true,
-      "subtopicsLayout": "grid",
-      "faqsLayout": "accordion"
     }
   }
+}
