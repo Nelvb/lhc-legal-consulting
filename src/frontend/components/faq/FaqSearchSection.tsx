@@ -88,39 +88,39 @@ const FaqSearchSection: React.FC<FaqSearchSectionProps> = ({ questions }) => {
         }
     }, [showCategoryDropdown]);
 
-   // Filtrado optimizado con useMemo para evitar recálculos innecesarios
-const filteredQuestions = useMemo(() => {
-    let filtered = questions;
+    // Filtrado optimizado con useMemo para evitar recálculos innecesarios
+    const filteredQuestions = useMemo(() => {
+        let filtered = questions;
 
-    // 🎯 NUEVO: Si no hay búsqueda ni filtro, mostrar solo Consultas Generales por defecto
-    if (!debouncedTerm.trim() && selectedCategory === 'Todas las áreas') {
-        filtered = questions.filter(q => 
-            q.category === 'General' || 
-            q.category === 'Consultas Generales'
-        );
-    } else {
-        // Filtrar por categoría/área seleccionada (cuando NO es "Todas las áreas")
-        if (selectedCategory !== 'Todas las áreas') {
-            const areaCode = CATEGORY_TO_AREA_MAP[selectedCategory];
-            filtered = filtered.filter(q =>
-                q.category === selectedCategory ||
-                q.category === areaCode ||
-                q.area === areaCode
+        // 🎯 NUEVO: Si no hay búsqueda ni filtro, mostrar solo Consultas Generales por defecto
+        if (!debouncedTerm.trim() && selectedCategory === 'Todas las áreas') {
+            filtered = questions.filter(q =>
+                q.category === 'General' ||
+                q.category === 'Consultas Generales'
             );
+        } else {
+            // Filtrar por categoría/área seleccionada (cuando NO es "Todas las áreas")
+            if (selectedCategory !== 'Todas las áreas') {
+                const areaCode = CATEGORY_TO_AREA_MAP[selectedCategory];
+                filtered = filtered.filter(q =>
+                    q.category === selectedCategory ||
+                    q.category === areaCode ||
+                    q.area === areaCode
+                );
+            }
+
+            // Filtrar por término de búsqueda (se aplica después del filtro de categoría)
+            if (debouncedTerm.trim()) {
+                const searchLower = debouncedTerm.toLowerCase();
+                filtered = filtered.filter(q =>
+                    q.question.toLowerCase().includes(searchLower) ||
+                    q.answer.toLowerCase().includes(searchLower)
+                );
+            }
         }
 
-        // Filtrar por término de búsqueda (se aplica después del filtro de categoría)
-        if (debouncedTerm.trim()) {
-            const searchLower = debouncedTerm.toLowerCase();
-            filtered = filtered.filter(q =>
-                q.question.toLowerCase().includes(searchLower) ||
-                q.answer.toLowerCase().includes(searchLower)
-            );
-        }
-    }
-
-    return filtered;
-}, [questions, selectedCategory, debouncedTerm]);
+        return filtered;
+    }, [questions, selectedCategory, debouncedTerm]);
     // Función para limpiar búsqueda
     const clearSearch = () => {
         setSearchTerm('');
@@ -181,8 +181,8 @@ const filteredQuestions = useMemo(() => {
                                                 setShowCategoryDropdown(false);
                                             }}
                                             className={`w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl ${selectedCategory === category
-                                                    ? 'bg-[#1DA1F2] text-white hover:bg-[#1DA1F2]'
-                                                    : 'text-gray-700'
+                                                ? 'bg-[#1DA1F2] text-white hover:bg-[#1DA1F2]'
+                                                : 'text-gray-700'
                                                 }`}
                                         >
                                             {category}
@@ -228,44 +228,44 @@ const filteredQuestions = useMemo(() => {
                 </div>
 
                 {/* Resultados */}
-{filteredQuestions.length > 0 ? (
-    <>
-        <LegalFAQs
-            faqs={filteredQuestions}
-            accentColor="#1DA1F2"
-            sectionTitle={getResultsTitle()}
-        />
-        
-        {/* CTA Final - Solo cuando hay resultados */}
-        <div className="mt-16 text-center">
-            <div className="bg-gradient-to-r from-[#1b2f4b] to-[#1DA1F2] rounded-2xl p-8 lg:p-12 text-white">
-                <h3 className="text-2xl lg:text-3xl font-bold mb-4">
-                    ¿No encontraste tu respuesta específica?
-                </h3>
-                <p className="text-lg lg:text-xl text-blue-100 mb-6 max-w-2xl mx-auto">
-                    Nuestros especialistas resolverán tu consulta legal de forma personalizada
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link href="/contact">
-                        <Button variant="outline" size="md">
-                            Consulta gratuita
-                        </Button>
-                    </Link>
-                    <Link href="/areas">
-                        <Button variant="ghost" size="md" className="text-white border-white hover:bg-white hover:text-[#1b2f4b]">
-                            Ver áreas legales
-                        </Button>
-                    </Link>
-                </div>
-            </div>
-        </div>
-    </>
-) : (
-    <NoResultsSection 
-        searchTerm={debouncedTerm}
-        selectedCategory={selectedCategory !== 'Todas las áreas' ? selectedCategory : undefined}
-    />
-)}
+                {filteredQuestions.length > 0 ? (
+                    <>
+                        <LegalFAQs
+                            faqs={filteredQuestions}
+                            accentColor="#1DA1F2"
+                            sectionTitle={getResultsTitle()}
+                        />
+
+                        {/* CTA Final - Solo cuando hay resultados */}
+                        <div className="mt-16 text-center">
+                            <div className="bg-gradient-to-r from-[#1b2f4b] to-[#1DA1F2] rounded-2xl p-8 lg:p-12 text-white">
+                                <h3 className="text-2xl lg:text-3xl font-bold mb-4">
+                                    ¿Necesitas asesoramiento personalizado?
+                                </h3>
+                                <p className="text-lg lg:text-xl text-blue-100 mb-6 max-w-2xl mx-auto">
+                                    Nuestros especialistas resolverán tu consulta legal de forma personalizada
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <Link href="/contact">
+                                        <Button variant="outline" size="md">
+                                            Consulta gratuita
+                                        </Button>
+                                    </Link>
+                                    <Link href="/areas">
+                                        <Button variant="ghost" size="md" className="text-white border-white hover:bg-white hover:text-[#1b2f4b]">
+                                            Ver áreas legales
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <NoResultsSection
+                        searchTerm={debouncedTerm}
+                        selectedCategory={selectedCategory !== 'Todas las áreas' ? selectedCategory : undefined}
+                    />
+                )}
             </div>
         </section>
     );
