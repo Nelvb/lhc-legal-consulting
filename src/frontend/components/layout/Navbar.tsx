@@ -2,7 +2,9 @@
  * Navbar.tsx
  *
  * Navbar principal para LHC Legal & Consulting.
- * Logo horizontal actualizado, fondo claro y sticky, con menú lateral condicional.
+ * Logo horizontal actualizado, fondo claro y sticky, con menú lateral controlado por Zustand.
+ * Cambia a icono X si el menú lateral está abierto. Añade sombra al hacer scroll.
+ * Responsive y con diseño profesional.
  */
 
 "use client";
@@ -12,33 +14,47 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useAuthStore } from "@/stores/useAuthStore";
+import { useUiStore } from "@/stores/useUiStore";
 import NavbarLinks from "@/components/layout/NavbarLinks";
-import AdminSideMenu from "@/components/sideMenus/AdminSideMenu";
-import UserSideMenu from "@/components/sideMenus/UserSideMenu";
-import SideMenu from "@/components/sideMenus/SideMenu";
+import LHCSideMenu from "@/components/layout/LHCSideMenu";
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const { isAuthenticated, user } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
 
+  const isSideMenuOpen = useUiStore((state) => state.isSideMenuOpen);
+  const openSideMenu = useUiStore((state) => state.openSideMenu);
+  const closeSideMenu = useUiStore((state) => state.closeSideMenu);
+
+  const [scrolled, setScrolled] = useState(false);
+
+  // Añadir sombra al hacer scroll
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Alterna el menú lateral desde Zustand
+  const toggleMenu = () => {
+    if (isSideMenuOpen) {
+      closeSideMenu();
+    } else {
+      openSideMenu();
+    }
+  };
+
   const navbarClasses = `
-    sticky w-full top-0 left-0 z-20 h-20 flex items-center
+    sticky top-0 left-0 w-full z-20 h-20 flex items-center
     transition-colors duration-300 bg-[#F4F2ED] shadow-sm
+    ${scrolled ? "shadow-md" : ""}
   `;
 
   return (
     <>
-      <nav className={navbarClasses}>
-        <div className="w-full px-4 flex justify-between items-center h-full relative">
-          {/* Logo horizontal */}
+      <header className={navbarClasses}>
+        <div className="w-full px-4 pr-6 flex justify-between items-center h-full relative">
+          {/* Logo horizontal corporativo */}
           <Link href="/" className="flex items-center">
             <Image
               src="https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749048011/Logo_horizontal-removebg-preview_pm2q1z.webp"
@@ -48,17 +64,18 @@ const Navbar: React.FC = () => {
               priority
               className="h-24 w-auto object-contain"
             />
-
             <span className="sr-only">LHC Legal & Consulting</span>
           </Link>
 
-          {/* Enlaces + hamburguesa */}
+          {/* Enlaces + botón hamburguesa visible solo en móvil */}
           <div className="flex items-center space-x-8">
             <NavbarLinks key={`nav-links-${isAuthenticated}`} />
+
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all"
+              onClick={toggleMenu}
+              className="p-2 text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all md:hidden"
               aria-label="Abrir menú"
+              aria-expanded={isSideMenuOpen}
             >
               <svg
                 className="h-8 w-8"
@@ -67,21 +84,24 @@ const Navbar: React.FC = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d={
+                    isSideMenuOpen
+                      ? "M6 18L18 6M6 6l12 12" // Icono X (cerrar)
+                      : "M4 6h16M4 12h16M4 18h16" // Icono hamburguesa
+                  }
+                />
               </svg>
             </button>
           </div>
         </div>
-      </nav>
+      </header>
 
-      {/* Menú lateral por tipo de usuario */}
-      {user?.is_admin ? (
-        <AdminSideMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
-      ) : user ? (
-        <UserSideMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
-      ) : (
-        <SideMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
-      )}
+      {/* Menú lateral global controlado por Zustand */}
+      <LHCSideMenu />
     </>
   );
 };

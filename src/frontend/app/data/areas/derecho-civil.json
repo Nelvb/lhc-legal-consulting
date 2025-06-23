@@ -21,37 +21,97 @@
       "title": "Herencias y Testamentos",
       "description": "Tramitación completa de herencias, testamentos, particiones y planificación sucesoria",
       "content": "Gestionamos todo tipo de herencias: con testamento, abintestato, con conflictos entre herederos y con bienes en el extranjero. Incluye aceptación, repudio, partición y adjudicación de bienes.",
-      "icon": "scroll"
+      "icon": "scroll",
+      "hasPage": true,
+      "slug": "herencias-testamentos",
+      "extendedIntroduction": "Perder a un ser querido es uno de los momentos más difíciles de la vida, y enfrentarse a los trámites de la herencia puede resultar abrumador. En LHC Legal & Consulting entendemos la delicadeza de estos momentos y te acompañamos con el máximo respeto y profesionalidad en todo el proceso hereditario. Desde herencias sencillas hasta casos complejos con conflictos entre herederos, nuestro objetivo es resolver la situación de la forma más ágil y beneficiosa para tu familia.",
+      "keyPoints": [
+        "Tramitamos todo tipo de herencias: con testamento, sin testamento y con bienes en el extranjero",
+        "Gestionamos declaraciones de herederos, inventarios, avalúos y particiones de bienes",
+        "Resolvemos conflictos entre herederos buscando siempre el acuerdo familiar",
+        "Te asesoramos sobre aceptación, renuncia o aceptación a beneficio de inventario",
+        "Planificamos estrategias sucesorias para optimizar la transmisión de tu patrimonio"
+      ]
     },
     {
       "title": "Divorcios y Separaciones",
       "description": "Divorcios contenciosos y de mutuo acuerdo, separaciones y nulidades matrimoniales",
       "content": "Tramitamos divorcios con y sin hijos menores, separaciones matrimoniales y nulidades. Especializados en custodia compartida, pensiones alimenticias y compensatorias.",
-      "icon": "heart-crack"
+      "icon": "heart-crack",
+      "hasPage": true,
+      "slug": "divorcios-separaciones",
+      "extendedIntroduction": "El fin de un matrimonio nunca es fácil, pero no tiene por qué convertirse en una batalla. En LHC Legal & Consulting abogamos por divorcios civilizados que protejan especialmente a los menores y permitan a ambos cónyuges comenzar una nueva etapa en las mejores condiciones posibles. Ya sea un divorcio de mutuo acuerdo o contencioso, nuestro enfoque siempre es humano, práctico y orientado a resultados justos para toda la familia.",
+      "keyPoints": [
+        "Tramitamos divorcios de mutuo acuerdo y contenciosos con la máxima eficacia",
+        "Negociamos acuerdos de custodia que prioricen siempre el bienestar de los menores",
+        "Calculamos pensiones alimenticias y compensatorias justas y realistas",
+        "Realizamos inventarios y liquidaciones del régimen económico matrimonial",
+        "Ofrecemos mediación familiar para resolver conflictos de forma amistosa"
+      ]
     },
     {
       "title": "Custodia y Régimen de Visitas",
       "description": "Custodia compartida, exclusiva, modificación de medidas y régimen de visitas",
       "content": "Defendemos el interés superior del menor en procedimientos de custodia. Gestionamos custodias compartidas, exclusivas, modificaciones de medidas y conflictos de visitas.",
-      "icon": "users"
+      "icon": "users",
+      "hasPage": true,
+      "slug": "custodia-regimen-visitas",
+      "extendedIntroduction": "Los hijos son siempre lo más importante en cualquier separación. En LHC Legal & Consulting defendemos el derecho de los menores a mantener una relación equilibrada con ambos progenitores, trabajando para conseguir acuerdos de custodia que realmente funcionen en el día a día. Si las circunstancias han cambiado desde el divorcio, también te ayudamos a modificar las medidas para adaptarlas a la nueva realidad familiar.",
+      "keyPoints": [
+        "Defendemos custodias compartidas cuando favorecen el interés del menor",
+        "Establecemos regímenes de visitas flexibles y adaptados a cada familia",
+        "Modificamos medidas de custodia cuando cambian las circunstancias",
+        "Resolvemos conflictos sobre vacaciones, días festivos y decisiones importantes",
+        "Garantizamos el cumplimiento de las visitas y protegemos los derechos de los menores"
+      ]
     },
     {
       "title": "Pensiones Alimenticias",
       "description": "Establecimiento, modificación y ejecución de pensiones de alimentos y compensatorias",
       "content": "Calculamos y reclamamos pensiones alimenticias justas. Gestionamos modificaciones por cambio de circunstancias y ejecutamos impagos de pensiones.",
-      "icon": "banknote"
+      "icon": "banknote",
+      "hasPage": true,
+      "slug": "pensiones-alimenticias",
+      "extendedIntroduction": "Las pensiones alimenticias deben reflejar las necesidades reales de los hijos y la capacidad económica de los progenitores. En LHC Legal & Consulting calculamos pensiones justas basadas en criterios objetivos y actualizados. Si hay impagos o las circunstancias han cambiado significativamente, actuamos con rapidez para proteger los derechos de los menores y garantizar su bienestar económico.",
+      "keyPoints": [
+        "Calculamos pensiones alimenticias basadas en criterios objetivos y actualizados",
+        "Reclamamos modificaciones cuando cambian los ingresos o necesidades de los hijos",
+        "Ejecutamos impagos de pensiones con medidas efectivas de cobro",
+        "Incluimos gastos extraordinarios: médicos, educativos y de formación",
+        "Gestionamos pensiones compensatorias por desequilibrio económico entre cónyuges"
+      ]
     },
     {
       "title": "Responsabilidad Civil",
       "description": "Reclamaciones por daños y perjuicios, accidentes y responsabilidad extracontractual",
       "content": "Reclamamos indemnizaciones por accidentes de tráfico, responsabilidad médica, daños a terceros y cualquier tipo de responsabilidad civil extracontractual.",
-      "icon": "shield-check"
+      "icon": "shield-check",
+      "hasPage": true,
+      "slug": "responsabilidad-civil",
+      "extendedIntroduction": "Cuando sufres daños por culpa de otra persona o entidad, tienes derecho a ser compensado de forma justa. En LHC Legal & Consulting somos especialistas en conseguir las máximas indemnizaciones por todo tipo de daños: accidentes de tráfico, negligencias médicas, caídas en establecimientos o cualquier situación donde hayas sufrido perjuicios por responsabilidad de terceros. Nuestro objetivo es que recuperes todo lo que has perdido y más.",
+      "keyPoints": [
+        "Reclamamos indemnizaciones por accidentes de tráfico con las máximas compensaciones",
+        "Especializados en responsabilidad médica y negligencias sanitarias",
+        "Calculamos daños morales, físicos, patrimoniales y lucro cesante",
+        "Negociamos con aseguradoras y demandamos cuando es necesario",
+        "Conseguimos indemnizaciones por daños a menores, dependientes y terceros"
+      ]
     },
     {
       "title": "Contratos Privados",
       "description": "Redacción, revisión y litigios sobre contratos entre particulares",
       "content": "Asesoramos en compraventas, arrendamientos, préstamos entre particulares, contratos de obra y cualquier tipo de negocio jurídico entre privados.",
-      "icon": "file-signature"
+      "icon": "file-signature",
+      "hasPage": true,
+      "slug": "contratos-privados",
+      "extendedIntroduction": "Los contratos entre particulares requieren especial atención para evitar problemas futuros. En LHC Legal & Consulting redactamos contratos claros que protejan tus intereses y cumplan todos los requisitos legales. Si ya tienes un conflicto contractual, analizamos tus opciones y defendemos tus derechos con la máxima eficacia, ya sea por incumplimiento, vicios ocultos o cualquier otra circunstancia.",
+      "keyPoints": [
+        "Redactamos contratos de compraventa, arrendamiento y préstamos entre particulares",
+        "Revisamos contratos existentes para detectar cláusulas abusivas o riesgos",
+        "Reclamamos incumplimientos contractuales y exigimos responsabilidades",
+        "Asesoramos en contratos de obra, servicios y suministros",
+        "Resolvemos conflictos por vicios ocultos, defectos y garantías"
+      ]
     }
   ],
   "otherServices": [

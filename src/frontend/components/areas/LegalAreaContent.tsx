@@ -15,7 +15,7 @@ import { LegalAreaContentProps } from '@/types/legalArea';
 // Importar componentes modulares
 import LegalIntro from './sections/LegalIntro';
 import LegalContentSections from './sections/LegalContentSections';
-import LegalSubtopics from './sections/LegalSubtopics';
+import LegalSubtopics from './LegalSubtopics';
 import LegalOtherServices from './sections/LegalOtherServices';
 import LegalDifferentials from './LegalDifferentials';
 import LegalFAQs from './sections/LegalFAQs';
@@ -32,7 +32,7 @@ const LegalAreaContent: React.FC<LegalAreaContentProps> = ({
     return (
         <div className="bg-gradient-to-b from-white to-gray-50 min-h-screen">
             <div className="py-16">
-
+                
                 {/* Introducción general del área */}
                 <LegalIntro
                     introduction={areaData.introduction}
@@ -53,6 +53,7 @@ const LegalAreaContent: React.FC<LegalAreaContentProps> = ({
                         subtopics={areaData.subtopics}
                         accentColor={areaConfig.color}
                         hoverColor={areaConfig.hoverColor}
+                        areaSlug={areaConfig.slug}
                     />
                 )}
 

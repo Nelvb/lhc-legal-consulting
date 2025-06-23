@@ -21,37 +21,97 @@
       "title": "Cláusula Suelo",
       "description": "Reclamación de cantidades cobradas indebidamente por cláusulas suelo en hipotecas",
       "content": "Reclamamos las cantidades cobradas por cláusulas suelo desde el inicio del contrato. La jurisprudencia del Tribunal Supremo nos permite reclamar desde 2013 hacia atrás en la mayoría de casos.",
-      "icon": "home"
+      "icon": "home",
+      "hasPage": true,
+      "slug": "clausula-suelo",
+      "extendedIntroduction": "Si tienes una hipoteca firmada antes de 2013 con cláusula suelo, es muy probable que puedas recuperar miles de euros. La cláusula suelo limitaba las bajadas del euríbor, haciendo que pagaras más de lo que realmente correspondía. En LHC Legal & Consulting hemos ayudado a cientos de familias a recuperar su dinero, con casos donde hemos conseguido devoluciones de más de 20.000 euros. No importa si ya has vendido la vivienda o cancelado la hipoteca, tu derecho a reclamar se mantiene vigente.",
+      "keyPoints": [
+        "Analizamos tu contrato hipotecario de forma gratuita para detectar si tienes cláusula suelo",
+        "Calculamos con precisión las cantidades que puedes recuperar desde el inicio del préstamo",
+        "Gestionamos toda la reclamación, desde la negociación con el banco hasta el juicio si es necesario",
+        "Trabajamos con cuota de éxito: solo cobramos si conseguimos recuperar tu dinero",
+        "Puedes reclamar incluso si ya has vendido la casa o cancelado la hipoteca"
+      ]
     },
     {
       "title": "Gastos de Hipoteca",
       "description": "Devolución de gastos de notaría, registro, tasación y comisión de apertura",
       "content": "Reclamamos la devolución de gastos hipotecarios que el banco te hizo pagar indebidamente: notaría, registro, tasación, gestoría y comisión de apertura.",
-      "icon": "receipt"
+      "icon": "receipt",
+      "hasPage": true,
+      "slug": "gastos-hipoteca",
+      "extendedIntroduction": "Cuando firmaste tu hipoteca, probablemente tuviste que pagar una serie de gastos que el banco te dijo que eran 'normales'. Sin embargo, muchos de estos gastos no te correspondían a ti y puedes reclamar su devolución. Los gastos de notaría, registro, tasación y comisión de apertura pueden suponer varios miles de euros que el banco debe devolverte. En LHC Legal & Consulting hemos conseguido que miles de clientes recuperen estos gastos, con devoluciones medias entre 2.000 y 5.000 euros.",
+      "keyPoints": [
+        "Revisamos todos los gastos que pagaste al firmar tu hipoteca para identificar cuáles puedes reclamar",
+        "Reclamamos gastos de notaría, registro de la propiedad, tasación y comisión de apertura",
+        "El proceso de reclamación es rápido y en muchos casos se resuelve sin ir a juicio",
+        "No necesitas cambiar de banco ni cancelar tu hipoteca para hacer la reclamación",
+        "La devolución incluye los intereses legales desde el momento en que pagaste indebidamente"
+      ]
     },
     {
       "title": "Tarjetas Revolving",
       "description": "Nulidad de contratos de tarjetas revolving por interés usurario",
       "content": "Las tarjetas revolving con intereses superiores al 20% anual son usurarias. Conseguimos la nulidad del contrato y la devolución de todo lo pagado en exceso.",
-      "icon": "credit-card"
+      "icon": "credit-card",
+      "hasPage": true,
+      "slug": "tarjetas-revolving",
+      "extendedIntroduction": "¿Tienes una tarjeta de crédito que nunca consigues pagar completamente? Las tarjetas revolving son productos financieros con intereses abusivos que pueden llegar al 25% o 30% anual, convirtiendo una pequeña deuda en una carga financiera insoportable. Si tu tarjeta tiene un TAE superior al 20%, podemos conseguir que se declare nula por usura y que recuperes todo lo que has pagado de más. En LHC Legal & Consulting hemos logrado anular cientos de tarjetas revolving y devolver a nuestros clientes el dinero que nunca debieron pagar.",
+      "keyPoints": [
+        "Analizamos si tu tarjeta revolving tiene intereses usurarios superiores al 20% TAE",
+        "Conseguimos la nulidad completa del contrato de tarjeta por carácter usurario",
+        "Recuperas todo el dinero pagado en exceso: intereses, comisiones y recargos",
+        "Una vez anulada la tarjeta, solo debes devolver el capital realmente utilizado",
+        "El banco no puede reclamarte más dinero ni incluirte en ficheros de morosos"
+      ]
     },
     {
       "title": "IRPH (Índice de Referencia)",
       "description": "Reclamación por aplicación indebida del IRPH en préstamos hipotecarios",
       "content": "El IRPH aplicado sin transparencia es abusivo. Reclamamos la diferencia entre lo pagado con IRPH y lo que hubieras pagado con Euríbor desde el inicio del préstamo.",
-      "icon": "trending-up"
+      "icon": "trending-up",
+      "hasPage": true,
+      "slug": "irph-indice-referencia",
+      "extendedIntroduction": "Si tu hipoteca está referenciada al IRPH en lugar del Euríbor, es muy probable que estés pagando más de lo que deberías. El IRPH es un índice más alto que el Euríbor y muchos bancos lo aplicaron sin explicar claramente a sus clientes las diferencias y consecuencias económicas. Si el banco no te informó adecuadamente sobre qué era el IRPH y por qué era más caro que el Euríbor, puedes reclamar la diferencia de todos los pagos realizados desde el inicio del préstamo.",
+      "keyPoints": [
+        "Verificamos si tu banco te informó correctamente sobre las características del IRPH",
+        "Calculamos la diferencia entre lo pagado con IRPH y lo que habrías pagado con Euríbor",
+        "Reclamamos la devolución desde el inicio del préstamo, no solo desde la sentencia",
+        "El proceso no afecta a la continuidad de tu hipoteca ni a las condiciones actuales",
+        "Conseguimos que se sustituya el IRPH por el Euríbor para futuras cuotas"
+      ]
     },
     {
       "title": "Productos Financieros Complejos",
       "description": "Reclamaciones por venta de preferentes, swaps y productos de inversión inadecuados",
       "content": "Reclamamos por venta de productos financieros complejos sin información adecuada: participaciones preferentes, swaps, fondos estructurados y depósitos estructurados.",
-      "icon": "bar-chart"
+      "icon": "bar-chart",
+      "hasPage": true,
+      "slug": "productos-financieros-complejos",
+      "extendedIntroduction": "¿Te vendieron participaciones preferentes, swaps o fondos de inversión complejos diciéndote que eran productos seguros? Muchos bancos han comercializado productos financieros de alta complejidad y riesgo a clientes particulares sin la información adecuada. Si compraste productos como participaciones preferentes, swaps de tipos de interés, fondos estructurados o depósitos estructurados y has perdido dinero, puedes reclamarlo. En LHC Legal & Consulting analizamos si la venta fue adecuada a tu perfil de riesgo y si recibiste la información necesaria.",
+      "keyPoints": [
+        "Analizamos si el producto vendido era adecuado para tu perfil de riesgo e inversión",
+        "Verificamos si recibiste información clara sobre los riesgos y características del producto",
+        "Reclamamos la nulidad de la operación y la devolución del dinero invertido más intereses",
+        "Gestionamos reclamaciones de participaciones preferentes, swaps, fondos y depósitos estructurados",
+        "No necesitas entender el producto financiero, nosotros analizamos toda la documentación técnica"
+      ]
     },
     {
       "title": "Hipotecas Multidivisa",
       "description": "Nulidad de hipotecas en francos suizos, yenes y otras divisas",
       "content": "Las hipotecas multidivisa vendidas sin información sobre riesgos de cambio son nulas. Conseguimos la conversión a euros desde el inicio y devolución de sobrepagos.",
-      "icon": "globe"
+      "icon": "globe",
+      "hasPage": true,
+      "slug": "hipotecas-multidivisa",
+      "extendedIntroduction": "¿Tienes una hipoteca en francos suizos, yenes japoneses o dólares americanos? Las hipotecas multidivisa se vendieron como productos ventajosos por tener tipos de interés más bajos, pero ocultaron el grave riesgo de cambio de divisa. Cuando estas divisas se revalorizaron, muchas familias vieron como su deuda se multiplicaba de forma dramática. Si tu banco no te informó adecuadamente sobre los riesgos de cambio o no evaluó correctamente tu capacidad para asumirlos, puedes conseguir la nulidad del contrato.",
+      "keyPoints": [
+        "Analizamos si recibiste información clara sobre los riesgos del cambio de divisa",
+        "Conseguimos la conversión de tu hipoteca a euros desde el momento de la firma",
+        "Recuperas todo el sobrepago realizado por la revalorización de la divisa extranjera",
+        "Eliminamos las cláusulas abusivas relacionadas con el riesgo de cambio",
+        "El proceso no afecta a la propiedad de tu vivienda, solo a las condiciones del préstamo"
+      ]
     }
   ],
   "otherServices": [

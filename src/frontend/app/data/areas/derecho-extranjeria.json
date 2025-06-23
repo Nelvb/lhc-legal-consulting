@@ -21,37 +21,97 @@
       "title": "NIE y Certificados",
       "description": "Obtención de NIE, certificados de concordancia y documentación para extranjeros",
       "content": "Tramitamos NIE definitivo y provisional, certificados de concordancia para documentos extranjeros, apostillas y toda la documentación necesaria para residir en España.",
-      "icon": "id-card"
+      "icon": "id-card",
+      "hasPage": true,
+      "slug": "nie-certificados",
+      "extendedIntroduction": "El NIE es tu primer paso para vivir legalmente en España. Sin él, no puedes trabajar, abrir una cuenta bancaria o realizar prácticamente ningún trámite oficial. En LHC Legal & Consulting conocemos perfectamente todo el proceso y te ayudamos a obtener tu NIE de forma rápida y sin complicaciones. También gestionamos certificados de concordancia para que tus documentos extranjeros sean válidos en España.",
+      "keyPoints": [
+        "Tramitamos NIE definitivo y provisional con todos los requisitos cumplidos",
+        "Gestionamos certificados de concordancia para documentos extranjeros",
+        "Obtenemos apostillas de La Haya y legalizaciones consulares",
+        "Te ayudamos con traducciones oficiales y compulsa de documentos",
+        "Asesoramos sobre toda la documentación necesaria para cada trámite"
+      ]
     },
     {
       "title": "Permisos de Residencia",
       "description": "Residencia temporal, permanente, comunitaria y todas las autorizaciones de estancia",
       "content": "Gestionamos todos los tipos de residencia: temporal por trabajo, reagrupación familiar, estudios, residencia de larga duración y tarjeta comunitaria para familiares de ciudadanos UE.",
-      "icon": "home"
+      "icon": "home",
+      "hasPage": true,
+      "slug": "permisos-residencia",
+      "extendedIntroduction": "Conseguir un permiso de residencia en España puede parecer complicado, pero con el asesoramiento adecuado es perfectamente alcanzable. En LHC Legal & Consulting analizamos tu situación específica para encontrar la vía más adecuada: residencia por trabajo, estudios, reagrupación familiar o tarjeta comunitaria. Conocemos todos los requisitos y preparamos tu expediente para maximizar las posibilidades de éxito.",
+      "keyPoints": [
+        "Analizamos tu situación para encontrar la mejor vía de residencia disponible",
+        "Tramitamos residencias temporales por trabajo, estudios y reagrupación familiar",
+        "Gestionamos tarjetas comunitarias para familiares de ciudadanos europeos",
+        "Preparamos expedientes completos con toda la documentación necesaria",
+        "Te acompañamos en todo el proceso hasta obtener tu permiso definitivo"
+      ]
     },
     {
       "title": "Arraigo Social y Familiar",
       "description": "Arraigo social, laboral y familiar para personas en situación irregular",
       "content": "Especializados en arraigo social (3 años de permanencia), arraigo laboral (2 años trabajando) y arraigo familiar para regularizar tu situación en España.",
-      "icon": "users-round"
+      "icon": "users-round",
+      "hasPage": true,
+      "slug": "arraigo-social-familiar",
+      "extendedIntroduction": "Si llevas tiempo viviendo en España sin papeles, el arraigo puede ser tu oportunidad de regularizar tu situación. En LHC Legal & Consulting somos especialistas en todas las modalidades de arraigo: social, laboral y familiar. Analizamos tu caso específico, reunimos toda la documentación necesaria y preparamos tu solicitud para que tengas las máximas garantías de éxito. Tu nueva vida legal en España puede estar más cerca de lo que piensas.",
+      "keyPoints": [
+        "Evaluamos qué tipo de arraigo es más adecuado para tu situación específica",
+        "Preparamos expedientes de arraigo social con 3 años de permanencia y vínculos sociales",
+        "Gestionamos arraigo laboral demostrando relación laboral de al menos 2 años",
+        "Tramitamos arraigo familiar para familiares de residentes legales o españoles",
+        "Reunimos informes sociales, contratos de trabajo y toda la documentación necesaria"
+      ]
     },
     {
       "title": "Nacionalidad Española",
       "description": "Adquisición de nacionalidad española por residencia, origen y naturalización",
       "content": "Tramitamos nacionalidad española por residencia (10 años general, 2 años iberoamericanos), por origen, por opción y recuperación de nacionalidad española.",
-      "icon": "flag"
+      "icon": "flag",
+      "hasPage": true,
+      "slug": "nacionalidad-espanola",
+      "extendedIntroduction": "Conseguir la nacionalidad española es el último paso en tu proceso de integración en nuestro país. En LHC Legal & Consulting te acompañamos en este importante momento, desde la preparación de los exámenes DELE y CCSE hasta la presentación de toda la documentación. Conocemos perfectamente los requisitos según tu país de origen y te ayudamos a cumplir todos los trámites para que puedas convertirte en ciudadano español cuanto antes.",
+      "keyPoints": [
+        "Te preparamos para los exámenes DELE A2 y CCSE con recursos especializados",
+        "Verificamos que cumples todos los requisitos de residencia según tu nacionalidad",
+        "Gestionamos certificados de antecedentes penales de España y tu país de origen",
+        "Preparamos toda la documentación y la presentamos en el momento adecuado",
+        "Te acompañamos en todo el proceso hasta la jura de la Constitución"
+      ]
     },
     {
       "title": "Reagrupación Familiar",
       "description": "Reagrupación de cónyuge, hijos menores, ascendientes y parejas de hecho",
       "content": "Gestionamos reagrupación familiar para traer a España a tu cónyuge, hijos menores de edad, ascendientes dependientes y parejas de hecho registradas.",
-      "icon": "heart-handshake"
+      "icon": "heart-handshake",
+      "hasPage": true,
+      "slug": "reagrupacion-familiar",
+      "extendedIntroduction": "Estar separado de tu familia nunca es fácil. La reagrupación familiar te permite traer a España a las personas que más quieres: tu cónyuge, hijos menores, padres dependientes o pareja de hecho. En LHC Legal & Consulting conocemos perfectamente todos los requisitos económicos y documentales para que puedas reunirte con tu familia cuanto antes. Gestionamos todo el proceso, desde la solicitud en España hasta la obtención del visado en el consulado.",
+      "keyPoints": [
+        "Verificamos que cumples los requisitos económicos y de vivienda necesarios",
+        "Tramitamos reagrupación de cónyuge, hijos menores y parejas de hecho registradas",
+        "Gestionamos reagrupación de ascendientes cuando están a tu cargo",
+        "Coordinamos el proceso entre España y los consulados en el país de origen",
+        "Te acompañamos desde la solicitud hasta la llegada de tu familia a España"
+      ]
     },
     {
       "title": "Recursos y Apelaciones",
       "description": "Defensa ante denegaciones, recursos de alzada y contencioso-administrativos",
       "content": "Recurrimos denegaciones de permisos, residencias y nacionalidad. Recursos de alzada ante Madrid y recursos contencioso-administrativos ante los tribunales.",
-      "icon": "scale"
+      "icon": "scale",
+      "hasPage": true,
+      "slug": "recursos-apelaciones-extranjeria",
+      "extendedIntroduction": "Una denegación no es el final del camino. Si te han denegado tu permiso de residencia, nacionalidad o cualquier otro trámite de extranjería, aún tienes opciones legales para conseguir lo que buscas. En LHC Legal & Consulting somos especialistas en recursos de extranjería y hemos conseguido revertir muchas denegaciones injustas. Analizamos los motivos de la denegación y preparamos una estrategia sólida para defender tus derechos.",
+      "keyPoints": [
+        "Analizamos las causas de la denegación para encontrar los argumentos más sólidos",
+        "Presentamos recursos de alzada ante las delegaciones del gobierno",
+        "Tramitamos recursos contencioso-administrativos cuando es necesario",
+        "Preparamos nueva documentación para subsanar los defectos detectados",
+        "Te representamos en todos los procedimientos hasta conseguir una resolución favorable"
+      ]
     }
   ],
   "otherServices": [

@@ -28,7 +28,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ isOpen, onClose }) => {
   return (
     <div className="fixed inset-0 z-40 bg-black/50" onClick={onClose}>
       <aside
-        className="fixed top-0 right-0 w-72 h-screen bg-[#F7FAFF] shadow-xl z-50 overflow-y-auto"
+        className="fixed top-0 right-0 w-72 h-screen bg-[#F4F2ED] shadow-xl z-50 overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Cabecera con logo y saludo (si aplica) */}

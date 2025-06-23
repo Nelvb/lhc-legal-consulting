@@ -1,10 +1,14 @@
 /**
  * MainMenuLinks.tsx
  *
- * Enlaces principales del menú lateral.
- * Se utilizan en el SideMenu público y sirven de base visual para user/admin.
- * Resaltan el enlace activo con subrayado y negrita.
- * Aplican hover con fondo azul marino y texto blanco.
+ * Enlaces públicos para el menú lateral de LHC Legal & Consulting.
+ * Incluye navegación principal para usuarios no autenticados: Áreas, Blog,
+ * Preguntas Frecuentes, Nosotros y Contacto.
+ *
+ * Se destaca visualmente el enlace activo mediante subrayado y negrita.
+ * En cada clic se cierra el SideMenu gracias a `onClickLink()`.
+ *
+ * No hay navegación privada para usuarios normales (solo admin).
  */
 
 "use client";
@@ -21,11 +25,10 @@ const MainMenuLinks: React.FC<MainMenuLinksProps> = ({ onClickLink }) => {
   const pathname = usePathname();
 
   const links = [
-    { href: "/", label: "Inicio" },
-    { href: "/proyectos", label: "Proyectos" },
-    { href: "/nosotros", label: "Nosotros" },
+    { href: "/areas", label: "Áreas" },
     { href: "/blog", label: "Blog" },
     { href: "/faq", label: "Preguntas Frecuentes" },
+    { href: "/about-us", label: "Nosotros" },
     { href: "/contact", label: "Contacto" },
   ];
 
@@ -38,7 +41,11 @@ const MainMenuLinks: React.FC<MainMenuLinksProps> = ({ onClickLink }) => {
             onClick={onClickLink}
             className={`block px-4 py-2 rounded transition-colors text-[#1A1341] 
               hover:bg-[#1A1341] hover:text-white
-              ${pathname === href ? "font-semibold underline" : ""}
+              ${
+                pathname.startsWith(href)
+                  ? "font-semibold underline underline-offset-4"
+                  : ""
+              }
             `}
           >
             {label}

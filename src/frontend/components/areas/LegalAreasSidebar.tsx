@@ -4,6 +4,7 @@
  * Sidebar de navegación para las páginas de áreas legales.
  * Cards con los mismos colores y efectos que LegalServiceCard del home.
  * Header gris como el footer, sin scroll interno, área activa solo con subrayado.
+ * ACTUALIZADO: Incluye sección de últimos artículos del blog.
  */
 
 'use client';
@@ -12,6 +13,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Button from '@/components/ui/Button';
+import LatestArticles from './LatestArticles';
 import { LEGAL_SERVICES } from '@/app/data/legalServices';
 
 interface LegalAreasSidebarProps {
@@ -146,6 +148,8 @@ const LegalAreasSidebar: React.FC<LegalAreasSidebarProps> = ({ className = '' })
                 })}
             </div>
 
+           
+
             {/* Footer del sidebar con botón outline */}
             <div className="bg-gray-50 p-5 text-center border-t border-gray-200">
                 <p className="text-sm text-gray-600 mb-4">
@@ -159,6 +163,9 @@ const LegalAreasSidebar: React.FC<LegalAreasSidebarProps> = ({ className = '' })
                     Contactar Ahora
                 </Button>
             </div>
+
+            {/* Sección de Últimos Artículos */}
+            <LatestArticles limit={3} />
         </aside>
     );
 };

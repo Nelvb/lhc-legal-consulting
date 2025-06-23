@@ -1,44 +1,33 @@
 /**
  * SideMenuHeader.tsx
  *
- * Cabecera del menú lateral (SideMenu).
- * Muestra el logotipo de Boost A Project y, si el usuario está autenticado, un saludo personalizado.
- * Incluye botón para cerrar el menú lateral. Preparado para Zustand.
- *
- * - Reemplaza `useAuth` por `useAuthStore`.
- * - Accesible, responsivo y optimizado para SSR.
- * - Mantiene consistencia visual con el resto de la aplicación.
+ * Cabecera profesional del menú lateral en LHC Legal & Consulting.
+ * Aplica el azul corporativo exacto (#0E2A47) como fondo sólido.
+ * El logo se muestra ampliado y centrado visualmente.
+ * No se incluye saludo personalizado para mantener neutralidad institucional.
  */
 
 "use client";
 
 import React from "react";
 import Image from "next/image";
-import { useAuthStore } from "@/stores/useAuthStore";
 
 interface SideMenuHeaderProps {
   onClose: () => void;
 }
 
 const SideMenuHeader: React.FC<SideMenuHeaderProps> = ({ onClose }) => {
-  const { isAuthenticated, user } = useAuthStore();
-
   return (
-    <div className="flex justify-between items-center p-4 bg-[#1DA1F2]">
+    <div className="flex justify-between items-center p-4 bg-[#0E2A47]">
       <div className="flex items-center space-x-3">
         <Image
-          src="https://res.cloudinary.com/dy1pkrd52/image/upload/v1742894677/Logo-sin-fondo-3_d4ch0a.webp"
-          alt="Logo Boost A Project"
-          width={64}
-          height={64}
+          src="https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749048011/Logo_horizontal-removebg-preview_pm2q1z.webp"
+          alt="LHC Legal & Consulting"
+          width={200}
+          height={60}
           priority
-          className="w-16 h-16 object-contain"
+          className="h-20 w-auto object-contain invert brightness-0"
         />
-        {isAuthenticated && (
-          <span className="text-lg font-semibold text-white">
-            Hola {user?.username}
-          </span>
-        )}
       </div>
       <button
         onClick={onClose}

@@ -2,21 +2,25 @@
  * types/legalArea.ts
  *
  * Tipado TypeScript para la estructura de datos de áreas legales.
- * ACTUALIZADO: Añadida interfaz OtherService y propiedad otherServices
+ * ACTUALIZADO: Subtopics expandidos con páginas individuales.
  * Define la interface unificada para todos los JSON de áreas legales.
  */
 
-// Subtema dentro de un área legal
+// Subtema dentro de un área legal con contenido expandido
 export interface LegalSubtopic {
     title: string;
     description: string;
-    hasPage: boolean;
-    slug?: string; // Solo requerido si hasPage es true
-    content?: string; // Contenido adicional si no tiene página propia
+    content?: string; // Contenido breve para la card del área padre
     icon?: string; // Icono opcional para el subtema
+    
+    // Nuevos campos para páginas individuales
+    hasPage?: boolean; // Si tiene página individual (por defecto true)
+    slug?: string; // URL slug, se genera automáticamente si no se especifica
+    extendedIntroduction?: string; // Introducción extendida para la página individual
+    keyPoints?: string[]; // Puntos clave del servicio para la página individual
 }
 
-// ✅ NUEVA INTERFAZ: Servicios complementarios
+// Servicios complementarios
 export interface OtherService {
     title: string;
     content: string;
@@ -33,7 +37,7 @@ export interface LegalFAQ {
 export interface LegalAreaCTA {
     title: string;
     description: string;
-    primaryButton: {
+    primaryButton?: {
         text: string;
         action: 'contact' | 'phone' | 'whatsapp' | 'form';
         value?: string; // URL, teléfono, etc.
@@ -50,13 +54,13 @@ export interface LegalAreaSEO {
     metaTitle: string;
     metaDescription: string;
     keywords: string[];
-    canonicalUrl?: string; // ✅ CAMBIADO: Opcional porque puede ser placeholder
+    canonicalUrl?: string;
     ogImage?: string;
     structuredData?: {
         serviceType: string;
         description: string;
-        areaServed?: string; // ✅ AÑADIDO
-        provider?: { // ✅ AÑADIDO
+        areaServed?: string;
+        provider?: {
             name: string;
             url: string;
             telephone?: string;
@@ -78,14 +82,6 @@ export interface ContentSection {
     type?: 'text' | 'list' | 'table' | 'quote';
 }
 
-// Estadísticas del área (opcional)
-export interface LegalAreaStats {
-    title: string;
-    value: string;
-    description?: string;
-    icon?: string;
-}
-
 // Estructura principal del área legal
 export interface LegalAreaData {
     // Información básica
@@ -96,25 +92,20 @@ export interface LegalAreaData {
 
     // Contenido principal
     introduction: string; // Texto introductorio después del hero
-    contentSections?: ContentSection[]; // ✅ CAMBIADO: Opcional
+    contentSections?: ContentSection[];
     
     // Subtemas y servicios
-    subtopics?: LegalSubtopic[]; // ✅ CAMBIADO: Opcional
-    
-    // ✅ NUEVA PROPIEDAD: Servicios complementarios
+    subtopics?: LegalSubtopic[];
     otherServices?: OtherService[];
 
     // Preguntas frecuentes
-    faqs?: LegalFAQ[]; // ✅ CAMBIADO: Opcional
+    faqs?: LegalFAQ[];
 
     // Call to Action específica
-    cta?: LegalAreaCTA; // ✅ CAMBIADO: Opcional
+    cta?: LegalAreaCTA;
 
     // SEO y metadata
     seo: LegalAreaSEO;
-
-    // ✅ CAMPOS ELIMINADOS (no se usan):
-    // stats, relatedAreas, lastUpdated, displayConfig
 }
 
 // Props para componentes que usan datos de área legal
@@ -127,11 +118,40 @@ export interface LegalAreaContentProps {
     };
 }
 
+// Props para páginas individuales de subtopics
+export interface LegalSubtopicPageProps {
+    subtopicData: LegalSubtopic;
+    areaData: Pick<LegalAreaData, 'id' | 'title' | 'seo'>;
+    areaConfig: {
+        color: string;
+        hoverColor: string;
+        slug: string;
+    };
+}
+
+// Props para el contenido de páginas individuales de subtopics
+export interface LegalSubtopicContentProps {
+    subtopicData: LegalSubtopic;
+    areaConfig: {
+        color: string;
+        hoverColor: string;
+        slug: string;
+    };
+}
+
 // Respuesta del servicio de carga de datos
 export interface LegalAreaResponse {
     success: boolean;
     data?: LegalAreaData;
     error?: string;
+}
+
+// Respuesta del servicio de carga de datos de subtopics
+export interface LegalSubtopicResponse {
+    success: boolean;
+    data?: LegalSubtopic;
+    error?: string;
+    areaData?: Pick<LegalAreaData, 'id' | 'title' | 'seo'>;
 }
 
 // Configuración para el servicio de áreas legales
@@ -150,9 +170,9 @@ export interface LegalAreaValidation {
 
 // Props del componente LegalCTA
 export interface LegalCTAProps {
-    title: string;
-    description: string;
-    primaryButton: {
+    title?: string;
+    description?: string;
+    primaryButton?: {
         text: string;
         action: 'contact' | 'phone' | 'whatsapp' | 'form';
         value?: string;

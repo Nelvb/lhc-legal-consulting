@@ -21,37 +21,97 @@
       "title": "Multas de Tráfico",
       "description": "Recursos contra multas por alcoholemia, velocidad, estacionamiento y otras infracciones de tráfico",
       "content": "Defendemos todo tipo de infracciones de tráfico con especial atención a las alcoholemias, excesos de velocidad captados por radar y multas por estacionamiento en zona azul o reservada.",
-      "icon": "car"
+      "icon": "car",
+      "hasPage": true,
+      "slug": "multas-trafico",
+      "extendedIntroduction": "Recibir una multa de tráfico injusta puede ser muy frustrante, especialmente cuando sabes que no has cometido la infracción o que se han vulnerado tus derechos. En LHC Legal & Consulting somos especialistas en recurrir todo tipo de multas de tráfico: desde alcoholemias hasta excesos de velocidad, pasando por infracciones de estacionamiento. Conocemos perfectamente los procedimientos policiales y sabemos detectar irregularidades que pueden anular la sanción. No dejes que una multa injusta afecte a tu bolsillo y a tu expediente de conducir.",
+      "keyPoints": [
+        "Analizamos la legalidad del control policial y los procedimientos seguidos",
+        "Recurrimos multas de alcoholemia verificando el correcto funcionamiento de los equipos",
+        "Impugnamos radares de velocidad que no cumplen los requisitos técnicos y legales",
+        "Defendemos multas de estacionamiento analizando la señalización y normativa aplicable",
+        "Conseguimos anulaciones de multas por vicios en el procedimiento o falta de pruebas"
+      ]
     },
     {
       "title": "Sanciones Tributarias",
       "description": "Recursos contra sanciones de Hacienda, recargos e intereses de demora",
       "content": "Especialistas en recursos contra sanciones tributarias, liquidaciones paralelas y procedimientos de comprobación de Hacienda.",
-      "icon": "receipt"
+      "icon": "receipt",
+      "hasPage": true,
+      "slug": "sanciones-tributarias",
+      "extendedIntroduction": "Las sanciones de Hacienda pueden ser muy elevadas y tener graves consecuencias para tu economía. En LHC Legal & Consulting defendemos contribuyentes ante todo tipo de sanciones tributarias: desde multas por presentación extemporánea hasta sanciones graves por supuestas inexactitudes. Conocemos perfectamente la normativa sancionadora fiscal y sabemos cómo conseguir reducciones significativas o incluso la anulación completa de las sanciones. Tu defensa fiscal es nuestro compromiso.",
+      "keyPoints": [
+        "Recurrimos sanciones por retrasos en presentación de declaraciones y autoliquidaciones",
+        "Defendemos ante sanciones por supuestas inexactitudes en las declaraciones fiscales",
+        "Aplicamos causas de exoneración por fuerza mayor o causas no imputables",
+        "Conseguimos reducciones del 50% por pronto pago y conformidad con la liquidación",
+        "Impugnamos procedimientos de comprobación e inspección que vulneren tus derechos"
+      ]
     },
     {
       "title": "Sanciones Laborales",
       "description": "Recursos contra sanciones de la Inspección de Trabajo y Seguridad Social",
       "content": "Defensa ante la Inspección de Trabajo en materia de Seguridad Social, prevención de riesgos laborales y relaciones laborales.",
-      "icon": "briefcase"
+      "icon": "briefcase",
+      "hasPage": true,
+      "slug": "sanciones-laborales",
+      "extendedIntroduction": "Una visita de la Inspección de Trabajo puede resultar en sanciones muy elevadas que pongan en peligro tu negocio. En LHC Legal & Consulting defendemos empresas y autónomos ante la Inspección de Trabajo en materias como Seguridad Social, prevención de riesgos laborales y relaciones laborales. Conocemos la normativa laboral y sabemos cómo conseguir reducciones de sanciones o incluso su anulación completa cuando se han vulnerado tus derechos como empleador.",
+      "keyPoints": [
+        "Defendemos ante sanciones por infracciones en materia de Seguridad Social",
+        "Recurrimos multas por incumplimientos en prevención de riesgos laborales",
+        "Impugnamos sanciones por supuestas irregularidades en contratos de trabajo",
+        "Aplicamos reducciones por subsanación voluntaria y buena fe empresarial",
+        "Conseguimos aplazamientos y fraccionamientos de sanciones laborales graves"
+      ]
     },
     {
       "title": "Responsabilidad Patrimonial",
       "description": "Reclamaciones por daños causados por el funcionamiento de servicios públicos",
       "content": "Reclamaciones de responsabilidad patrimonial contra administraciones públicas por daños en el mobiliario urbano, caídas en vía pública o deficiencias en servicios públicos.",
-      "icon": "shield"
+      "icon": "shield",
+      "hasPage": true,
+      "slug": "responsabilidad-patrimonial",
+      "extendedIntroduction": "Cuando la administración pública causa daños por el mal funcionamiento de sus servicios, tienes derecho a ser indemnizado. En LHC Legal & Consulting reclamamos responsabilidad patrimonial contra ayuntamientos, comunidades autónomas y el Estado por todo tipo de daños: desde caídas por deficiencias en el pavimento hasta daños por obras públicas mal ejecutadas. Conocemos el procedimiento y conseguimos las máximas indemnizaciones para nuestros clientes.",
+      "keyPoints": [
+        "Reclamamos daños por caídas en vía pública debido a deficiencias en el pavimento",
+        "Conseguimos indemnizaciones por daños causados por obras públicas",
+        "Reclamamos por funcionamiento deficiente de servicios públicos (agua, luz, saneamiento)",
+        "Gestionamos indemnizaciones por daños en vehículos por baches o mobiliario urbano",
+        "Calculamos daños morales, materiales y lucro cesante para maximizar la indemnización"
+      ]
     },
     {
       "title": "Recursos Contencioso-Administrativos",
       "description": "Impugnación judicial de actos y resoluciones administrativas",
       "content": "Tramitación completa de recursos contencioso-administrativos ante juzgados y tribunales superiores de justicia.",
-      "icon": "scale"
+      "icon": "scale",
+      "hasPage": true,
+      "slug": "recursos-contencioso-administrativos",
+      "extendedIntroduction": "Cuando la administración no responde favorablemente a tus recursos o recurre en alzada, la vía contencioso-administrativa es tu última oportunidad de defender tus derechos. En LHC Legal & Consulting somos especialistas en recursos ante juzgados de lo contencioso-administrativo y tribunales superiores de justicia. Preparamos demandas sólidas con argumentación jurídica rigurosa para conseguir sentencias favorables que anulen los actos administrativos injustos.",
+      "keyPoints": [
+        "Tramitamos recursos contencioso-administrativos ante todos los órdenes jurisdiccionales",
+        "Preparamos demandas con argumentación jurídica sólida y jurisprudencia actualizada",
+        "Solicitamos medidas cautelares para suspender los efectos del acto recurrido",
+        "Defendemos en procedimientos abreviados, ordinarios y especiales",
+        "Conseguimos sentencias que anulan actos administrativos y reconocen tus derechos"
+      ]
     },
     {
       "title": "Procedimientos Disciplinarios",
       "description": "Defensa en expedientes disciplinarios de funcionarios y empleados públicos",
       "content": "Asesoramiento y defensa en procedimientos disciplinarios de personal al servicio de las administraciones públicas.",
-      "icon": "user-check"
+      "icon": "user-check",
+      "hasPage": true,
+      "slug": "procedimientos-disciplinarios",
+      "extendedIntroduction": "Si eres funcionario o empleado público y te enfrentas a un expediente disciplinario, necesitas una defensa especializada que proteja tu carrera profesional. En LHC Legal & Consulting defendemos empleados públicos en todo tipo de procedimientos disciplinarios, desde faltas leves hasta muy graves que pueden conllevar separación del servicio. Conocemos el régimen disciplinario de las administraciones públicas y sabemos cómo conseguir la mejor defensa para tu caso.",
+      "keyPoints": [
+        "Defendemos en expedientes disciplinarios de funcionarios de todas las administraciones",
+        "Analizamos la tipificación correcta de los hechos y la proporcionalidad de la sanción",
+        "Alegamos causas de exoneración, atenuación y prescripción de infracciones",
+        "Impugnamos procedimientos disciplinarios que vulneren las garantías procesales",
+        "Conseguimos absoluciones o sanciones mínimas que preserven tu carrera profesional"
+      ]
     }
   ],
   "otherServices": [

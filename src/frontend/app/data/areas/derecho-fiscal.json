@@ -21,37 +21,97 @@
       "title": "Recursos ante Hacienda",
       "description": "Recursos contra liquidaciones, sanciones y resoluciones de la Agencia Tributaria",
       "content": "Recurrimos todo tipo de actos administrativos de Hacienda: liquidaciones paralelas, sanciones tributarias, denegaciones de devoluciones y resoluciones de comprobación limitada.",
-      "icon": "scale"
+      "icon": "scale",
+      "hasPage": true,
+      "slug": "recursos-ante-hacienda",
+      "extendedIntroduction": "Recibir una liquidación o sanción de Hacienda puede ser muy estresante, pero no tienes por qué aceptarla sin más. En LHC Legal & Consulting somos especialistas en defender a contribuyentes ante la Agencia Tributaria. Analizamos minuciosamente cada resolución para encontrar todos los argumentos legales disponibles y conseguir que se anulen o reduzcan significativamente las cantidades reclamadas. Tu defensa fiscal es nuestro compromiso.",
+      "keyPoints": [
+        "Analizamos exhaustivamente todas las liquidaciones y sanciones de Hacienda",
+        "Presentamos recursos de reposición y reclamaciones económico-administrativas",
+        "Defendemos con argumentación técnica sólida basada en jurisprudencia actualizada",
+        "Conseguimos anulaciones y reducciones significativas de deudas tributarias",
+        "Te representamos en todos los procedimientos hasta conseguir una resolución favorable"
+      ]
     },
     {
       "title": "Inspecciones Fiscales",
       "description": "Defensa y representación en procedimientos de inspección de Hacienda",
       "content": "Te representamos durante todo el procedimiento inspector, desde la notificación inicial hasta la firma del acta, protegiendo tus derechos y minimizando las consecuencias económicas.",
-      "icon": "search"
+      "icon": "search",
+      "hasPage": true,
+      "slug": "inspecciones-fiscales",
+      "extendedIntroduction": "Una inspección de Hacienda es una situación compleja que requiere representación especializada desde el primer momento. En LHC Legal & Consulting te acompañamos durante todo el procedimiento inspector, defendiendo tus derechos y minimizando el impacto económico. Conocemos las técnicas de inspección y sabemos cómo proteger tus intereses en cada fase del proceso, desde la primera actuación hasta la firma del acta final.",
+      "keyPoints": [
+        "Te representamos desde la primera notificación hasta el final del procedimiento",
+        "Analizamos la legalidad de todas las actuaciones inspectoras realizadas",
+        "Defendemos tus derechos durante las comprobaciones y verificaciones",
+        "Negociamos con los inspectores para minimizar las consecuencias económicas",
+        "Preparamos alegaciones técnicas y recursos contra las actas de inspección"
+      ]
     },
     {
       "title": "Sanciones Tributarias",
       "description": "Recursos contra multas y sanciones por infracciones tributarias",
       "content": "Defendemos contra sanciones por presentación extemporánea, inexactitudes, resistencia a la actuación inspectora y cualquier tipo de infracción tributaria.",
-      "icon": "alert-triangle"
+      "icon": "alert-triangle",
+      "hasPage": true,
+      "slug": "sanciones-tributarias",
+      "extendedIntroduction": "Las sanciones tributarias pueden ser muy elevadas, pero muchas veces son desproporcionadas o se han impuesto sin cumplir todos los requisitos legales. En LHC Legal & Consulting revisamos cada sanción para verificar si se ha aplicado correctamente la normativa sancionadora. Defendemos contribuyentes ante todo tipo de infracciones fiscales, consiguiendo frecuentemente la anulación total o reducción significativa de las multas impuestas.",
+      "keyPoints": [
+        "Revisamos la correcta aplicación de la normativa sancionadora en cada caso",
+        "Defendemos ante sanciones por retrasos, inexactitudes y resistencia inspectora",
+        "Aplicamos causas de exoneración y circunstancias atenuantes cuando procede",
+        "Conseguimos reducciones significativas por pronto pago y conformidad",
+        "Recurrimos sanciones desproporcionadas o impuestas incorrectamente"
+      ]
     },
     {
       "title": "Planificación Fiscal",
       "description": "Optimización legal de la carga tributaria para particulares y empresas",
       "content": "Diseñamos estrategias fiscales legales para minimizar el impacto tributario en operaciones empresariales, transmisiones patrimoniales y planificación sucesoria.",
-      "icon": "calculator"
+      "icon": "calculator",
+      "hasPage": true,
+      "slug": "planificacion-fiscal",
+      "extendedIntroduction": "Pagar menos impuestos de forma completamente legal es posible con una planificación fiscal adecuada. En LHC Legal & Consulting analizamos tu situación fiscal para diseñar estrategias que minimicen tu carga tributaria actual y futura. Desde la elección de la forma jurídica más adecuada hasta la planificación de operaciones empresariales complejas, te ayudamos a optimizar tu fiscalidad respetando escrupulosamente la legalidad vigente.",
+      "keyPoints": [
+        "Analizamos tu situación fiscal para identificar oportunidades de ahorro",
+        "Diseñamos estructuras fiscales óptimas para particulares y empresas",
+        "Planificamos operaciones empresariales con criterios de eficiencia fiscal",
+        "Aplicamos beneficios fiscales, deducciones y exenciones disponibles",
+        "Te asesoramos en planificación sucesoria para optimizar transmisiones patrimoniales"
+      ]
     },
     {
       "title": "IRPF y Patrimonio",
       "description": "Asesoramiento en IRPF, Impuesto de Patrimonio y planificación de rentas",
       "content": "Optimizamos la tributación de personas físicas: IRPF, Patrimonio, Sucesiones y Donaciones, con especial atención a rentas inmobiliarias y ganancias patrimoniales.",
-      "icon": "home"
+      "icon": "home",
+      "hasPage": true,
+      "slug": "irpf-patrimonio",
+      "extendedIntroduction": "La fiscalidad de las personas físicas es cada vez más compleja, especialmente cuando tienes rentas inmobiliarias, ganancias patrimoniales o patrimonio significativo. En LHC Legal & Consulting te ayudamos a optimizar tu IRPF aplicando todas las deducciones disponibles y planificando tus operaciones para minimizar el impacto fiscal. También te asesoramos sobre el Impuesto de Patrimonio y las mejores estrategias para transmisiones patrimoniales.",
+      "keyPoints": [
+        "Optimizamos tu declaración de IRPF con todas las deducciones aplicables",
+        "Planificamos la tributación de rentas inmobiliarias y ganancias patrimoniales",
+        "Te asesoramos sobre el Impuesto de Patrimonio y estrategias de optimización",
+        "Gestionamos tributos en transmisiones: Sucesiones, Donaciones y TPO",
+        "Diseñamos estrategias de ahorro fiscal para personas con alto patrimonio"
+      ]
     },
     {
       "title": "IVA e Impuesto de Sociedades",
       "description": "Gestión fiscal empresarial, IVA, Sociedades y otros tributos empresariales",
       "content": "Asesoramiento integral en tributación empresarial: Impuesto de Sociedades, IVA, retenciones, obligaciones formales y beneficios fiscales para empresas.",
-      "icon": "building"
+      "icon": "building",
+      "hasPage": true,
+      "slug": "iva-impuesto-sociedades",
+      "extendedIntroduction": "La fiscalidad empresarial requiere un conocimiento especializado para cumplir todas las obligaciones y aprovechar las oportunidades de ahorro. En LHC Legal & Consulting te acompañamos en la gestión fiscal integral de tu empresa: desde la liquidación del IVA hasta la optimización del Impuesto de Sociedades. Conocemos todos los beneficios fiscales disponibles y te ayudamos a estructurar tu actividad empresarial de la forma más eficiente desde el punto de vista tributario.",
+      "keyPoints": [
+        "Gestionamos todas las obligaciones del IVA y resolvemos contingencias complejas",
+        "Optimizamos el Impuesto de Sociedades aplicando todos los beneficios fiscales",
+        "Cumplimos obligaciones de retenciones y autoliquidaciones trimestrales",
+        "Aplicamos deducciones por I+D, inversiones y beneficios específicos por sector",
+        "Asesoramos en reestructuraciones societarias con eficiencia fiscal"
+      ]
     }
   ],
   "otherServices": [

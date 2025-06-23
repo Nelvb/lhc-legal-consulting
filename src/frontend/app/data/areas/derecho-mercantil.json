@@ -21,37 +21,97 @@
       "title": "Reclamación de Impagos",
       "description": "Recuperación de facturas pendientes mediante procedimiento monitorio y ejecutivo",
       "content": "Especializados en recuperar facturas impagadas de clientes morosos. Utilizamos procedimiento monitorio, ejecutivo y embargo de bienes para conseguir el cobro efectivo de tus deudas.",
-      "icon": "banknote"
+      "icon": "banknote",
+      "hasPage": true,
+      "slug": "reclamacion-impagos",
+      "extendedIntroduction": "Los impagos pueden arruinar tu negocio si no actúas a tiempo. En LHC Legal & Consulting somos especialistas en recuperar el dinero que tus clientes te deben, utilizando los procedimientos judiciales más eficaces. No importa si es una factura de 500 euros o de 50.000 euros, tenemos la experiencia y las herramientas legales necesarias para conseguir que cobres lo que es tuyo. Trabajamos con rapidez y eficacia para que puedas centrarte en hacer crecer tu negocio.",
+      "keyPoints": [
+        "Recuperamos facturas impagadas de cualquier cuantía con procedimientos rápidos y eficaces",
+        "Utilizamos procedimiento monitorio para conseguir títulos ejecutivos en 20-30 días",
+        "Embargamos cuentas bancarias, inmuebles y otros bienes del deudor moroso",
+        "Trabajamos con cuota de éxito en muchos casos: solo cobramos si recuperas tu dinero",
+        "Actuamos contra empresas en concurso de acreedores para maximizar tu cobro"
+      ]
     },
     {
       "title": "Procedimiento Monitorio",
       "description": "Vía judicial rápida y eficaz para reclamar deudas dinerarias de hasta 600.000€",
       "content": "El procedimiento monitorio es la vía más rápida para reclamar deudas. Si el deudor no paga ni se opone en 20 días, obtienes título ejecutivo para embargar directamente sus bienes.",
-      "icon": "gavel"
+      "icon": "gavel",
+      "hasPage": true,
+      "slug": "procedimiento-monitorio",
+      "extendedIntroduction": "El procedimiento monitorio es el arma más poderosa que tienes para recuperar tus impagos de forma rápida. En LHC Legal & Consulting dominamos esta herramienta legal que permite conseguir un título ejecutivo contra tu deudor en apenas 20-30 días si no se opone. Una vez obtenido el título, podemos embargar directamente sus bienes sin necesidad de juicio. Es rápido, económico y muy efectivo para la mayoría de impagos comerciales.",
+      "keyPoints": [
+        "Conseguimos títulos ejecutivos en 20-30 días si el deudor no se opone al requerimiento",
+        "Podemos reclamar hasta 600.000 euros por deuda con documentación que la acredite",
+        "Si se opone, el procedimiento se convierte en juicio ordinario donde defendemos tus derechos",
+        "Una vez firme, podemos embargar cuentas, inmuebles y otros bienes inmediatamente",
+        "Es el procedimiento más rápido y económico para recuperar deudas comerciales"
+      ]
     },
     {
       "title": "Contratos Mercantiles",
       "description": "Redacción, revisión y negociación de contratos comerciales y empresariales",
       "content": "Redactamos contratos de compraventa, suministro, distribución, franquicia, joint venture y todo tipo de acuerdos comerciales que protejan tu actividad empresarial.",
-      "icon": "file-text"
+      "icon": "file-text",
+      "hasPage": true,
+      "slug": "contratos-mercantiles",
+      "extendedIntroduction": "Un buen contrato es la mejor prevención contra futuros conflictos comerciales. En LHC Legal & Consulting redactamos contratos mercantiles que protejan realmente tus intereses empresariales. Desde contratos de compraventa hasta acuerdos de distribución complejos, nos aseguramos de que todas las cláusulas estén redactadas de forma clara y te favorezcan. También revisamos contratos que te propongan terceros para detectar cláusulas abusivas o desfavorables.",
+      "keyPoints": [
+        "Redactamos contratos personalizados que protejan específicamente tus intereses",
+        "Revisamos contratos propuestos por terceros para detectar cláusulas desfavorables",
+        "Negociamos términos comerciales, plazos de pago y condiciones de entrega",
+        "Incluimos cláusulas de resolución alternativa de conflictos y jurisdicción",
+        "Adaptamos los contratos a la normativa específica de tu sector empresarial"
+      ]
     },
     {
       "title": "Constitución de Sociedades",
       "description": "Creación de SL, SA, cooperativas y otras formas jurídicas empresariales",
       "content": "Asesoramos en la elección de la forma societaria más adecuada y gestionamos todo el proceso de constitución con asesoramiento fiscal y laboral complementario.",
-      "icon": "building"
+      "icon": "building",
+      "hasPage": true,
+      "slug": "constitucion-sociedades",
+      "extendedIntroduction": "Elegir la forma jurídica adecuada para tu negocio es una decisión crucial que afectará a tu fiscalidad, responsabilidad y capacidad de crecimiento. En LHC Legal & Consulting te asesoramos sobre las ventajas e inconvenientes de cada opción: sociedad limitada, anónima, cooperativa o otras formas especiales. Gestionamos todo el proceso de constitución de forma ágil y te acompañamos con asesoramiento fiscal para que tu nueva empresa empiece con buen pie.",
+      "keyPoints": [
+        "Analizamos tu proyecto empresarial para recomendarte la forma jurídica más ventajosa",
+        "Gestionamos la constitución completa: estatutos, capital, registro mercantil y hacienda",
+        "Te asesoramos sobre beneficios fiscales para empresas de nueva creación",
+        "Preparamos pactos de socios y estructuras de gobierno corporativo",
+        "Coordinamos el alta en Seguridad Social, licencias y otros trámites necesarios"
+      ]
     },
     {
       "title": "Conflictos Societarios",
       "description": "Resolución de disputas entre socios, administradores y juntas de accionistas",
       "content": "Mediamos y litigamos en conflictos societarios: disputas entre socios, impugnación de acuerdos sociales, responsabilidad de administradores y disolución de sociedades.",
-      "icon": "users-round"
+      "icon": "users-round",
+      "hasPage": true,
+      "slug": "conflictos-societarios",
+      "extendedIntroduction": "Los conflictos entre socios pueden paralizar una empresa y destruir años de trabajo. En LHC Legal & Consulting mediamos en disputas societarias buscando soluciones que preserven la continuidad del negocio. Cuando la mediación no es posible, defendemos tus derechos como socio con litigación especializada. Desde bloqueos en la toma de decisiones hasta exclusión de socios problemáticos, conocemos todas las herramientas legales disponibles.",
+      "keyPoints": [
+        "Mediamos en conflictos societarios buscando soluciones que preserven la empresa",
+        "Defendemos tus derechos como socio minoritario o mayoritario según el caso",
+        "Impugnamos acuerdos sociales nulos o perjudiciales para tus intereses",
+        "Gestionamos procesos de exclusión de socios y disolución de sociedades",
+        "Reclamamos responsabilidad de administradores por gestión desleal o negligente"
+      ]
     },
     {
       "title": "Concurso de Acreedores",
       "description": "Asesoramiento en situaciones de insolvencia empresarial y concursos",
       "content": "Asesoramos tanto a empresas en dificultades como a acreedores en procedimientos concursales, convenios de acreedores y acuerdos extrajudiciales de pagos.",
-      "icon": "scale"
+      "icon": "scale",
+      "hasPage": true,
+      "slug": "concurso-acreedores",
+      "extendedIntroduction": "Cuando una empresa no puede pagar sus deudas, el concurso de acreedores puede ser la única solución para salvar el negocio o liquidarlo ordenadamente. En LHC Legal & Consulting asesoramos tanto a empresas en crisis como a acreedores que quieren proteger sus créditos. Conocemos todas las alternativas: desde acuerdos extrajudiciales hasta convenios de acreedores, siempre buscando la mejor solución para cada situación específica.",
+      "keyPoints": [
+        "Asesoramos a empresas en crisis para encontrar la mejor salida a su situación",
+        "Defendemos a acreedores en concursos para maximizar el cobro de sus créditos",
+        "Gestionamos acuerdos extrajudiciales de pagos como alternativa al concurso",
+        "Preparamos convenios de acreedores viables que permitan la continuidad empresarial",
+        "Supervisamos el proceso concursal para proteger tus derechos en cada fase"
+      ]
     }
   ],
   "otherServices": [

@@ -20,7 +20,7 @@ const SERVICE_CONFIG = {
     retryDelay: 1000, // 1 segundo
 };
 
-// Lista de slugs válidos (sincronizar con LEGAL_SERVICES)
+// Lista de slugs válidos (sincronizar con estructura de áreas)
 const VALID_AREA_SLUGS = [
     'derecho-laboral',
     'derecho-civil',
@@ -126,7 +126,7 @@ export async function getAllLegalAreasData(): Promise<LegalAreaData[]> {
  */
 export async function searchLegalContent(query: string): Promise<{
     area: string;
-    matches: Array<{ type: 'title' | 'content' | 'subtopic' | 'faq'; text: string; }>
+    matches: Array<{ type: 'title' | 'content' | 'subtopic' | 'faq' | 'service'; text: string; }>
 }[]> {
     const allAreas = await getAllLegalAreasData();
     const results: any[] = [];
@@ -138,6 +138,10 @@ export async function searchLegalContent(query: string): Promise<{
         // Buscar en título y descripción
         if (area.title.toLowerCase().includes(searchTerm)) {
             matches.push({ type: 'title', text: area.title });
+        }
+
+        if (area.subtitle.toLowerCase().includes(searchTerm)) {
+            matches.push({ type: 'title', text: area.subtitle });
         }
 
         // Buscar en secciones de contenido
@@ -153,6 +157,14 @@ export async function searchLegalContent(query: string): Promise<{
             if (subtopic.title.toLowerCase().includes(searchTerm) ||
                 subtopic.description.toLowerCase().includes(searchTerm)) {
                 matches.push({ type: 'subtopic', text: subtopic.title });
+            }
+        });
+
+        // Buscar en otros servicios
+        area.otherServices?.forEach(service => {
+            if (service.title.toLowerCase().includes(searchTerm) ||
+                service.content.toLowerCase().includes(searchTerm)) {
+                matches.push({ type: 'service', text: service.title });
             }
         });
 
@@ -173,25 +185,41 @@ export async function searchLegalContent(query: string): Promise<{
 }
 
 /**
- * Obtener áreas relacionadas
+ * Obtener áreas recomendadas basadas en categorías similares
+ * (Reemplaza la función getRelatedAreas que usaba un campo inexistente)
  */
-export async function getRelatedAreas(currentAreaId: string): Promise<LegalAreaData[]> {
-    const currentArea = await getLegalAreaData(currentAreaId);
+export async function getSuggestedAreas(currentAreaId: string, limit: number = 3): Promise<LegalAreaData[]> {
+    const allAreas = await getAllLegalAreasData();
+    
+    // Filtrar el área actual y limitar resultados
+    return allAreas
+        .filter(area => area.id !== currentAreaId)
+        .slice(0, limit);
+}
 
-    if (!currentArea.success || !currentArea.data?.relatedAreas) {
-        return [];
+/**
+ * Obtener estadísticas de contenido por área
+ */
+export async function getAreaContentStats(areaId: string): Promise<{
+    subtopicsCount: number;
+    faqsCount: number;
+    contentSectionsCount: number;
+    otherServicesCount: number;
+} | null> {
+    const areaResponse = await getLegalAreaData(areaId);
+    
+    if (!areaResponse.success || !areaResponse.data) {
+        return null;
     }
 
-    const relatedAreasData = await Promise.allSettled(
-        currentArea.data.relatedAreas.map(slug => getLegalAreaData(slug))
-    );
-
-    return relatedAreasData
-        .filter((result): result is PromiseFulfilledResult<LegalAreaResponse> =>
-            result.status === 'fulfilled' && result.value.success
-        )
-        .map(result => result.value.data!)
-        .filter(Boolean);
+    const area = areaResponse.data;
+    
+    return {
+        subtopicsCount: area.subtopics?.length || 0,
+        faqsCount: area.faqs?.length || 0,
+        contentSectionsCount: area.contentSections?.length || 0,
+        otherServicesCount: area.otherServices?.length || 0
+    };
 }
 
 /**
@@ -208,34 +236,37 @@ function validateLegalAreaData(data: any): LegalAreaValidation {
     if (!data.heroDescription) errors.push('Campo heroDescription es obligatorio');
     if (!data.introduction) errors.push('Campo introduction es obligatorio');
 
-    // Validaciones de arrays
-    if (!Array.isArray(data.contentSections)) {
-        errors.push('contentSections debe ser un array');
-    } else if (data.contentSections.length === 0) {
+    // Validaciones de arrays opcionales
+    if (data.contentSections && !Array.isArray(data.contentSections)) {
+        errors.push('contentSections debe ser un array si está definido');
+    } else if (!data.contentSections || data.contentSections.length === 0) {
         warnings.push('No hay secciones de contenido definidas');
     }
 
-    if (!Array.isArray(data.subtopics)) {
-        warnings.push('subtopics no está definido o no es un array');
+    if (data.subtopics && !Array.isArray(data.subtopics)) {
+        warnings.push('subtopics no es un array válido');
     }
 
-    if (!Array.isArray(data.faqs)) {
-        warnings.push('faqs no está definido o no es un array');
+    if (data.faqs && !Array.isArray(data.faqs)) {
+        warnings.push('faqs no es un array válido');
     }
 
-    // Validar estructura SEO
+    if (data.otherServices && !Array.isArray(data.otherServices)) {
+        warnings.push('otherServices no es un array válido');
+    }
+
+    // Validar estructura SEO obligatoria
     if (!data.seo) {
-        warnings.push('Información SEO no está definida');
+        errors.push('Información SEO es obligatoria');
     } else {
-        if (!data.seo.metaTitle) warnings.push('SEO: metaTitle no definido');
-        if (!data.seo.metaDescription) warnings.push('SEO: metaDescription no definido');
+        if (!data.seo.metaTitle) errors.push('SEO: metaTitle es obligatorio');
+        if (!data.seo.metaDescription) errors.push('SEO: metaDescription es obligatorio');
+        if (!Array.isArray(data.seo.keywords)) warnings.push('SEO: keywords debe ser un array');
     }
 
-    // Validar CTA
-    if (!data.cta) {
-        warnings.push('CTA no está definida');
-    } else if (!data.cta.title || !data.cta.primaryButton) {
-        warnings.push('CTA incompleta (falta title o primaryButton)');
+    // Validar CTA opcional
+    if (data.cta && (!data.cta.title || !data.cta.description)) {
+        warnings.push('CTA incompleta (falta title o description)');
     }
 
     return {

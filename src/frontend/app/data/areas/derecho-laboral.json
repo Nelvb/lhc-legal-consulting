@@ -11,7 +11,7 @@
       "order": 1
     },
     {
-      "title": "Nuestros Servicios Laborales",
+      "title": "Nuestro Método de Trabajo",
       "content": "<p>Ofrecemos una defensa integral que cubre todas las fases del conflicto laboral, desde la negociación previa hasta la ejecución de sentencias favorables:</p><ul><li><strong>Asesoramiento preventivo:</strong> Análisis de contratos y situaciones laborales antes de que se conviertan en conflictos</li><li><strong>Defensa especializada:</strong> Representación en juicios laborales con estrategias probatorias efectivas</li><li><strong>Negociación avanzada:</strong> Mediación y conciliación para lograr acuerdos beneficiosos sin llegar a juicio</li><li><strong>Ejecución de sentencias:</strong> Seguimiento completo hasta el cobro efectivo de las indemnizaciones</li></ul>",
       "order": 2
     }
@@ -21,37 +21,97 @@
       "title": "Despidos Improcedentes",
       "description": "Defensa integral en despidos objetivos, disciplinarios y colectivos con máxima indemnización",
       "content": "Analizamos la procedencia del despido, vicios en el procedimiento y calculamos la indemnización máxima que te corresponde. Experiencia en despidos por causas económicas, técnicas y organizativas.",
-      "icon": "user-x"
+      "icon": "user-x",
+      "hasPage": true,
+      "slug": "despidos-improcedentes",
+      "extendedIntroduction": "Si te han despedido y crees que ha sido injusto, no estás solo. En LHC Legal & Consulting sabemos lo que supone perder tu trabajo de forma inesperada y las preocupaciones económicas y emocionales que esto conlleva. Por eso, nos especializamos en defender a trabajadores como tú, analizando cada detalle del despido para conseguir la máxima indemnización posible. Nuestro objetivo es claro: proteger tus derechos y asegurar que recibas lo que realmente te corresponde por ley.",
+      "keyPoints": [
+        "Revisamos minuciosamente si tu despido cumple todos los requisitos legales",
+        "Calculamos la indemnización exacta que te corresponde según tu situación",
+        "Te acompañamos y asesoramos en cada paso del proceso judicial",
+        "Buscamos siempre la máxima compensación económica para tu caso",
+        "Ofrecemos un trato cercano y humano en un momento tan difícil"
+      ]
     },
     {
       "title": "Reclamaciones de Cantidad",
       "description": "Recuperación de salarios impagados, horas extras, pagas extraordinarias y finiquitos",
       "content": "Reclamamos todo tipo de conceptos salariales: salarios base, complementos, horas extraordinarias, pagas extras, vacaciones no disfrutadas y conceptos del finiquito.",
-      "icon": "euro"
+      "icon": "euro",
+      "hasPage": true,
+      "slug": "reclamaciones-cantidad",
+      "extendedIntroduction": "¿Tu empresa te debe dinero? Ya sean nóminas atrasadas, horas extra sin pagar, pagas extraordinarias o un finiquito incorrecto, tienes derecho a reclamar todo lo que te corresponde. En LHC Legal & Consulting entendemos la frustración de trabajar y no cobrar lo que mereces. Por eso, nos especializamos en recuperar todos esos conceptos salariales que tu empresa te debe, desde los más básicos hasta los más complejos.",
+      "keyPoints": [
+        "Analizamos tu nómina y contrato para identificar todos los impagos",
+        "Reclamamos salarios, complementos, horas extras y pagas extraordinarias",
+        "Revisamos que tu finiquito incluya todos los conceptos que te corresponden",
+        "Calculamos intereses y recargos por los pagos realizados fuera de plazo",
+        "Gestionamos el cobro efectivo de todas las cantidades adeudadas"
+      ]
     },
     {
       "title": "Modificaciones Sustanciales",
       "description": "Defensa ante cambios unilaterales de horario, funciones, salario o lugar de trabajo",
       "content": "Impugnamos modificaciones sustanciales que perjudiquen tus condiciones laborales, incluyendo cambios de turno, reducción salarial y traslados no consentidos.",
-      "icon": "settings"
+      "icon": "settings",
+      "hasPage": true,
+      "slug": "modificaciones-sustanciales",
+      "extendedIntroduction": "¿Tu empresa ha cambiado tu horario, tus funciones, tu salario o tu lugar de trabajo sin tu consentimiento? No tienes por qué aceptarlo. Las modificaciones sustanciales de las condiciones de trabajo tienen límites legales muy claros. En LHC Legal & Consulting te ayudamos a defender tus condiciones laborales originales o, en su caso, a obtener la compensación que te corresponde por estos cambios perjudiciales.",
+      "keyPoints": [
+        "Evaluamos si la modificación de tus condiciones es legal y justificada",
+        "Defendemos tu derecho a mantener tus condiciones laborales originales",
+        "Impugnamos cambios de horario, funciones o lugar de trabajo perjudiciales",
+        "Reclamamos compensaciones económicas cuando la modificación es inevitable",
+        "Te asesoramos sobre tus opciones: aceptación, impugnación o extinción del contrato"
+      ]
     },
     {
       "title": "Acoso Laboral y Mobbing",
       "description": "Especialistas en casos de acoso psicológico, discriminación y ambiente laboral tóxico",
       "content": "Defendemos víctimas de acoso laboral, mobbing, discriminación por género, edad o cualquier otra causa. Estrategias probatorias específicas para estos casos tan delicados.",
-      "icon": "shield-alert"
+      "icon": "shield-alert",
+      "hasPage": true,
+      "slug": "acoso-laboral-mobbing",
+      "extendedIntroduction": "El acoso laboral es una realidad que nadie debería soportar. Si estás viviendo situaciones de mobbing, discriminación o un ambiente laboral tóxico, es importante que sepas que tienes derechos y que hay formas legales de protegerte. En LHC Legal & Consulting entendemos la delicadeza de estas situaciones y te ofrecemos un acompañamiento especializado, discreto y eficaz para poner fin al acoso y obtener la reparación que mereces.",
+      "keyPoints": [
+        "Te ayudamos a identificar y documentar todas las situaciones de acoso",
+        "Diseñamos una estrategia legal específica para tu caso de mobbing",
+        "Reclamamos indemnizaciones por los daños psicológicos y profesionales sufridos",
+        "Buscamos medidas cautelares para protegerte mientras se resuelve el caso",
+        "Ofrecemos total confidencialidad y sensibilidad en el tratamiento de tu situación"
+      ]
     },
     {
       "title": "Bajas Médicas y Incapacidades",
       "description": "Gestión de bajas laborales, incapacidades temporales y permanentes",
       "content": "Asesoramiento integral en bajas médicas, conflictos con mutuas, incapacidades permanentes y recursos ante la Seguridad Social por prestaciones denegadas.",
-      "icon": "heart-pulse"
+      "icon": "heart-pulse",
+      "hasPage": true,
+      "slug": "bajas-medicas-incapacidades",
+      "extendedIntroduction": "Cuando tu salud se ve afectada y necesitas una baja médica, lo último que deberías preocuparte es por los trámites legales. Sin embargo, a menudo surgen problemas con las mutuas, denegaciones injustificadas o conflictos sobre la duración de la baja. En LHC Legal & Consulting te acompañamos en todos estos procesos, defendiendo tu derecho a la protección social y asegurándonos de que recibas las prestaciones que te corresponden.",
+      "keyPoints": [
+        "Te asesoramos en todos los trámites relacionados con tu baja médica",
+        "Defendemos tus derechos frente a las mutuas y la Seguridad Social",
+        "Recurrimos denegaciones injustificadas de prestaciones por incapacidad",
+        "Gestionamos solicitudes de incapacidad permanente cuando procede",
+        "Te ayudamos a entender tus derechos y opciones en cada momento del proceso"
+      ]
     },
     {
       "title": "Contratos y Convenios",
       "description": "Revisión de contratos laborales, convenios colectivos y condiciones de trabajo",
       "content": "Análisis y negociación de contratos de trabajo, aplicación de convenios colectivos, clasificación profesional y condiciones salariales.",
-      "icon": "file-text"
+      "icon": "file-text",
+      "hasPage": true,
+      "slug": "contratos-convenios",
+      "extendedIntroduction": "Tu contrato de trabajo es la base de tu relación laboral, pero no siempre es fácil entender todos sus términos y condiciones. Además, el convenio colectivo de tu sector puede establecer derechos adicionales que desconoces. En LHC Legal & Consulting revisamos tu contrato y analizamos si se están aplicando correctamente todas las condiciones que te favorecen, desde el salario hasta las vacaciones, pasando por tu categoría profesional.",
+      "keyPoints": [
+        "Analizamos tu contrato para identificar cláusulas abusivas o ilegales",
+        "Verificamos que se aplique correctamente tu convenio colectivo",
+        "Reclamamos diferencias salariales si tu clasificación profesional es incorrecta",
+        "Te asesoramos sobre tus derechos según tu tipo de contrato",
+        "Negociamos mejores condiciones laborales cuando es posible"
+      ]
     }
   ],
   "otherServices": [
