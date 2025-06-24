@@ -90,7 +90,7 @@ const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
         }}
       >
         <div
-          className="relative w-full h-[120%] sm:h-[180%] md:h-[130%] top-[-150%] sm:top-[-130%] md:top-[-70%]"
+          className="relative w-full h-[200%] sm:h-[150%] md:h-[120%] top-[-180%] min-[390px]:top-[-140%] sm:top-[-80%] md:top-[-50%]"
           style={{
             opacity: isLoaded ? opacity : 0,
             transition: 'opacity 0.5s ease-in-out'
@@ -107,7 +107,7 @@ const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
             onLoad={() => setIsLoaded(true)}
             style={{
               filter: 'blur(0.5px)',
-              objectPosition: 'center 20%'
+              objectPosition: 'center 40%'
             }}
           />
         </div>

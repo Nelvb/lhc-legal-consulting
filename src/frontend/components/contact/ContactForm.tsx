@@ -73,7 +73,9 @@ const ContactForm = () => {
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 {/* Columna izquierda - Información y valor */}
                 <div className="space-y-8">
-                    <div className="space-y-6">
+                <div className="space-y-6 pt-20 sm:pt-18 md:pt-16 lg:pt-24 xl:pt-0">
+
+
                         <h1 className="text-4xl lg:text-5xl font-bold text-[#1b2f4b] leading-tight">
                             ¿Necesitas{" "}
                             <span className="text-[#1DA1F2]">asesoramiento legal</span>?

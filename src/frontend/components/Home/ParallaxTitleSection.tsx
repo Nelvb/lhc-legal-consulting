@@ -53,7 +53,7 @@ const ParallaxTitleSection: React.FC<ParallaxTitleSectionProps> = ({
             className={`text-center ${paddingY} relative z-10 ${className}`}
             aria-labelledby="parallax-title-heading"
         >
-            <div className="max-w-6xl mx-auto px-6 pt-96">
+            <div className="max-w-6xl mx-auto px-6 pt-[12rem] sm:pt-[3rem] md:pt-96 lg:pt-96">
 
                 {/* Título principal con animación */}
                 <div className={`

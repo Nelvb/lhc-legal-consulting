@@ -50,10 +50,12 @@ export default function ContactPage() {
             </div>
 
             {/* Contenido principal con margen superior apropiado para navbar h-36 */}
-            <div className="relative z-10 px-4 py-20 lg:py-32 pt-44 lg:pt-48">
+            <div className="relative z-10 px-4 pt-32 pb-20 sm:pt-36 md:pt-44 lg:pt-48 lg:pb-32">
+
                 <div className="container mx-auto">
                     {/* Header de la página */}
-                    <div className="text-center mb-16 lg:mb-20">
+                    <div className="text-center mb-16 lg:mb-20 -mt-12 sm:-mt-16 md:-mt-20 lg:mt-0">
+
                         <div className="inline-block bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-medium mb-6">
                             Primera consulta gratuita
                         </div>

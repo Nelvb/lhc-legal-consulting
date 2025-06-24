@@ -38,7 +38,7 @@ const LHCSideMenu: React.FC = () => {
 
     const publicLinks = [
         { href: "/areas", label: "Áreas Legales", icon: <Scale size={20} className={linkIconColor} /> },
-        { href: "/about", label: "Nosotros", icon: <Users size={20} className={linkIconColor} /> },
+        { href: "/about-us", label: "Nosotros", icon: <Users size={20} className={linkIconColor} /> },
         { href: "/blog", label: "Blog Jurídico", icon: <BookOpen size={20} className={linkIconColor} /> },
         { href: "/faq", label: "Preguntas Frecuentes", icon: <HelpCircle size={20} className={linkIconColor} /> },
         { href: "/contact", label: "Contacto", icon: <Phone size={20} className={linkIconColor} /> },
