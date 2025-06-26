@@ -2,12 +2,11 @@
 
 // Metadata para SEO
 export const metadata = {
-    title: 'Editar Artículo | Boost A Project',
-    description: 'Editor para modificar artículos existentes en el blog.',
-    robots: 'noindex, nofollow', // No indexar esta página
+    title: 'Editar Artículo | LHC Legal & Consulting',
+    description: 'Editor para modificar artículos existentes en el blog legal.',
     openGraph: {
-        title: 'Editar Artículo | Boost A Project',
-        description: 'Editor para modificar artículos existentes en el blog',
+        title: 'Editar Artículo | LHC Legal & Consulting',
+        description: 'Editor para modificar artículos existentes en el blog legal',
         type: 'website',
     },
 }

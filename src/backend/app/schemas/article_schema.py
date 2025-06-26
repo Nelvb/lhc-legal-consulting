@@ -35,7 +35,7 @@ class ArticleSchema(Schema):
     image = fields.Str(required=True, validate=validate.Length(max=255))
     image_alt = fields.Str(validate=validate.Length(max=255))
     content = fields.Str(required=True)
-    related = fields.List(fields.Str(), required=False)  # Lista de slugs relacionados
+    related = fields.List(fields.Str(), load_default=[], dump_default=[])
     meta_description = fields.Str(validate=validate.Length(max=160))
     meta_keywords = fields.Str(validate=validate.Length(max=255))
 

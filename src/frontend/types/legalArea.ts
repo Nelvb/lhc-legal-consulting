@@ -37,10 +37,10 @@ export interface LegalFAQ {
 export interface LegalAreaCTA {
     title: string;
     description: string;
-    primaryButton?: {
+    primaryButton: {  // <-- obligatorio sin ?
         text: string;
         action: 'contact' | 'phone' | 'whatsapp' | 'form';
-        value?: string; // URL, teléfono, etc.
+        value?: string;
     };
     secondaryButton?: {
         text: string;
@@ -48,6 +48,7 @@ export interface LegalAreaCTA {
         value?: string;
     };
 }
+
 
 // Información SEO específica del área
 export interface LegalAreaSEO {

@@ -4,7 +4,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import SmartLink from '@/components/ui/SmartLink';
 import { CarouselSlideProps } from '@/types/carousel';
 import Button from '@/components/ui/Button';
 
@@ -13,10 +13,10 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ area, isActive }) => {
     return (
         <div
             className={`
-          absolute inset-0 w-full h-[500px]
-          transition-opacity duration-700 ease-in-out
-          ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'}
-        `}
+                absolute inset-0 w-full h-[500px]
+                transition-opacity duration-700 ease-in-out
+                ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'}
+            `}
             style={{
                 paddingLeft: 'clamp(16px, 5vw, 80px)',
                 paddingRight: 'clamp(16px, 5vw, 80px)',
@@ -67,11 +67,11 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ area, isActive }) => {
                             >
                                 {area.subtitle}
                             </p>
-                            <Link href="/contact">
+                            <SmartLink href="/contact">
                                 <Button variant="lhc" size="md">
                                     {area.ctaText}
                                 </Button>
-                            </Link>
+                            </SmartLink>
 
                         </div>
 
@@ -146,11 +146,11 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ area, isActive }) => {
                                     {area.subtitle}
                                 </p>
                                 <div className="mt-6 sm:mt-8">
-                                    <Link href="/contact">
+                                    <SmartLink href="/contact">
                                         <Button variant="lhc" size="sm">
                                             {area.ctaText}
                                         </Button>
-                                    </Link>
+                                    </SmartLink>
                                 </div>
                             </div>
                         </div>

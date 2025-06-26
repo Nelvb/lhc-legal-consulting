@@ -9,7 +9,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import SmartLink from "@/components/ui/SmartLink";
 import SectionWrapper, { SectionHeader, AnimatedGrid } from './shared/SectionWrapper';
 import { renderIcon } from './shared/IconMapper';
 
@@ -187,13 +187,13 @@ const SubtopicCard: React.FC<SubtopicCardProps> = ({
     // Envolver con Link si el subtema tiene página individual
     if (subtopic.hasPage !== false) {
         return (
-            <Link 
+            <SmartLink 
                 href={subtopicUrl}
                 className="block h-full"
                 aria-label={`Ver más información sobre ${subtopic.title}`}
             >
                 {cardContent}
-            </Link>
+            </SmartLink>
         );
     }
 

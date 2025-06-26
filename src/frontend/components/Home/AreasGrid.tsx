@@ -14,6 +14,8 @@ import LegalServiceCard from '@/components/ui/LegalServiceCard';
 import Button from '@/components/ui/Button';
 import { LEGAL_SERVICES, DEFAULT_ANIMATION_CONFIG, SECTION_CONTENT } from '@/app/data/legalServices';
 import { ServicesGridProps } from '@/types/legalService';
+import SmartLink from '@/components/ui/SmartLink';
+
 
 const AreasGrid: React.FC<ServicesGridProps> = ({
   services = LEGAL_SERVICES,
@@ -117,31 +119,29 @@ const AreasGrid: React.FC<ServicesGridProps> = ({
         </div>
 
         {/* CTA de consulta personalizada con diseño mejorado */}
-        <footer className={`
-          text-center
-          transition-all duration-700 transform
-          ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
-        `}
-          style={{
-            transitionDelay: inView ? '800ms' : '0ms'
-          }}
+        <footer
+          className={`
+    text-center
+    transition-all duration-700 transform
+    ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+  `}
+          style={{ transitionDelay: inView ? '800ms' : '0ms' }}
         >
-<div className="text-center py-6 lg:py-8">
-<h3 className="text-white text-3xl lg:text-4xl font-bold mb-4">
-  {SECTION_CONTENT.ctaTitle}
-</h3>
-<p className="font-semibold text-blue-200 text-lg sm:text-xl lg:text-2xl mb-8 max-w-2xl mx-auto">
-  {SECTION_CONTENT.ctaSubtitle}
-</p>
-<Button 
-  variant="outline" 
-  size="md"
-  onClick={() => window.location.href = '/contact'}
->
-  {SECTION_CONTENT.ctaButtonText}
-</Button>
-</div>
+          <div className="text-center py-6 lg:py-8">
+            <h3 className="text-white text-3xl lg:text-4xl font-bold mb-4">
+              {SECTION_CONTENT.ctaTitle}
+            </h3>
+            <p className="font-semibold text-blue-200 text-lg sm:text-xl lg:text-2xl mb-8 max-w-2xl mx-auto">
+              {SECTION_CONTENT.ctaSubtitle}
+            </p>
+            <SmartLink href="/contact">
+              <Button variant="outline" size="md">
+                {SECTION_CONTENT.ctaButtonText}
+              </Button>
+            </SmartLink>
+          </div>
         </footer>
+
       </div>
 
       {/* Schema markup para SEO */}

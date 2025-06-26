@@ -10,7 +10,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import SmartLink from "@/components/ui/SmartLink";
 import { usePathname } from 'next/navigation';
 import Button from '@/components/ui/Button';
 import LatestArticles from './LatestArticles';
@@ -49,7 +49,7 @@ const LegalAreasSidebar: React.FC<LegalAreasSidebarProps> = ({ className = '' })
                     const isActive = currentSlug === area.id;
 
                     return (
-                        <Link
+                        <SmartLink
                             key={area.id}
                             href={area.slug}
                             className="block w-full text-left transition-all duration-300 hover:z-10 relative group"
@@ -143,7 +143,7 @@ const LegalAreasSidebar: React.FC<LegalAreasSidebarProps> = ({ className = '' })
                                     </div>
                                 </div>
                             </div>
-                        </Link>
+                        </SmartLink>
                     );
                 })}
             </div>

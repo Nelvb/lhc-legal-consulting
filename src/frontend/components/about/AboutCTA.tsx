@@ -3,32 +3,31 @@
  *
  * Componente Call to Action final para la página Sobre Nosotros.
  * Sección con fondo gradiente LHC que invita al usuario a contactar.
- * Layout responsive diferente para móvil y desktop:
- * - Móvil: Imagen arriba completa, texto abajo separado de la cara
- * - Desktop: Imagen izquierda con gradiente lateral, texto a la derecha
+ * Ajustado para eliminar huecos innecesarios en resoluciones entre 1024 y 1412px.
  */
 
 import Link from "next/link";
 import Button from "@/components/ui/Button";
+import SmartLink from "@/components/ui/SmartLink";
+
 
 const AboutCTA = () => {
     return (
-        <section className="py-20 lg:py-32 relative overflow-hidden">
+        <section className="py-20 lg:py-28 relative overflow-hidden">
+
             {/* Fondo gradiente base */}
             <div className="absolute inset-0 bg-lhc-gradient" />
 
-            {/* LAYOUT MÓVIL: Imagen arriba 100% + gradiente abajo */}
+            {/* Layout móvil: imagen arriba, texto abajo */}
             <div className="absolute inset-0 lg:hidden">
-                {/* Imagen ocupando toda la parte superior */}
                 <div
-                    className="absolute top-0 left-0 w-full h-96 bg-cover bg-center bg-no-repeat"
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{
                         backgroundImage: `url('https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749855626/abogada-micro_mnnrn3.webp')`,
                         backgroundPosition: '20% top',
-                        backgroundSize: 'cover'
+                        backgroundSize: 'cover',
                     }}
                 />
-                {/* Gradiente vertical que empieza más abajo para separar texto de la cara */}
                 <div
                     className="absolute inset-0"
                     style={{
@@ -40,22 +39,21 @@ const AboutCTA = () => {
                             rgba(15, 23, 42, 0.8) 80%, 
                             rgba(15, 23, 42, 0.95) 90%, 
                             rgba(15, 23, 42, 1) 100%
-                        )`
+                        )`,
                     }}
                 />
             </div>
 
-            {/* LAYOUT DESKTOP: Imagen izquierda + gradiente lateral */}
+            {/* Layout desktop: imagen izquierda, texto derecha */}
             <div className="absolute inset-0 hidden lg:block">
                 <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat lg:bg-[length:90%] xl:bg-[length:70%] 2xl:bg-[length:60%]
+]"
                     style={{
                         backgroundImage: `url('https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749855626/abogada-micro_mnnrn3.webp')`,
                         backgroundPosition: 'left top',
-                        backgroundSize: '60%'
                     }}
                 />
-                {/* Gradiente lateral para desktop */}
                 <div
                     className="absolute inset-0"
                     style={{
@@ -67,22 +65,22 @@ const AboutCTA = () => {
                             rgba(15, 23, 42, 0.6) 40%, 
                             rgba(15, 23, 42, 0.8) 50%, 
                             rgba(15, 23, 42, 1) 60%
-                        )`
+                        )`,
                     }}
                 />
             </div>
 
+            {/* Contenido del CTA */}
             <div className="relative z-10">
                 <div className="container mx-auto px-6 lg:px-8">
-                    {/* CONTENIDO RESPONSIVE - Texto muy abajo en móvil */}
-                    <div className="text-center lg:text-left lg:ml-auto lg:max-w-3xl pt-96 sm:pt-[28rem] lg:pt-0">
+                    <div className="text-center lg:text-left lg:ml-auto lg:max-w-3xl pt-64 sm:pt-72 lg:pt-16 xl:pt-0">
                         <h2
                             className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 lg:mb-8"
                             style={{
                                 fontFamily: "'Inter', sans-serif",
                                 fontWeight: '800',
                                 letterSpacing: '-0.02em',
-                                textShadow: '0 4px 20px rgba(0,0,0,0.3)'
+                                textShadow: '0 4px 20px rgba(0,0,0,0.3)',
                             }}
                         >
                             Conoce cómo nuestro equipo puede ayudarte
@@ -92,11 +90,11 @@ const AboutCTA = () => {
                             con tu situación específica. Primera consulta completamente gratuita.
                         </p>
 
-                        <Link href="/contact">
-                            <Button variant="outline" size="lg" className="shadow-2xl">
+                        <SmartLink href="/contacto">
+                            <Button variant="outline" size="md" className="shadow-2xl">
                                 Contactar ahora
                             </Button>
-                        </Link>
+                        </SmartLink>
                     </div>
                 </div>
             </div>

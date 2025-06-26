@@ -61,3 +61,6 @@ src/frontend/.next/
 
 # Tailwind CSS output
 src/frontend/styles/output.css
+
+# Ignorar archivo de creación de administrador
+create_admin.py

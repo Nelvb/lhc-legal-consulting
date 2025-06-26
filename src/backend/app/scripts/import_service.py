@@ -30,6 +30,7 @@ def importar_articulos_desde_json(articles_data):
             existing.content = item['content']
             existing.meta_description = item['meta_description']
             existing.meta_keywords = item['meta_keywords']
+            existing.related = item.get('related', [])  # ✅ se añade related
             existing.updated_at = sa.func.now()
 
             db.session.commit()

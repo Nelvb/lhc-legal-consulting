@@ -8,6 +8,8 @@
 
 import Link from "next/link";
 import Button from "@/components/ui/Button";
+import SmartLink from "@/components/ui/SmartLink";
+
 
 const AboutHero = () => {
     return (
@@ -42,11 +44,11 @@ const AboutHero = () => {
                         <p className="text-xl sm:text-2xl lg:text-3xl text-white/95 leading-relaxed mb-8 font-light">
                             En LHC Legal & Consulting entendemos que cada situación legal es única y merece toda nuestra atención
                         </p>
-                        <Link href="/contact">
+                        <SmartLink href="/contact">
                             <Button variant="lhc" size="lg">
                                 Consulta gratuita
                             </Button>
-                        </Link>
+                        </SmartLink>
                     </div>
                 </div>
             </div>

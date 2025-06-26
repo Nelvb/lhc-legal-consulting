@@ -3,8 +3,9 @@
  *
  * Navbar principal para LHC Legal & Consulting.
  * Logo horizontal actualizado, fondo claro y sticky, con menú lateral controlado por Zustand.
+ * Si es admin muestra "Área Admin" + hamburguesa siempre visible.
+ * Si es público muestra enlaces + hamburguesa solo móvil.
  * Cambia a icono X si el menú lateral está abierto. Añade sombra al hacer scroll.
- * Responsive y con diseño profesional.
  */
 
 "use client";
@@ -20,13 +21,16 @@ import LHCSideMenu from "@/components/layout/LHCSideMenu";
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, user } = useAuthStore();
 
   const isSideMenuOpen = useUiStore((state) => state.isSideMenuOpen);
   const openSideMenu = useUiStore((state) => state.openSideMenu);
   const closeSideMenu = useUiStore((state) => state.closeSideMenu);
 
   const [scrolled, setScrolled] = useState(false);
+
+  // Detectar si el usuario es admin
+  const isAdmin = isAuthenticated && user?.is_admin;
 
   // Añadir sombra al hacer scroll
   useEffect(() => {
@@ -67,13 +71,23 @@ const Navbar: React.FC = () => {
             <span className="sr-only">LHC Legal & Consulting</span>
           </Link>
 
-          {/* Enlaces + botón hamburguesa visible solo en móvil */}
+          {/* Enlaces + botón hamburguesa */}
           <div className="flex items-center space-x-8">
-            <NavbarLinks key={`nav-links-${isAuthenticated}`} />
+            {isAdmin ? (
+              // Vista admin: Área Admin
+              <div className="text-lg font-medium text-[#1b2f4b]">
+                Área Admin
+              </div>
+            ) : (
+              // Vista pública: Enlaces normales
+              <NavbarLinks key={`nav-links-${isAuthenticated}`} />
+            )}
 
             <button
               onClick={toggleMenu}
-              className="p-2 text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all md:hidden"
+              className={`p-2 text-[#1b2f4b] text-lg font-medium hover:scale-110 transition-all ${
+                isAdmin ? "" : "md:hidden"
+              }`}
               aria-label="Abrir menú"
               aria-expanded={isSideMenuOpen}
             >

@@ -11,11 +11,11 @@
  * No hay navegación privada para usuarios normales (solo admin).
  */
 
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React from "react";
+import React from 'react';
+import SmartLink from '@/components/ui/SmartLink';
+import { usePathname } from 'next/navigation';
 
 interface MainMenuLinksProps {
   onClickLink?: () => void;
@@ -25,35 +25,35 @@ const MainMenuLinks: React.FC<MainMenuLinksProps> = ({ onClickLink }) => {
   const pathname = usePathname();
 
   const links = [
-    { href: "/areas", label: "Áreas" },
-    { href: "/blog", label: "Blog" },
-    { href: "/faq", label: "Preguntas Frecuentes" },
-    { href: "/about-us", label: "Nosotros" },
-    { href: "/contact", label: "Contacto" },
+    { href: '/areas', label: 'Áreas' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/faq', label: 'Preguntas Frecuentes' },
+    { href: '/about-us', label: 'Nosotros' },
+    { href: '/contact', label: 'Contacto' },
   ];
 
   return (
     <ul className="flex flex-col space-y-1">
-      {links.map(({ href, label }) => (
-        <li key={href}>
-          <Link
-            href={href}
-            onClick={onClickLink}
-            className={`block px-4 py-2 rounded transition-colors text-[#1A1341] 
-              hover:bg-[#1A1341] hover:text-white
-              ${
-                pathname.startsWith(href)
-                  ? "font-semibold underline underline-offset-4"
-                  : ""
-              }
-            `}
-          >
-            {label}
-          </Link>
-        </li>
-      ))}
+      {links.map(({ href, label }) => {
+        const isActive = pathname.startsWith(href);
+        return (
+          <li key={href}>
+            <SmartLink
+              href={href}
+              onClick={onClickLink}
+              className={`block px-4 py-2 rounded transition-colors text-[#1A1341] 
+                hover:bg-[#1A1341] hover:text-white
+                ${isActive ? 'font-semibold underline underline-offset-4' : ''}
+              `}
+            >
+              {label}
+            </SmartLink>
+          </li>
+        );
+      })}
     </ul>
   );
 };
 
 export default MainMenuLinks;
+

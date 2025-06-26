@@ -16,8 +16,8 @@ import Navbar from "@/components/layout/Navbar";
 import UserPageContent from "@/components/user/layout/UserPageContent";
 
 export const metadata: Metadata = {
-    title: "Área Privada | Boost a Project",
-    description: "Gestiona tu cuenta y inversiones en la plataforma Boost a Project",
+    title: "Área Privada | LHC Legal & Consulting",
+    description: "Gestiona tu cuenta y consultas legales en LHC Legal & Consulting",    
 };
 
 export default function UserPrivateLayout({

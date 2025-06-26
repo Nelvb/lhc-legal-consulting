@@ -64,7 +64,7 @@ const ContactFormHome: React.FC = () => {
     };
 
     return (
-        <div className="lg:w-[30%] bg-white/10 backdrop-blur-lg border-l border-white/20 p-8 lg:p-10 flex flex-col justify-center h-[400px] lg:h-[600px]">
+        <div className="lg:w-[30%] bg-white/10 backdrop-blur-lg border-l lg:border-l border-t lg:border-t-0 border-white/20 p-6 sm:p-8 lg:p-10 flex flex-col justify-center min-h-[400px] lg:h-[600px]">
             <div className="text-center mb-8">
                 <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3">
                     {isAuthenticated ? `Hola ${user.username}` : 'Consulta Gratuita'}

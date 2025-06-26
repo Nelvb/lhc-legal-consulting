@@ -1,14 +1,9 @@
 /**
  * DashboardHeader.tsx
  *
- * Cabecera visual reutilizable para áreas privadas (usuario o admin).
- * Muestra un fondo con gradiente, badge identificador, título y subtítulo opcionales.
- * Si se usan props dinámicas, sobrescriben los valores por defecto.
- * Para el título, permite mostrar el nombre del usuario si no se proporciona manualmente.
- *
- * - Migrado a Zustand (`useAuthStore`).
- * - Estilo profesional y escalable.
- * - Compatible con SSR y diseño compartido entre vistas protegidas.
+ * Cabecera visual reutilizable para áreas privadas (usuario o admin) de LHC Legal & Consulting.
+ * Diseño con gradiente azul corporativo, elementos decorativos y tipografía profesional.
+ * Compatible con SSR y optimizado para la identidad visual del proyecto.
  */
 
 "use client";
@@ -23,34 +18,47 @@ interface DashboardHeaderProps {
 }
 
 const DashboardHeader: React.FC<DashboardHeaderProps> = ({
-    badge = "Boost A Project",
+    badge = "LHC Legal & Consulting",
     title,
-    subtitle = "Resumen de tu actividad como inversor",
+    subtitle = "Tu área privada para gestión legal profesional",
 }) => {
     const { user } = useAuthStore();
 
     return (
         <div className="relative overflow-hidden rounded-2xl mb-12">
-            {/* Fondo con gradiente horizontal */}
-            <div className="bg-gradient-to-r from-[#1A1341] to-[#6290C3] py-16 px-6 md:px-12 relative">
+            {/* Fondo con gradiente LHC */}
+            <div
+                className="py-16 px-6 md:px-12 relative"
+                style={{
+                    background: `
+            linear-gradient(135deg, 
+              #1b2f4b 0%, 
+              #1DA1F2 35%, 
+              #1b2f4b 70%, 
+              #0f172a 100%
+            )
+          `
+                }}
+            >
                 {/* Elementos decorativos */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#C2E7DA] opacity-10 rounded-bl-full"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#F1FFEF] opacity-10 rounded-tr-full"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#60A5FA] opacity-15 rounded-full blur-xl"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full blur-lg"></div>
+                <div className="absolute top-1/2 left-1/2 w-40 h-40 bg-[#1DA1F2] opacity-5 rounded-full blur-2xl transform -translate-x-1/2 -translate-y-1/2"></div>
 
                 {/* Contenido principal */}
                 <div className="max-w-4xl mx-auto text-center relative z-10">
                     {/* Badge visual */}
-                    <span className="inline-block bg-[#C2E7DA] text-[#1A1341] text-sm font-medium px-4 py-1 rounded-full mb-4">
+                    <div className="inline-block bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-medium mb-6">
                         {badge}
-                    </span>
+                    </div>
 
                     {/* Título dinámico */}
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
                         {title || `Área Privada de ${user?.username || "Usuario"}`}
                     </h1>
 
                     {/* Subtítulo descriptivo */}
-                    <p className="text-lg md:text-xl text-[#F1FFEF] opacity-90 max-w-3xl mx-auto">
+                    <p className="text-lg md:text-xl text-white/90 opacity-90 max-w-3xl mx-auto leading-relaxed">
                         {subtitle}
                     </p>
                 </div>

@@ -1,12 +1,13 @@
 /**
- * Vista de artículo del blog.
+ * Vista de artículo del blog - LHC Legal & Consulting
  *
  * Carga un artículo por su slug, muestra su contenido y los artículos relacionados
  * seleccionados por el administrador en el formulario de creación/edición.
+ * Diseño actualizado con gradientes LHC corporativos.
  * 
  * - Usa `getArticleBySlug` para obtener el artículo.
  * - Filtra los relacionados desde todos los artículos disponibles según `related[]`.
- * - Diseño responsive con fondo dividido.
+ * - Estados de loading y error con diseño LHC consistente.
  */
 
 'use client';
@@ -70,39 +71,20 @@ const ArticlePage: React.FC = () => {
     fetchArticle();
   }, [slug]);
 
-  if (isLoading) {
-    return (
-      <div className="relative min-h-screen pt-20">
-        <div className="absolute inset-0 flex">
-          <div className="w-[30%] bg-[#C2E7DA]" />
-          <div className="w-[70%] bg-[#1A1341]" />
-        </div>
-        <div className="relative z-10 flex justify-center items-center min-h-screen">
-          <div className="animate-pulse text-white text-xl">
-            Cargando artículo...
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   if (error || !article) {
     return (
       <div className="relative min-h-screen pt-20">
-        <div className="absolute inset-0 flex">
-          <div className="w-[30%] bg-[#C2E7DA]" />
-          <div className="w-[70%] bg-[#1A1341]" />
-        </div>
+        <div className="absolute inset-0 bg-lhc-gradient-inverted" />
         <div className="relative z-10 flex flex-col justify-center items-center min-h-screen text-center px-4">
           <h1 className="text-2xl md:text-3xl font-bold text-white mb-4">
             Artículo no encontrado
           </h1>
-          <p className="text-[#C2E7DA] mb-8">
+          <p className="text-white/80 mb-8">
             {error || 'No se pudo encontrar el artículo solicitado'}
           </p>
           <Link 
             href="/blog" 
-            className="inline-flex items-center px-6 py-3 bg-[#6290C3] text-white rounded-lg hover:bg-[#1A1341] transition-colors"
+            className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-lg hover:bg-white/30 transition-all duration-300"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver al blog

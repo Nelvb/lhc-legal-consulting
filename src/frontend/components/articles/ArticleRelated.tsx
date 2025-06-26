@@ -13,7 +13,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import SmartLink from "@/components/ui/SmartLink";
 import Image from 'next/image';
 import { Article } from '@/types';
 
@@ -49,7 +49,7 @@ const ArticleRelated: React.FC<ArticleRelatedProps> = ({ articles }) => {
             }`}
         >
           {articles.map((article) => (
-            <Link
+            <SmartLink
               href={`/blog/${article.slug}`}
               key={article.id}
               className="group w-full max-w-md"
@@ -77,7 +77,7 @@ const ArticleRelated: React.FC<ArticleRelatedProps> = ({ articles }) => {
                   )}
                 </div>
               </div>
-            </Link>
+            </SmartLink>
           ))}
         </div>
       </div>

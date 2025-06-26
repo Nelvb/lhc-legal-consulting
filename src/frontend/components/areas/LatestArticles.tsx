@@ -9,7 +9,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import SmartLink from "@/components/ui/SmartLink";
 import Image from 'next/image';
 import { getArticles } from '@/lib/blogService';
 import { Article } from '@/types/blog';
@@ -104,19 +104,19 @@ const LatestArticles: React.FC<LatestArticlesProps> = ({
         <h3 className="text-lg font-bold text-[#1b2f4b]">
           Te Puede Interesar
         </h3>
-        <Link 
+        <SmartLink 
           href="/blog"
           className="text-sm text-[#1DA1F2] hover:text-[#1b2f4b] transition-colors duration-200 flex items-center"
         >
           Ver todos
           <ArrowRight className="w-3 h-3 ml-1" />
-        </Link>
+        </SmartLink>
       </div>
 
       <div className="space-y-4">
         {articles.map((article) => (
           <article key={article.slug} className="group">
-            <Link 
+            <SmartLink 
               href={`/blog/${article.slug}`}
               className="flex space-x-3 p-3 rounded-lg hover:bg-white/50 hover:shadow-md transition-all duration-200"
             >
@@ -146,18 +146,18 @@ const LatestArticles: React.FC<LatestArticlesProps> = ({
                   </time>
                 </div>
               </div>
-            </Link>
+            </SmartLink>
           </article>
         ))}
       </div>
 
       <div className="mt-6 pt-4 border-t border-gray-200">
-        <Link 
+        <SmartLink 
           href="/blog"
           className="block text-center text-sm font-medium text-[#1DA1F2] hover:text-[#1b2f4b] transition-colors duration-200 py-2 px-4 rounded-lg hover:bg-white/30"
         >
           Explorar nuestro blog →
-        </Link>
+        </SmartLink>
       </div>
     </div>
   );

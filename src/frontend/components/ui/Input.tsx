@@ -1,12 +1,11 @@
-'use client';
+'use client'
 
 /**
  * Input.tsx
  *
- * Componente reutilizable para inputs con validación y estilo visual idéntico
- * al formulario de contacto de la home (fondo translúcido, texto blanco).
- * Conserva validaciones, accesibilidad y feedback visual profesional.
- * Añadida prop 'compact' para formularios de autenticación.
+ * Componente reutilizable para inputs con validación y diseño adaptable.
+ * Usa estilo blanco limpio cuando 'compact' está activo (modo formularios internos),
+ * y estilo translúcido con texto blanco cuando no (contacto, login).
  */
 
 import React, { InputHTMLAttributes, useState, useEffect } from 'react';
@@ -25,7 +24,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   validationRules?: ValidationRules;
   validateOnChange?: boolean;
   onErrorChange?: (hasError: boolean) => void;
-  compact?: boolean; // Nueva prop para versión compacta
+  compact?: boolean;
 }
 
 const normalizeLabel = (label: string) =>
@@ -41,7 +40,7 @@ const Input: React.FC<InputProps> = ({
   onErrorChange,
   value,
   onChange,
-  compact = false, // Por defecto false para no afectar componentes existentes
+  compact = false,
   ...props
 }) => {
   const [internalError, setInternalError] = useState<string | null>(null);
@@ -84,31 +83,35 @@ const Input: React.FC<InputProps> = ({
   const hasError = error || internalError;
   const displayError = error || internalError;
 
-  // Estilos condicionales basados en la prop compact
-  const containerClasses = compact ? "mb-2" : "mb-4";
-  const labelClasses = compact 
-    ? "block text-white text-sm font-medium mb-1"
-    : "block text-white text-sm font-semibold mb-2";
-  const inputClasses = compact
-    ? "w-full bg-white/20 border border-white/30 rounded-lg px-3 py-2 text-white placeholder-white/60 focus:bg-white/30 focus:border-white/50 focus:outline-none transition-all duration-200 text-sm"
-    : "w-full bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white placeholder-white/60 focus:bg-white/30 focus:border-white/50 focus:outline-none transition-all duration-200";
-  const errorClasses = compact ? "text-xs text-red-200 mt-1" : "text-sm text-red-200 mt-1";
+  const baseClasses = compact
+    ? "w-full bg-white border border-gray-300 text-gray-900 placeholder-gray-400"
+    : "w-full bg-white/20 border border-white/30 text-white placeholder-white/60";
+
+  const inputClasses = `
+    ${baseClasses}
+    ${compact ? "rounded-lg px-3 py-2 text-sm" : "rounded-xl px-4 py-3"}
+    ${hasError ? "border-red-500 bg-red-50 text-red-800 placeholder-red-400" : ""}
+    focus:outline-none focus:ring-1 focus:ring-blue-500
+    transition-all duration-200
+    ${className || ""}
+  `;
+
+  const labelClasses = compact
+    ? "block text-gray-700 text-sm font-medium mb-1"
+    : "block text-white text-sm font-medium mb-2";
+
+  const errorClasses = compact ? "text-xs text-red-500 mt-1" : "text-sm text-red-200 mt-1";
 
   return (
-    <div className={containerClasses}>
+    <div className="mb-4">
       {label && (
-        <label
-          htmlFor={inputId}
-          className={labelClasses}
-        >
+        <label htmlFor={inputId} className={labelClasses}>
           {label}
         </label>
       )}
       <input
         id={inputId}
-        className={`${inputClasses} ${className || ''}
-          ${hasError ? 'border-red-400 bg-red-50 text-red-800 placeholder-red-400' : ''}
-        `}
+        className={inputClasses}
         value={value}
         onChange={handleChange}
         {...props}

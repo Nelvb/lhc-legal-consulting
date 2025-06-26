@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import SmartLink from "@/components/ui/SmartLink";
 import { ArrowLeft } from 'lucide-react';
 import { Article } from '@/types';
 
@@ -48,7 +48,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ article, onBackClick }) =
       {/* Contenido del header */}
       <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
         <div className="max-w-4xl">
-          <Link 
+          <SmartLink 
             href="/blog" 
             className="inline-flex items-center text-white hover:text-[#C2E7DA] transition-colors mb-6"
             onClick={(e) => {
@@ -58,7 +58,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ article, onBackClick }) =
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver al blog
-          </Link>
+          </SmartLink>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-md">
             {article.title}

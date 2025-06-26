@@ -9,7 +9,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import SmartLink from "@/components/ui/SmartLink";
 import Button from '@/components/ui/Button';
 import { Article } from '@/types';
 
@@ -92,7 +92,7 @@ const BlogArticleCard: React.FC<BlogArticleCardProps> = ({ article }) => {
         </div>
 
         {/* Botón */}
-        <Link
+        <SmartLink
           href={`/blog/${article.slug}`}
           className="mt-auto block"
           aria-label={`Leer artículo completo: ${article.title}`}
@@ -104,7 +104,7 @@ const BlogArticleCard: React.FC<BlogArticleCardProps> = ({ article }) => {
           >
             Leer artículo
           </Button>
-        </Link>
+        </SmartLink>
       </div>
     </article>
   );

@@ -12,47 +12,47 @@
  * Completamente responsivo: se oculta en móviles y se muestra a partir de md.
  */
 
-"use client";
+'use client'
 
-import React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useAuthStore } from "@/stores/useAuthStore";
+import React from 'react'
+import { usePathname } from 'next/navigation'
+import { useAuthStore } from '@/stores/useAuthStore'
+import SmartLink from '@/components/ui/SmartLink'
 
 const NavbarLinks: React.FC = () => {
-  const { isAuthenticated } = useAuthStore();
-  const pathname = usePathname();
+  const { isAuthenticated } = useAuthStore()
+  const pathname = usePathname()
 
-  // Evita mostrar la navbar pública si el usuario está autenticado
-  if (isAuthenticated) return null;
+  // Evita mostrar la navbar pública si el usuario está autenticado (admin)
+  if (isAuthenticated) return null
 
-  // Aplica estilos especiales al enlace activo comparando pathname con href
+  // Estilos condicionales para el enlace activo
   const linkClasses = (href: string) =>
     `text-lg font-medium transition-all ${
       pathname.startsWith(href)
-        ? "text-[#1DA1F2] font-bold underline underline-offset-4"
-        : "text-[#1b2f4b] hover:scale-110"
-    }`;
+        ? 'text-[#1DA1F2] font-bold underline underline-offset-4'
+        : 'text-[#1b2f4b] hover:scale-110'
+    }`
 
   return (
     <div className="hidden md:flex items-center space-x-8">
-      <Link href="/areas" className={linkClasses("/areas")}>
+      <SmartLink href="/areas" className={linkClasses('/areas')}>
         Áreas
-      </Link>
-      <Link href="/blog" className={linkClasses("/blog")}>
+      </SmartLink>
+      <SmartLink href="/blog" className={linkClasses('/blog')}>
         Blog
-      </Link>
-      <Link href="/faq" className={linkClasses("/faq")}>
+      </SmartLink>
+      <SmartLink href="/faq" className={linkClasses('/faq')}>
         Preguntas Frecuentes
-      </Link>
-      <Link href="/about-us" className={linkClasses("/about-us")}>
+      </SmartLink>
+      <SmartLink href="/about-us" className={linkClasses('/about-us')}>
         Nosotros
-      </Link>
-      <Link href="/contact" className={linkClasses("/contact")}>
+      </SmartLink>
+      <SmartLink href="/contact" className={linkClasses('/contact')}>
         Contacto
-      </Link>
+      </SmartLink>
     </div>
-  );
-};
+  )
+}
 
-export default NavbarLinks;
+export default NavbarLinks

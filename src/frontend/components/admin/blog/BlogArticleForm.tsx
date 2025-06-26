@@ -95,7 +95,8 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
   }
 
   return (
-    <div className="min-h-screen py-12 px-4 bg-gradient-to-br from-[#F1FFEF] to-[#C2E7DA] flex items-start justify-center border border-[#6290C3]/30 rounded-2xl shadow-md">
+    <div className="min-h-screen py-12 px-4 bg-lhc-gradient
+ flex items-start justify-center border border-[#6290C3]/30 rounded-2xl shadow-md">
       <div className="w-full max-w-3xl bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
         <h2 className="text-3xl font-bold mb-6 text-[#1A1341]">
           {initialData ? 'Editar artículo' : 'Crear nuevo artículo'}
@@ -105,6 +106,7 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
           {/* TÍTULO */}
           <div>
             <Input
+              compact
               label="Título"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -125,6 +127,7 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
           {/* RESUMEN */}
           <div>
             <Input
+              compact
               label="Resumen"
               value={excerpt}
               onChange={(e) => setExcerpt(e.target.value)}
@@ -182,7 +185,7 @@ const BlogArticleForm: React.FC<BlogArticleFormProps> = ({ onSubmit, initialData
               Cancelar
             </Button>
             <div className="flex gap-4">
-              <Button type="button" variant="secondary" onClick={handlePreview}>
+              <Button type="button" variant="lhc" onClick={handlePreview}>
                 Vista previa
               </Button>
               <Button

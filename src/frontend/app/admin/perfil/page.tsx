@@ -1,29 +1,28 @@
 /**
  * AdminPerfilPage.tsx
  *
- * Perfil del administrador (/admin/perfil)
- * Visual coherente con /perfil de usuario, pero con restricciones específicas:
- * - El email no se puede editar (solo se muestra en el panel izquierdo).
- * - Se mantiene el fondo dividido 30/70.
- * - Se utiliza ProfileView reutilizable con props condicionales.
+ * Perfil del administrador (/admin/perfil) para LHC Legal & Consulting.
+ * Visual coherente con el resto de páginas de autenticación LHC.
+ * El email no se puede editar para administradores (solo lectura).
+ * Usa ProfileView reutilizable con diseño glassmorphism.
  */
 
 import type { Metadata } from "next";
 import ProfileView from "@/components/shared/ProfileView";
 
 export const metadata: Metadata = {
-    title: "Perfil del Administrador | Boost a Project",
+    title: "Mi Perfil | LHC Legal & Consulting",
     description:
-        "Actualiza tu nombre de administrador en Boost a Project. Se requiere contraseña para confirmar los cambios.",
+        "Actualiza tu nombre de usuario y apellidos como administrador de LHC Legal & Consulting. Se requiere contraseña para confirmar los cambios.",
 };
 
 export default function AdminPerfilPage() {
     return (
         <ProfileView
             badge="Panel Admin"
-            title="Perfil del Administrador"
-            subtitle="Puedes actualizar tu nombre como administrador"
-            showEmail={true} // Se muestra a la izquierda, pero no editable
+            title="Mi Perfil"
+            subtitle="Actualiza tu nombre de usuario y apellidos"
+            showEmail={true} // Se muestra pero no editable para admin
         />
     );
 }

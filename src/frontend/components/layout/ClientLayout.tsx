@@ -2,10 +2,9 @@
  * ClientLayout.tsx
  *
  * Layout general para vistas públicas y de usuario con ancho máximo global.
- * Muestra AnnouncementBar (solo en home), Navbar y Footer excepto en rutas profundas del admin.
- * En las rutas raíz del admin (/admin y /admin/perfil) la Navbar y Footer siguen visibles.
- * Si el usuario está autenticado, se monta la capa global de modales (UiGlobalLayer).
- * Control global de ancho máximo para pantallas grandes.
+ * Oculta Navbar y Footer completamente en cualquier ruta /admin (incluido /admin y /admin/perfil).
+ * La Navbar y Footer del admin se gestionan exclusivamente desde AdminLayout.
+ * Muestra AnnouncementBar solo en home.
  */
 
 "use client";
@@ -18,6 +17,10 @@ import UiGlobalLayer from "@/components/layout/UiGlobalLayer";
 import AnnouncementBar from "@/components/ui/AnnouncementBar";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useUiStore } from "@/stores/useUiStore";
+import RouteChangeLoader from "@/components/ui/RouteChangeLoader"
+import ScrollToTop from "@/components/utils/ScrollToTop";
+
+
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -28,11 +31,9 @@ const ClientLayout: React.FC<ClientLayoutProps> = ({ children }) => {
   const { isAuthenticated } = useAuthStore();
   const isSideMenuOpen = useUiStore((state) => state.isSideMenuOpen);
 
-  const isStrictlyAdminHomeOrProfile =
-    pathname === "/admin" || pathname === "/admin/perfil";
-
-  const hideLayout =
-    pathname.startsWith("/admin") && !isStrictlyAdminHomeOrProfile;
+  // Ocultar layout global por completo en cualquier ruta admin
+  const isAdminRoute = pathname.startsWith("/admin");
+  const hideLayout = isAdminRoute;
 
   // Mostrar AnnouncementBar solo en home y cuando el menú no esté abierto
   const showAnnouncementBar =
@@ -48,6 +49,9 @@ const ClientLayout: React.FC<ClientLayoutProps> = ({ children }) => {
         />
       )}
       {!hideLayout && <Navbar />}
+
+      <RouteChangeLoader />
+      <ScrollToTop />
 
       <div className="max-w-[1920px] mx-auto" id="main-top">
         {children}

@@ -13,6 +13,8 @@ import React from 'react';
 import Link from 'next/link';
 import { Search, Phone, Mail } from 'lucide-react';
 import Button from '@/components/ui/Button';
+import SmartLink from '@/components/ui/SmartLink';
+
 
 interface NoResultsSectionProps {
     /** Término de búsqueda que no obtuvo resultados */
@@ -108,16 +110,16 @@ const NoResultsSection: React.FC<NoResultsSectionProps> = ({
 
                     {/* CTAs principales */}
                     <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                        <Link href="/contact" className="flex-1 sm:flex-initial">
+                        <SmartLink href="/contact" className="flex-1 sm:flex-initial">
                             <Button variant="cta" size="md" className="w-full sm:w-auto">
                                 Consulta gratuita
                             </Button>
-                        </Link>
-                        <Link href="/areas" className="flex-1 sm:flex-initial">
+                        </SmartLink>
+                        <SmartLink href="/areas" className="flex-1 sm:flex-initial">
                             <Button variant="outline" size="md" className="w-full sm:w-auto">
                                 Ver nuestras áreas
                             </Button>
-                        </Link>
+                        </SmartLink>
                     </div>
 
                     {/* Métodos de contacto alternativos - TEXTOS SECUNDARIOS OCULTOS EN MÓVIL */}

@@ -12,6 +12,8 @@ import React from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import SectionWrapper from '../shared/SectionWrapper';
+import SmartLink from "@/components/ui/SmartLink";
+
 
 interface LegalCTAProps {
     /** Color principal del área */
@@ -67,11 +69,11 @@ const LegalCTA: React.FC<LegalCTAProps> = ({
                     {/* Botones de acción - IGUAL QUE /AREAS */}
                     <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                         {/* Botón primario - Realizar Consulta */}
-                        <Link href="/contact">
+                        <SmartLink href="/contact">
                             <Button variant="lhc" size="md">
                                 Realizar Consulta
                             </Button>
-                        </Link>
+                        </SmartLink>
 
                         {/* Móvil: Botón clickeable "Llamar Ahora" */}
                         <a href="tel:+34691818071" className="md:hidden">

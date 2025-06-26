@@ -4,22 +4,34 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
     title: {
-        template: '%s | Blog de Inversión Inmobiliaria | Boost A Project',
-        default: 'Blog de Inversión Inmobiliaria | Boost A Project'
+        template: '%s | Blog Jurídico | LHC Legal & Consulting',
+        default: 'Blog Jurídico | LHC Legal & Consulting'
     },
-    description: 'Descubre insights, tendencias y estrategias de inversión inmobiliaria con Boost A Project.',
+    description: 'Actualidad jurídica 2025: nueva ley de vivienda, reforma del código penal, extranjería, despidos, herencias digitales y más. Asesoramiento legal profesional.',
     openGraph: {
-        title: 'Blog de Inversión Inmobiliaria | Boost A Project',
-        description: 'Insights y estrategias de inversión inmobiliaria',
+        title: 'Blog Jurídico | LHC Legal & Consulting',
+        description: 'Actualidad jurídica y cambios legales 2025. Asesoramiento legal profesional en Madrid.',
         type: 'website',
-        images: ['/og-blog-image.jpg'] // Añade una imagen de Open Graph para el blog
+        images: ['/og-blog-image.jpg']
     },
     keywords: [
-        'inversión inmobiliaria',
-        'estrategias de inversión',
-        'bienes raíces',
-        'tendencias inmobiliarias',
-        'blog de inversión'
+        'nueva ley de vivienda 2025',
+        'reforma código penal 2025',
+        'ley extranjería actualizada',
+        'despidos reforma laboral',
+        'pensiones divorcio 2025',
+        'GDPR sanciones cookies',
+        'herencias digitales criptomonedas',
+        'ayudas autónomos 2025',
+        'recurrir multas tráfico',
+        'ley antifraude obligaciones',
+        'contratos bancarios abusivos',
+        'custodia compartida criterios',
+        'abogados madrid',
+        'asesoramiento legal',
+        'actualidad jurídica',
+        'cambios legales 2025',
+        'blog jurídico'
     ]
 };
 

@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 export default function PerfilPage() {
     return (
         <ProfileView
-            badge="Boost A Project"
+            badge="LHC Legal & Consulting"
             title="Editar Perfil"
-            subtitle="Aquí puedes actualizar tu nombre y correo electrónico."
+            subtitle="Aquí puedes actualizar tu información personal de forma segura."
         />
     );
 }

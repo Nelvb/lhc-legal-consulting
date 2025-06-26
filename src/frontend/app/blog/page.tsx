@@ -10,6 +10,7 @@
 
 import React, { useState, useEffect } from 'react';
 import BlogArticleCard from '@/components/blog/BlogArticleCard';
+import Button from '@/components/ui/Button';
 import { getArticles } from '@/lib/blogService';
 import { Article } from '@/types';
 
@@ -86,13 +87,7 @@ const BlogPage: React.FC = () => {
       {/* Contenido principal con fondo claro */}
       <div className="bg-gradient-to-b from-white to-gray-50 min-h-screen">
         <div className="container mx-auto px-4 py-16">
-          {isLoading ? (
-            <div className="text-center py-12">
-              <div className="animate-pulse text-[#1b2f4b] text-xl">
-                Cargando artículos...
-              </div>
-            </div>
-          ) : articles.length === 0 ? (
+          {articles.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-2xl font-semibold mb-4 text-[#1b2f4b]">No hay artículos disponibles</p>
               <p className="text-gray-600">Próximamente nuevos contenidos</p>
@@ -106,23 +101,22 @@ const BlogPage: React.FC = () => {
                 ))}
               </div>
 
-              {/* Paginación con colores LHC */}
-              <div className="flex justify-center mt-12 space-x-4">
+              {/* Paginación profesional */}
+              <div className="flex justify-center items-center mt-12 space-x-6">
                 {page > 1 && (
-                  <button
-                    onClick={() => handlePageChange(page - 1)}
-                    className="px-6 py-3 bg-[#1b2f4b] text-white rounded-lg hover:bg-[#1DA1F2] transition-colors duration-300 font-medium"
-                  >
+                  <Button variant="outline" size="md" onClick={() => handlePageChange(page - 1)}>
                     Anterior
-                  </button>
+                  </Button>
                 )}
+
+                <span className="text-[#1b2f4b] font-medium">
+                  Página {page} de {totalPages}
+                </span>
+
                 {page < totalPages && (
-                  <button
-                    onClick={() => handlePageChange(page + 1)}
-                    className="px-6 py-3 bg-[#1b2f4b] text-white rounded-lg hover:bg-[#1DA1F2] transition-colors duration-300 font-medium"
-                  >
+                  <Button variant="outline" size="md" onClick={() => handlePageChange(page + 1)}>
                     Siguiente
-                  </button>
+                  </Button>
                 )}
               </div>
             </>

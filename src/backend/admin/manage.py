@@ -28,10 +28,10 @@ def create_admin():
     """
     Crea un usuario administrador con valores predefinidos si no existe aún.
     """
-    username = "Alberto"
-    last_name = "Modroño Martin"
-    email = "bapboostaproject@gmail.com"
-    password = "Ayb.1981"
+    username = "Administrador"
+    last_name = "LHC"
+    email = "lhclegalandconsulting@gmail.com"
+    password = "Lhc.1234"
 
     existing = User.query.filter_by(email=email).first()
     if existing:

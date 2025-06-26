@@ -7,8 +7,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Perfil del Administrador | Boost a Project",
-    description: "Edita tu nombre como administrador en Boost a Project. Se requiere contraseña para confirmar los cambios.",
+    title: "Mi Perfil | LHC Legal & Consulting",
+    description: "Edita tu nombre de usuario y apellidos como administrador de LHC Legal & Consulting. Se requiere contraseña para confirmar los cambios.",
 };
 
 export default function AdminPerfilLayout({

@@ -16,6 +16,8 @@ import { Search, Filter, ChevronDown, X } from 'lucide-react';
 import LegalFAQs from '@/components/areas/sections/LegalFAQs';
 import NoResultsSection from '@/components/faq/NoResultsSection';
 import { Question } from '@/types/faq';
+import SmartLink from '@/components/ui/SmartLink';
+
 
 interface FaqSearchSectionProps {
     /** Array de todas las preguntas frecuentes */
@@ -246,16 +248,16 @@ const FaqSearchSection: React.FC<FaqSearchSectionProps> = ({ questions }) => {
                                     Nuestros especialistas resolverán tu consulta legal de forma personalizada
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                    <Link href="/contact">
+                                    <SmartLink href="/contact">
                                         <Button variant="outline" size="md">
                                             Consulta gratuita
                                         </Button>
-                                    </Link>
-                                    <Link href="/areas">
+                                    </SmartLink>
+                                    <SmartLink href="/areas">
                                         <Button variant="ghost" size="md" className="text-white border-white hover:bg-white hover:text-[#1b2f4b]">
                                             Ver áreas legales
                                         </Button>
-                                    </Link>
+                                    </SmartLink>
                                 </div>
                             </div>
                         </div>

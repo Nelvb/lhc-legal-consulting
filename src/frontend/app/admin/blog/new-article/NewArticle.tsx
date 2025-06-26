@@ -11,7 +11,7 @@
 
 import React, { useState } from 'react'
 import BlogArticleForm from '@/components/admin/blog/BlogArticleForm'
-import Link from 'next/link'
+import SmartLink from '@/components/ui/SmartLink'
 import Button from '@/components/ui/Button'
 import { createArticle, updateArticleBySlug } from '@/lib/blogService'
 
@@ -37,9 +37,9 @@ const NewArticle = () => {
       {/* Título y Botón de Volver */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <h1 className="text-3xl font-bold text-[#1A1341]">Editor de artículo</h1>
-        <Link href="/admin/blog">
+        <SmartLink href="/admin/blog">
           <Button variant="outline" size="sm">← Volver al listado</Button>
-        </Link>
+        </SmartLink>
       </div>
 
       {/* Formulario de creación de artículo */}

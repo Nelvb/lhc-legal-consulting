@@ -9,7 +9,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import SmartLink from "@/components/ui/SmartLink";
 import BlogArticleCard from "@/components/admin/ui/blog/BlogArticleCard";
 import Button from "@/components/ui/Button";
 import { getArticles, deleteArticleBySlug } from "@/lib/blogService";
@@ -52,17 +52,17 @@ const BlogAdminPage: React.FC = () => {
         <h1 className="text-3xl font-bold text-[#1A1341]">Gestión de Blog</h1>
 
         <div className="flex flex-wrap gap-4">
-          <Link href="/admin">
+          <SmartLink href="/admin">
             <Button variant="outline" size="sm">
               ← Volver al panel
             </Button>
-          </Link>
+          </SmartLink>
 
-          <Link href="/admin/blog/new-article">
+          <SmartLink href="/admin/blog/new-article">
             <Button variant="primary" size="sm">
               Crear Nuevo Artículo
             </Button>
-          </Link>
+          </SmartLink>
         </div>
       </div>
 
@@ -71,9 +71,9 @@ const BlogAdminPage: React.FC = () => {
       ) : articles.length === 0 ? (
         <div className="text-center py-16 bg-[#F1FFEF] rounded-lg border border-[#6290C3]">
           <p className="text-[#1A1341] text-xl mb-4">Aún no has creado ningún artículo</p>
-          <Link href="/admin/blog/new-article">
+          <SmartLink href="/admin/blog/new-article">
             <Button variant="primary">Crear Primer Artículo</Button>
-          </Link>
+          </SmartLink>
         </div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
