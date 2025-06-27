@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-create_admin.py
+manage.py
 
-Script CLI para crear un usuario administrador en la base de datos si no existe.
-Utiliza Flask CLI con contexto de la app principal.
+CLI de administración para LHC Legal & Consulting.
+Incluye comando para crear un usuario administrador.
 """
 
 import sys
@@ -11,6 +11,10 @@ import os
 import click
 from flask.cli import FlaskGroup
 from werkzeug.security import generate_password_hash
+from dotenv import load_dotenv
+
+# Cargar variables de entorno desde .env
+load_dotenv()
 
 # Añadir la ruta del proyecto para importar correctamente
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -26,16 +30,20 @@ cli = FlaskGroup(app)
 @cli.command("create_admin")
 def create_admin():
     """
-    Crea un usuario administrador con valores predefinidos si no existe aún.
+    Crea un usuario administrador con los datos definidos en .env si no existe aún.
     """
-    username = "Administrador"
-    last_name = "LHC"
-    email = "lhclegalandconsulting@gmail.com"
-    password = "Lhc.1234"
+    username = os.getenv("ADMIN_USERNAME")
+    last_name = os.getenv("ADMIN_LAST_NAME")
+    email = os.getenv("ADMIN_EMAIL")
+    password = os.getenv("ADMIN_PASSWORD")
+
+    if not all([username, last_name, email, password]):
+        click.echo("❌ Faltan variables de entorno: ADMIN_USERNAME, ADMIN_LAST_NAME, ADMIN_EMAIL o ADMIN_PASSWORD.")
+        return
 
     existing = User.query.filter_by(email=email).first()
     if existing:
-        click.echo("❌ Ya existe un usuario administrador con este email.")
+        click.echo(f"⚠️ Ya existe un usuario con el email {email}")
         return
 
     admin_user = User(
@@ -48,7 +56,7 @@ def create_admin():
 
     db.session.add(admin_user)
     db.session.commit()
-    click.echo("Usuario administrador creado correctamente.")
+    click.echo(f"✅ Usuario administrador '{username}' creado correctamente.")
 
 if __name__ == "__main__":
     cli()
