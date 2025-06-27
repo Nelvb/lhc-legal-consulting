@@ -4,6 +4,7 @@
  * Servicio para enviar mensajes desde el formulario de contacto.
  * - Si el usuario está autenticado, usa fetchWithAuth con protección CSRF y renovación automática.
  * - Si no está autenticado, usa fetch normal sin cabeceras CSRF.
+ * - El parámetro isAuthenticated es opcional (por defecto false) para formularios públicos.
  */
 
 import { fetchWithAuth } from "@/lib/utils/fetchWithAuth";
@@ -23,7 +24,7 @@ interface ContactData {
 }
 
 export const contactService = {
-    sendMessage: async (data: ContactData, isAuthenticated: boolean): Promise<void> => {
+    sendMessage: async (data: ContactData, isAuthenticated: boolean = false): Promise<void> => {
         const url = `${API_URL}/account/contact`;
 
         const config = {

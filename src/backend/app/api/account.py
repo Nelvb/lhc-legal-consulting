@@ -240,8 +240,8 @@ def contact():
     )
 
     result = send_email_with_limit(
-        subject=f"[Boost A Project] Contacto: {subject}",
-        recipients=[current_app.config.get("MAIL_DEFAULT_RECEIVER") or "bapboostaproject@gmail.com"],
+        subject=f"[LHC Legal And Consulting] Contacto: {subject}",
+        recipients=[current_app.config.get("MAIL_DEFAULT_RECEIVER") or "lhclegalandconsulting@gmail.com"],
         body=full_message
     )
 

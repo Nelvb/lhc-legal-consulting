@@ -14,7 +14,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import Link from 'next/link';
+import SmartLink from '@/components/ui/SmartLink';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { getArticleBySlug, getArticles } from '@/lib/blogService';
 import { Article } from '@/types';
 import { ArrowLeft } from 'lucide-react';
@@ -71,6 +72,10 @@ const ArticlePage: React.FC = () => {
     fetchArticle();
   }, [slug]);
 
+  if (isLoading) {
+    return <LoadingSpinner text="Cargando artículo..." size="lg" />;
+  }
+
   if (error || !article) {
     return (
       <div className="relative min-h-screen pt-20">
@@ -82,13 +87,13 @@ const ArticlePage: React.FC = () => {
           <p className="text-white/80 mb-8">
             {error || 'No se pudo encontrar el artículo solicitado'}
           </p>
-          <Link 
+          <SmartLink 
             href="/blog" 
             className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-lg hover:bg-white/30 transition-all duration-300"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver al blog
-          </Link>
+          </SmartLink>
         </div>
       </div>
     );

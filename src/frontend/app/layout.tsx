@@ -1,9 +1,19 @@
-// Layout raíz de la app con fuentes personalizadas optimizadas
+/**
+ * layout.tsx - Layout raíz con Context Provider de cookies
+ *
+ * Layout principal de LHC Legal & Consulting con fuentes optimizadas y sistema de cookies profesional.
+ * Incluye CookieConsentProvider para estado global compartido entre componentes.
+ * Banner y modal de cookies con Context Provider cumpliendo normativa RGPD.
+ */
+
 import React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import ClientLayout from "@/components/layout/ClientLayout";
+import { CookieConsentProvider } from "@/hooks/useCookieConsent";
+import CookieBanner from "@/components/cookies/CookieBanner";
+import CookieModal from "@/components/cookies/CookieModal";
 
 // Carga de fuentes optimizadas de Google
 const inter = Inter({
@@ -36,7 +46,14 @@ export default function RootLayout({
           bg-white
         `}
       >
-        <ClientLayout>{children}</ClientLayout>
+        {/* Provider de cookies envuelve toda la aplicación */}
+        <CookieConsentProvider>
+          <ClientLayout>{children}</ClientLayout>
+          
+          {/* Sistema de cookies - ahora comparten el mismo estado */}
+          <CookieBanner />
+          <CookieModal />
+        </CookieConsentProvider>
       </body>
     </html>
   );

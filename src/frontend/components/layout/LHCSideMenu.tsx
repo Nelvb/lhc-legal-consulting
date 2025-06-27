@@ -5,15 +5,16 @@
  * Utiliza iconografía de lucide-react, color corporativo y gradiente visual atractivo.
  * Incluye navegación pública y administración, con control de visibilidad por autenticación.
  * Compatible con dispositivos móviles, SEO friendly y con diseño responsive profesional.
+ * Usa SmartLink para navegación instantánea y experiencia fluida.
  */
 
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useUiStore } from "@/stores/useUiStore";
+import SmartLink from "@/components/ui/SmartLink";
 import {
     Scale,
     Users,
@@ -60,14 +61,12 @@ const LHCSideMenu: React.FC = () => {
     return (
         <>
             <div
-                className={`fixed inset-0 z-40 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-                    }`}
+                className={`fixed inset-0 z-40 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
                 style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
                 onClick={onClose}
             />
             <div
-                className={`fixed top-20 right-0 h-[calc(100vh-5rem)] w-full z-50 transform transition-transform duration-500 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
-                    }`}
+                className={`fixed top-20 right-0 h-[calc(100vh-5rem)] w-full z-50 transform transition-transform duration-500 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}
                 style={{
                     background:
                         "linear-gradient(135deg, rgba(27, 47, 75, 0.98) 0%, rgba(29, 161, 242, 0.95) 35%, rgba(27, 47, 75, 0.98) 70%, rgba(15, 23, 42, 0.99) 100%)",
@@ -84,7 +83,7 @@ const LHCSideMenu: React.FC = () => {
                                 <ul className="space-y-2">
                                     {publicLinks.map(({ href, label, icon }) => (
                                         <li key={href}>
-                                            <Link
+                                            <SmartLink
                                                 href={href}
                                                 onClick={onClose}
                                                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${isActiveLink(href)
@@ -94,7 +93,7 @@ const LHCSideMenu: React.FC = () => {
                                             >
                                                 {icon}
                                                 <span className="text-lg">{label}</span>
-                                            </Link>
+                                            </SmartLink>
                                         </li>
                                     ))}
                                 </ul>
@@ -109,7 +108,7 @@ const LHCSideMenu: React.FC = () => {
                                     <ul className="space-y-2">
                                         {adminLinks.map(({ href, label, icon }) => (
                                             <li key={href}>
-                                                <Link
+                                                <SmartLink
                                                     href={href}
                                                     onClick={onClose}
                                                     className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${isActiveLink(href)
@@ -119,7 +118,7 @@ const LHCSideMenu: React.FC = () => {
                                                 >
                                                     {icon}
                                                     <span className="text-lg">{label}</span>
-                                                </Link>
+                                                </SmartLink>
                                             </li>
                                         ))}
                                     </ul>

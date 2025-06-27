@@ -11,6 +11,7 @@
 import React, { useState, useEffect } from 'react';
 import BlogArticleCard from '@/components/blog/BlogArticleCard';
 import Button from '@/components/ui/Button';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { getArticles } from '@/lib/blogService';
 import { Article } from '@/types';
 
@@ -40,6 +41,10 @@ const BlogPage: React.FC = () => {
 
     fetchArticles();
   }, [page]);
+
+  if (isLoading) {
+    return <LoadingSpinner text="Cargando artículos..." size="md" />;
+  }
 
   return (
     <div className="relative min-h-screen">
