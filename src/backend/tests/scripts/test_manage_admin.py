@@ -6,10 +6,14 @@ Verifica que se crea correctamente un usuario administrador con datos desde .env
 import os
 from app.models.user import User
 from app.extensions import db
+from dotenv import load_dotenv
 
+load_dotenv()
 
 def test_create_admin_command_crea_usuario_admin(runner, app):
     """Ejecuta el comando create_admin desde Flask CLI y verifica el resultado."""
+
+
 
     # Leer los datos esperados del entorno (como hace manage.py)
     username = os.getenv("ADMIN_USERNAME")
