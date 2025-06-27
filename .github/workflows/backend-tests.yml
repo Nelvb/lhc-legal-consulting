@@ -1,24 +1,38 @@
-# GitHub Actions workflow para pruebas automáticas del backend
-# Ejecuta todos los tests de pytest en cada push y pull request
-# Configura un entorno Python 3.9 y gestiona las dependencias necesarias
+# .github/workflows/backend-tests.yml
+# GitHub Actions workflow para ejecutar automáticamente los tests del backend.
+# Utiliza las variables de entorno ADMIN_* desde los GitHub Secrets.
+# No incluye contraseñas ni emails en el código. Seguro y profesional.
 
 name: Backend Tests
+
 on: [push, pull_request]
+
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:
+      ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+      ADMIN_LAST_NAME: ${{ secrets.ADMIN_LAST_NAME }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
         uses: actions/setup-python@v3
         with:
           python-version: "3.9"
-      - name: Install dependencies
+
+      - name: Instalar dependencias
         run: |
           cd src/backend
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Run tests
+
+      - name: Ejecutar tests
         run: |
           cd src/backend
           python -m pytest
