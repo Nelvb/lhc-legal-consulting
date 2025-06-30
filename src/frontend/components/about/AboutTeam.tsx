@@ -4,6 +4,7 @@
  * Componente "Nuestro Equipo" para la página Sobre Nosotros.
  * Presenta las características del equipo especializado con iconos y descripción.
  * Grid responsive con animación suave al hacer scroll.
+ * ACTUALIZADO: Animaciones separadas para título/párrafo y grid de iconos.
  */
 
 'use client';
@@ -14,12 +15,22 @@ import { Users, Award, BookOpen, Heart } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 
 const AboutTeam = () => {
-    const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
+    // Hooks para animaciones separadas
+    const { ref: titleRef, inView: titleInView } = useInView();
+    const { ref: gridRef, inView: gridInView } = useInView();
 
     return (
         <section className="py-16 lg:py-24 bg-white">
             <div className="container mx-auto px-6 lg:px-8">
-                <div className="text-center mb-20">
+                {/* Título y párrafo con animación */}
+                <div 
+                    ref={titleRef}
+                    className={`
+                        text-center mb-20
+                        transition-all duration-700 transform
+                        ${titleInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                    `}
+                >
                     <h2
                         className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1b2f4b] mb-8"
                         style={{
@@ -43,9 +54,14 @@ const AboutTeam = () => {
                     </div>
                 </div>
 
+                {/* Grid de iconos con animación separada */}
                 <div
-                    ref={ref}
-                    className={`grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 max-w-6xl mx-auto transition-all duration-700 transform ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+                    ref={gridRef}
+                    className={`
+                        grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 max-w-6xl mx-auto
+                        transition-all duration-700 transform
+                        ${gridInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                    `}
                 >
                     <div className="text-center">
                         <Icon size="large" blur="md" centered className="mb-6">

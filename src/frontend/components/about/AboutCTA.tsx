@@ -4,14 +4,21 @@
  * Componente Call to Action final para la página Sobre Nosotros.
  * Sección con fondo gradiente LHC que invita al usuario a contactar.
  * Ajustado para eliminar huecos innecesarios en resoluciones entre 1024 y 1412px.
+ * ACTUALIZADO: Animación del contenido de texto al entrar en viewport.
  */
 
+'use client';
+
+import React from 'react';
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import SmartLink from "@/components/ui/SmartLink";
-
+import { useInView } from '@/hooks/useInView';
 
 const AboutCTA = () => {
+    // Hook para animación del contenido
+    const { ref, inView } = useInView();
+
     return (
         <section className="py-20 lg:py-28 relative overflow-hidden">
 
@@ -47,8 +54,7 @@ const AboutCTA = () => {
             {/* Layout desktop: imagen izquierda, texto derecha */}
             <div className="absolute inset-0 hidden lg:block">
                 <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat lg:bg-[length:90%] xl:bg-[length:70%] 2xl:bg-[length:60%]
-]"
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat lg:bg-[length:90%] xl:bg-[length:70%] 2xl:bg-[length:60%]"
                     style={{
                         backgroundImage: `url('https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749855626/abogada-micro_mnnrn3.webp')`,
                         backgroundPosition: 'left top',
@@ -70,10 +76,17 @@ const AboutCTA = () => {
                 />
             </div>
 
-            {/* Contenido del CTA */}
+            {/* Contenido del CTA con animación */}
             <div className="relative z-10">
                 <div className="container mx-auto px-6 lg:px-8">
-                    <div className="text-center lg:text-left lg:ml-auto lg:max-w-3xl pt-64 sm:pt-72 lg:pt-16 xl:pt-0">
+                    <div 
+                        ref={ref}
+                        className={`
+                            text-center lg:text-left lg:ml-auto lg:max-w-3xl pt-64 sm:pt-72 lg:pt-16 xl:pt-0
+                            transition-all duration-700 transform
+                            ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                        `}
+                    >
                         <h2
                             className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 lg:mb-8"
                             style={{

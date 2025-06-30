@@ -6,26 +6,24 @@
  * Layout responsive que aloja el ContactForm con diseño de dos columnas.
  * Optimizada para SEO con metadata apropiada y textos claros sobre fondo oscuro.
  * Utiliza iconos de Lucide React para consistencia profesional.
+ * ACTUALIZADO: Animaciones completas para header, formulario y sección de confianza.
  */
 
+'use client';
+
+import React from 'react';
 import type { Metadata } from "next";
 import ContactForm from "@/components/contact/ContactForm";
 import Icon from "@/components/ui/Icon";
 import { Handshake, Shield, Phone } from "lucide-react";
-
-export const metadata: Metadata = {
-    title: "Contacto | LHC Legal & Consulting",
-    description:
-        "Contacta con nuestro equipo de abogados especialistas. Respuesta garantizada en 24h. Asesoramiento legal gratuito y sin compromisos.",
-    keywords: "contacto, abogados madrid, asesoramiento legal, consulta gratuita, LHC Legal",
-    openGraph: {
-        title: "Contacto | LHC Legal & Consulting",
-        description: "¿Necesitas asesoramiento legal? Nuestro equipo te ayuda. Respuesta en 24h.",
-        type: "website",
-    },
-};
+import { useInView } from '@/hooks/useInView';
 
 export default function ContactPage() {
+    // Hooks para animaciones secuenciales
+    const { ref: headerRef, inView: headerInView } = useInView();
+    const { ref: formRef, inView: formInView } = useInView();
+    const { ref: trustRef, inView: trustInView } = useInView();
+
     return (
         <main className="w-full relative min-h-screen overflow-hidden">
             {/* Fondo híbrido: gradiente LHC arriba + decorativo abajo */}
@@ -53,9 +51,15 @@ export default function ContactPage() {
             <div className="relative z-10 px-4 pt-32 pb-20 sm:pt-36 md:pt-44 lg:pt-48 lg:pb-32">
 
                 <div className="container mx-auto">
-                    {/* Header de la página */}
-                    <div className="text-center mb-16 lg:mb-20 -mt-12 sm:-mt-16 md:-mt-20 lg:mt-0">
-
+                    {/* Header de la página con animación */}
+                    <div 
+                        ref={headerRef}
+                        className={`
+                            text-center mb-16 lg:mb-20 -mt-12 sm:-mt-16 md:-mt-20 lg:mt-0
+                            transition-all duration-700 transform
+                            ${headerInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                        `}
+                    >
                         <div className="inline-block bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-medium mb-6">
                             Primera consulta gratuita
                         </div>
@@ -69,32 +73,47 @@ export default function ContactPage() {
                         </p>
                     </div>
 
-                    {/* Formulario de contacto */}
-                    <ContactForm />
+                    {/* Formulario de contacto con animación */}
+                    <div 
+                        ref={formRef}
+                        className={`
+                            transition-all duration-700 transform
+                            ${formInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                        `}
+                    >
+                        <ContactForm />
+                    </div>
 
-                    {/* Sección de confianza adicional */}
-                    <div className="mt-20 lg:mt-32 text-center">
+                    {/* Sección de confianza adicional con animación */}
+                    <div 
+                        ref={trustRef}
+                        className={`
+                            mt-20 lg:mt-32 text-center
+                            transition-all duration-700 transform
+                            ${trustInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                        `}
+                    >
                         <div className="bg-white/80 backdrop-blur-sm border border-white/40 rounded-2xl p-8 lg:p-12 shadow-xl max-w-4xl mx-auto">
                             <h2 className="text-2xl lg:text-3xl font-bold text-[#1A1341] mb-6">
                                 ¿Por qué confiar en nosotros?
                             </h2>
                             <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
                                 <div className="text-center space-y-3">
-                                <Icon size="large" centered blur="md">
+                                    <Icon size="large" centered blur="md">
                                         <Handshake />
                                     </Icon>
                                     <h3 className="font-semibold text-[#1A1341]">Compromiso personal</h3>
                                     <p className="text-gray-600 text-sm">Tratamos tu caso como si fuera nuestro</p>
                                 </div>
                                 <div className="text-center space-y-3">
-                                <Icon size="large" centered blur="md">
+                                    <Icon size="large" centered blur="md">
                                         <Shield />
                                     </Icon>
                                     <h3 className="font-semibold text-[#1A1341]">Transparencia total</h3>
                                     <p className="text-gray-600 text-sm">Información clara y honesta en cada momento</p>
                                 </div>
                                 <div className="text-center space-y-3">
-                                <Icon size="large" centered blur="md">
+                                    <Icon size="large" centered blur="md">
                                         <Phone />
                                     </Icon>
                                     <h3 className="font-semibold text-[#1A1341]">Acompañamiento continuo</h3>

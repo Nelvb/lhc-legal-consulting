@@ -5,11 +5,13 @@
  * Incluye campo de búsqueda con debounce, filtros por categoría legal y integración con LegalFAQs.
  * Diseño profesional con dropdown animado y contador de resultados en tiempo real.
  * Maneja estados de carga y casos edge como búsquedas sin resultados.
+ * ACTUALIZADO: Animaciones para barra de búsqueda y CTA. Portal para dropdown.
  */
 
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { Search, Filter, ChevronDown, X } from 'lucide-react';
@@ -17,7 +19,7 @@ import LegalFAQs from '@/components/areas/sections/LegalFAQs';
 import NoResultsSection from '@/components/faq/NoResultsSection';
 import { Question } from '@/types/faq';
 import SmartLink from '@/components/ui/SmartLink';
-
+import { useInView } from '@/hooks/useInView';
 
 interface FaqSearchSectionProps {
     /** Array de todas las preguntas frecuentes */
@@ -62,6 +64,13 @@ const FaqSearchSection: React.FC<FaqSearchSectionProps> = ({ questions }) => {
     const [selectedCategory, setSelectedCategory] = useState('Todas las áreas');
     const [debouncedTerm, setDebouncedTerm] = useState('');
     const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
+    const [dropdownPosition, setDropdownPosition] = useState<{ top: number; left: number; width: number } | null>(null);
+
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
+    // Hooks para animaciones
+    const { ref: searchBarRef, inView: searchBarInView } = useInView();
+    const { ref: ctaRef, inView: ctaInView } = useInView();
 
     // Verificación de seguridad para datos
     if (!questions || !Array.isArray(questions)) {
@@ -74,6 +83,36 @@ const FaqSearchSection: React.FC<FaqSearchSectionProps> = ({ questions }) => {
             </div>
         );
     }
+
+    // Calcular posición del dropdown
+    const updateDropdownPosition = () => {
+        if (buttonRef.current) {
+            const rect = buttonRef.current.getBoundingClientRect();
+            setDropdownPosition({
+                top: rect.bottom + window.scrollY + 8,
+                left: rect.left + window.scrollX,
+                width: rect.width
+            });
+        }
+    };
+
+    // Actualizar posición al hacer scroll
+    useEffect(() => {
+        if (showCategoryDropdown) {
+            updateDropdownPosition();
+            
+            const handleScroll = () => updateDropdownPosition();
+            const handleResize = () => updateDropdownPosition();
+            
+            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('resize', handleResize);
+            
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+                window.removeEventListener('resize', handleResize);
+            };
+        }
+    }, [showCategoryDropdown]);
 
     // Debounce para optimizar búsqueda en tiempo real
     useEffect(() => {
@@ -94,7 +133,7 @@ const FaqSearchSection: React.FC<FaqSearchSectionProps> = ({ questions }) => {
     const filteredQuestions = useMemo(() => {
         let filtered = questions;
 
-        // 🎯 NUEVO: Si no hay búsqueda ni filtro, mostrar solo Consultas Generales por defecto
+        // Si no hay búsqueda ni filtro, mostrar solo Consultas Generales por defecto
         if (!debouncedTerm.trim() && selectedCategory === 'Todas las áreas') {
             filtered = questions.filter(q =>
                 q.category === 'General' ||
@@ -123,6 +162,7 @@ const FaqSearchSection: React.FC<FaqSearchSectionProps> = ({ questions }) => {
 
         return filtered;
     }, [questions, selectedCategory, debouncedTerm]);
+
     // Función para limpiar búsqueda
     const clearSearch = () => {
         setSearchTerm('');
@@ -138,14 +178,29 @@ const FaqSearchSection: React.FC<FaqSearchSectionProps> = ({ questions }) => {
         } else if (selectedCategory !== 'Todas las áreas') {
             return `Preguntas de ${selectedCategory}`;
         }
-        return 'Todas las preguntas frecuentes';
+        return 'Consultas Generales';
+    };
+
+    const handleDropdownToggle = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (!showCategoryDropdown) {
+            updateDropdownPosition();
+        }
+        setShowCategoryDropdown(!showCategoryDropdown);
     };
 
     return (
         <section className="bg-gradient-to-b from-white to-gray-50 py-16 px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
-                {/* Barra de búsqueda y filtros */}
-                <div className="bg-white rounded-2xl shadow-lg p-6 lg:p-8 border border-gray-100 mb-12">
+                {/* Barra de búsqueda y filtros con animación */}
+                <div
+                    ref={searchBarRef}
+                    className={`
+                        bg-white rounded-2xl shadow-lg p-6 lg:p-8 border border-gray-100 mb-12
+                        transition-all duration-700 transform
+                        ${searchBarInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                    `}
+                >
                     <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
                         {/* Campo de búsqueda */}
                         <div className="flex-1 relative">
@@ -160,9 +215,10 @@ const FaqSearchSection: React.FC<FaqSearchSectionProps> = ({ questions }) => {
                         </div>
 
                         {/* Filtro por categoría */}
-                        <div className="relative lg:w-80" onClick={(e) => e.stopPropagation()}>
+                        <div className="relative lg:w-80">
                             <button
-                                onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
+                                ref={buttonRef}
+                                onClick={handleDropdownToggle}
                                 className="w-full flex items-center justify-between px-6 py-4 border border-gray-300 rounded-xl text-lg bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-300"
                             >
                                 <span className="flex items-center gap-2">
@@ -171,27 +227,6 @@ const FaqSearchSection: React.FC<FaqSearchSectionProps> = ({ questions }) => {
                                 </span>
                                 <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${showCategoryDropdown ? 'rotate-180' : ''}`} />
                             </button>
-
-                            {/* Dropdown de categorías */}
-                            {showCategoryDropdown && (
-                                <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-20 max-h-60 overflow-y-auto">
-                                    {LEGAL_CATEGORIES.map((category) => (
-                                        <button
-                                            key={category}
-                                            onClick={() => {
-                                                setSelectedCategory(category);
-                                                setShowCategoryDropdown(false);
-                                            }}
-                                            className={`w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl ${selectedCategory === category
-                                                ? 'bg-[#1DA1F2] text-white hover:bg-[#1DA1F2]'
-                                                : 'text-gray-700'
-                                                }`}
-                                        >
-                                            {category}
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
                         </div>
 
                         {/* Botón de limpiar filtros */}
@@ -229,6 +264,35 @@ const FaqSearchSection: React.FC<FaqSearchSectionProps> = ({ questions }) => {
                     </div>
                 </div>
 
+                {/* Dropdown de categorías usando Portal */}
+                {showCategoryDropdown && dropdownPosition && createPortal(
+                    <div
+                        className="absolute bg-white border border-gray-200 rounded-xl shadow-lg z-10 max-h-60 overflow-y-auto"
+                        style={{
+                            top: dropdownPosition.top,
+                            left: dropdownPosition.left,
+                            width: dropdownPosition.width
+                        }}
+                    >
+                        {LEGAL_CATEGORIES.map((category) => (
+                            <button
+                                key={category}
+                                onClick={() => {
+                                    setSelectedCategory(category);
+                                    setShowCategoryDropdown(false);
+                                }}
+                                className={`w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl ${selectedCategory === category
+                                    ? 'bg-[#1DA1F2] text-white hover:bg-[#1DA1F2]'
+                                    : 'text-gray-700'
+                                    }`}
+                            >
+                                {category}
+                            </button>
+                        ))}
+                    </div>,
+                    document.body
+                )}
+
                 {/* Resultados */}
                 {filteredQuestions.length > 0 ? (
                     <>
@@ -239,7 +303,14 @@ const FaqSearchSection: React.FC<FaqSearchSectionProps> = ({ questions }) => {
                         />
 
                         {/* CTA Final - Solo cuando hay resultados */}
-                        <div className="mt-16 text-center">
+                        <div
+                            ref={ctaRef}
+                            className={`
+                                mt-16 text-center
+                                transition-all duration-700 transform
+                                ${ctaInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                            `}
+                        >
                             <div className="bg-gradient-to-r from-[#1b2f4b] to-[#1DA1F2] rounded-2xl p-8 lg:p-12 text-white">
                                 <h3 className="text-2xl lg:text-3xl font-bold mb-4">
                                     ¿Necesitas asesoramiento personalizado?

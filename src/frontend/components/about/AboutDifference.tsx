@@ -4,9 +4,19 @@
  * Componente "Por qué somos diferentes" para la página Sobre Nosotros.
  * Cards modernas con números, efectos hover y gradientes según el estilo WhyChooseUs.
  * Incluye elementos decorativos de fondo y animaciones suaves.
+ * ACTUALIZADO: Animaciones separadas para título/párrafo y grid de cards.
  */
 
+'use client';
+
+import React from 'react';
+import { useInView } from '@/hooks/useInView';
+
 const AboutDifference = () => {
+    // Hooks para animaciones separadas
+    const { ref: titleRef, inView: titleInView } = useInView();
+    const { ref: cardsRef, inView: cardsInView } = useInView();
+
     return (
         <section className="py-16 lg:py-24 bg-white relative overflow-hidden">
             {/* Elementos decorativos de fondo */}
@@ -14,7 +24,15 @@ const AboutDifference = () => {
             <div className="absolute bottom-20 left-10 w-40 h-40 bg-[#1b2f4b] opacity-5 rounded-full blur-3xl"></div>
             
             <div className="container mx-auto px-6 lg:px-8 relative z-10">
-                <div className="text-center mb-20">
+                {/* Título y párrafo con animación */}
+                <div 
+                    ref={titleRef}
+                    className={`
+                        text-center mb-20
+                        transition-all duration-700 transform
+                        ${titleInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                    `}
+                >
                     <h2 
                         className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1b2f4b] mb-8"
                         style={{
@@ -31,7 +49,15 @@ const AboutDifference = () => {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto">
+                {/* Grid de cards con animación separada */}
+                <div 
+                    ref={cardsRef}
+                    className={`
+                        grid md:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto
+                        transition-all duration-700 transform
+                        ${cardsInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                    `}
+                >
                     <div className="group relative bg-white rounded-3xl p-8 lg:p-10 h-full
                                   shadow-lg hover:shadow-2xl
                                   border border-gray-100 hover:border-transparent
