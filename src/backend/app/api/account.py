@@ -14,6 +14,8 @@ from app.extensions import db
 from app.models.user import User
 from app.schemas.contact_schema import ContactSchema
 from app.services.email_service import send_email_with_limit
+from app.services.contact_service import save_contact_message
+
 
 # Definición del blueprint y aplicación de CORS solo a este módulo
 account_bp = Blueprint("account", __name__)
@@ -207,6 +209,7 @@ def confirm_email_change():
 
 contact_schema = ContactSchema()
 
+
 @account_bp.route("/contact", methods=["POST"])
 def contact():
     verify_jwt_in_request(optional=True)
@@ -216,7 +219,6 @@ def contact():
         user_id = None
 
     data = request.get_json()
-
     current_app.logger.info(f"Datos recibidos en contacto: {data}")
 
     errors = contact_schema.validate(data)
@@ -227,6 +229,7 @@ def contact():
     name = data["name"]
     last_name = data.get("last_name", "").strip()
     email = data.get("email", "no enviado")
+    phone = data.get("phone")
     subject = data["subject"]
     message = data["message"]
 
@@ -235,6 +238,7 @@ def contact():
         f"{'ID usuario: ' + str(user_id) if user_id else 'Usuario no autenticado'}\n"
         f"Nombre: {name} {last_name}\n"
         f"Email: {email}\n"
+        f"Teléfono: {phone or 'No proporcionado'}\n"
         f"Asunto: {subject}\n\n"
         f"Mensaje:\n{message}"
     )
@@ -246,6 +250,14 @@ def contact():
     )
 
     if result.get("success"):
+        # Guardar también en base de datos
+        save_contact_message(
+            name=f"{name} {last_name}",
+            email=email,
+            subject=subject,
+            message=message,
+            phone=phone
+        )
         return jsonify({"msg": "Mensaje enviado correctamente"}), 200
     else:
         return jsonify({

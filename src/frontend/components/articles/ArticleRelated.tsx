@@ -1,13 +1,12 @@
 /**
  * ArticleRelated.tsx
  *
- * Componente que muestra una lista de artículos relacionados al final de la vista de detalle de un artículo.
+ * Componente que muestra una lista de artículos relacionados al final de un artículo.
+ * Diseño LHC consistente con animación suave al entrar en viewport.
  *
- * Este bloque:
- * - Muestra como máximo 3 artículos relacionados (ya filtrados desde el componente padre)
- * - Alinea automáticamente 1 o 2 artículos al centro del contenedor
- * - Aplica hover, efectos visuales y adaptación responsiva con Tailwind
- * - Optimiza imágenes con Next <Image> para mejorar rendimiento y eliminar warnings
+ * - Máx. 3 artículos relacionados (ya filtrados desde el componente padre).
+ * - Animación profesional desde abajo con useInView.
+ * - Hover elegante, responsive, sin duplicación de lógica.
  */
 
 'use client';
@@ -16,6 +15,7 @@ import React from 'react';
 import SmartLink from "@/components/ui/SmartLink";
 import Image from 'next/image';
 import { Article } from '@/types';
+import { useInView } from '@/hooks/useInView';
 
 interface ArticleRelatedProps {
   articles: Article[];
@@ -31,22 +31,30 @@ const formatDate = (dateString: string): string => {
 };
 
 const ArticleRelated: React.FC<ArticleRelatedProps> = ({ articles }) => {
+  const { ref, inView } = useInView({ threshold: 0.3, triggerOnce: true });
+
   if (!articles || articles.length === 0) return null;
 
   return (
     <div className="py-16 bg-gradient-to-t from-[#C2E7DA]/10 to-[#F7FAFF]">
-      <div className="max-w-6xl mx-auto px-4">
+      <div
+        ref={ref}
+        className={`max-w-6xl mx-auto px-4 transition-all duration-700 transform ${
+          inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}
+      >
         <h2 className="text-2xl font-bold text-[#1A1341] mb-12 text-center">
           Artículos que podrían interesarte
         </h2>
 
         <div
-          className={`grid gap-8 ${articles.length === 1
+          className={`grid gap-8 ${
+            articles.length === 1
               ? 'grid-cols-1 justify-items-center'
               : articles.length === 2
-                ? 'grid-cols-1 sm:grid-cols-2 sm:mx-auto sm:w-[80%] justify-items-center'
-                : 'grid-cols-1 sm:grid-cols-3'
-            }`}
+              ? 'grid-cols-1 sm:grid-cols-2 sm:mx-auto sm:w-[80%] justify-items-center'
+              : 'grid-cols-1 sm:grid-cols-3'
+          }`}
         >
           {articles.map((article) => (
             <SmartLink

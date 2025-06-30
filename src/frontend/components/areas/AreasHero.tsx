@@ -4,11 +4,13 @@
  * Hero section para la página general de áreas legales (/areas).
  * Diseño consistente con el resto de heroes de LHC Legal & Consulting.
  * Usa gradiente corporativo normal (no inverted) y tipografías Inter.
+ * Animaciones uniformes al entrar en viewport.
  */
 
 'use client';
 
 import React from 'react';
+import { useInView } from '@/hooks/useInView';
 
 interface AreasHeroProps {
     title?: string;
@@ -23,6 +25,8 @@ const AreasHero: React.FC<AreasHeroProps> = ({
     description = "Especialistas en todas las ramas del derecho con enfoque cercano y profesional",
     className = ""
 }) => {
+    const { ref, inView } = useInView();
+
     return (
         <section className={`relative overflow-hidden ${className}`}>
             {/* Fondo gradiente corporativo */}
@@ -30,7 +34,14 @@ const AreasHero: React.FC<AreasHeroProps> = ({
 
             <div className="relative z-10 py-20 lg:py-32">
                 <div className="container mx-auto px-6 lg:px-8 text-center">
-                    <div className="max-w-4xl mx-auto">
+                    <div 
+                        ref={ref}
+                        className={`
+                            max-w-4xl mx-auto
+                            transition-all duration-700 transform
+                            ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                        `}
+                    >
                         <h1
                             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8"
                             style={{

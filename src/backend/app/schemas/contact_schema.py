@@ -1,5 +1,6 @@
+# schemas/contact_schema.py
 # Esquema de validación para el formulario de contacto (público y privado).
-# Admite los campos: nombre, apellidos, email (opcional para usuarios autenticados), asunto y mensaje.
+# Admite los campos: nombre, apellidos, email (opcional para usuarios autenticados), teléfono (opcional), asunto y mensaje.
 # Si el usuario está logueado, el backend puede omitir nombre, apellidos y email del payload.
 
 from marshmallow import Schema, fields, validate
@@ -24,6 +25,14 @@ class ContactSchema(Schema):
         validate=validate.Length(
             max=120,
             error="El email no puede superar los 120 caracteres."
+        )
+    )
+    phone = fields.Str(
+        required=False,
+        validate=validate.Length(
+            min=7,
+            max=20,
+            error="El teléfono debe tener entre 7 y 20 caracteres."
         )
     )
     subject = fields.Str(

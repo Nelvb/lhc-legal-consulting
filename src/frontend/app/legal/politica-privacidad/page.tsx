@@ -172,6 +172,43 @@ const PoliticaPrivacidadPage = () => {
                         </p>
                     </div>
 
+                    <div className="bg-red-50 border-l-4 border-red-400 p-6 mb-6">
+                        <h3 className="font-semibold text-[#1b2f4b] mb-2">Revocación de Consentimiento</h3>
+                        <p className="text-sm mb-4">
+                            Si desea eliminar completamente sus datos de nuestros sistemas:
+                        </p>
+                        
+                        {/* Opción 1: Botón automático */}
+                        <div className="text-center mb-4">
+                            <a
+                                href="mailto:lhclegalandconsulting@gmail.com?subject=REVOCACIÓN%20DE%20CONSENTIMIENTO&body=Estimados%20señores%2C%0A%0ASolicito%20la%20eliminación%20completa%20de%20mis%20datos%20personales.%0A%0ANombre%3A%20%0AEmail%3A%20%0AMotivo%3A%20%0A%0AConfirmo%20que%20soy%20el%20titular.%0A%0ASaludos"
+                                className="inline-flex items-center justify-center px-4 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-colors duration-300 font-medium text-base min-h-[40px]"
+                            >
+                                📧 Enviar Email Automático
+                            </a>
+                        </div>
+                        
+                        {/* Separador */}
+                        <div className="text-center text-xs text-gray-400 mb-4">
+                            - o -
+                        </div>
+                        
+                        {/* Opción 2: Email manual */}
+                        <div className="text-center bg-white p-4 rounded-lg border border-red-200">
+                            <p className="text-sm text-gray-600 mb-2">Envíe un email manual a:</p>
+                            <a 
+                                href="mailto:lhclegalandconsulting@gmail.com" 
+                                className="text-lg font-bold text-[#1DA1F2] hover:underline"
+                            >
+                                lhclegalandconsulting@gmail.com
+                            </a>
+                            <p className="text-xs text-gray-500 mt-2">
+                                <strong>Asunto:</strong> REVOCACIÓN DE CONSENTIMIENTO<br/>
+                                <strong>Incluya:</strong> Su nombre, email y motivo
+                            </p>
+                        </div>
+                    </div>
+
                     <h2 className="text-2xl font-bold text-[#1b2f4b] mb-4">9. Medidas de Seguridad</h2>
                     <p className="mb-4">
                         Implementamos medidas técnicas y organizativas apropiadas para proteger sus datos:

@@ -1,43 +1,33 @@
 /**
  * AreasGrid.tsx
- * 
+ *
  * Grid responsive y optimizado de áreas legales para LHC Legal & Consulting.
- * Componente modular con animaciones escalonadas, SEO optimizado y configuración
- * flexible. Fondo profesional con gradientes corporativos y elementos decorativos.
+ * Animaciones individuales simples: título, tarjetas y CTA por separado.
+ * Cada elemento se anima cuando entra en viewport con configuración uniforme.
  */
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useInView } from '@/hooks/useInView';
 import LegalServiceCard from '@/components/ui/LegalServiceCard';
 import Button from '@/components/ui/Button';
-import { LEGAL_SERVICES, DEFAULT_ANIMATION_CONFIG, SECTION_CONTENT } from '@/app/data/legalServices';
-import { ServicesGridProps } from '@/types/legalService';
 import SmartLink from '@/components/ui/SmartLink';
-
+import { LEGAL_SERVICES, SECTION_CONTENT } from '@/app/data/legalServices';
+import { ServicesGridProps } from '@/types/legalService';
 
 const AreasGrid: React.FC<ServicesGridProps> = ({
   services = LEGAL_SERVICES,
   title = SECTION_CONTENT.title,
-  subtitle = SECTION_CONTENT.subtitle,
-  animationConfig = DEFAULT_ANIMATION_CONFIG
+  subtitle = SECTION_CONTENT.subtitle
 }) => {
-  const { ref, inView } = useInView({
-    threshold: animationConfig.threshold,
-    triggerOnce: animationConfig.triggerOnce,
-    rootMargin: animationConfig.rootMargin
-  });
+  // Título con animación individual
+  const { ref: titleRef, inView: titleInView } = useInView();
 
-  const [animationDelays, setAnimationDelays] = useState<number[]>([]);
+  // CTA con animación individual
+  const { ref: ctaRef, inView: ctaInView } = useInView();
 
-  // Generar delays de animación una sola vez
-  useEffect(() => {
-    const delays = services.map((_, index) => index * animationConfig.staggerDelay);
-    setAnimationDelays(delays);
-  }, [services, animationConfig.staggerDelay]);
-
-  // Schema markup para SEO
+  // SEO Schema
   const generateSchemaMarkup = () => ({
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -65,19 +55,19 @@ const AreasGrid: React.FC<ServicesGridProps> = ({
 
   return (
     <section
-      ref={ref}
       className="w-full relative overflow-hidden bg-lhc-gradient-inverted"
       aria-labelledby="areas-legales-heading"
     >
-
-      {/* Contenedor principal con padding generoso */}
       <div className="relative z-10 max-w-none mx-auto px-6 lg:px-8 py-20 lg:py-32">
-        {/* Encabezado de la sección */}
-        <header className="text-center mb-20 lg:mb-28">
-          <div className={`
-            transition-all duration-700 transform
-            ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
-          `}>
+
+        {/* Encabezado con animación individual */}
+        <header ref={titleRef} className="text-center mb-20 lg:mb-28">
+          <div
+            className={`
+              transition-all duration-700 transform
+              ${titleInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+            `}
+          >
             <h2
               id="areas-legales-heading"
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8"
@@ -105,27 +95,32 @@ const AreasGrid: React.FC<ServicesGridProps> = ({
           </div>
         </header>
 
-        {/* Grid de áreas legales con padding extra */}
+        {/* Grid de tarjetas - cada una con su propia animación */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10 mb-12 lg:mb-16">
-          {services.map((service, index) => (
-            <LegalServiceCard
-              key={service.id}
-              service={service}
-              index={index}
-              inView={inView}
-              animationDelay={animationDelays[index] || 0}
-            />
-          ))}
+          {services.map((service, index) => {
+            const { ref, inView } = useInView();
+
+            return (
+              <div ref={ref} key={service.id}>
+                <LegalServiceCard
+                  service={service}
+                  index={index}
+                  inView={inView}
+                  animationDelay={0}
+                />
+              </div>
+            );
+          })}
         </div>
 
-        {/* CTA de consulta personalizada con diseño mejorado */}
+        {/* CTA final con animación individual */}
         <footer
+          ref={ctaRef}
           className={`
-    text-center
-    transition-all duration-700 transform
-    ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
-  `}
-          style={{ transitionDelay: inView ? '800ms' : '0ms' }}
+            text-center
+            transition-all duration-700 transform
+            ${ctaInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+          `}
         >
           <div className="text-center py-6 lg:py-8">
             <h3 className="text-white text-3xl lg:text-4xl font-bold mb-4">
@@ -141,10 +136,9 @@ const AreasGrid: React.FC<ServicesGridProps> = ({
             </SmartLink>
           </div>
         </footer>
-
       </div>
 
-      {/* Schema markup para SEO */}
+      {/* SEO Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

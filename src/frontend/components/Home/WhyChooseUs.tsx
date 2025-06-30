@@ -3,12 +3,12 @@
  * 
  * Sección que destaca los 4 diferenciadores únicos de LHC Legal & Consulting.
  * Diseño moderno y fresco orientado a empresa joven con enfoque en confianza,
- * rapidez y transparencia. Incluye iconos SVG personalizados y animaciones suaves.
+ * rapidez y transparencia. Animaciones simples y uniformes por elemento.
  */
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useInView } from '@/hooks/useInView';
 
 // Tipos para los diferenciadores
@@ -74,127 +74,112 @@ const differentiators: Differentiator[] = [
 ];
 
 const WhyChooseUs: React.FC = () => {
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-    rootMargin: '50px'
-  });
-
-  const [animationDelay, setAnimationDelay] = useState<number[]>([]);
-
-  // Generar delays de animación escalonada
-  useEffect(() => {
-    const delays = differentiators.map((_, index) => index * 150);
-    setAnimationDelay(delays);
-  }, []);
-
   return (
-    <section
-      ref={ref}
-      className="w-full py-16 lg:py-24 relative z-20"
-    >
+    <section className="w-full py-16 lg:py-24 relative z-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Grid de diferenciadores */}
+        {/* Grid de diferenciadores - cada uno con su propia animación */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {differentiators.map((item, index) => (
-            <div
-              key={item.id}
-              className={`
-                transition-all duration-700 transform
-                ${inView
-                  ? 'translate-y-0 opacity-100'
-                  : 'translate-y-12 opacity-0'
-                }
-              `}
-              style={{
-                transitionDelay: inView ? `${animationDelay[index]}ms` : '0ms'
-              }}
-            >
-              <div className="
-                group relative bg-white rounded-3xl p-8 lg:p-10 h-full
-                shadow-lg hover:shadow-2xl
-                border border-gray-100 hover:border-transparent
-                transform transition-all duration-500 ease-out
-                hover:scale-105 hover:-translate-y-3
-                backdrop-blur-sm bg-white/95
-                overflow-hidden
-              ">
+          {differentiators.map((item, index) => {
+            const { ref, inView } = useInView({ threshold: 0.5 });
+            
+            return (
+              <div
+                ref={ref}
+                key={item.id}
+                className={`
+                  transition-all duration-700 transform
+                  ${inView
+                    ? 'translate-y-0 opacity-100'
+                    : 'translate-y-8 opacity-0'
+                  }
+                `}
+              >
+                <div className="
+                  group relative bg-white rounded-3xl p-8 lg:p-10 h-full
+                  shadow-lg hover:shadow-2xl
+                  border border-gray-100 hover:border-transparent
+                  transform transition-all duration-500 ease-out
+                  hover:scale-105 hover:-translate-y-3
+                  backdrop-blur-sm bg-white/95
+                  overflow-hidden
+                ">
 
-                {/* Gradiente de fondo en hover */}
-                <div className={`
-                  absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100
-                  bg-gradient-to-br ${item.bgGradient}
-                  transition-opacity duration-500
-                `} />
+                  {/* Gradiente de fondo en hover */}
+                  <div className={`
+                    absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100
+                    bg-gradient-to-br ${item.bgGradient}
+                    transition-opacity duration-500
+                  `} />
 
-                {/* Contenido */}
-                <div className="relative z-10">
+                  {/* Contenido */}
+                  <div className="relative z-10">
 
-                  {/* Icono con fondo circular */}
-                  <div className="mb-6">
-                    <div className={`
-                      inline-flex items-center justify-center
-                      w-16 h-16 lg:w-20 lg:h-20 rounded-2xl
-                      bg-gradient-to-br ${item.bgGradient}
-                      ${item.color}
-                      transform transition-all duration-500
-                      group-hover:scale-110 group-hover:rotate-6
-                      shadow-lg group-hover:shadow-xl
-                      border border-white group-hover:border-transparent
-                    `}>
-                      {item.icon}
+                    {/* Icono con fondo circular */}
+                    <div className="mb-6">
+                      <div className={`
+                        inline-flex items-center justify-center
+                        w-16 h-16 lg:w-20 lg:h-20 rounded-2xl
+                        bg-gradient-to-br ${item.bgGradient}
+                        ${item.color}
+                        transform transition-all duration-500
+                        group-hover:scale-110 group-hover:rotate-6
+                        shadow-lg group-hover:shadow-xl
+                        border border-white group-hover:border-transparent
+                      `}>
+                        {item.icon}
+                      </div>
                     </div>
+
+                    {/* Título */}
+                    <h3 className="
+                      text-xl lg:text-2xl font-bold text-[#1b2f4b] mb-4
+                      group-hover:text-[#1b2f4b] transition-colors duration-300
+                      leading-tight
+                    ">
+                      {item.title}
+                    </h3>
+
+                    {/* Descripción */}
+                    <p className="
+                      text-gray-600 group-hover:text-gray-700
+                      transition-colors duration-300 
+                      leading-relaxed text-base lg:text-lg
+                      line-height-relaxed
+                    ">
+                      {item.description}
+                    </p>
+
+                    {/* Indicador visual */}
+                    <div className="
+                      mt-6 w-12 h-1 bg-gradient-to-r from-[#1b2f4b] to-blue-600
+                      rounded-full transform transition-all duration-500
+                      group-hover:w-20 group-hover:shadow-lg
+                    " />
                   </div>
 
-                  {/* Título */}
-                  <h3 className="
-                    text-xl lg:text-2xl font-bold text-[#1b2f4b] mb-4
-                    group-hover:text-[#1b2f4b] transition-colors duration-300
-                    leading-tight
-                  ">
-                    {item.title}
-                  </h3>
-
-                  {/* Descripción */}
-                  <p className="
-                    text-gray-600 group-hover:text-gray-700
-                    transition-colors duration-300 
-                    leading-relaxed text-base lg:text-lg
-                    line-height-relaxed
-                  ">
-                    {item.description}
-                  </p>
-
-                  {/* Indicador visual */}
+                  {/* Efecto de brillo animado */}
                   <div className="
-                    mt-6 w-12 h-1 bg-gradient-to-r from-[#1b2f4b] to-blue-600
-                    rounded-full transform transition-all duration-500
-                    group-hover:w-20 group-hover:shadow-lg
+                    absolute top-0 -left-6 w-6 h-full
+                    bg-gradient-to-r from-transparent via-white/30 to-transparent
+                    transform -skew-x-12 -translate-x-full
+                    group-hover:translate-x-[400px]
+                    transition-transform duration-1000 ease-out
+                  " />
+
+                  {/* Elementos decorativos de fondo */}
+                  <div className="
+                    absolute -top-4 -right-4 w-24 h-24 
+                    bg-gradient-to-br from-gray-100/50 to-transparent
+                    rounded-full blur-xl
+                    group-hover:scale-150 group-hover:rotate-90
+                    transition-all duration-700
+                    pointer-events-none
                   " />
                 </div>
-
-                {/* Efecto de brillo animado */}
-                <div className="
-                  absolute top-0 -left-6 w-6 h-full
-                  bg-gradient-to-r from-transparent via-white/30 to-transparent
-                  transform -skew-x-12 -translate-x-full
-                  group-hover:translate-x-[400px]
-                  transition-transform duration-1000 ease-out
-                " />
-
-                {/* Elementos decorativos de fondo */}
-                <div className="
-                  absolute -top-4 -right-4 w-24 h-24 
-                  bg-gradient-to-br from-gray-100/50 to-transparent
-                  rounded-full blur-xl
-                  group-hover:scale-150 group-hover:rotate-90
-                  transition-all duration-700
-                  pointer-events-none
-                " />
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

@@ -59,7 +59,8 @@ const ContactFormHome: React.FC = () => {
             const payload = {
                 name: formData.name,
                 email: formData.email,
-                subject: `Consulta rápida - ${formData.phone ? 'Tel: ' + formData.phone : 'Sin teléfono'}`,
+                phone: formData.phone,
+                subject: `Consulta rápida`,
                 message: formData.message,
             };
 

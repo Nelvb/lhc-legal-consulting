@@ -1,10 +1,9 @@
+// src/frontend/lib/api/contactService.ts
+
 /**
- * contactService.ts
- *
  * Servicio para enviar mensajes desde el formulario de contacto.
- * - Si el usuario está autenticado, usa fetchWithAuth con protección CSRF y renovación automática.
- * - Si no está autenticado, usa fetch normal sin cabeceras CSRF.
- * - El parámetro isAuthenticated es opcional (por defecto false) para formularios públicos.
+ * - Soporta usuarios autenticados y no autenticados.
+ * - Incluye teléfono como campo opcional.
  */
 
 import { fetchWithAuth } from "@/lib/utils/fetchWithAuth";
@@ -18,9 +17,10 @@ if (!API_URL) {
 interface ContactData {
     name: string;
     last_name?: string;
+    email?: string;
+    phone?: string; // ← Añadido
     subject: string;
     message: string;
-    email?: string;
 }
 
 export const contactService = {

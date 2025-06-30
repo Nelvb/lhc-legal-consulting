@@ -3,17 +3,25 @@
  *
  * Componente Hero para la página Sobre Nosotros de LHC Legal & Consulting.
  * Incluye imagen de balanza de la justicia con overlay y contenido superpuesto.
- * Diseño responsive con tipografías unificadas y llamada a la acción.
+ * Animación de entrada del bloque de contenido al hacer scroll (useInView).
  */
+
+'use client';
 
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import SmartLink from "@/components/ui/SmartLink";
-
+import { useInView } from "@/hooks/useInView";
 
 const AboutHero = () => {
+    const { ref, inView } = useInView({
+        threshold: 0.4,
+        triggerOnce: true,
+    });
+
     return (
         <section className="relative w-full h-[600px] lg:h-[700px] overflow-hidden">
+            {/* Imagen de fondo con overlay */}
             <div className="absolute inset-0">
                 <img
                     src="https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749825385/oficina-balanza_savyyd.webp"
@@ -23,13 +31,18 @@ const AboutHero = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
             </div>
 
+            {/* Contenido animado */}
             <div className="relative z-10 h-full flex items-center">
                 <div className="container mx-auto px-6 lg:px-8">
-                    <div className="max-w-4xl">
+                    <div
+                        ref={ref}
+                        className={`max-w-4xl transition-all duration-700 transform ${inView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                            }`}
+                    >
                         <div className="inline-block bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-medium mb-8">
                             Conoce nuestro equipo
                         </div>
-                        <h1 
+                        <h1
                             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-8"
                             style={{
                                 fontFamily: "'Inter', sans-serif",

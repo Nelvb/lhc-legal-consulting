@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import SmartLink from '@/components/ui/SmartLink';
 import { useAuthStore } from "@/stores/useAuthStore";
 import AdminCard from "@/components/admin/ui/AdminCard";
-import { BookOpen, User, BarChart3 } from "lucide-react";
+import { BookOpen, User, BarChart3, MessageSquare } from "lucide-react";
 
 const AdminDashboardPage: React.FC = () => {
   const { user, isAuthenticated } = useAuthStore();
@@ -78,8 +78,16 @@ const AdminDashboardPage: React.FC = () => {
         <div className="container mx-auto px-6 lg:px-8 py-16">
 
           {/* Grid de tarjetas administrativas */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto mb-20">
             
+            <AdminCard
+              title="Gestión de Leads"
+              description="Revisa y gestiona todos los leads generados desde los formularios web"
+              buttonLabel="Ver leads"
+              href="/admin/contactos"
+              icon={<MessageSquare className="w-6 h-6" />}
+            />
+
             <AdminCard
               title="Gestión del Blog"
               description="Crea, edita y publica artículos jurídicos para mantener informados a los clientes sobre novedades legales."

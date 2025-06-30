@@ -40,7 +40,6 @@ const LegalServiceCard: React.FC<LegalServiceCardProps> = ({
                 <article
                     className="
                         relative h-48 p-6 
-                        transform transition-all duration-300 ease-out
                         hover:-translate-y-1 hover:shadow-xl
                         shadow-lg
                         group overflow-hidden

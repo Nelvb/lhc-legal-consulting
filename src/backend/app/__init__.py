@@ -13,12 +13,15 @@ from app.api.routes import routes
 from app.api.articles import articles_bp
 from app.api.images import images_bp
 from app.api.account import account_bp
+from app.api.contact_api import contact_api
+from app.api.contact_admin_api import contact_admin_api
 from app.config import DevelopmentConfig
 from app.extensions import cors, db, init_app, jwt, ma, migrate
 from app.services.image_service import ImageService
 import os
 import json
 from sqlalchemy import inspect
+
 
 def create_app(config_object=DevelopmentConfig):
     """
@@ -30,10 +33,7 @@ def create_app(config_object=DevelopmentConfig):
     - Importa artículos estáticos si la tabla existe y está vacía.
     """
 
-    # Crear la instancia Flask
     app = Flask(__name__)
-
-    # Cargar configuración según entorno
     app.config.from_object(config_object)
 
     # Configuración global de CORS para el frontend (Next.js en localhost:3000)
@@ -47,21 +47,23 @@ def create_app(config_object=DevelopmentConfig):
         }
     }, supports_credentials=True)
 
-    # Inicializar extensiones (db, jwt, mail, etc.)
+    # Inicializar extensiones
     init_app(app)
 
-    # Inicializar Cloudinary para imágenes
+    # Inicializar Cloudinary
     ImageService.init_cloudinary(app)
 
-    # Registrar blueprints
+    # Registrar todos los blueprints de la API
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(users_bp, url_prefix="/api/users")
     app.register_blueprint(routes, url_prefix="/api")
     app.register_blueprint(articles_bp, url_prefix="/api/articles")
     app.register_blueprint(images_bp, url_prefix="/api/images")
     app.register_blueprint(account_bp, url_prefix="/api/account")
+    app.register_blueprint(contact_api, url_prefix="/api/contact")
+    app.register_blueprint(contact_admin_api, url_prefix="/api/admin/contact")
 
-    # Importar artículos estáticos si tabla `articles` existe y está vacía
+    # Importar artículos estáticos si la tabla existe y está vacía
     with app.app_context():
         try:
             inspector = inspect(db.engine)

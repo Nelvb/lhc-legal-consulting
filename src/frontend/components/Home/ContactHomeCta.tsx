@@ -2,34 +2,44 @@
  * ContactHomeCTA.tsx
  * 
  * Sección final de contacto para el home de LHC Legal & Consulting.
- * Diseño fresco y joven con gradientes corporativos. Usa ContactFormHome
- * para el formulario y se enfoca en el layout, imagen y características.
+ * Diseño fresco y joven con gradientes corporativos y animaciones uniformes.
  * Estructura: Imagen + Formulario pegados (70/30) + Características centradas debajo.
- * Unificado con iconos Lucide React para consistencia en toda la aplicación.
+ * Cada sección se anima independientemente al entrar en viewport.
  */
 
 'use client';
 
 import React from 'react';
+import { useInView } from '@/hooks/useInView';
 import ContactFormHome from './ContactFormHome';
 import Icon from '@/components/ui/Icon';
 import { Clock, CheckCircle, Users, FileText } from 'lucide-react';
 
 const ContactHomeCTA: React.FC = () => {
+    // Animación para el bloque principal (imagen + formulario)
+    const { ref: mainRef, inView: mainInView } = useInView({ threshold: 0.3 });
+    
+    // Animación para las características
+    const { ref: featuresRef, inView: featuresInView } = useInView({ threshold: 0.5 });
+
     return (
         <section className="w-full relative overflow-hidden">
             {/* Fondo con gradientes corporativos */}
-            <div
-                className="absolute inset-0 bg-lhc-gradient "
-            />
+            <div className="absolute inset-0 bg-lhc-gradient" />
 
             {/* Contenido principal */}
             <div className="relative z-10 py-20 lg:py-32">
                 <div className="max-w-none mx-auto px-6 lg:px-8">
 
                     {/* Bloque imagen + formulario pegados (70/30) */}
-                    <div className="flex flex-col lg:flex-row rounded-3xl overflow-hidden shadow-2xl">
-
+                    <div 
+                        ref={mainRef}
+                        className={`
+                            flex flex-col lg:flex-row rounded-3xl overflow-hidden shadow-2xl
+                            transition-all duration-700 transform
+                            ${mainInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                        `}
+                    >
                         {/* Imagen con texto superpuesto (70%) */}
                         <div className="relative lg:w-[70%]">
                             <div className="relative w-full h-[400px] lg:h-[600px]">
@@ -66,7 +76,14 @@ const ContactHomeCTA: React.FC = () => {
                     </div>
 
                     {/* Características centradas debajo */}
-                    <div className="mt-16 lg:mt-20 flex justify-center">
+                    <div 
+                        ref={featuresRef}
+                        className={`
+                            mt-16 lg:mt-20 flex justify-center
+                            transition-all duration-700 transform
+                            ${featuresInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                        `}
+                    >
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-4xl">
                             <div className="text-center">
                                 <Icon size="large" transparent className="mb-4">
