@@ -6,9 +6,10 @@
 from app.extensions import db
 from app.models.contact_message import ContactMessage
 from datetime import datetime
+from typing import Optional
 
+def save_contact_message(name: str, email: str, subject: str, message: str, phone: Optional[str] = None) -> ContactMessage:
 
-def save_contact_message(name: str, email: str, subject: str, message: str, phone: str | None = None) -> ContactMessage:
     """
     Guarda un mensaje de contacto en la base de datos.
     Se marca por defecto como consentimiento aceptado (privacy_accepted=True).
