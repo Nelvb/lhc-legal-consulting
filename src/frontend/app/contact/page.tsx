@@ -52,7 +52,7 @@ export default function ContactPage() {
 
                 <div className="container mx-auto">
                     {/* Header de la página con animación */}
-                    <div 
+                    <div
                         ref={headerRef}
                         className={`
                             text-center mb-16 lg:mb-20 -mt-12 sm:-mt-16 md:-mt-20 lg:mt-0
@@ -68,13 +68,12 @@ export default function ContactPage() {
                             <span className="text-[#6290C3]">consulta legal</span>
                         </h1>
                         <p className="text-lg lg:text-xl text-white drop-shadow-lg max-w-3xl mx-auto leading-relaxed">
-                            Nuestro equipo de abogados especialistas está listo para resolver tus dudas
-                            y ofrecerte el mejor asesoramiento jurídico.
+                            Sea cual sea tu problema, recibirás orientación clara, cercana y profesional desde el primer contacto.
                         </p>
                     </div>
 
                     {/* Formulario de contacto con animación */}
-                    <div 
+                    <div
                         ref={formRef}
                         className={`
                             transition-all duration-700 transform
@@ -85,7 +84,7 @@ export default function ContactPage() {
                     </div>
 
                     {/* Sección de confianza adicional con animación */}
-                    <div 
+                    <div
                         ref={trustRef}
                         className={`
                             mt-20 lg:mt-32 text-center

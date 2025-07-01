@@ -120,7 +120,7 @@ const ContactForm = () => {
                             </h1>
                             <p className="text-lg text-gray-700 leading-relaxed">
                                 Nuestro equipo de abogados especialistas está aquí para resolver todas tus dudas
-                                sobre tu situación legal. Sin compromiso, sin presión.
+                                sobre tu situación legal sin compromiso.
                             </p>
                         </div>
 

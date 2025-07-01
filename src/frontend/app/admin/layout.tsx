@@ -19,7 +19,6 @@ import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import { useRouteLoaderStore } from "@/stores/useRouteLoaderStore";
 import AdminPageContent from "@/components/admin/layout/AdminPageContent";
-import ScrollToTop from "@/components/utils/ScrollToTop";
 
 // Imports dinámicos para componentes no críticos en admin
 const Navbar = dynamic(() => import("@/components/layout/Navbar"), {
@@ -75,7 +74,6 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
 
             {/* Contenido protegido del admin */}
             <AdminPageContent>
-                <ScrollToTop />
                 <main className="flex-grow" id="main-top">
                     {children}
                 </main>
