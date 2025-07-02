@@ -2,7 +2,7 @@
  * ArticleHeader.tsx
  * 
  * Hero de artículo individual en LHC Legal & Consulting.
- * Fondo dividido (salmón y azul oscuro) con overlay sobre imagen destacada.
+ * Gradiente corporativo LHC con overlay sobre imagen destacada.
  * Título centrado y animado al entrar en viewport.
  */
 
@@ -32,11 +32,8 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ article, onBackClick }) =
 
   return (
     <div className="relative h-[70vh] min-h-[500px] overflow-hidden">
-      {/* Fondo dividido LHC */}
-      <div className="absolute inset-0 flex z-0">
-        <div className="w-[30%] bg-[#C2E7DA]" />
-        <div className="w-[70%] bg-[#1A1341]" />
-      </div>
+      {/* Gradiente corporativo LHC */}
+      <div className="absolute inset-0 bg-lhc-gradient-inverted z-0" />
 
       {/* Imagen destacada con overlay */}
       {article.image && (
@@ -45,10 +42,10 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ article, onBackClick }) =
             src={article.image}
             alt={article.image_alt || article.title}
             fill
-            className="object-cover"
+            className="object-cover opacity-30"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1A1341]/70 via-[#1A1341]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1b2f4b]/70 via-transparent to-[#1b2f4b]/50" />
         </div>
       )}
 
@@ -63,7 +60,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ article, onBackClick }) =
         >
           <SmartLink
             href="/blog"
-            className="inline-flex items-center text-white hover:text-[#C2E7DA] transition-colors mb-6"
+            className="inline-flex items-center text-white hover:text-[#60A5FA] transition-colors mb-6"
             onClick={(e) => {
               e.preventDefault();
               onBackClick();
@@ -73,11 +70,11 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ article, onBackClick }) =
             Volver al blog
           </SmartLink>
 
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-md">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
             {article.title}
           </h1>
 
-          <div className="text-white text-sm md:text-base font-medium">
+          <div className="text-white/90 text-sm md:text-base font-medium">
             {article.author && <span className="mr-2">{article.author}</span>}
             <time dateTime={article.date || article.created_at}>
               {formatDate(article.date || article.created_at)}

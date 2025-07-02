@@ -21,8 +21,8 @@ import { useInView } from '@/hooks/useInView';
 export default function ContactPage() {
     // Hooks para animaciones secuenciales
     const { ref: headerRef, inView: headerInView } = useInView();
-    const { ref: formRef, inView: formInView } = useInView();
-    const { ref: trustRef, inView: trustInView } = useInView();
+    const { ref: formRef, inView: formInView } = useInView({ threshold: 0.1 });
+    const { ref: trustRef, inView: trustInView } = useInView({ threshold: 0.1 });
 
     return (
         <main className="w-full relative min-h-screen overflow-hidden">
