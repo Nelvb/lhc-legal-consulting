@@ -28,6 +28,8 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  preload: true, // Preload de la fuente para reducir FOIT (Flash of Invisible Text)
+  adjustFontFallback: true, // Reduce layout shift usando métricas de fuente similar
 });
 
 // Metadata global para SEO y favicons (sin manifest)

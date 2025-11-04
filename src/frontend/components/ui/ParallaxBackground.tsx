@@ -113,8 +113,8 @@ const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
             fill
             sizes="100vw"
             className="object-cover"
-            quality={85}
-            priority={false}
+            quality={75}
+            loading="lazy"
             onLoad={() => setIsLoaded(true)}
             style={{
               filter: 'blur(0.5px)',
