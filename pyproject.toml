@@ -19,3 +19,11 @@ exclude = '''
 [tool.isort]
 profile = "black"
 known_third_party = ["flask", "sqlalchemy"]
+
+[tool.pyright]
+venvPath = "src/backend"
+venv = "venv"
+pythonVersion = "3.11"
+typeCheckingMode = "basic"
+reportMissingModuleSource = false
+reportMissingImports = true

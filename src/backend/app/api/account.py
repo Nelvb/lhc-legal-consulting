@@ -16,7 +16,7 @@ from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
 from app.extensions import db
 from app.models.user import User
 from app.schemas.contact_schema import ContactSchema
-from app.services.email_service import send_email_with_limit
+from app.services.email_service_api import send_email_with_limit
 from app.services.contact_service import save_contact_message
 
 # Definición del Blueprint

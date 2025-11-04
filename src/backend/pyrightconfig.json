@@ -1,0 +1,36 @@
+{
+    // ============================================================
+    // PYRIGHT CONFIGURATION FILE
+    // ------------------------------------------------------------
+    // Configuración profesional adaptada al backend Flask modular.
+    // Corrige rutas absolutas (from app.services...) y mantiene
+    // compatibilidad con entorno Windows + Python 3.11 + venv.
+    //
+    // Autor: LHC Legal & Consulting - Equipo Backend
+    // ============================================================
+    "venvPath": ".",
+    "venv": "venv",
+    "pythonVersion": "3.11",
+    "pythonPlatform": "Windows",
+    // Nivel de verificación recomendado para Flask
+    "typeCheckingMode": "basic",
+    // No marcar errores por módulos externos o imports de librerías
+    "reportMissingModuleSource": false,
+    "reportMissingImports": false,
+    // Define el entorno raíz del proyecto (la carpeta 'app')
+    "include": [
+        "app"
+    ],
+    "ignore": [
+        "app/__pycache__"
+    ],
+    // Permite a Pyright resolver imports como 'from app.services...'
+    "executionEnvironments": [
+        {
+            "root": "app",
+            "extraPaths": [
+                "."
+            ]
+        }
+    ]
+}
