@@ -10,6 +10,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { useInView } from '@/hooks/useInView';
 import ContactFormHome from './ContactFormHome';
 import Icon from '@/components/ui/Icon';
@@ -43,10 +44,14 @@ const ContactHomeCTA: React.FC = () => {
                         {/* Imagen con texto superpuesto (70%) */}
                         <div className="relative lg:w-[70%]">
                             <div className="relative w-full h-[400px] lg:h-[600px]">
-                                <img
+                                <Image
                                     src="https://res.cloudinary.com/dvtzbfjwl/image/upload/v1749640954/chica-sonriendo-cta-contact_obvqqc.webp"
                                     alt="Asesora legal profesional - LHC Legal & Consulting"
-                                    className="w-full h-full object-cover"
+                                    fill
+                                    sizes="(max-width: 1024px) 100vw, 70vw"
+                                    loading="lazy"
+                                    quality={80}
+                                    className="object-cover"
                                 />
 
                                 {/* Overlay para legibilidad */}

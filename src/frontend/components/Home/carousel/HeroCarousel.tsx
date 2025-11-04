@@ -8,7 +8,7 @@
  */
 'use client';
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { CarouselProps } from '@/types/carousel';
 import CarouselSlide from './CarouselSlide';
 
@@ -83,20 +83,27 @@ const HeroCarousel: React.FC<CarouselProps> = ({
         }
     }, [nextSlide, prevSlide, isTransitioning]);
 
-    // Calcular posición de cada slide en la noria
-    const getSlidePosition = useCallback((index: number): number => {
+    // Calcular posición de cada slide en la noria (memoizado)
+    const slidePositions = useMemo(() => {
         const totalSlides = areas.length;
-        let position = index - currentSlide;
-        
-        // Normalizar posición para efecto noria circular
-        if (position < -Math.floor(totalSlides / 2)) {
-            position += totalSlides;
-        } else if (position > Math.floor(totalSlides / 2)) {
-            position -= totalSlides;
-        }
-        
-        return position * 100; // Cada slide se mueve 100% del ancho
+        return areas.map((_, index) => {
+            let position = index - currentSlide;
+            
+            // Normalizar posición para efecto noria circular
+            if (position < -Math.floor(totalSlides / 2)) {
+                position += totalSlides;
+            } else if (position > Math.floor(totalSlides / 2)) {
+                position -= totalSlides;
+            }
+            
+            return position * 100; // Cada slide se mueve 100% del ancho
+        });
     }, [currentSlide, areas.length]);
+
+    // Función auxiliar para obtener posición (mantiene compatibilidad)
+    const getSlidePosition = useCallback((index: number): number => {
+        return slidePositions[index] || 0;
+    }, [slidePositions]);
 
     if (areas.length === 0) {
         return (
@@ -123,17 +130,19 @@ const HeroCarousel: React.FC<CarouselProps> = ({
                 className="relative w-full h-full"
             >
                 {areas.map((area, index) => {
-                    const translateX = getSlidePosition(index);
-                    const isVisible = Math.abs(translateX) <= 100; // Solo renderizar slides visibles + buffer
+                    const translateX = slidePositions[index];
+                    // Solo renderizar slides visibles + buffer (optimización)
+                    const isVisible = Math.abs(translateX) <= 100;
+                    
+                    // No renderizar slides fuera del viewport para mejor rendimiento
+                    if (!isVisible) {
+                        return null;
+                    }
                     
                     return (
                         <div
                             key={area.id}
-                            className={`
-                                absolute inset-0 w-full h-full
-                                transition-transform duration-700 ease-in-out
-                                ${isVisible ? 'block' : 'hidden'}
-                            `}
+                            className="absolute inset-0 w-full h-full transition-transform duration-700 ease-in-out"
                             style={{
                                 transform: `translateX(${translateX}%)`
                             }}

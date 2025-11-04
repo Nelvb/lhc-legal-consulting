@@ -33,18 +33,23 @@ const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
   className = '',
   children
 }) => {
-  const [offsetY, setOffsetY] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const imageTransformRef = useRef<HTMLDivElement>(null);
+  const offsetYRef = useRef<number>(0);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !imageTransformRef.current) return;
 
     let ticking = false;
+    let lastFrame = 0;
+    const throttleDelay = 16; // ~60fps (una vez por frame)
+
     const handleScroll = () => {
-      if (!ticking) {
+      const now = Date.now();
+      if (!ticking && now - lastFrame >= throttleDelay) {
         requestAnimationFrame(() => {
-          if (containerRef.current) {
+          if (containerRef.current && imageTransformRef.current) {
             const rect = containerRef.current.getBoundingClientRect();
             const elementTop = rect.top;
             const elementHeight = rect.height;
@@ -53,17 +58,23 @@ const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
             if (elementTop < windowHeight && elementTop + elementHeight > 0) {
               const scrolled = window.pageYOffset;
               const newOffsetY = scrolled * parallaxSpeed;
-              setOffsetY(newOffsetY);
+              
+              // Actualizar ref sin causar re-render
+              offsetYRef.current = newOffsetY;
+              
+              // Aplicar transform directamente al DOM
+              imageTransformRef.current.style.transform = `translate3d(0, ${newOffsetY}px, 0)`;
             }
           }
           ticking = false;
+          lastFrame = Date.now();
         });
         ticking = true;
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    handleScroll(); // Ejecutar una vez al montar
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [parallaxSpeed]);
@@ -83,9 +94,9 @@ const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
     >
       {/* Imagen de fondo */}
       <div
+        ref={imageTransformRef}
         className="absolute inset-0 w-full h-full"
         style={{
-          transform: `translate3d(0, ${offsetY}px, 0)`,
           willChange: 'transform'
         }}
       >

@@ -11,8 +11,9 @@ const nextConfig = {
   // Configuración del workspace root para evitar warnings con múltiples lockfiles
   outputFileTracingRoot: require('path').join(__dirname, '../..'),
   
-  // Activa el modo estricto de React para detectar errores potenciales
-  reactStrictMode: true,
+  // Activa el modo estricto de React solo en desarrollo para detectar errores potenciales
+  // En producción se desactiva para evitar renders dobles y mejorar rendimiento
+  reactStrictMode: process.env.NODE_ENV === 'development',
 
   // Funciones experimentales compatibles (validadas para producción)
   experimental: {
