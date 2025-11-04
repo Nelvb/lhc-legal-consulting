@@ -59,15 +59,29 @@ const CookieModal: React.FC = () => {
     return (
         <div
             className="fixed inset-0 z-[10000] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '1rem'
+            }}
             onClick={handleBackdropClick}
             role="dialog"
             aria-modal="true"
             aria-labelledby="cookie-modal-title"
         >
             <div
-                className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden"
+                className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden"
                 style={{
-                    animation: showModal ? 'modalSlideIn 0.3s ease-out' : 'modalSlideOut 0.3s ease-in'
+                    animation: showModal ? 'modalSlideIn 0.3s ease-out' : 'modalSlideOut 0.3s ease-in',
+                    margin: '0 auto',
+                    maxWidth: '42rem',
+                    width: '100%'
                 }}
             >
                 {/* Header del modal */}

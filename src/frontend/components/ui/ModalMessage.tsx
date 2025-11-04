@@ -79,6 +79,17 @@ const ModalMessage: React.FC<ModalMessageProps> = ({
     return (
         <div
             className="fixed inset-0 z-[10000] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '1rem'
+            }}
             onClick={handleBackdropClick}
             role="dialog"
             aria-modal="true"
@@ -87,12 +98,15 @@ const ModalMessage: React.FC<ModalMessageProps> = ({
         >
             <div
                 className={`
-          bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-6 relative
+          bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative
           transform transition-all duration-300 ease-out
           ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}
         `}
                 style={{
-                    animation: isOpen ? 'modalSlideIn 0.3s ease-out' : 'modalSlideOut 0.3s ease-in'
+                    animation: isOpen ? 'modalSlideIn 0.3s ease-out' : 'modalSlideOut 0.3s ease-in',
+                    margin: '0 auto',
+                    maxWidth: '28rem',
+                    width: '100%'
                 }}
             >
                 {/* Botón cerrar */}
