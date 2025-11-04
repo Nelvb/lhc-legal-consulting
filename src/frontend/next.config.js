@@ -107,23 +107,9 @@ const nextConfig = {
     ];
   },
 
-  // Optimización de bundles y división de chunks en producción
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-          },
-        },
-      };
-    }
-
-    return config;
-  },
+  // Nota: Next.js ya maneja automáticamente el code splitting
+  // La configuración personalizada de webpack splitChunks puede causar conflictos
+  // Se elimina para evitar errores con react-server-dom-webpack
 
   // Gzip habilitado
   compress: true,

@@ -8,24 +8,12 @@
 
 import React from "react";
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import HeroSection from "@/components/Home/HeroSection";
 import PostHeroLayout from "@/components/Home/PostHeroLayout";
 import ParallaxTitleSection from "@/components/Home/ParallaxTitleSection";
-
-// Lazy load de componentes below-the-fold para reducir bundle inicial
-// SSR habilitado para mantener renderizado en servidor (sin cambios visuales)
-const AreasGrid = dynamic(() => import("@/components/Home/AreasGrid"), {
-  ssr: true,
-});
-
-const WhyChooseUs = dynamic(() => import("@/components/Home/WhyChooseUs"), {
-  ssr: true,
-});
-
-const ContactHomeCTA = dynamic(() => import("@/components/Home/ContactHomeCta"), {
-  ssr: true,
-});
+import AreasGrid from "@/components/Home/AreasGrid";
+import WhyChooseUs from "@/components/Home/WhyChooseUs";
+import ContactHomeCTA from "@/components/Home/ContactHomeCta";
 // import BasicContact from "@/components/Home/BasicContact";
 // import CTASection from "@/components/Home/CTASection";
 
