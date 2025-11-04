@@ -68,8 +68,23 @@ export const fetchWithAuth = async (
 
         const refreshCSRF = getCSRFToken("/auth/refresh");
 
+        // Respetar NEXT_PUBLIC_API_URL si está definida, sino usar fallbacks según entorno
+        const getApiUrl = () => {
+          const envUrl = process.env.NEXT_PUBLIC_API_URL;
+          if (envUrl) {
+            if (typeof window !== 'undefined' && (envUrl.includes('localhost') || envUrl.includes('127.0.0.1'))) {
+              return '/api';
+            }
+            return envUrl;
+          }
+          if (typeof window !== 'undefined') return '/api';
+          return process.env.NODE_ENV === 'production' 
+            ? 'https://lhc-legal-consulting.onrender.com/api'
+            : 'http://localhost:5000/api';
+        };
+        const API_URL = getApiUrl();
         const refreshResponse = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`,
+            `${API_URL}/auth/refresh`,
             {
                 method: "POST",
                 credentials: "include",

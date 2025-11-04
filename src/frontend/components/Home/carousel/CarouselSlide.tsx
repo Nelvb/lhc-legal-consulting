@@ -30,6 +30,7 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ area, isActive }) => {
                         src={area.backgroundImage}
                         alt={`Fondo ${area.title}`}
                         fill
+                        sizes="30vw"
                         className="object-cover"
                         priority={area.order === 1}
                     />
@@ -85,6 +86,7 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ area, isActive }) => {
                                     src={area.personImage}
                                     alt={`Cliente satisfecho - ${area.title}`}
                                     fill
+                                    sizes="460px"
                                     className="object-contain"
                                     priority={area.order === 1}
                                 />
@@ -112,6 +114,7 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ area, isActive }) => {
                             src={area.backgroundImage}
                             alt={`Fondo ${area.title}`}
                             fill
+                            sizes="50vw"
                             className="object-cover"
                             priority={area.order === 1}
                         />
@@ -131,6 +134,7 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ area, isActive }) => {
                             src={area.personImage}
                             alt={`Cliente satisfecho - ${area.title}`}
                             fill
+                            sizes="460px"
                             className="object-contain"
                             priority={area.order === 1}
                         />

@@ -27,11 +27,13 @@ const nextConfig = {
   },
 
   // Variables de entorno públicas para acceso desde el cliente
+  // Prioriza la variable de entorno real, luego usa fallbacks según el entorno
   env: {
     NEXT_PUBLIC_API_URL:
-      process.env.NODE_ENV === 'production'
-        ? 'http://backend:5000/api'
-        : 'http://localhost:5000/api',
+      process.env.NEXT_PUBLIC_API_URL || // Prioriza variable de entorno real
+      (process.env.NODE_ENV === 'production'
+        ? 'https://lhc-legal-consulting.onrender.com/api' // URL de producción en Render
+        : 'http://localhost:5000/api'), // URL de desarrollo local
   },
 
   // Configuración de imágenes remotas y formatos modernos
@@ -47,6 +49,8 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60,
+    // Configuración de calidades para Next.js 16 (requerido para quality personalizado)
+    qualities: [75, 80, 85, 90, 95, 100],
   },
 
   // Encabezados de seguridad y rendimiento

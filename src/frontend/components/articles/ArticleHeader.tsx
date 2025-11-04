@@ -42,6 +42,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ article, onBackClick }) =
             src={article.image}
             alt={article.image_alt || article.title}
             fill
+            sizes="100vw"
             className="object-cover opacity-30"
             priority
           />

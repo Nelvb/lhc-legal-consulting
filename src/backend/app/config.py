@@ -1,26 +1,40 @@
-# Configuración centralizada para diferentes entornos de la aplicación
-# Define ajustes para desarrollo, pruebas y producción con carga dinámica de variables
-# Incluye soporte para JWT en cookies seguras (HttpOnly) con protección CSRF
+# ============================================================
+# app/config.py
+# ------------------------------------------------------------
+# Configuración centralizada para los diferentes entornos
+# de la aplicación Flask (desarrollo, testing y producción).
+# Detecta y carga automáticamente variables de entorno desde
+# los archivos .env o .env.docker según corresponda.
+# 
+# Soporta:
+# - Base de datos local o Neon (según entorno)
+# - JWT seguro con cookies HttpOnly y CSRF
+# - Envío de emails con Flask-Mail
+# - Cloudinary para subida de imágenes
+# ============================================================
 
 import os
 from dotenv import load_dotenv
 
-# Cargar variables de entorno desde el archivo adecuado
+# ------------------------------------------------------------
+# Carga dinámica de variables según entorno
+# ------------------------------------------------------------
 if os.path.exists(".env.docker") and "DOCKER" in os.environ:
     load_dotenv(".env.docker")
 else:
     load_dotenv()
 
-class Config:
-    """Configuración base de la aplicación."""
-    
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = os.getenv("SECRET_KEY")
-    JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
 
-    # Configuración de cookies para JWT
+class Config:
+    """Configuración base común a todos los entornos."""
+
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = os.getenv("SECRET_KEY", "supersecretkey")
+    JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "supersecretkey")
+
+    # Configuración de cookies JWT (compatibles con desarrollo y producción)
     JWT_TOKEN_LOCATION = ["cookies"]
-    JWT_COOKIE_SECURE = False  # True solo en producción HTTPS
+    JWT_COOKIE_SECURE = False  # True solo en producción con HTTPS
     JWT_COOKIE_SAMESITE = "Lax"
     JWT_SESSION_COOKIE = False
     JWT_COOKIE_CSRF_PROTECT = True
@@ -34,12 +48,16 @@ class Config:
     JWT_ACCESS_TOKEN_EXPIRES = int(os.getenv("JWT_ACCESS_TOKEN_EXPIRES", 3600))
     JWT_REFRESH_TOKEN_EXPIRES = int(os.getenv("JWT_REFRESH_TOKEN_EXPIRES", 86400))
 
+    # --------------------------------------------------------
     # Cloudinary
+    # --------------------------------------------------------
     CLOUDINARY_CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME")
     CLOUDINARY_API_KEY = os.getenv("CLOUDINARY_API_KEY")
     CLOUDINARY_API_SECRET = os.getenv("CLOUDINARY_API_SECRET")
 
-    # Email
+    # --------------------------------------------------------
+    # Configuración de email (Flask-Mail)
+    # --------------------------------------------------------
     MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.gmail.com")
     MAIL_PORT = int(os.getenv("MAIL_PORT", 587))
     MAIL_USE_TLS = True
@@ -49,18 +67,27 @@ class Config:
     MAIL_MAX_EMAILS_PER_DAY = int(os.getenv("MAIL_MAX_EMAILS_PER_DAY", 100))
 
 
+# ============================================================
+# ENTORNOS ESPECÍFICOS
+# ============================================================
+
 class DevelopmentConfig(Config):
-    """Configuración para desarrollo."""
+    """Configuración para entorno de desarrollo local."""
     DEBUG = True
     DB_HOST = os.getenv("DB_HOST", "localhost")
     DB_USER = os.getenv("DB_USER", "postgres")
     DB_PASSWORD = os.getenv("DB_PASSWORD", "postgres")
-    DB_NAME = os.getenv("DB_NAME", "starter_template")
-    SQLALCHEMY_DATABASE_URI = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
+    DB_NAME = os.getenv("DB_NAME", "lhc_legal_local")
+
+    # Prioriza DATABASE_URL (Neon o local), luego construye fallback
+    SQLALCHEMY_DATABASE_URI = (
+        os.getenv("DATABASE_URL")
+        or f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
+    )
 
 
 class TestingConfig(Config):
-    """Configuración para entorno de testing (Pytest)."""
+    """Configuración para entorno de pruebas automáticas (pytest)."""
     TESTING = True
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
@@ -70,29 +97,35 @@ class TestingConfig(Config):
     MAIL_SUPPRESS_SEND = True
 
 
-
 class ProductionConfig(Config):
-    """Configuración para producción."""
+    """Configuración para entorno de producción (Render + Vercel)."""
     DEBUG = False
     DB_HOST = os.getenv("DB_HOST", "localhost")
     DB_USER = os.getenv("DB_USER", "postgres")
     DB_PASSWORD = os.getenv("DB_PASSWORD")
-    DB_NAME = os.getenv("DB_NAME", "starter_template")
-    # Priorizar SQLALCHEMY_DATABASE_URI si está en env, luego DATABASE_URL_PROD, luego construir
-    SQLALCHEMY_DATABASE_URI = os.getenv(
-        "SQLALCHEMY_DATABASE_URI",
-        os.getenv(
-            "DATABASE_URL_PROD",
-            f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
-        )
+    DB_NAME = os.getenv("DB_NAME", "lhc_legal_prod")
+
+    # Prioriza URI completa de producción (Render o Neon)
+    SQLALCHEMY_DATABASE_URI = (
+        os.getenv("SQLALCHEMY_DATABASE_URI")
+        or os.getenv("DATABASE_URL")
+        or os.getenv("DATABASE_URL_PROD")
+        or f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
     )
 
-# Determinar el entorno
+
+# ============================================================
+# SELECCIÓN AUTOMÁTICA DE ENTORNO
+# ============================================================
+
 env = os.getenv("FLASK_ENV", "development")
+
 config = {
     "development": DevelopmentConfig,
     "testing": TestingConfig,
     "production": ProductionConfig,
     "default": DevelopmentConfig,
 }
+
+# Clase de configuración activa
 config_class = config.get(env, config["default"])

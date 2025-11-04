@@ -81,7 +81,9 @@ const Footer: React.FC = () => {
                                     alt="LHC Legal & Consulting - Despacho de Abogados Madrid"
                                     width={200}
                                     height={80}
-                                    className="h-12 w-auto brightness-0 invert"
+                                    unoptimized
+                                    className="brightness-0 invert object-contain"
+                                    style={{ width: 'auto', height: '3rem' }}
                                     priority={false}
                                 />
                             </div>

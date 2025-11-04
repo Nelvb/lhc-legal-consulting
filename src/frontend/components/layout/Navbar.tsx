@@ -66,7 +66,9 @@ const Navbar: React.FC = () => {
               width={400}
               height={96}
               priority
-              className="h-24 w-auto object-contain"
+              unoptimized
+              className="object-contain"
+              style={{ width: 'auto', height: '6rem' }}
             />
             <span className="sr-only">LHC Legal & Consulting</span>
           </Link>

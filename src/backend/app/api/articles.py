@@ -12,20 +12,30 @@ from app.services.article_service import ArticleService
 
 articles_bp = Blueprint("articles", __name__)
 
-@articles_bp.route("/", methods=["GET"])
+@articles_bp.route("", methods=["GET"], strict_slashes=False)
+@articles_bp.route("/", methods=["GET"], strict_slashes=False)
 def get_articles():
     """Obtiene artículos paginados."""
-    page = request.args.get('page', 1, type=int)
-    limit = request.args.get('limit', 10, type=int)
-    
-    articles_data = ArticleService.get_all_articles(page, limit)
-    
-    return jsonify({
-        'articles': articles_schema.dump(articles_data['articles']),
-        'total': articles_data['total'],
-        'current_page': articles_data['current_page'],
-        'total_pages': articles_data['total_pages']
-    }), 200
+    try:
+        page = request.args.get('page', 1, type=int)
+        limit = request.args.get('limit', 10, type=int)
+        
+        articles_data = ArticleService.get_all_articles(page, limit)
+        
+        return jsonify({
+            'articles': articles_schema.dump(articles_data['articles']),
+            'total': articles_data['total'],
+            'current_page': articles_data['current_page'],
+            'total_pages': articles_data['total_pages']
+        }), 200
+    except Exception as e:
+        import traceback
+        error_trace = traceback.format_exc()
+        print(f"Error en get_articles: {e}\n{error_trace}")
+        return jsonify({
+            'error': 'Error interno del servidor',
+            'message': str(e)
+        }), 500
 
 @articles_bp.route("/<int:article_id>", methods=["GET"])
 def get_article(article_id):

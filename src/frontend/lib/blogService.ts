@@ -11,7 +11,31 @@
 import { fetchWithAuth } from "@/lib/utils/fetchWithAuth";
 import { Article } from '@/types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
+// Función para obtener la URL de la API
+// Respetar NEXT_PUBLIC_API_URL si está definida, sino usar fallbacks según entorno
+const getApiUrl = (): string => {
+  const envUrl = process.env.NEXT_PUBLIC_API_URL;
+  
+  // Si NEXT_PUBLIC_API_URL está definida, usarla (desarrollo o producción)
+  if (envUrl) {
+    // Si apunta a localhost, usar '/api' para evitar CORS (solo en cliente)
+    if (typeof window !== 'undefined' && (envUrl.includes('localhost') || envUrl.includes('127.0.0.1'))) {
+      return '/api';
+    }
+    return envUrl;
+  }
+  
+  // Si no hay NEXT_PUBLIC_API_URL, usar fallbacks según entorno
+  // En cliente: usar '/api' que se reescribe a localhost (evita CORS)
+  if (typeof window !== 'undefined') {
+    return '/api';
+  }
+  
+  // En servidor (SSR): usar localhost directo o Render según NODE_ENV
+  return process.env.NODE_ENV === 'production' 
+    ? 'https://lhc-legal-consulting.onrender.com/api'
+    : 'http://localhost:5000/api';
+};
 
 /**
  * Interfaz para parámetros de paginación y filtrado
@@ -51,7 +75,8 @@ export async function getArticles({
   category,
   search
 }: ArticleParams = {}): Promise<ArticleResponse> {
-  console.log('API_URL:', process.env.NEXT_PUBLIC_API_URL);
+  const API_URL = getApiUrl();
+  console.log('API_URL:', API_URL);
   try {
     let url = `${API_URL}/articles?page=${page}&limit=${limit}`;
     console.log('URL de la petición:', url);
@@ -59,10 +84,16 @@ export async function getArticles({
     if (category) url += `&category=${encodeURIComponent(category)}`;
     if (search) url += `&search=${encodeURIComponent(search)}`;
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include', // Incluir cookies para CORS
+    });
 
     if (!response.ok) {
-      throw new Error(`Error obteniendo artículos: ${response.status}`);
+      throw new Error(`Error obteniendo artículos: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -88,7 +119,14 @@ export async function getArticles({
  */
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   try {
-    const response = await fetch(`${API_URL}/articles/slug/${slug}`);
+    const API_URL = getApiUrl();
+    const response = await fetch(`${API_URL}/articles/slug/${slug}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
 
     if (!response.ok) {
       if (response.status === 404) {
@@ -110,7 +148,14 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
  */
 export async function getRelatedArticles(slug: string, limit: number = 3): Promise<Article[]> {
   try {
-    const response = await fetch(`${API_URL}/articles/related/${slug}?limit=${limit}`);
+    const API_URL = getApiUrl();
+    const response = await fetch(`${API_URL}/articles/related/${slug}?limit=${limit}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
 
     if (!response.ok) {
       throw new Error(`Error obteniendo artículos relacionados: ${response.status}`);
@@ -129,7 +174,14 @@ export async function getRelatedArticles(slug: string, limit: number = 3): Promi
  */
 export async function getFeaturedArticles(limit: number = 4): Promise<Article[]> {
   try {
-    const response = await fetch(`${API_URL}/articles/featured?limit=${limit}`);
+    const API_URL = getApiUrl();
+    const response = await fetch(`${API_URL}/articles/featured?limit=${limit}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
 
     if (!response.ok) {
       throw new Error(`Error obteniendo artículos destacados: ${response.status}`);
@@ -149,7 +201,14 @@ export async function getFeaturedArticles(limit: number = 4): Promise<Article[]>
  */
 export async function getArticleTitles(): Promise<ArticleListItem[]> {
   try {
-    const response = await fetch(`${API_URL}/articles?limit=999`);
+    const API_URL = getApiUrl();
+    const response = await fetch(`${API_URL}/articles?limit=999`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
     const data = await response.json();
 
     // Verificar que data.articles sea un array
@@ -175,7 +234,14 @@ export async function getArticleTitles(): Promise<ArticleListItem[]> {
  */
 export async function getStaticArticles(): Promise<ArticleListItem[]> {
   try {
-    const response = await fetch(`${API_URL}/articles/static-articles`);
+    const API_URL = getApiUrl();
+    const response = await fetch(`${API_URL}/articles/static-articles`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
 
     if (!response.ok) {
       throw new Error(`Error obteniendo artículos estáticos: ${response.status}`);
@@ -197,6 +263,7 @@ export async function getStaticArticles(): Promise<ArticleListItem[]> {
  */
 export async function deleteArticleBySlug(slug: string): Promise<void> {
   try {
+    const API_URL = getApiUrl();
     const response = await fetchWithAuth(`${API_URL}/articles/slug/${slug}`, {
       method: 'DELETE',
     });
@@ -222,6 +289,7 @@ export async function deleteArticleBySlug(slug: string): Promise<void> {
  * @throws Error si la petición falla o el backend devuelve un mensaje de error
  */
 export async function updateArticleBySlug(slug: string, articleData: any): Promise<void> {
+  const API_URL = getApiUrl();
   const response = await fetchWithAuth(`${API_URL}/articles/slug/${slug}`, {
     method: 'PUT',
     headers: {
@@ -248,6 +316,7 @@ export async function updateArticleBySlug(slug: string, articleData: any): Promi
 export async function createArticle(articleData: any): Promise<void> {
   console.log('[createArticle] related:', articleData.related, typeof articleData.related, Array.isArray(articleData.related));
 
+  const API_URL = getApiUrl();
   const response = await fetchWithAuth(`${API_URL}/articles/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -266,11 +335,13 @@ export async function createArticle(articleData: any): Promise<void> {
  */
 export async function getArticlesBySlugs(slugs: string[]): Promise<Article[]> {
   try {
+    const API_URL = getApiUrl();
     const response = await fetch(`${API_URL}/articles/by-slugs`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({ slugs })
     });
 

@@ -35,19 +35,11 @@ def create_app(config_object=DevelopmentConfig):
 
     app = Flask(__name__)
     app.config.from_object(config_object)
+    
+    # Desactivar trailing slashes para evitar redirects que rompen CORS
+    app.url_map.strict_slashes = False
 
-    # Configuración global de CORS para el frontend (Next.js en localhost:3000)
-    CORS(app, resources={
-        r"/api/*": {
-            "origins": ["http://localhost:3000"],
-            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-            "allow_headers": ["Content-Type", "Authorization", "X-CSRF-TOKEN"],
-            "supports_credentials": True,
-            "expose_headers": ["Content-Type", "X-CSRFToken"],
-        }
-    }, supports_credentials=True)
-
-    # Inicializar extensiones
+    # Inicializar extensiones (CORS se configura aquí)
     init_app(app)
 
     # Inicializar Cloudinary

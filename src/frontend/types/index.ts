@@ -4,6 +4,13 @@
  * Facilita la consistencia de tipos y reduce la duplicación de código
  */
 
+// Declaración global para window.pageLoaderActive
+declare global {
+  interface Window {
+    pageLoaderActive?: boolean;
+  }
+}
+
 // Ejemplo: export interface User { ... }
 
 export * from "./blog";

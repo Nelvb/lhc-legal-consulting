@@ -26,7 +26,9 @@ const SideMenuHeader: React.FC<SideMenuHeaderProps> = ({ onClose }) => {
           width={200}
           height={60}
           priority
-          className="h-20 w-auto object-contain invert brightness-0"
+          unoptimized
+          className="object-contain invert brightness-0"
+          style={{ width: 'auto', height: '5rem' }}
         />
       </div>
       <button

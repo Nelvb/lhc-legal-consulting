@@ -13,7 +13,7 @@
 
 "use client";
 
-import React, { memo, useEffect, useMemo, useRef } from "react";
+import React, { memo, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import { useAuthStore } from "@/stores/useAuthStore";
@@ -64,6 +64,23 @@ const ClientLayout: React.FC<ClientLayoutProps> = ({ children }) => {
   const { isAuthenticated } = useAuthStore();
   const isSideMenuOpen = useUiStore((state) => state.isSideMenuOpen);
   const lastPathRef = useRef<string>("");
+  const [showContent, setShowContent] = useState(false);
+
+  // Sincronización con PageLoader inicial
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.pageLoaderActive) {
+      const handleLoaderComplete = () => {
+        setShowContent(true);
+      };
+      window.addEventListener("pageLoaderComplete", handleLoaderComplete);
+      return () => {
+        window.removeEventListener("pageLoaderComplete", handleLoaderComplete);
+      };
+    } else {
+      // Si no hay loader activo, mostrar contenido inmediatamente
+      setShowContent(true);
+    }
+  }, []);
 
   // Scroll global solo si cambia la ruta real
   useEffect(() => {
@@ -88,8 +105,13 @@ const ClientLayout: React.FC<ClientLayoutProps> = ({ children }) => {
     };
   }, [pathname, isSideMenuOpen]);
 
+  // No renderizar contenido hasta que el loader inicial termine
+  if (!showContent) {
+    return null;
+  }
+
   return (
-    <>
+    <div className="transition-opacity duration-700" style={{ opacity: showContent ? 1 : 0 }}>
       <SimpleLoader />
 
       {routeFlags.showAnnouncementBar && <MemoizedAnnouncementBar />}
@@ -101,7 +123,7 @@ const ClientLayout: React.FC<ClientLayoutProps> = ({ children }) => {
 
       {!routeFlags.hideLayout && <Footer />}
       {isAuthenticated && <UiGlobalLayer />}
-    </>
+    </div>
   );
 };
 

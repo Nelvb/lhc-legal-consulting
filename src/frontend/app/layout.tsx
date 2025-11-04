@@ -17,6 +17,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
+import PageLoader from "@/components/ui/PageLoader";
 import ClientLayout from "@/components/layout/ClientLayout";
 import { CookieConsentProvider } from "@/hooks/useCookieConsent";
 import CookieBanner from "@/components/cookies/CookieBanner";
@@ -61,6 +62,9 @@ export default function RootLayout({
           bg-white
         `}
       >
+        {/* Loader inicial de pantalla completa */}
+        <PageLoader />
+        
         {/* Contexto global de cookies RGPD */}
         <CookieConsentProvider>
           <ClientLayout>{children}</ClientLayout>

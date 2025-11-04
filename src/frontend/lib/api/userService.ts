@@ -9,11 +9,21 @@
 
 import { fetchWithAuth } from "@/lib/utils/fetchWithAuth";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-if (!API_URL) {
-    throw new Error("Falta la variable de entorno NEXT_PUBLIC_API_URL");
-}
+// Respetar NEXT_PUBLIC_API_URL si está definida, sino usar fallbacks según entorno
+const getApiUrl = () => {
+  const envUrl = process.env.NEXT_PUBLIC_API_URL;
+  if (envUrl) {
+    if (typeof window !== 'undefined' && (envUrl.includes('localhost') || envUrl.includes('127.0.0.1'))) {
+      return '/api';
+    }
+    return envUrl;
+  }
+  if (typeof window !== 'undefined') return '/api';
+  return process.env.NODE_ENV === 'production' 
+    ? 'https://lhc-legal-consulting.onrender.com/api'
+    : 'http://localhost:5000/api';
+};
+const API_URL = getApiUrl();
 
 export const userService = {
     /**

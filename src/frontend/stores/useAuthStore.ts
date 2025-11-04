@@ -121,8 +121,23 @@ export const useAuthStore = create<AuthState>()(
             // Acción: Refrescar usuario desde API
             refreshUser: async (): Promise<void> => {
                 try {
+                    // Respetar NEXT_PUBLIC_API_URL si está definida, sino usar fallbacks según entorno
+                    const getApiUrl = () => {
+                      const envUrl = process.env.NEXT_PUBLIC_API_URL;
+                      if (envUrl) {
+                        if (typeof window !== 'undefined' && (envUrl.includes('localhost') || envUrl.includes('127.0.0.1'))) {
+                          return '/api';
+                        }
+                        return envUrl;
+                      }
+                      if (typeof window !== 'undefined') return '/api';
+                      return process.env.NODE_ENV === 'production' 
+                        ? 'https://lhc-legal-consulting.onrender.com/api'
+                        : 'http://localhost:5000/api';
+                    };
+                    const API_URL = getApiUrl();
                     const response = await fetchWithAuth(
-                        `${process.env.NEXT_PUBLIC_API_URL}/auth/profile`,
+                        `${API_URL}/auth/profile`,
                         { method: "GET" }
                     );
 
