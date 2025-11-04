@@ -44,23 +44,9 @@ def create_app(config_object=DevelopmentConfig):
     # Desactivar trailing slashes para evitar redirects que rompen CORS
     app.url_map.strict_slashes = False
 
-    # Inicializar extensiones (DB, JWT, etc.)
+    # Inicializar extensiones (DB, JWT, CORS, etc.)
+    # CORS ya está configurado en extensions.py con todos los orígenes necesarios
     init_app(app)
-
-    # ------------------------------------------------------------
-    # Configuración de CORS (Render + Vercel)
-    # ------------------------------------------------------------
-    allowed_origins = [
-        os.getenv("FRONTEND_URL", "http://localhost:3000"),
-        "https://lhc-legal-consulting.vercel.app",
-        "https://www.lhc-legal-consulting.vercel.app",
-    ]
-
-    CORS(
-        app,
-        resources={r"/api/*": {"origins": allowed_origins}},
-        supports_credentials=True,
-    )
 
     # Inicializar compresión (Gzip/Brotli) para respuestas JSON
     if Compress is not None:

@@ -7,7 +7,6 @@
 
 from flask import Blueprint, request, jsonify, current_app
 from flask_jwt_extended import jwt_required, get_jwt_identity, verify_jwt_in_request
-from flask_cors import CORS
 from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
 
 from app.extensions import db
@@ -17,9 +16,9 @@ from app.services.email_service import send_email_with_limit
 from app.services.contact_service import save_contact_message
 
 
-# Definición del blueprint y aplicación de CORS solo a este módulo
+# Definición del blueprint
+# CORS se gestiona globalmente desde extensions.py con todos los orígenes (localhost + Vercel)
 account_bp = Blueprint("account", __name__)
-CORS(account_bp, origins="http://localhost:3000", supports_credentials=True)
 
 
 @account_bp.route("/update-profile", methods=["OPTIONS"])
