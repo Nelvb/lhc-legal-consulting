@@ -16,22 +16,23 @@ import { LEGAL_SERVICES } from "@/app/data/legalServices";
 import { getLegalSubtopicData, getAllSubtopicRoutes } from "@/lib/services/legalSubtopicsService";
 
 interface LegalSubtopicPageProps {
-    params: {
+    params: Promise<{
         slug: string;
         subtopic: string;
-    };
+    }>;
 }
 
 // Generar metadata dinámica para SEO
 export async function generateMetadata({ params }: LegalSubtopicPageProps): Promise<Metadata> {
+    const { slug, subtopic } = await params;
     // Cargar datos del subtopic
     const { success, data: subtopicData, areaData } = await getLegalSubtopicData(
-        params.slug, 
-        params.subtopic
+        slug, 
+        subtopic
     );
 
     // Buscar configuración del área para colores/branding
-    const areaConfig = LEGAL_SERVICES.find(service => service.id === params.slug);
+    const areaConfig = LEGAL_SERVICES.find(service => service.id === slug);
 
     if (!success || !subtopicData || !areaData || !areaConfig) {
         return {
@@ -45,7 +46,7 @@ export async function generateMetadata({ params }: LegalSubtopicPageProps): Prom
     const pageDescription = `${subtopicData.description} Especialistas en ${subtopicData.title.toLowerCase()} en Madrid. ${subtopicData.extendedIntroduction ? subtopicData.extendedIntroduction.substring(0, 120) + '...' : 'Consulta gratuita.'}`;
 
     // URL canónica
-    const canonicalUrl = `https://lhclegal.es/areas/${params.slug}/${params.subtopic}`;
+    const canonicalUrl = `https://lhclegal.es/areas/${slug}/${subtopic}`;
 
     return {
         title: pageTitle,
@@ -90,18 +91,19 @@ export async function generateStaticParams() {
 }
 
 export default async function LegalSubtopicPage({ params }: LegalSubtopicPageProps) {
+    const { slug, subtopic } = await params;
     // Cargar datos del subtopic específico
     const { success, data: subtopicData, areaData, error } = await getLegalSubtopicData(
-        params.slug, 
-        params.subtopic
+        slug, 
+        subtopic
     );
 
     // Buscar configuración del área para colores y branding
-    const areaConfig = LEGAL_SERVICES.find(service => service.id === params.slug);
+    const areaConfig = LEGAL_SERVICES.find(service => service.id === slug);
 
     // Si no existe el subtopic o falla la carga, mostrar 404
     if (!success || !subtopicData || !areaData || !areaConfig) {
-        console.error(`Error cargando subtopic ${params.slug}/${params.subtopic}:`, error);
+        console.error(`Error cargando subtopic ${slug}/${subtopic}:`, error);
         notFound();
     }
 

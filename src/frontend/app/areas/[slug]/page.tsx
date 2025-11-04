@@ -16,15 +16,16 @@ import { LEGAL_SERVICES } from "@/app/data/legalServices";
 import { getLegalAreaData } from "@/lib/services/legalAreasService";
 
 interface LegalAreaPageProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 // Generar metadata dinámica
 export async function generateMetadata({ params }: LegalAreaPageProps): Promise<Metadata> {
-    const area = LEGAL_SERVICES.find(service => service.id === params.slug);
-    const { success, data: areaData } = await getLegalAreaData(params.slug);
+    const { slug } = await params;
+    const area = LEGAL_SERVICES.find(service => service.id === slug);
+    const { success, data: areaData } = await getLegalAreaData(slug);
 
     if (!area || !success || !areaData) {
         return {
@@ -45,11 +46,11 @@ export async function generateMetadata({ params }: LegalAreaPageProps): Promise<
             title: seoData?.metaTitle || `${areaData.title} | LHC Legal & Consulting`,
             description: seoData?.metaDescription || areaData.heroDescription,
             type: "website",
-            url: seoData?.canonicalUrl || `https://lhclegal.es/areas/${params.slug}`,
+            url: seoData?.canonicalUrl || `https://lhclegal.es/areas/${slug}`,
             images: seoData?.ogImage ? [{ url: seoData.ogImage }] : undefined,
         },
         alternates: {
-            canonical: seoData?.canonicalUrl || `https://lhclegal.es/areas/${params.slug}`,
+            canonical: seoData?.canonicalUrl || `https://lhclegal.es/areas/${slug}`,
         },
     };
 }
@@ -62,11 +63,12 @@ export async function generateStaticParams() {
 }
 
 export default async function LegalAreaPage({ params }: LegalAreaPageProps) {
-    const area = LEGAL_SERVICES.find(service => service.id === params.slug);
-    const { success, data: areaData, error } = await getLegalAreaData(params.slug);
+    const { slug } = await params;
+    const area = LEGAL_SERVICES.find(service => service.id === slug);
+    const { success, data: areaData, error } = await getLegalAreaData(slug);
 
     if (!area || !success || !areaData) {
-        console.error(`Error cargando área ${params.slug}:`, error);
+        console.error(`Error cargando área ${slug}:`, error);
         notFound();
     }
 
