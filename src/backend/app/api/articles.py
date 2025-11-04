@@ -6,7 +6,7 @@ Las rutas gestionan las peticiones HTTP mientras delegan la lógica de negocio
 al servicio de artículos.
 """
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, make_response
 from app.schemas.article_schema import article_schema, articles_schema
 from app.services.article_service import ArticleService
 
@@ -15,19 +15,25 @@ articles_bp = Blueprint("articles", __name__)
 @articles_bp.route("", methods=["GET"], strict_slashes=False)
 @articles_bp.route("/", methods=["GET"], strict_slashes=False)
 def get_articles():
-    """Obtiene artículos paginados."""
+    """Obtiene artículos paginados con caché HTTP de 5 minutos."""
     try:
         page = request.args.get('page', 1, type=int)
         limit = request.args.get('limit', 10, type=int)
         
         articles_data = ArticleService.get_all_articles(page, limit)
         
-        return jsonify({
+        # Crear respuesta con caché HTTP
+        response = make_response(jsonify({
             'articles': articles_schema.dump(articles_data['articles']),
             'total': articles_data['total'],
             'current_page': articles_data['current_page'],
             'total_pages': articles_data['total_pages']
-        }), 200
+        }))
+        
+        # Añadir headers de caché (5 minutos = 300 segundos)
+        response.headers['Cache-Control'] = 'public, max-age=300'
+        
+        return response, 200
     except Exception as e:
         import traceback
         error_trace = traceback.format_exc()
@@ -39,15 +45,19 @@ def get_articles():
 
 @articles_bp.route("/<int:article_id>", methods=["GET"])
 def get_article(article_id):
-    """Obtiene un artículo por su ID."""
+    """Obtiene un artículo por su ID con caché HTTP de 5 minutos."""
     article = ArticleService.get_article_by_id(article_id)
-    return jsonify(article_schema.dump(article)), 200
+    response = make_response(jsonify(article_schema.dump(article)))
+    response.headers['Cache-Control'] = 'public, max-age=300'
+    return response, 200
 
 @articles_bp.route("/slug/<string:slug>", methods=["GET"])
 def get_article_by_slug(slug):
-    """Obtiene un artículo por su slug."""
+    """Obtiene un artículo por su slug con caché HTTP de 5 minutos."""
     article = ArticleService.get_article_by_slug(slug)
-    return jsonify(article_schema.dump(article)), 200
+    response = make_response(jsonify(article_schema.dump(article)))
+    response.headers['Cache-Control'] = 'public, max-age=300'
+    return response, 200
 
 @articles_bp.route("/", methods=["POST"])
 def create_article():

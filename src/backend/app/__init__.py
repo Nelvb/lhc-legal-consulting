@@ -7,6 +7,7 @@
 
 from flask import Flask
 from flask_cors import CORS
+from flask_compress import Compress
 from app.api.auth import auth_bp
 from app.api.users import users_bp
 from app.api.routes import routes
@@ -41,6 +42,9 @@ def create_app(config_object=DevelopmentConfig):
 
     # Inicializar extensiones (CORS se configura aquí)
     init_app(app)
+
+    # Inicializar compresión (Gzip/Brotli) para respuestas JSON
+    Compress(app)
 
     # Inicializar Cloudinary
     ImageService.init_cloudinary(app)
