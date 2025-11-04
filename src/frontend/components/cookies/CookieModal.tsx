@@ -58,17 +58,14 @@ const CookieModal: React.FC = () => {
 
     return (
         <div
-            className="fixed inset-0 z-[10000] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
+            className="fixed inset-0 z-[10000] bg-black/50 backdrop-blur-sm"
             style={{
                 position: 'fixed',
                 top: 0,
                 left: 0,
                 right: 0,
                 bottom: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '1rem'
+                overflowY: 'auto'
             }}
             onClick={handleBackdropClick}
             role="dialog"
@@ -76,14 +73,30 @@ const CookieModal: React.FC = () => {
             aria-labelledby="cookie-modal-title"
         >
             <div
-                className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden"
                 style={{
-                    animation: showModal ? 'modalSlideIn 0.3s ease-out' : 'modalSlideOut 0.3s ease-in',
-                    margin: '0 auto',
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    width: '100%',
                     maxWidth: '42rem',
-                    width: '100%'
+                    padding: '1rem',
+                    boxSizing: 'border-box',
+                    transform: showModal ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(0.95)',
+                    opacity: showModal ? 1 : 0,
+                    transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
+                    pointerEvents: showModal ? 'auto' : 'none'
                 }}
             >
+                <div
+                    className="bg-white rounded-2xl shadow-2xl w-full overflow-hidden"
+                    style={{
+                        maxHeight: 'calc(100vh - 2rem)',
+                        overflowY: 'auto',
+                        display: 'flex',
+                        flexDirection: 'column'
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                >
                 {/* Header del modal */}
                 <div className="bg-lhc-gradient p-6 relative">
                     <button
@@ -110,7 +123,7 @@ const CookieModal: React.FC = () => {
                 </div>
 
                 {/* Contenido scrolleable */}
-                <div className="overflow-y-auto max-h-[60vh]">
+                <div className="overflow-y-auto flex-1" style={{ minHeight: 0 }}>
                     <div className="p-6 space-y-6">
 
                         {/* Información general */}
@@ -259,31 +272,7 @@ const CookieModal: React.FC = () => {
                     </div>
                 </div>
             </div>
-
-            {/* Estilos de animación */}
-            <style jsx>{`
-        @keyframes modalSlideIn {
-          from {
-            opacity: 0;
-            transform: scale(0.95) translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
-        }
-        
-        @keyframes modalSlideOut {
-          from {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
-          to {
-            opacity: 0;
-            transform: scale(0.95) translateY(-10px);
-          }
-        }
-      `}</style>
+            </div>
         </div>
     );
 };

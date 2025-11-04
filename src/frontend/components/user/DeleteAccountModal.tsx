@@ -40,27 +40,36 @@ const DeleteAccountModal: React.FC = () => {
 
     return (
         <div 
-            className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center px-4"
+            className="fixed inset-0 z-50 bg-black/40"
             style={{
                 position: 'fixed',
                 top: 0,
                 left: 0,
                 right: 0,
                 bottom: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '1rem'
+                overflowY: 'auto'
             }}
         >
             <div 
-                className="bg-white rounded-xl shadow-lg max-w-md w-full overflow-hidden"
                 style={{
-                    margin: '0 auto',
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '100%',
                     maxWidth: '28rem',
-                    width: '100%'
+                    padding: '1rem',
+                    boxSizing: 'border-box'
                 }}
             >
+                <div 
+                    className="bg-white rounded-xl shadow-lg w-full overflow-hidden"
+                    style={{
+                        maxHeight: 'calc(100vh - 2rem)',
+                        overflowY: 'auto'
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                >
                 {/* Header */}
                 <div className="bg-[#1DA1F2] px-6 py-4">
                     <h2 className="text-white text-xl font-semibold">
@@ -89,6 +98,7 @@ const DeleteAccountModal: React.FC = () => {
                         </Button>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );
