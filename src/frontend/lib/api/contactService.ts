@@ -8,27 +8,27 @@
 
 import { fetchWithAuth } from "@/lib/utils/fetchWithAuth";
 
-// Respetar NEXT_PUBLIC_API_URL si está definida, sino usar fallbacks según entorno
 const getApiUrl = () => {
-  const envUrl = process.env.NEXT_PUBLIC_API_URL;
-  if (envUrl) {
-    if (typeof window !== 'undefined' && (envUrl.includes('localhost') || envUrl.includes('127.0.0.1'))) {
-      return '/api';
+    const envUrl = process.env.NEXT_PUBLIC_API_URL;
+
+    if (envUrl) {
+        return envUrl; // ← Mantener siempre la variable exacta, sin forzar '/api'
     }
-    return envUrl;
-  }
-  if (typeof window !== 'undefined') return '/api';
-  return process.env.NODE_ENV === 'production' 
-    ? 'https://lhc-legal-consulting.onrender.com/api'
-    : 'http://localhost:5000/api';
+
+    // Fallbacks por entorno
+    if (process.env.NODE_ENV === "production") {
+        return "https://lhc-legal-consulting.onrender.com/api";
+    }
+    return "http://localhost:5000/api";
 };
+
 const API_URL = getApiUrl();
 
 interface ContactData {
     name: string;
     last_name?: string;
     email?: string;
-    phone?: string; // ← Añadido
+    phone?: string;
     subject: string;
     message: string;
 }
