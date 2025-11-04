@@ -8,6 +8,9 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Configuración del workspace root para evitar warnings con múltiples lockfiles
+  outputFileTracingRoot: require('path').join(__dirname, '../..'),
+  
   // Activa el modo estricto de React para detectar errores potenciales
   reactStrictMode: true,
 

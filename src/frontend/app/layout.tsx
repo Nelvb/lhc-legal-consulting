@@ -31,6 +31,7 @@ const inter = Inter({
 
 // Metadata global para SEO y favicons (sin manifest)
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lhclegal.es"),
   title: "LHC Legal & Consulting | Asesoría Legal Profesional",
   description:
     "Asesoría legal especializada en derecho laboral, herencias, divorcios y más. Primera consulta gratuita. Respuesta garantizada en 24h.",
