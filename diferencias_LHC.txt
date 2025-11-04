@@ -1,0 +1,19 @@
+Files tmp_repo_old/.vscode/settings.json and tmp_repo_new/.vscode/settings.json differ
+Files tmp_repo_old/docker-compose.yml and tmp_repo_new/docker-compose.yml differ
+Files tmp_repo_old/Dockerfile.frontend and tmp_repo_new/Dockerfile.frontend differ
+Only in tmp_repo_old: fly.frontend.toml
+Only in tmp_repo_old: fly.toml
+Files tmp_repo_old/package-lock.json and tmp_repo_new/package-lock.json differ
+Files tmp_repo_old/src/backend/app/__init__.py and tmp_repo_new/src/backend/app/__init__.py differ
+Files tmp_repo_old/src/backend/app/api/account.py and tmp_repo_new/src/backend/app/api/account.py differ
+Files tmp_repo_old/src/backend/app/api/articles.py and tmp_repo_new/src/backend/app/api/articles.py differ
+Files tmp_repo_old/src/backend/app/api/auth.py and tmp_repo_new/src/backend/app/api/auth.py differ
+Files tmp_repo_old/src/backend/migrations/versions/import_static_articles.py and tmp_repo_new/src/backend/migrations/versions/import_static_articles.py differ
+Files tmp_repo_old/src/backend/run.py and tmp_repo_new/src/backend/run.py differ
+Files tmp_repo_old/src/frontend/app/areas/[slug]/[subtopic]/page.tsx and tmp_repo_new/src/frontend/app/areas/[slug]/[subtopic]/page.tsx differ
+Files tmp_repo_old/src/frontend/app/areas/[slug]/page.tsx and tmp_repo_new/src/frontend/app/areas/[slug]/page.tsx differ
+Only in tmp_repo_new/src/frontend/components/admin/blog: contactos
+Only in tmp_repo_old/src/frontend/components/admin: contact
+Files tmp_repo_old/src/frontend/components/auth/ResetPasswordForm.tsx and tmp_repo_new/src/frontend/components/auth/ResetPasswordForm.tsx differ
+Files tmp_repo_old/src/frontend/lib/blogService.ts and tmp_repo_new/src/frontend/lib/blogService.ts differ
+Files tmp_repo_old/src/frontend/next.config.js and tmp_repo_new/src/frontend/next.config.js differ

@@ -100,40 +100,40 @@ const Footer: React.FC = () => {
                             </div>
                         </div>
 
-                            {/* Nuestras Especialidades */}
-                       <div>
-  <h3 className="text-white font-bold text-lg mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
-    Nuestras Especialidades
-  </h3>
+                        {/* Nuestras Especialidades */}
+                        <div>
+                            <h3 className="text-white font-bold text-lg mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+                                Nuestras Especialidades
+                            </h3>
 
-  <div className="grid grid-cols-2 gap-x-6">
-    <ul className="space-y-3 pl-1">
-      {legalAreas.slice(0, 4).map((area) => (
-        <li key={area.href}>
-          <Link
-            href={area.href}
-            className="text-gray-300 hover:text-[#1DA1F2] transition-colors duration-300 text-sm"
-          >
-            {area.name}
-          </Link>
-        </li>
-      ))}
-    </ul>
+                            <div className="grid grid-cols-2 gap-x-6">
+                                <ul className="space-y-3 pl-1">
+                                    {legalAreas.slice(0, 4).map((area) => (
+                                        <li key={area.href}>
+                                            <Link
+                                                href={area.href}
+                                                className="text-gray-300 hover:text-[#1DA1F2] transition-colors duration-300 text-sm"
+                                            >
+                                                {area.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
 
-    <ul className="space-y-3 pl-1">
-      {legalAreas.slice(4).map((area) => (
-        <li key={area.href}>
-          <Link
-            href={area.href}
-            className="text-gray-300 hover:text-[#1DA1F2] transition-colors duration-300 text-sm"
-          >
-            {area.name}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </div>
-</div>
+                                <ul className="space-y-3 pl-1">
+                                    {legalAreas.slice(4).map((area) => (
+                                        <li key={area.href}>
+                                            <Link
+                                                href={area.href}
+                                                className="text-gray-300 hover:text-[#1DA1F2] transition-colors duration-300 text-sm"
+                                            >
+                                                {area.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
 
 
                         {/* Columna 3: Recursos */}
