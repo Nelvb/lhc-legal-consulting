@@ -76,10 +76,12 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ area, isActive }) => {
                         {/* Persona posicionada en corte 70/30 */}
                         <div className="absolute top-0 left-[70%] -translate-x-1/2 h-full z-10 flex justify-center items-center">
                             <div
-                                className="relative h-[500px]"
+                                className="relative overflow-hidden"
                                 style={{
                                     width: '460px',
+                                    height: '500px',
                                     minWidth: '460px',
+                                    minHeight: '500px',
                                 }}
                             >
                                 <Image
@@ -124,10 +126,12 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ area, isActive }) => {
                 {/* Persona centrada */}
                 <div className="absolute inset-0 flex justify-center items-center z-10">
                     <div
-                        className="relative h-[500px]"
+                        className="relative overflow-hidden"
                         style={{
                             width: '460px',
+                            height: '500px',
                             minWidth: '460px',
+                            minHeight: '500px',
                         }}
                     >
                         <Image
