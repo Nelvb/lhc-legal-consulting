@@ -16,6 +16,7 @@ import Button from "@/components/ui/Button";
 import Icon from "@/components/ui/Icon";
 import PrivacyCheckbox from "@/components/legal/PrivacyCheckbox";
 import ModalMessage from "@/components/ui/ModalMessage";
+import { getUserFriendlyError } from "@/lib/utils/errorMessages";
 import { Shield, Clock, MessageSquare, Phone, CheckCircle } from "lucide-react";
 
 const ContactForm = () => {
@@ -84,13 +85,16 @@ const ContactForm = () => {
         } catch (err: any) {
             setStatus("idle");
             
+            // Obtener mensaje amigable para el usuario
+            const userMessage = getUserFriendlyError(err);
+            
             // Mostrar modal de error
             setModalState({
                 isOpen: true,
                 type: 'error',
                 title: 'Error al enviar la consulta',
-                message: err.message || 'Ha ocurrido un error inesperado al procesar tu consulta. Por favor, inténtalo de nuevo o contáctanos directamente por WhatsApp o teléfono.',
-                error: err.message
+                message: userMessage,
+                error: null // No mostrar el error técnico al usuario
             });
         }
     };

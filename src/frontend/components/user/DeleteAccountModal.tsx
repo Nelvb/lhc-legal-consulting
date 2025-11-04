@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useUiStore } from "@/stores/useUiStore";
 import { userService } from "@/lib/api/userService";
+import { getUserFriendlyError } from "@/lib/utils/errorMessages";
 import Button from "@/components/ui/Button";
 
 const DeleteAccountModal: React.FC = () => {
@@ -33,7 +34,7 @@ const DeleteAccountModal: React.FC = () => {
             closeDeleteModal();
             router.push("/");
         } catch (error: any) {
-            alert(error.message || "Error al eliminar la cuenta.");
+            alert(getUserFriendlyError(error));
         }
     };
 

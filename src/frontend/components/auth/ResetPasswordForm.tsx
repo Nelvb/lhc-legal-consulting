@@ -15,6 +15,7 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import Icon from "@/components/ui/Icon";
 import { userService } from "@/lib/api/userService";
+import { getUserFriendlyError } from "@/lib/utils/errorMessages";
 import { Eye, EyeOff, Lock, CheckCircle } from "lucide-react";
 import { validateUserField } from "@/constants/validation";
 
@@ -83,7 +84,7 @@ const ResetPasswordForm = () => {
             await userService.resetPassword({ token, new_password: password });
             setStatus("success");
         } catch (err: any) {
-            setServerError(err.message || "Error al restablecer la contraseña.");
+            setServerError(getUserFriendlyError(err));
             setStatus("error");
         }
     };

@@ -7,7 +7,11 @@
 
 from flask import Flask
 from flask_cors import CORS
-from flask_compress import Compress
+try:
+    from flask_compress import Compress  # type: ignore
+except ImportError:
+    # Fallback si flask-compress no está disponible
+    Compress = None
 from app.api.auth import auth_bp
 from app.api.users import users_bp
 from app.api.routes import routes
@@ -40,11 +44,27 @@ def create_app(config_object=DevelopmentConfig):
     # Desactivar trailing slashes para evitar redirects que rompen CORS
     app.url_map.strict_slashes = False
 
-    # Inicializar extensiones (CORS se configura aquí)
+    # Inicializar extensiones (DB, JWT, etc.)
     init_app(app)
 
+    # ------------------------------------------------------------
+    # Configuración de CORS (Render + Vercel)
+    # ------------------------------------------------------------
+    allowed_origins = [
+        os.getenv("FRONTEND_URL", "http://localhost:3000"),
+        "https://lhc-legal-consulting.vercel.app",
+        "https://www.lhc-legal-consulting.vercel.app",
+    ]
+
+    CORS(
+        app,
+        resources={r"/api/*": {"origins": allowed_origins}},
+        supports_credentials=True,
+    )
+
     # Inicializar compresión (Gzip/Brotli) para respuestas JSON
-    Compress(app)
+    if Compress is not None:
+        Compress(app)
 
     # Inicializar Cloudinary
     ImageService.init_cloudinary(app)

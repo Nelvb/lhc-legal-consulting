@@ -17,6 +17,7 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { userService } from "@/lib/api/userService";
+import { getUserFriendlyError } from "@/lib/utils/errorMessages";
 import { Eye, EyeOff, CheckCircle } from "lucide-react";
 
 interface ProfileFormProps {
@@ -93,7 +94,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             setSuccessMessage("Perfil actualizado correctamente.");
             setCurrentPassword("");
         } catch (err: any) {
-            setErrors({ global: err.message || "Error al guardar los cambios" });
+            setErrors({ global: getUserFriendlyError(err) });
         } finally {
             setIsSubmitting(false);
         }

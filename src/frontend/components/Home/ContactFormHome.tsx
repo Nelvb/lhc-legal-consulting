@@ -16,6 +16,7 @@ import Textarea from '@/components/ui/Textarea';
 import Button from '@/components/ui/Button';
 import PrivacyCheckbox from '@/components/legal/PrivacyCheckbox';
 import ModalMessage from '@/components/ui/ModalMessage';
+import { getUserFriendlyError } from '@/lib/utils/errorMessages';
 
 const ContactFormHome: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -83,13 +84,16 @@ const ContactFormHome: React.FC = () => {
         } catch (err: any) {
             setStatus('idle');
             
+            // Obtener mensaje amigable para el usuario
+            const userMessage = getUserFriendlyError(err);
+            
             // Mostrar modal de error
             setModalState({
                 isOpen: true,
                 type: 'error',
                 title: 'Error al enviar el mensaje',
-                message: err.message || 'Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo o contáctanos directamente.',
-                error: err.message
+                message: userMessage,
+                error: null // No mostrar el error técnico al usuario
             });
         }
     };

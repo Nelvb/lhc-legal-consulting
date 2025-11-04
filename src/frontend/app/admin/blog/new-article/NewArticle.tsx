@@ -13,6 +13,7 @@ import React, { useState } from 'react'
 import BlogArticleForm from '@/components/admin/blog/BlogArticleForm'
 import SmartLink from '@/components/ui/SmartLink'
 import Button from '@/components/ui/Button'
+import { getUserFriendlyError } from '@/lib/utils/errorMessages'
 import { createArticle, updateArticleBySlug } from '@/lib/blogService'
 
 const NewArticle = () => {
@@ -28,7 +29,7 @@ const NewArticle = () => {
       alert(isEditMode ? 'Artículo actualizado correctamente' : 'Artículo creado correctamente')
     } catch (error: any) {
       console.error('Error al enviar los datos:', error)
-      alert(`Error al ${isEditMode ? 'actualizar' : 'crear'} el artículo: ${error.message}`)
+      alert(`Error al ${isEditMode ? 'actualizar' : 'crear'} el artículo: ${getUserFriendlyError(error)}`)
     }
   }
 
