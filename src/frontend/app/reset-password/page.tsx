@@ -5,6 +5,7 @@
  */
 
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 import ResetPasswordForm from "@/components/auth/ResetPasswordForm";
 
@@ -40,7 +41,16 @@ export default function ResetPasswordPage() {
                 </div>
 
                 <div className="flex justify-center">
-                    <ResetPasswordForm />
+                    <Suspense fallback={
+                        <div className="w-full max-w-md bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-2xl">
+                            <div className="text-center">
+                                <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-white mb-4"></div>
+                                <p className="text-white/70 text-sm">Cargando formulario...</p>
+                            </div>
+                        </div>
+                    }>
+                        <ResetPasswordForm />
+                    </Suspense>
                 </div>
 
                 {/* Enlaces adicionales */}
