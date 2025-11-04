@@ -78,9 +78,13 @@ class ProductionConfig(Config):
     DB_USER = os.getenv("DB_USER", "postgres")
     DB_PASSWORD = os.getenv("DB_PASSWORD")
     DB_NAME = os.getenv("DB_NAME", "starter_template")
+    # Priorizar SQLALCHEMY_DATABASE_URI si está en env, luego DATABASE_URL_PROD, luego construir
     SQLALCHEMY_DATABASE_URI = os.getenv(
-        "DATABASE_URL_PROD",
-        f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
+        "SQLALCHEMY_DATABASE_URI",
+        os.getenv(
+            "DATABASE_URL_PROD",
+            f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
+        )
     )
 
 # Determinar el entorno

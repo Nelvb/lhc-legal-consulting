@@ -8,7 +8,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getFilteredMessages, ContactFilters } from '@/lib/api/contactAdminService';
-import ContactMessagesTable from '@/components/admin/contact/ContactMessagesTable';
+import ContactMessagesTable from '@/components/admin/blog/contactos/ContactMessagesTable';
 import { ContactMessage } from '@/types/contact';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';

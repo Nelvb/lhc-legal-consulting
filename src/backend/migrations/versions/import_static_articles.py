@@ -7,6 +7,7 @@ from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 from app import create_app
+from app.config import ProductionConfig
 from app.models.article import Article
 from app.extensions import db
 import json
@@ -18,15 +19,20 @@ down_revision = '99143f90c755'  # Este es el identificador de la migración ante
 branch_labels = None
 depends_on = None
 
-# Ruta al archivo JSON
-JSON_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'articles.json')
+# Ruta al archivo JSON (desde la raíz del backend)
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+JSON_PATH = os.path.join(BASE_DIR, 'app', 'data', 'articles.json')
 
-# Crear la app con contexto Flask
-app = create_app()
+# Crear la app con contexto Flask (usar ProductionConfig si está configurado para producción)
+# Si SQLALCHEMY_DATABASE_URI está en env, usará esa configuración
+app = create_app(config_object=ProductionConfig if os.getenv('FLASK_ENV') == 'production' else None)
 
 def import_articles():
     """Importa los artículos desde el JSON si no existen en la base de datos."""
     with app.app_context():
+        if not os.path.exists(JSON_PATH):
+            print(f"⚠️ Archivo JSON no encontrado en {JSON_PATH}, saltando importación de artículos.")
+            return
         with open(JSON_PATH, 'r', encoding='utf-8') as f:
             articles_data = json.load(f)
 
