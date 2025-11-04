@@ -14,6 +14,7 @@ from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
+import os
 
 # Inicialización diferida de extensiones
 db = SQLAlchemy()
@@ -38,20 +39,33 @@ def init_app(app):
     mail.init_app(app)
 
     # Configuración completa de CORS
+    # Obtener FRONTEND_URL de variables de entorno (Render) o usar fallback
+    frontend_url = os.getenv("FRONTEND_URL", "https://lhc-legal-consulting.vercel.app")
+    
+    # Lista de orígenes permitidos
+    allowed_origins = [
+        # --- Desarrollo local ---
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        # --- Producción Vercel (frontend) ---
+        "https://lhc-legal-consulting.vercel.app",
+        "https://www.lhc-legal-consulting.vercel.app",
+        # --- FRONTEND_URL de Render (si está definido) ---
+        frontend_url,
+    ]
+    
+    # Eliminar duplicados y None
+    allowed_origins = list(set([origin for origin in allowed_origins if origin]))
+    
+    # Logging para diagnóstico en producción
+    app.logger.info(f"🔍 FRONTEND_URL detectado: {frontend_url}")
+    app.logger.info(f"✅ CORS activo para orígenes permitidos: {allowed_origins}")
+    
     cors.init_app(
         app,
         resources={
             r"/api/*": {
-                "origins": [
-                    # --- Desarrollo local ---
-                    "http://localhost:3000",
-                    "http://127.0.0.1:3000",
-                    # --- Producción Vercel (frontend) ---
-                    "https://lhc-legal-consulting.vercel.app",
-                    "https://www.lhc-legal-consulting.vercel.app",
-                    # --- Producción Render (backend) ---
-                    "https://lhc-legal-consulting.onrender.com"
-                ],
+                "origins": allowed_origins,
                 "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
                 "allow_headers": [
                     "Content-Type",

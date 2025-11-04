@@ -21,7 +21,7 @@ def test_create_admin_command_crea_usuario_admin(runner, app):
     email = os.getenv("ADMIN_EMAIL")
     password = os.getenv("ADMIN_PASSWORD")
 
-    assert all([username, last_name, email, password]), "❌ Faltan variables de entorno ADMIN_*"
+    assert all([username, last_name, email, password]), "Faltan variables de entorno ADMIN_*"
 
     # Eliminar si ya existe antes de probar
     with app.app_context():

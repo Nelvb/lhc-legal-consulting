@@ -31,7 +31,7 @@ def import_articles():
     """Importa los artículos desde el JSON si no existen en la base de datos."""
     with app.app_context():
         if not os.path.exists(JSON_PATH):
-            print(f"⚠️ Archivo JSON no encontrado en {JSON_PATH}, saltando importación de artículos.")
+            print(f"Archivo JSON no encontrado en {JSON_PATH}, saltando importación de artículos.")
             return
         with open(JSON_PATH, 'r', encoding='utf-8') as f:
             articles_data = json.load(f)

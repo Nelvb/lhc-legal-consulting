@@ -47,6 +47,11 @@ def create_app(config_object=DevelopmentConfig):
     # Inicializar extensiones (DB, JWT, CORS, etc.)
     # CORS ya está configurado en extensions.py con todos los orígenes necesarios
     init_app(app)
+    
+    # Logging adicional para diagnóstico en producción
+    frontend_env = os.getenv("FRONTEND_URL")
+    app.logger.info(f"🔍 [create_app] FRONTEND_URL detectado: {frontend_env}")
+    app.logger.info(f"✅ [create_app] Aplicación Flask inicializada correctamente")
 
     # Inicializar compresión (Gzip/Brotli) para respuestas JSON
     if Compress is not None:
