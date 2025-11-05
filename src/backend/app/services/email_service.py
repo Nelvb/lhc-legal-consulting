@@ -1,107 +1,96 @@
 """
-Servicio profesional de envío de correos.
-Compatible con Flask-Mail, Render y servicios externos (SendGrid, Mailgun).
-Evita bloqueos, implementa timeout y fallback seguro a base de datos.
+Servicio profesional de envío de correos mediante la API REST de SendGrid.
+Compatible con Render y 100 % gratuito hasta 100 emails/día.
+
+Evita bloqueos SMTP y no depende de Flask-Mail.
+Usa una simple petición HTTPS al endpoint oficial de SendGrid.
 
 Autor: LHC Legal & Consulting - Equipo Backend
 """
 
+import os
+import requests
 from flask import current_app
-from flask_mail import Message
-from app.extensions import mail, db
-from app.models.contact_message import ContactMessage  # Ajusta si la tabla tiene otro nombre
-import threading
-import smtplib
-import socket
-import time
-import traceback
+from typing import Optional
+
+SENDGRID_API_URL = "https://api.sendgrid.com/v3/mail/send"
 
 
-class EmailService:
+class SendGridEmailService:
     def __init__(self):
-        # Obtiene el remitente y configuración general desde variables de entorno
-        self.default_sender = current_app.config.get("MAIL_DEFAULT_SENDER")
-        self.mail_timeout = int(current_app.config.get("MAIL_TIMEOUT", 10))
-        self.fallback_enabled = bool(current_app.config.get("MAIL_FALLBACK_ENABLED", True))
+        # Leer la API Key de SendGrid desde las variables de entorno
+        api_key = os.getenv("SENDGRID_API_KEY") or current_app.config.get("SENDGRID_API_KEY")
+        # Limpiar espacios en blanco que puedan estar causando problemas
+        self.api_key = api_key.strip() if api_key else None
+        # Verificar que la API Key esté presente
+        if not self.api_key:
+            current_app.logger.error("[EMAIL] SENDGRID_API_KEY no configurada")
+            raise ValueError("La API key de SendGrid no está configurada correctamente.")
+        
+        # Leer la dirección de envío predeterminada
+        default_sender = os.getenv("MAIL_DEFAULT_SENDER") or current_app.config.get("MAIL_DEFAULT_SENDER")
+        # Limpiar espacios en blanco
+        self.default_sender = default_sender.strip() if default_sender else None
+        # Verificar que la dirección de envío esté configurada
+        if not self.default_sender:
+            current_app.logger.error("[EMAIL] MAIL_DEFAULT_SENDER no configurada")
+            raise ValueError("La dirección de envío predeterminada no está configurada correctamente.")
 
-    def _send_with_flask_mail(self, msg: Message):
-        """Envía el correo real usando Flask-Mail en un hilo separado."""
-        try:
-            with mail.connect() as conn:
-                conn.send(msg)
-                current_app.logger.info(f"[EMAIL] Enviado correctamente a {msg.recipients}")
-        except (smtplib.SMTPException, socket.timeout) as e:
-            current_app.logger.warning(f"[EMAIL] Timeout o error SMTP: {e}")
-            raise
-        except Exception:
-            current_app.logger.error(f"[EMAIL] Error inesperado:\n{traceback.format_exc()}")
-            raise
-
-    def _send_async(self, msg: Message):
-        """Lanza el envío en un hilo paralelo (no bloquea el worker de Render)."""
-        thread = threading.Thread(target=self._send_with_flask_mail, args=(msg,))
-        thread.daemon = True
-        thread.start()
-
-    def send_email(self, subject: str, recipients: list[str], body: str, html: str = None) -> dict:
-        """Lógica principal de envío: modo asíncrono + fallback en caso de error."""
-        start_time = time.time()
-
+    def send_email(self, subject: str, recipients: list[str], body: str, html: Optional[str] = None) -> dict:
+        """Envía un correo mediante la API de SendGrid."""
+        # Validar que existan destinatarios
         if not recipients:
             return {"success": False, "error": "No se han especificado destinatarios."}
 
-        msg = Message(
-            subject=subject,
-            recipients=recipients,
-            body=body,
-            html=html,
-            sender=self.default_sender,
-        )
+        # Preparar los datos del correo a enviar
+        data = {
+            "personalizations": [
+                {
+                    "to": [{"email": r} for r in recipients],
+                    "subject": subject,
+                }
+            ],
+            "from": {"email": self.default_sender},
+            "content": [
+                {
+                    "type": "text/plain" if not html else "text/html",
+                    "value": html or body,
+                }
+            ],
+        }
+
+        # Configurar los encabezados para la solicitud
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+        }
 
         try:
-            # Enviar en modo no bloqueante
-            self._send_async(msg)
-            current_app.logger.info(f"[EMAIL] Envío en curso hacia {recipients}")
-            return {"success": True, "message": "Correo enviado (modo asíncrono)."}
+            # Enviar la solicitud a SendGrid
+            response = requests.post(SENDGRID_API_URL, json=data, headers=headers, timeout=10)
+            if response.status_code in (200, 202):
+                current_app.logger.info(f"[EMAIL] Enviado correctamente a {recipients}")
+                return {"success": True, "message": "Correo enviado correctamente vía SendGrid API."}
+            else:
+                error_detail = response.text[:500] if response.text else "Sin detalles"
+                current_app.logger.error(f"[EMAIL] Error SendGrid ({response.status_code}): {error_detail}")
+                return {"success": False, "error": f"Error SendGrid: {response.status_code} - {error_detail}"}
+
+        except requests.Timeout:
+            # Error en caso de timeout
+            current_app.logger.error("[EMAIL] Timeout en la solicitud a SendGrid.")
+            return {"success": False, "error": "Timeout en la solicitud a SendGrid."}
 
         except Exception as e:
-            elapsed = round(time.time() - start_time, 2)
-            current_app.logger.error(f"[EMAIL] Fallo tras {elapsed}s: {e}")
-
-            if self.fallback_enabled:
-                try:
-                    self._save_fallback_message(subject, recipients, body)
-                    return {
-                        "success": True,
-                        "message": "No se pudo enviar, pero se guardó en fallback.",
-                    }
-                except Exception as db_error:
-                    current_app.logger.error(f"[EMAIL] Fallo al guardar fallback: {db_error}")
-
+            # Manejo de otros errores inesperados
+            current_app.logger.error(f"[EMAIL] Error inesperado: {e}")
             return {"success": False, "error": str(e)}
 
-    def _save_fallback_message(self, subject: str, recipients: list[str], body: str):
-        """Guarda el mensaje en base de datos para revisión manual si el envío falla."""
-        try:
-            contact_msg = ContactMessage(
-                name="SYSTEM_FALLBACK",
-                email=self.default_sender,
-                subject=subject,
-                message=body,
-                created_at=time.strftime("%Y-%m-%d %H:%M:%S"),
-            )
-            db.session.add(contact_msg)
-            db.session.commit()
-            current_app.logger.info("[EMAIL] Mensaje guardado en fallback DB.")
-        except Exception:
-            db.session.rollback()
-            raise
 
-
-def send_email_with_limit(subject: str, recipients: list[str], body: str, html: str = None):
+def send_email_with_limit(subject: str, recipients: list[str], body: str, html: Optional[str] = None):
     """
-    Crea una instancia del servicio dentro del contexto válido.
-    Se puede extender para control de límites por IP o usuario en el futuro.
+    Crea una instancia del servicio y envía el correo.
+    Permite extenderse con límites por IP o usuario si se desea.
     """
-    service = EmailService()
+    service = SendGridEmailService()
     return service.send_email(subject, recipients, body, html)

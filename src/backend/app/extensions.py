@@ -13,7 +13,7 @@ from flask_jwt_extended import JWTManager
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
-from flask_mail import Mail
+from flask_mail import Mail  # LEGACY: No usado, el sistema actual usa SendGrid API
 import os
 
 # Inicialización diferida de extensiones
@@ -22,7 +22,7 @@ migrate = Migrate()
 jwt = JWTManager()
 ma = Marshmallow()
 cors = CORS()
-mail = Mail()
+mail = Mail()  # LEGACY: Inicializado pero no usado (sistema usa SendGrid API REST)
 
 
 def init_app(app):

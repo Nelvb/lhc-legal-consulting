@@ -16,7 +16,7 @@ from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
 from app.extensions import db
 from app.models.user import User
 from app.schemas.contact_schema import ContactSchema
-from app.services.email_service_api import send_email_with_limit
+from app.services.email_service import send_email_with_limit
 from app.services.contact_service import save_contact_message
 
 # Definición del Blueprint
@@ -275,7 +275,9 @@ def contact():
 
             return jsonify({"msg": "Mensaje enviado correctamente"}), 200
         else:
-            current_app.logger.error(f"Error enviando email: {result.get('error')}")
+            error_msg = result.get('error', 'Error desconocido')
+            current_app.logger.error(f"[CONTACT] Error enviando email: {error_msg}")
+            # En producción, no exponer detalles del error al cliente por seguridad
             return jsonify({"msg": "No se pudo enviar el mensaje"}), 500
 
     except Exception as e:

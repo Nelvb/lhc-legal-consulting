@@ -1,0 +1,83 @@
+[33mcommit a3e3352b806c8590360cb9aaf0944e3b469be7d1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Nelvb <nelsonvbarcelona@gmail.com>
+Date:   Wed Nov 5 01:20:23 2025 +0100
+
+    cambiar MAIL_PASSWORD por SENDGRID_API_KEY en email_service_api.py
+
+[1mdiff --git a/src/backend/app/services/email_service_api.py b/src/backend/app/services/email_service_api.py[m
+[1mindex f14750f..8a91a48 100644[m
+[1m--- a/src/backend/app/services/email_service_api.py[m
+[1m+++ b/src/backend/app/services/email_service_api.py[m
+[36m@@ -11,24 +11,32 @@[m [mAutor: LHC Legal & Consulting - Equipo Backend[m
+ import os[m
+ import requests[m
+ from flask import current_app[m
+[32m+[m[32mfrom typing import Optional[m
+ [m
+ SENDGRID_API_URL = "https://api.sendgrid.com/v3/mail/send"[m
+ [m
+ [m
+ class SendGridEmailService:[m
+     def __init__(self):[m
+[31m-        # La API key ya la tienes en Render como MAIL_PASSWORD[m
+[31m-        self.api_key = os.getenv("MAIL_PASSWORD") or current_app.config.get("MAIL_PASSWORD")[m
+[31m-        self.default_sender = os.getenv("MAIL_DEFAULT_SENDER") or current_app.config.get("MAIL_DEFAULT_SENDER")[m
+[31m-[m
+[32m+[m[32m        # Leer la API Key de SendGrid desde las variables de entorno[m
+[32m+[m[32m        self.api_key = os.getenv("SENDGRID_API_KEY") or current_app.config.get("SENDGRID_API_KEY")[m
+[32m+[m[32m        # Verificar que la API Key esté presente[m
+         if not self.api_key:[m
+[31m-            raise ValueError("Falta la API key de SendGrid (MAIL_PASSWORD).")[m
+[32m+[m[32m            raise ValueError("La API key de SendGrid no está configurada correctamente.")[m
+[32m+[m[41m        [m
+[32m+[m[32m        # Leer la dirección de envío predeterminada[m
+[32m+[m[32m        self.default_sender = os.getenv("MAIL_DEFAULT_SENDER") or current_app.config.get("MAIL_DEFAULT_SENDER")[m
+[32m+[m[32m        # Verificar que la dirección de envío esté configurada[m
+[32m+[m[32m        if not self.default_sender:[m
+[32m+[m[32m            raise ValueError("La dirección de envío predeterminada no está configurada correctamente.")[m
+ [m
+[31m-    def send_email(self, subject: str, recipients: list[str], body: str, html: str = None) -> dict:[m
+[32m+[m[32m    def send_email(self, subject: str, recipients: list[str], body: str, html: Optional[str] = None) -> dict:[m
+         """Envía un correo mediante la API de SendGrid."""[m
+[32m+[m[32m        # Validar que existan destinatarios[m
+         if not recipients:[m
+             return {"success": False, "error": "No se han especificado destinatarios."}[m
+ [m
+[32m+[m[32m        # Preparar los datos del correo a enviar[m
+         data = {[m
+             "personalizations": [[m
+                 {[m
+[36m@@ -45,12 +53,14 @@[m [mclass SendGridEmailService:[m
+             ],[m
+         }[m
+ [m
+[32m+[m[32m        # Configurar los encabezados para la solicitud[m
+         headers = {[m
+             "Authorization": f"Bearer {self.api_key}",[m
+             "Content-Type": "application/json",[m
+         }[m
+ [m
+         try:[m
+[32m+[m[32m            # Enviar la solicitud a SendGrid[m
+             response = requests.post(SENDGRID_API_URL, json=data, headers=headers, timeout=10)[m
+             if response.status_code in (200, 202):[m
+                 current_app.logger.info(f"[EMAIL] Enviado correctamente a {recipients}")[m
+[36m@@ -60,15 +70,17 @@[m [mclass SendGridEmailService:[m
+                 return {"success": False, "error": f"Error SendGrid: {response.status_code}"}[m
+ [m
+         except requests.Timeout:[m
+[32m+[m[32m            # Error en caso de timeout[m
+             current_app.logger.error("[EMAIL] Timeout en la solicitud a SendGrid.")[m
+             return {"success": False, "error": "Timeout en la solicitud a SendGrid."}[m
+ [m
+         except Exception as e:[m
+[32m+[m[32m            # Manejo de otros errores inesperados[m
+             current_app.logger.error(f"[EMAIL] Error inesperado: {e}")[m
+             return {"success": False, "error": str(e)}[m
+ [m
+ [m
+[31m-def send_email_with_limit(subject: str, recipients: list[str], body: str, html: str = None):[m
+[32m+[m[32mdef send_email_with_limit(subject: str, recipients: list[str], body: str, html: Optional[str] = None):[m
+     """[m
+     Crea una instancia del servicio y envía el correo.[m
+     Permite extenderse con límites por IP o usuario si se desea.[m

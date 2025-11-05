@@ -9,7 +9,7 @@
 # Soporta:
 # - Base de datos local o Neon (según entorno)
 # - JWT seguro con cookies HttpOnly y CSRF
-# - Envío de emails con Flask-Mail
+# - Envío de emails con SendGrid API REST
 # - Cloudinary para subida de imágenes
 # ============================================================
 
@@ -56,14 +56,29 @@ class Config:
     CLOUDINARY_API_SECRET = os.getenv("CLOUDINARY_API_SECRET")
 
     # --------------------------------------------------------
-    # Configuración de email (Flask-Mail)
+    # Configuración de email - SendGrid API (ACTUAL)
     # --------------------------------------------------------
+    # SendGrid API Key (obligatorio para envío de emails)
+    SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+    
+    # Email remitente predeterminado (obligatorio)
+    # Nota: Se usa MAIL_USERNAME como fallback solo si está definido
+    _mail_username = os.getenv("MAIL_USERNAME")
+    MAIL_DEFAULT_SENDER = os.getenv("MAIL_DEFAULT_SENDER", _mail_username)
+    
+    # Email destinatario predeterminado para formularios de contacto
+    MAIL_DEFAULT_RECEIVER = os.getenv("MAIL_DEFAULT_RECEIVER", "lhclegalandconsulting@gmail.com")
+    
+    # --------------------------------------------------------
+    # Configuración de email - Flask-Mail (LEGACY - NO USADO)
+    # --------------------------------------------------------
+    # NOTA: El sistema actual usa SendGrid API REST (email_service.py)
+    # Estas variables se mantienen por compatibilidad pero no se usan
     MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.gmail.com")
     MAIL_PORT = int(os.getenv("MAIL_PORT", 587))
     MAIL_USE_TLS = True
-    MAIL_USERNAME = os.getenv("MAIL_USERNAME")
+    MAIL_USERNAME = _mail_username
     MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
-    MAIL_DEFAULT_SENDER = os.getenv("MAIL_DEFAULT_SENDER", MAIL_USERNAME)
     MAIL_MAX_EMAILS_PER_DAY = int(os.getenv("MAIL_MAX_EMAILS_PER_DAY", 100))
 
 

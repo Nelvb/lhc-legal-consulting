@@ -42,7 +42,12 @@ CLOUDINARY_CLOUD_NAME=tu_cloud_name
 CLOUDINARY_API_KEY=tu_api_key
 CLOUDINARY_API_SECRET=tu_api_secret
 
-# Email (opcional, para Flask-Mail)
+# Email - SendGrid API (REQUERIDO para envío de emails)
+SENDGRID_API_KEY=tu_api_key_de_sendgrid
+MAIL_DEFAULT_SENDER=tu_email@tudominio.com
+MAIL_DEFAULT_RECEIVER=contacto@tudominio.com
+
+# Email - Flask-Mail (LEGACY - No usado, se mantiene por compatibilidad)
 MAIL_SERVER=smtp.gmail.com
 MAIL_PORT=587
 MAIL_USERNAME=tu_email@gmail.com
