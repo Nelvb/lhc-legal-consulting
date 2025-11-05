@@ -1,51 +1,79 @@
+# ============================================================================
+# LHC Legal & Consulting - Stack Docker Compose
+# Backend (Flask) + Frontend (Next.js) + Base de Datos (PostgreSQL)
+# ============================================================================
+version: "3.9"
+
 services:
+  # ------------------------------------------------------------
+  # Backend Flask (API + SendGrid + Cloudinary)
+  # ------------------------------------------------------------
   backend:
     build:
       context: .
       dockerfile: Dockerfile.backend
+    container_name: lhc-backend
     ports:
       - "5000:5000"
     depends_on:
       - db
     volumes:
       - ./src/backend:/app
-    networks:
-      - app-network
     env_file:
       - ./.env.docker
+    networks:
+      - app-network
+    restart: unless-stopped
 
+  # ------------------------------------------------------------
+  # Frontend Next.js (Vercel-like Dev Environment)
+  # ------------------------------------------------------------
   frontend:
     build:
       context: .
       dockerfile: Dockerfile.frontend
+    container_name: lhc-frontend
     ports:
       - "3000:3000"
     volumes:
       - ./src/frontend:/app
       - /app/node_modules
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:5000/api
+      - NEXT_PUBLIC_API_URL=http://backend:5000/api  # 👈 Directo al contenedor backend
+      - NODE_ENV=development
     depends_on:
       - backend
     networks:
       - app-network
+    restart: unless-stopped
 
+  # ------------------------------------------------------------
+  # Base de Datos PostgreSQL
+  # ------------------------------------------------------------
   db:
     image: postgres:14
+    container_name: lhc-db
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=starter_db
+      - POSTGRES_USER=${DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
+      - POSTGRES_DB=${DB_NAME:-lhc_legal_docker}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
+    restart: unless-stopped
 
+# ------------------------------------------------------------
+# Red interna para comunicación entre servicios
+# ------------------------------------------------------------
 networks:
   app-network:
     driver: bridge
 
+# ------------------------------------------------------------
+# Volumen persistente para la base de datos
+# ------------------------------------------------------------
 volumes:
   postgres_data:
